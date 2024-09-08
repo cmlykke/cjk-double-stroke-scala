@@ -1,0 +1,5 @@
+package WordCorpus
+
+class WordCorpusTest {
+
+}

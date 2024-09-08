@@ -1,0 +1,113 @@
+// ideal First 3 keys:
+[5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+
+扌   木   𠂊亅⿱𠂊亅  口止  目   虫
+e    a    c           b    f    d
+
+e => f-12 First 3 keys: [5105, 5209, 5772], Total keys: 31, Total beyond index 8: 105
+e => d-13 First 3 keys: [4790, 5105, 5209], Total keys: 31, Total beyond index 8: 105
+e => l-54 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+e => j-52 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+e => k-53 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+-- e => s-14 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+
+a => f-12 First 3 keys: [5105, 5209, 5491], Total keys: 31, Total beyond index 8: 109
+a => d-13 First 3 keys: [4790, 5105, 5209], Total keys: 30, Total beyond index 8: 104
+a => l-54 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+a => j-52 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+-- a => k-53 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+e => s-14 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+
+c => f-12 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 106
+c => d-13 First 3 keys: [4790, 5105, 5209], Total keys: 30, Total beyond index 8: 105
+c => l-54 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+-- c => j-52 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+c => k-53 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+c => s-14 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+
+-- b => f-12 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 105
+b => d-13 First 3 keys: [4790, 5105, 5209], Total keys: 30, Total beyond index 8: 104
+b => l-54 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+b => j-52 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+b => k-53 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+b => s-14 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+
+f => f-12 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 104
+-- f => d-13 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+f => l-54 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+f => j-52 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+f => k-53 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+f => s-14 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+
+d => f-12 First 3 keys: [5105, 5209, 5491], Total keys: 31, Total beyond index 8: 108
+d => d-13 First 3 keys: [4790, 5105, 5209], Total keys: 30, Total beyond index 8: 105
+-- d => l-54 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+d => j-52 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+d => k-53 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+d => s-14 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 103
+
+// overlaps after assigning elements to the middle row
+//First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 105
+no further overlap after mapping to letters in the top row
+
+錶        言     縱     𠁣𠃛    車       驤     餞
+m->r    k->i   l->w    n->p    q->e    o->u    p->o
+                 u                      w
+r42 i33  w44  p35  e43   u32  o34
+
+m => o-34 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 105
+m => u-32 -
+m => p-35 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 107
+m => w-44 -
+m => e-43 -
+m => i-33 -
+-- 錶m => r-42 -
+
+
+k => o-34 -
+k => u-32 -
+k => p-35 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 109
+k => w-44 -
+k => e-43 -
+-- 言k => i-33 -
+k => r-42 -
+
+l => o-34 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 105
+-- 縱l => u-32 -
+l => p-35 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 107
+l => w-44 -
+l => e-43 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 106
+l => i-33 -
+l => r-42 -
+
+n => o-34 -
+n => u-32 -
+-- 𠁣𠃛n => p-35 -
+n => w-44 -
+n => e-43 -
+n => i-33 -
+n => r-42 -
+
+q => o-34 -
+q => u-32 -
+q => p-35 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 106
+q => w-44 -
+-- 車q => e-43 -
+q => i-33 -
+q => r-42 -
+
+o => o-34 -
+o => u-32 -
+o => p-35 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 106
+-- 驤o => w-44 -
+o => e-43 -
+o => i-33 -
+o => r-42 -
+
+-- 餞p => o-34 -
+p => u-32 -
+p => p-35 First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 106
+p => w-44 -
+p => e-43 -
+p => i-33 -
+p => r-42 -

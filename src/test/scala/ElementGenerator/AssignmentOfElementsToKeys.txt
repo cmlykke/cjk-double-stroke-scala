@@ -1,0 +1,41 @@
+
+based on the frequency of each pair of numbers, and the
+frequency of the elements, here is a provisional pairing of elments to letter combinations
+
+
+// Junda
+alphabet order:
+e  a  c  b  f  d
+m  k  l  n  q  o  p
+
+order of first and fith line
+12 (11) (51) 13 54  (15)  52  53  (55)  14
+d            f  b         c   a         e
+
+order of second and third line v1
+34  32  35  (41)  (31)  44  43  45  33  42
+o   q                    n  l   p!!  k   m
+
+order of second and third line v2
+34  32  35  (41)  (31)  44  43  45  33  42
+o   q   p!!             n  l        k    m
+
+
+// Tzai
+alphabet order:
+a  e  c  f  b  d
+k  l  n  q  m  o  p
+
+order of first and fith line
+12 (11) (51)  13  54  52  (15)  53  (55) 14
+d             b   f   c         e        a
+
+order of second and third line v1
+34  32  35  (41)  44  (31)  43  33  45  42
+o   m   p!!       q         n   l       k
+
+order of second and third line v2
+34  32  35  (41)  44  (31)  43  33  45  42
+o   m             q         n   l   p!!  k
+
+
