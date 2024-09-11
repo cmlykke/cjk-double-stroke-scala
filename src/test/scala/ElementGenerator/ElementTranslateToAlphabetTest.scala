@@ -7,8 +7,6 @@ import org.scalatest.matchers.should.Matchers
 class ElementTranslateToAlphabetTest extends AnyFlatSpec with Matchers {
 
   
-  
-  
   it should "junda - check that the map of character to alphabet has the same size" in {
     //createMapFromSet
 

@@ -1,26 +1,22 @@
 package staticFileGenerators.Conway
 
 import UtilityClasses.{Cluster, ConwayColl, Grapheme, InputSizes}
-import staticFileGenerators.IdsMap.GenerateIdsMap
+//import staticFileGenerators.IdsMap.GenerateIdsMap
 
 import java.util
 import java.util.regex.Matcher
+import scala.collection.mutable
 import scala.collection.mutable.HashMap
 
 class GenerateConwayCodes {
   import GenerateConwayCodes._
 
-  def getConwayMap: HashMap[Grapheme, ConwayColl] = conwayMap // If conwayMap is to be local, then it needs to be added as part of the class instance not object
-  
-  def getConwayCharacters: Set[Grapheme] = conwayCharsAll
-
   def get(CJKcharacter: Grapheme): ConwayColl = {
-    getConwayMap.get(CJKcharacter) match {
+    conwayMap.get(CJKcharacter) match {
       case Some(lookup) => lookup
       case None => throw new NoSuchElementException("Key not found in the map: " + CJKcharacter.char)
     }
   }
-
 
   def splitSingle(inp: String): List[String] = {
     val res = inp.grouped(2).toList
@@ -147,17 +143,29 @@ class GenerateConwayCodes {
     }
   }
 
+  def generateAllConway(): HashMap[Grapheme, ConwayColl] = {
+    val basicConway = GenerateConwayCodes.conwayFilePath
+    val orderedfile = GenerateConwayCodes.orderedMissingConway
 
+    val readconway = new ReadConwayData()
+    val basicconwayMap: mutable.HashMap[Grapheme, ConwayColl] =
+    readconway.mapConwayData(basicConway)
+    val missingconwayMap: mutable.HashMap[Grapheme, ConwayColl] =
+    readconway.mapConwayData(orderedfile)
+    basicconwayMap.clone().addAll(missingconwayMap)
+  }
 
 }
 
 object GenerateConwayCodes {
   // compute the idsMap and nestedIdsMap here
-  val readconway = new ReadConwayData()
-  val conwayMap: HashMap[Grapheme, ConwayColl] =
-    new ReadConwayData().mapConwayData()//new ReadConwayData().mapConwayData()
-  val conwayCharsAll: Set[Grapheme] = conwayMap.map(x => x._1).toSet
+  val conwayFilePath = "src/main/scala/staticFileGenerators/staticFiles/codepoint-character-sequence.txt"
+  val heisigFilePath = "src/main/scala/staticFileGenerators/staticFiles/heisigTXT.txt"
+  val cedictCharsMissingFromConway = "src/main/scala/staticFileGenerators/Conway/failed.txt"
+  val orderedMissingConway = "src/main/scala/staticFileGenerators/Conway/orderedMissingConway.txt"
   
+  val conwayMap: HashMap[Grapheme, ConwayColl] = new GenerateConwayCodes().generateAllConway()
+  val conwaySet: Set[Grapheme] = conwayMap.keys.toSet
 }
 
 

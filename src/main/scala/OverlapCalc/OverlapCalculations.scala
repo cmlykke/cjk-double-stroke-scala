@@ -275,7 +275,7 @@ class OverlapCalculations {
 }
 
 object OverlapCalculations {
-  val allGraphemes: Set[Grapheme] = GenerateConwayCodes.conwayCharsAll
+  val allGraphemes: Set[Grapheme] = GenerateConwayCodes.conwaySet
   val staticfile = StaticFileGeneratorFacade()
 
   val junda8000: Set[Grapheme] = allGraphemes.filter(x =>

@@ -17,8 +17,39 @@ class CedictSubEntry(chineseStr: String,
 
   def checkIsAlphabet(inputGrap: Grapheme): Option[Char] = {
     var res: Option[Char] = None
-    val mapper = new GenerateConwayCodes()
-    val allChars: Set[Grapheme] = mapper.getConwayCharacters
+    val char = inputGrap.char.head // Extracting the single character
+
+    // ⺮ (U+2EAE)
+    if (isEnglishAlphabet(char)) {
+      // Check if the character is alphabetic and return the lowercase version
+      res = Some(char.toLower)
+    } else if ( char > 11903)     { //11903 - U+2E7F Supplemental Punctuation
+      // Check if the character is ASCII
+      res = None
+    } else {
+      res = Some('z')
+    }
+
+    if (res.isDefined && !(maybeInfoVar == null) &&  maybeInfoVar.isDefined) {
+      throw new IllegalArgumentException(s"Character '${char}' should not have staticInfo.")
+    }
+    return res
+  }
+
+  def isEnglishAlphabet(c: Char): Boolean = {
+    c match {
+      case ch if ('a' to 'z').contains(ch) => true
+      case ch if ('A' to 'Z').contains(ch) => true
+      case _ => false
+    }
+  }
+}
+
+/*
+
+  def checkIsAlphabet(inputGrap: Grapheme): Option[Char] = {
+    var res: Option[Char] = None
+    val allChars: Set[Grapheme] = GenerateConwayCodes.conwaySet
     val char = inputGrap.char.head // Extracting the single character
 
     // ⺮ (U+2EAE)
@@ -29,7 +60,7 @@ class CedictSubEntry(chineseStr: String,
       val tes = ""
     } else if ( !(char >= 12288 && char <= 12351) &&  //U+3000..U+303F  12288--12351
       ((char < 11904 || char > 12031) &&// U+2E80..U+2EFF--11904 12031
-      (char <= 12735 ||  //12735 U+31BF     
+      (char <= 12735 ||  //12735 U+31BF
       (char >= 40960 && // U+A000
         char <= 55295) || // D7FF //65535)) // U+FFFF
       (char >= 63744 && // F900
@@ -54,12 +85,4 @@ class CedictSubEntry(chineseStr: String,
     }
     return res
   }
-
-  def isEnglishAlphabet(c: Char): Boolean = {
-    c match {
-      case ch if ('a' to 'z').contains(ch) => true
-      case ch if ('A' to 'Z').contains(ch) => true
-      case _ => false
-    }
-  }
-}
+*/

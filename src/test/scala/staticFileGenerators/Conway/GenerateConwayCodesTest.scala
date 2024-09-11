@@ -5,17 +5,27 @@ import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 import staticFileGenerators.IdsMap.GenerateNestedIdsMap
 
+import scala.collection.mutable
+
 class GenerateConwayCodesTest  extends AnyFlatSpec with Matchers{
 
-  
-  //GenerateConwayCodes
+  "conway basic and conway missing files" should " should not have dublicates" in {
+    val basicConway = GenerateConwayCodes.conwayFilePath
+    //val conwayMissing = GenerateConwayCodes.cedictCharsMissingFromConway
+    val orderedfile = GenerateConwayCodes.orderedMissingConway
 
-
-  "All chars in conway" should "have the correct size" in {
-    val mapper = new GenerateConwayCodes()
-    val allChars = mapper.getConwayMap
-    allChars.keys.size shouldEqual 28100
-
+    val readconway = new ReadConwayData()
+    val basicconwayMap: mutable.HashMap[Grapheme, ConwayColl] =
+      readconway.mapConwayData(basicConway)
+    val missingconwayMap: mutable.HashMap[Grapheme, ConwayColl] =
+      readconway.mapConwayData(orderedfile)
+    val missingConwayGraphemeSet = readconway.fileToNonAsciiGraphemeSet(orderedfile)
+    val mergemap = basicconwayMap.clone().addAll(missingconwayMap)
+    
+    basicconwayMap.keys.size shouldEqual 28095
+    missingconwayMap.keys.size shouldEqual 203
+    missingconwayMap.keys.size shouldEqual missingConwayGraphemeSet.size
+    mergemap.keys.size shouldEqual 28298
   }
   
   "The expandAlternatives function" should "test that expansion is correct" in {
@@ -82,8 +92,7 @@ class GenerateConwayCodesTest  extends AnyFlatSpec with Matchers{
 //令	34(152|154|454)
 
   "Conway chars test" should "test the size of the conway char set" in {
-    val mapper = new GenerateConwayCodes()
-    val conwayChars = mapper.getConwayCharacters
+    val conwayChars = GenerateConwayCodes.conwaySet
     conwayChars.size == 28095
   }
 /*
