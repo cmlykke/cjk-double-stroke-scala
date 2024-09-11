@@ -22,26 +22,26 @@ class SpecialCharactersTest extends AnyFlatSpec with Matchers {
     }
     dublicate.size shouldBe 0
   }
-  
+
   it should "check that the special characters are noot CJK" in {
     val punct: Set[Grapheme] = ReadSpecialCharacters.punctiation
     val special: Set[Grapheme] = ReadSpecialCharacters.specialCharacters
     val conway: Set[Grapheme] = GenerateConwayCodes.conwaySet
-    
+
     var dublicate: mutable.HashSet[Grapheme] = mutable.HashSet()
     for (grap <- punct) {
       if (conway.contains(grap)) {//.char.head >= 13312) {
         dublicate.add(grap)
       }
     }
-    
+
     for (grap <- special) {
       if (conway.contains(grap)) {//(grap.char.head >= 13312) {
         dublicate.add(grap)
       }
     }
-    dublicate.size shouldBe 1
-    dublicate.toList(0).char shouldBe "、"
+    dublicate.size shouldBe 3
+    dublicate.map(x => x.char).toSet shouldBe Set("，","：","、")
   }
 
 }

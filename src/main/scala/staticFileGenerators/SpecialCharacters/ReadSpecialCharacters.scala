@@ -56,4 +56,5 @@ object ReadSpecialCharacters {
   val allCharacterStr: String = inst.specialLines()
   val punctiation: Set[Grapheme] = inst.punctuationSet()
   val specialCharacters: Set[Grapheme] = inst.specialCharacterSet()
+  val specialCharactersAll: Set[Grapheme] = specialCharacters ++ punctiation
 }

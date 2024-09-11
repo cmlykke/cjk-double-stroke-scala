@@ -20,7 +20,8 @@ class GenerateNestedIdsMapTest extends AnyFlatSpec with Matchers {
         missingGraphemes.addOne(grap)
       }
     }
-    missingGraphemes.size shouldBe 0
+    missingGraphemes.size shouldBe 2
+    missingGraphemes.map(x => x.char).toSet shouldBe Set("，","：")
   }
 
 

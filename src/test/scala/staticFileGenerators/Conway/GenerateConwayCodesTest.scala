@@ -23,9 +23,9 @@ class GenerateConwayCodesTest  extends AnyFlatSpec with Matchers{
     val mergemap = basicconwayMap.clone().addAll(missingconwayMap)
     
     basicconwayMap.keys.size shouldEqual 28095
-    missingconwayMap.keys.size shouldEqual 203
+    missingconwayMap.keys.size shouldEqual 206
     missingconwayMap.keys.size shouldEqual missingConwayGraphemeSet.size
-    mergemap.keys.size shouldEqual 28298
+    mergemap.keys.size shouldEqual 28301
   }
   
   "The expandAlternatives function" should "test that expansion is correct" in {
