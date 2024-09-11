@@ -8,36 +8,6 @@ import scala.collection.mutable.ListBuffer
 import scala.io.Source
 
 class GenerateCedictMap {
-  //generateTranslatedAllChars   ElementTranslateToAlphabet
-  
-  def generateCedictFromFile(filePath: String, 
-                             staticFileMap: Map[Grapheme, StaticFileCharInfoWithLetterConway]): 
-  Set[CedictEntry] = {
-    val failed: ListBuffer[CedictEntry] = ListBuffer()
-    val res: ListBuffer[CedictEntry] = ListBuffer()
-    
-    val bufferedSource = Source.fromFile(filePath)
-    val lines = bufferedSource.getLines
-    for (eachline <- lines) {
-      if (!eachline.startsWith("#")) {
-        val words: Array[String] = eachline.split("\\s+")
-        val tradEntry = new CedictEntry(words(0), CharSystem.Tzai, staticFileMap)
-        val simpEntry = new CedictEntry(words(1), CharSystem.Junda, staticFileMap)
-        if (!tradEntry.unambigous.isEmpty) {
-          res.append(tradEntry)
-        } else {
-          failed.append(tradEntry)
-        }
-        if (!simpEntry.unambigous.isEmpty) {
-          res.append(simpEntry)
-        } else {
-          failed.append(simpEntry)
-        }
-      }
-    }
-    bufferedSource.close()
-    failed.toSet
-  }
   
   def generateList(): Set[CedictEntry] = {
     val idsFilePath = "src/main/scala/staticFileGenerators/staticFiles/cedict_ts.u8" // replace with your actual file path
@@ -55,8 +25,11 @@ class GenerateCedictMap {
     for (eachline <- lines) {
       if (!eachline.startsWith("#")) {
         val words: Array[String] = eachline.split("\\s+")
-        val tradEntry = new CedictEntry(words(0), CharSystem.Tzai, trans2)
-        val simpEntry = new CedictEntry(words(1), CharSystem.Junda, trans2)
+        val meaning: String = captureBetweenStrings(eachline, "/", "/",false)
+        val pronounciation: String = captureBetweenStrings(eachline, "[", "]",true)
+        val tradSimp: String = words(0) + "|" + words(1) 
+        val tradEntry = new CedictEntry(words(0), CharSystem.Tzai, trans2,meaning,pronounciation, tradSimp)
+        val simpEntry = new CedictEntry(words(1), CharSystem.Junda, trans2,meaning,pronounciation, tradSimp)
         if (!tradEntry.unambigous.isEmpty) {
           res.append(tradEntry)
         } else {
@@ -97,6 +70,30 @@ class GenerateCedictMap {
     } finally {
       fileWriter.close()
     }
+  }
+
+  def captureBetweenStrings(input: String,
+                            string1: String,
+                            string2: String,
+                            firstMatch: Boolean): String = {
+    // Find the occurrence of string1
+    val startIdx = input.indexOf(string1)
+    // Validate startIdx
+    if (startIdx == -1) {
+      throw new IllegalArgumentException("Input string must contain the start delimiter.")
+    }
+    // Find the occurrence of string2 based on firstMatch
+    val endIdx = if (firstMatch) {
+      input.indexOf(string2, startIdx + string1.length)
+    } else {
+      input.lastIndexOf(string2)
+    }
+    // Validate endIdx
+    if (endIdx == -1 || startIdx >= endIdx) {
+      throw new IllegalArgumentException("Input string must contain the specified delimiters in the proper order.")
+    }
+    // Capture the substring between string1 and string2
+    input.substring(startIdx + string1.length, endIdx)
   }
 
 }

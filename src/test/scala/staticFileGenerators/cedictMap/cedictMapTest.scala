@@ -10,36 +10,47 @@ import scala.collection.mutable
 
 class cedictMapTest extends AnyFlatSpec with Matchers{
 
+  "testAllCedict" should "contain only a fraction of the characters in conway" in {
+    val cedict: Set[CedictEntry]  = GenerateCedictMap.cedictCompleteSet
+    val conwayChars: Set[Grapheme] = GenerateConwayCodes.conwaySet
+
+    var conwayMissingFromCedict: mutable.HashSet[Grapheme] = mutable.HashSet[Grapheme]()
+    for (entry <- cedict) {
+      if (entry.chineseStrGraphemes.size == 1) {
+        conwayMissingFromCedict.addAll(entry.chineseStrGraphemes)
+      }
+    }
+    conwayMissingFromCedict.size shouldBe 14606
+  }
+
+  "testAllCedict" should "contain given entries" in {
+    val cedict: Set[CedictEntry]  = GenerateCedictMap.cedictCompleteSet
+    val conwayChars: Set[Grapheme] = GenerateConwayCodes.conwaySet
+
+    val test1: List[CedictEntry] = cedict.filter(x => x.chineseStr == "龟笑鳖无尾").toList
+    val test2: List[CedictEntry] = cedict.filter(x => x.chineseStr == "龜笑鱉無尾").toList
+
+    test1.size shouldBe 1
+    test2.size shouldBe 1
+    cedict.size shouldBe 194080
+  }
+
   "testAllCedict" should "containAllConway" in {
     val cedict: Set[CedictEntry]  = GenerateCedictMap.cedictCompleteSet
     val conwayChars: Set[Grapheme] = GenerateConwayCodes.conwaySet
-    conwayChars.size == 28095
 
     var conwayMissingFromCedict: mutable.HashSet[Grapheme] = mutable.HashSet[Grapheme]()
     for (eachCedictLine <- cedict) {
       for (eachGrapheme <- eachCedictLine.chineseStrGraphemes) {
         if (!conwayChars.contains(eachGrapheme) 
-          && eachGrapheme.char.head > 1000
+          && eachGrapheme.char.head > 127
           && !conwayMissingFromCedict.contains(eachGrapheme)) {
           conwayMissingFromCedict.add(eachGrapheme)
         }
       }
     }
-
-    val test = ""
-    /*
-    val idsFilePath = "src/main/scala/staticFileGenerators/staticFiles/cedict_ts.u8" // replace with your actual file path
-    val radicalSupplement = "src/main/scala/staticFileGenerators/staticFiles/radicals1.txt"
-
-    val tras = new ElementTranslateToAlphabet() //ElementTranslateToAlphabet
-    val allch: Set[StaticFileCharInfoWithLetterConway] = tras.generateTranslatedAllChars() //generateTranslatedAllChars   ElementTranslateToAlphabet
-    val trans2: Map[Grapheme, StaticFileCharInfoWithLetterConway] = tras.createMapFromSet(allch)
-
-    val res = tes.generateCedictFromFile(idsFilePath, trans2)
-
-    val fin = ""*/
+    conwayMissingFromCedict.size shouldBe 5
+    conwayMissingFromCedict.map(x => x.char).toSet shouldBe Set("□","○","·","ˋ","π")
   }
-
-
   
 }

@@ -4,8 +4,14 @@ import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 
 class CedictEntry(chineseStrInp: String, systemInp: CharSystem,
-                  charMap: Map[Grapheme, StaticFileCharInfoWithLetterConway]) {
+                  charMap: Map[Grapheme, StaticFileCharInfoWithLetterConway],
+                  inputMeaning: String,
+                  inputPronounciation: String,
+                  inputTradSimp: String) {
   val chineseStr: String = chineseStrInp
+  val meaning: String = inputMeaning
+  val pronounciation: String = inputPronounciation
+  val tradSimp: String = inputTradSimp
   val chineseStrGraphemes: Set[Grapheme] = 
     Grapheme.splitIntoGraphemes(chineseStr).map(Grapheme(_)).toSet
   val cedict: List[CedictSubEntry] = generateSubEntry(chineseStr, charMap)
