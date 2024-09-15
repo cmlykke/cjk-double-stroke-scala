@@ -17,7 +17,7 @@ class CedictEntry(chineseStrInp: String, systemInp: CharSystem,
   val cedict: List[CedictSubEntry] = generateSubEntry(chineseStr, charMap)
   val unambigous: List[Set[ConwayUnambigous]] = generateUnambique(cedict)
   val system = systemInp
-  val readyCodes: Set[String] = if (unambigous.isEmpty) Set.empty else generateReadyCodes(chineseStrInp, unambigous, cedict)
+  val readyCodes: Set[String] = Set[String]()//if (unambigous.isEmpty) Set.empty else generateReadyCodes(chineseStrInp, unambigous, cedict)
   //val readyCodes: Set[String] = generateReadyCodes(chineseStrInp, unambigous, cedict)
 
 
