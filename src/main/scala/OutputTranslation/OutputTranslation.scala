@@ -68,6 +68,42 @@ class OutputTranslation {
     }
     res.toSet
   }
+  
+  def getJundaSingle3000(outputCedict: Set[OutputEntry]): Set[OutputEntry] = {
+    val res: Set[OutputEntry] = outputCedict.filter(x => 
+      x.jundaReverseOrder.size == 1 &&
+      x.jundaReverseOrder(0).junda.isDefined && 
+      x.jundaReverseOrder(0).junda.get.ordinal <= 3000)
+    return res
+  }
+
+  def getTzaiSingle3000(outputCedict: Set[OutputEntry]): Set[OutputEntry] = {
+    val res: Set[OutputEntry] = outputCedict.filter(x =>
+      x.tzaiReverseOrder.size == 1 &&
+      x.tzaiReverseOrder(0).tzai.isDefined &&
+      x.jundaReverseOrder(0).tzai.get.ordinal <= 3000)
+    return res
+  }
+
+  def getJundaMulti3000(outputCedict: Set[OutputEntry]): Set[OutputEntry] = {
+    val res: Set[OutputEntry] = outputCedict.filter { x =>
+      x.jundaReverseOrder.size > 1 &&
+        x.jundaReverseOrder.forall(grapheme =>
+          grapheme.junda.exists(_.ordinal <= 3000)
+        )
+    }
+    res
+  }
+
+  def getTzaiMulti3000(outputCedict: Set[OutputEntry]): Set[OutputEntry] = {
+    val res: Set[OutputEntry] = outputCedict.filter { x =>
+      x.tzaiReverseOrder.size > 1 &&
+      x.tzaiReverseOrder.forall(grapheme =>
+        grapheme.junda.exists(_.ordinal <= 3000)
+      )
+    }
+    res
+  }
 
 }
 
@@ -76,5 +112,7 @@ object OutputTranslation {
   val cedict: Set[CedictEntry] = GenerateCedictMap.cedictCompleteSet
   val conwayChars: Set[Grapheme] = GenerateConwayCodes.conwaySet
   val outputCedict: Set[OutputEntry] = outClass.cedictToOutputEntry(cedict, TranslationFunctions.translateVersionOne)
+  val jundaSingelOut: Set[OutputEntry] = outClass.getJundaSingle3000(outputCedict)
+  val jundaMultiOut: Set[OutputEntry] = outClass.getJundaMulti3000(outputCedict)
 
 }
