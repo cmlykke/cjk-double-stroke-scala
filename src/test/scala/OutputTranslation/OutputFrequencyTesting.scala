@@ -15,7 +15,7 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
   val singleOutTzai: Set[OutputEntry] = OutputTranslation.tzaiSingelOut
   val multiOutTzai: Set[OutputEntry] = OutputTranslation.tzaiMultiOut
 
-  it should "check the number of shifts depending on stroke group placement" in {
+  it should "check the number of uses of left vs right hand - single characters" in {
 
     val jundaUnchanged: (Double, Double) = countLeftRight(singleOut, Map(), Junda)
     val jundaTopChanged: (Double, Double) = countLeftRight(singleOut, changeTopRow(), Junda)
@@ -62,34 +62,82 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
     approximatelyEqual(tzaiMiddleAndButtonChanged._2, 3.706) == true
   }
 
-  it should "check the number of shifts for multi character words" in {
-    val jundaUnchanged: Double = countShifts(multiOut, Map(), Junda) //  7840
-    val jundaTopChanged: Double = countShifts(multiOut, changeTopRow(), Junda)
-    val jundaMiddleChanged: Double = countShifts(multiOut, changeMiddleRow(), Junda)
-    val jundaButtomChanged: Double = countShifts(multiOut, changeButtomRow(), Junda)
-    val jundaMiddleAndButtonChanged: Double = countShifts(multiOut, changeMiddleAndButtomRow(), Junda) //  7342
 
-    val tzaiUnchanged: Double = countShifts(multiOutTzai, Map(), Tzai) //  7840
-    val tzaiTopChanged: Double = countShifts(multiOutTzai, changeTopRow(), Tzai)
-    val tzaiMiddleChanged: Double = countShifts(multiOutTzai, changeMiddleRow(), Tzai)
-    val tzaiButtomChanged: Double = countShifts(multiOutTzai, changeButtomRow(), Tzai)
-    val tzaiMiddleAndButtonChanged: Double = countShifts(multiOutTzai, changeMiddleAndButtomRow(), Tzai) //  7342
+  it should "check the number of uses of left vs right hand - multi character words" in {
 
-    approximatelyEqual(jundaUnchanged, 202.358) == true
-    approximatelyEqual(jundaTopChanged, 203.278) == true
-    approximatelyEqual(jundaMiddleChanged, 206.332) == true
-    approximatelyEqual(jundaButtomChanged, 201.408) == true
-    approximatelyEqual(jundaMiddleAndButtonChanged, 211.556) == true
+    val jundaUnchanged: (Double, Double) = countLeftRight(multiOut, Map(), Junda)
+    val jundaTopChanged: (Double, Double) = countLeftRight(multiOut, changeTopRow(), Junda)
+    val jundaMiddleChanged: (Double, Double) = countLeftRight(multiOut, changeMiddleRow(), Junda)
+    val jundaButtomChanged: (Double, Double) = countLeftRight(multiOut, changeButtomRow(), Junda)
+    val jundaMiddleAndButtonChanged: (Double, Double) = countLeftRight(multiOut, changeMiddleAndButtomRow(), Junda)
 
-    approximatelyEqual(tzaiUnchanged, 222.669) == true
-    approximatelyEqual(tzaiTopChanged, 215.582) == true
-    approximatelyEqual(tzaiMiddleChanged, 202.353) == true
-    approximatelyEqual(tzaiButtomChanged, 224.580) == true
-    approximatelyEqual(tzaiMiddleAndButtonChanged, 226.667) == true
+    val tzaiUnchanged: (Double, Double) = countLeftRight(multiOutTzai, Map(), Tzai)
+    val tzaiTopChanged: (Double, Double) = countLeftRight(multiOutTzai, changeTopRow(), Tzai)
+    val tzaiMiddleChanged: (Double, Double) = countLeftRight(multiOutTzai, changeMiddleRow(), Tzai)
+    val tzaiButtomChanged: (Double, Double) = countLeftRight(multiOutTzai, changeButtomRow(), Tzai)
+    val tzaiMiddleAndButtonChanged: (Double, Double) = countLeftRight(multiOutTzai, changeMiddleAndButtomRow(), Tzai)
+
+    //junda
+    approximatelyEqual(jundaUnchanged._1, 299.574) == true
+    approximatelyEqual(jundaUnchanged._2, 227.931) == true
+
+    approximatelyEqual(jundaTopChanged._1, 319.991) == true
+    approximatelyEqual(jundaTopChanged._2, 207.514) == true
+
+    approximatelyEqual(jundaMiddleChanged._1, 226.641) == true
+    approximatelyEqual(jundaMiddleChanged._2, 300.863) == true
+
+    approximatelyEqual(jundaButtomChanged._1, 299.663) == true
+    approximatelyEqual(jundaButtomChanged._2, 227.842) == true
+
+    approximatelyEqual(jundaMiddleAndButtonChanged._1, 226.730) == true
+    approximatelyEqual(jundaMiddleAndButtonChanged._2, 300.774) == true
+
+    //tzai
+    approximatelyEqual(tzaiUnchanged._1, 326.095) == true
+    approximatelyEqual(tzaiUnchanged._2, 261.326) == true
+
+    approximatelyEqual(tzaiTopChanged._1, 379.638) == true
+    approximatelyEqual(tzaiTopChanged._2, 207.783) == true
+
+    approximatelyEqual(tzaiMiddleChanged._1, 230.378) == true
+    approximatelyEqual(tzaiMiddleChanged._2, 357.042) == true
+
+    approximatelyEqual(tzaiButtomChanged._1, 324.173) == true
+    approximatelyEqual(tzaiButtomChanged._2, 263.248) == true
+
+    approximatelyEqual(tzaiMiddleAndButtonChanged._1, 228.457) == true
+    approximatelyEqual(tzaiMiddleAndButtonChanged._2, 358.964) == true
+  }
+
+  it should "check the number of shifts for single characters" in {
+    val jundaUnchanged: Double = countShifts(singleOut, Map(), Junda) //  7840
+    val jundaTopChanged: Double = countShifts(singleOut, changeTopRow(), Junda)
+    val jundaMiddleChanged: Double = countShifts(singleOut, changeMiddleRow(), Junda)
+    val jundaButtomChanged: Double = countShifts(singleOut, changeButtomRow(), Junda)
+    val jundaMiddleAndButtonChanged: Double = countShifts(singleOut, changeMiddleAndButtomRow(), Junda) //  7342
+
+    val tzaiUnchanged: Double = countShifts(singleOutTzai, Map(), Tzai) //  7840
+    val tzaiTopChanged: Double = countShifts(singleOutTzai, changeTopRow(), Tzai)
+    val tzaiMiddleChanged: Double = countShifts(singleOutTzai, changeMiddleRow(), Tzai)
+    val tzaiButtomChanged: Double = countShifts(singleOutTzai, changeButtomRow(), Tzai)
+    val tzaiMiddleAndButtonChanged: Double = countShifts(singleOutTzai, changeMiddleAndButtomRow(), Tzai) //  7342
+
+    approximatelyEqual(jundaUnchanged, 2.226) == true
+    approximatelyEqual(jundaTopChanged, 2.197) == true
+    approximatelyEqual(jundaMiddleChanged, 2.055) == true
+    approximatelyEqual(jundaButtomChanged, 2.020) == true
+    approximatelyEqual(jundaMiddleAndButtonChanged, 2.183) == true
+
+    approximatelyEqual(tzaiUnchanged, 2.440) == true
+    approximatelyEqual(tzaiTopChanged, 2.409) == true
+    approximatelyEqual(tzaiMiddleChanged, 2.185) == true
+    approximatelyEqual(tzaiButtomChanged, 2.232) == true
+    approximatelyEqual(tzaiMiddleAndButtonChanged, 2.431) == true
   }
 
 
-  it should "count key and left-right distribution" in {
+  it should "check the number of shifts for multi character words" in {
     val jundaUnchanged: Double = countShifts(multiOut, Map(), Junda) //  7840
     val jundaMiddleChanged: Double = countShifts(multiOut, changeMiddleRow(), Junda)
     val jundaButtomChanged: Double = countShifts(multiOut, changeButtomRow(), Junda)
