@@ -1,6 +1,7 @@
 package OutputTranslation
 
-import UtilityClasses.{CedictEntry, OutputEntry}
+import UtilityClasses.CharSystem.{Junda, Tzai}
+import UtilityClasses.{CedictEntry, CharSystem, OutputEntry}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 import staticFileGenerators.cedictMap.GenerateCedictMap
@@ -11,25 +12,166 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
 
   val singleOut: Set[OutputEntry] = OutputTranslation.jundaSingelOut
   val multiOut: Set[OutputEntry] = OutputTranslation.jundaMultiOut
+  val singleOutTzai: Set[OutputEntry] = OutputTranslation.tzaiSingelOut
+  val multiOutTzai: Set[OutputEntry] = OutputTranslation.tzaiMultiOut
 
-  it should "check two character is firstLast-firstSecondLast" in {
-    
-    val count1: Long = countShifts(singleOut, Map()) //  7840
-    val count2: Long = countShifts(singleOut, changeMiddleRow())  //  7342
-    
-    val test: String = ""
+  it should "check the number of shifts depending on stroke group placement" in {
+
+    val jundaUnchanged: (Double, Double) = countLeftRight(singleOut, Map(), Junda)
+    val jundaTopChanged: (Double, Double) = countLeftRight(singleOut, changeTopRow(), Junda)
+    val jundaMiddleChanged: (Double, Double) = countLeftRight(singleOut, changeMiddleRow(), Junda)
+    val jundaButtomChanged: (Double, Double) = countLeftRight(singleOut, changeButtomRow(), Junda)
+    val jundaMiddleAndButtonChanged: (Double, Double) = countLeftRight(singleOut, changeMiddleAndButtomRow(), Junda)
+
+    val tzaiUnchanged: (Double, Double) = countLeftRight(singleOutTzai, Map(), Tzai)
+    val tzaiTopChanged: (Double, Double) = countLeftRight(singleOutTzai, changeTopRow(), Tzai)
+    val tzaiMiddleChanged: (Double, Double) = countLeftRight(singleOutTzai, changeMiddleRow(), Tzai)
+    val tzaiButtomChanged: (Double, Double) = countLeftRight(singleOutTzai, changeButtomRow(), Tzai)
+    val tzaiMiddleAndButtonChanged: (Double, Double) = countLeftRight(singleOutTzai, changeMiddleAndButtomRow(), Tzai)
+
+    //junda
+    approximatelyEqual(jundaUnchanged._1, 3.174) == true
+    approximatelyEqual(jundaUnchanged._2, 2.535) == true
+
+    approximatelyEqual(jundaTopChanged._1, 3.439) == true
+    approximatelyEqual(jundaTopChanged._2, 2.270) == true
+
+    approximatelyEqual(jundaMiddleChanged._1, 2.569) == true
+    approximatelyEqual(jundaMiddleChanged._2, 3.140) == true
+
+    approximatelyEqual(jundaButtomChanged._1, 3.121) == true
+    approximatelyEqual(jundaButtomChanged._2, 2.588) == true
+
+    approximatelyEqual(jundaMiddleAndButtonChanged._1, 2.516) == true
+    approximatelyEqual(jundaMiddleAndButtonChanged._2, 3.193) == true
+
+    //tzai
+    approximatelyEqual(tzaiUnchanged._1, 3.407) == true
+    approximatelyEqual(tzaiUnchanged._2, 2.933) == true
+
+    approximatelyEqual(tzaiTopChanged._1, 3.948) == true
+    approximatelyEqual(tzaiTopChanged._2, 2.392) == true
+
+    approximatelyEqual(tzaiMiddleChanged._1, 2.623) == true
+    approximatelyEqual(tzaiMiddleChanged._2, 3.717) == true
+
+    approximatelyEqual(tzaiButtomChanged._1, 3.418) == true
+    approximatelyEqual(tzaiButtomChanged._2, 2.922) == true
+
+    approximatelyEqual(tzaiMiddleAndButtonChanged._1, 2.634) == true
+    approximatelyEqual(tzaiMiddleAndButtonChanged._2, 3.706) == true
   }
-  
-  def countShifts(entries: Set[OutputEntry], 
-                  rowsChanged: Map[String, String]): Long = {
-    val codes = convertCodes(entries, rowsChanged)
-    val calcShifts = calculateHandShifts(codes)
+
+  it should "check the number of shifts for multi character words" in {
+    val jundaUnchanged: Double = countShifts(multiOut, Map(), Junda) //  7840
+    val jundaTopChanged: Double = countShifts(multiOut, changeTopRow(), Junda)
+    val jundaMiddleChanged: Double = countShifts(multiOut, changeMiddleRow(), Junda)
+    val jundaButtomChanged: Double = countShifts(multiOut, changeButtomRow(), Junda)
+    val jundaMiddleAndButtonChanged: Double = countShifts(multiOut, changeMiddleAndButtomRow(), Junda) //  7342
+
+    val tzaiUnchanged: Double = countShifts(multiOutTzai, Map(), Tzai) //  7840
+    val tzaiTopChanged: Double = countShifts(multiOutTzai, changeTopRow(), Tzai)
+    val tzaiMiddleChanged: Double = countShifts(multiOutTzai, changeMiddleRow(), Tzai)
+    val tzaiButtomChanged: Double = countShifts(multiOutTzai, changeButtomRow(), Tzai)
+    val tzaiMiddleAndButtonChanged: Double = countShifts(multiOutTzai, changeMiddleAndButtomRow(), Tzai) //  7342
+
+    approximatelyEqual(jundaUnchanged, 202.358) == true
+    approximatelyEqual(jundaTopChanged, 203.278) == true
+    approximatelyEqual(jundaMiddleChanged, 206.332) == true
+    approximatelyEqual(jundaButtomChanged, 201.408) == true
+    approximatelyEqual(jundaMiddleAndButtonChanged, 211.556) == true
+
+    approximatelyEqual(tzaiUnchanged, 222.669) == true
+    approximatelyEqual(tzaiTopChanged, 215.582) == true
+    approximatelyEqual(tzaiMiddleChanged, 202.353) == true
+    approximatelyEqual(tzaiButtomChanged, 224.580) == true
+    approximatelyEqual(tzaiMiddleAndButtonChanged, 226.667) == true
+  }
+
+
+  it should "count key and left-right distribution" in {
+    val jundaUnchanged: Double = countShifts(multiOut, Map(), Junda) //  7840
+    val jundaMiddleChanged: Double = countShifts(multiOut, changeMiddleRow(), Junda)
+    val jundaButtomChanged: Double = countShifts(multiOut, changeButtomRow(), Junda)
+    val jundaMiddleAndButtonChanged: Double = countShifts(multiOut, changeMiddleAndButtomRow(), Junda) //  7342
+
+    val tzaiUnchanged: Double = countShifts(multiOutTzai, Map(), Tzai) //  7840
+    val tzaiMiddleChanged: Double = countShifts(multiOutTzai, changeMiddleRow(), Tzai)
+    val tzaiButtomChanged: Double = countShifts(multiOutTzai, changeButtomRow(), Tzai)
+    val tzaiMiddleAndButtonChanged: Double = countShifts(multiOutTzai, changeMiddleAndButtomRow(), Tzai) //  7342
+
+    approximatelyEqual(jundaUnchanged, 202.358) == true
+    approximatelyEqual(jundaMiddleChanged, 206.332) == true
+    approximatelyEqual(jundaButtomChanged, 201.408) == true
+    approximatelyEqual(jundaMiddleAndButtonChanged, 211.556) == true
+
+    approximatelyEqual(tzaiUnchanged, 222.669) == true
+    approximatelyEqual(tzaiMiddleChanged, 202.353) == true
+    approximatelyEqual(tzaiButtomChanged, 224.580) == true
+    approximatelyEqual(tzaiMiddleAndButtonChanged, 226.667) == true
+  }
+
+  def addTuples(tuple1: (Double, Double), tuple2: (Double, Double)): (Double, Double) = {
+    (tuple1._1 + tuple2._1, tuple1._2 + tuple2._2)
+  }
+
+  def approximatelyEqual(a: Double, b: Double, tolerance: Double = 1e-6): Boolean = {
+    math.abs(a - b) <= tolerance
+  }
+
+  def countLeftRight(entries: Set[OutputEntry],
+                     rowsChanged: Map[String, String],
+                     charSystem: CharSystem): (Double, Double) = {
+    val codes: List[(String, Double)] = convertCodes(entries, rowsChanged, charSystem)
+    val calcShifts: (Double, Double) = calculateLeftRightDistribution(codes)
     calcShifts
   }
 
+  def countShifts(entries: Set[OutputEntry],
+                  rowsChanged: Map[String, String],
+                  charSystem: CharSystem): Double = {
+    val codes: List[(String, Double)] = convertCodes(entries, rowsChanged, charSystem)
+    val calcShifts: Double = calculateHandShifts(codes)
+    calcShifts
+  }
+
+  def calculateLeftRightDistribution(codes: List[(String, Double)]): (Double, Double) = {
+    var res: (Double, Double) = (0, 0)
+    var previous: Char = 'z'
+    for (eachcode <- codes) {
+      val output: String = eachcode._1.zipWithIndex.map { case (char, index) =>
+        if (OutputFrequencyTesting.leftHand.contains(char)) {
+          res = addTuples(res, (eachcode._2, 0))
+        } else if (OutputFrequencyTesting.rightHand.contains(char)) {
+          res = addTuples(res, (0, eachcode._2))
+        } else {
+          throw new Exception("unknown character")
+        }
+      }.mkString
+    }
+    res
+  }
+
+  def calculateHandShifts(codes: List[(String, Double)]): Double = {
+    var res: Double = 0
+    var previous: Char = 'z'
+    for (eachcode <- codes) {
+      val output: String = eachcode._1.zipWithIndex.map { case (char, index) =>
+        if (index > 0) {
+          if (isShift(previous, char)) {
+            res += eachcode._2
+          }
+        }
+        previous = char
+      }.mkString
+    }
+    res
+  }
+
   def convertCodes(outputCodes: Set[OutputEntry],
-                   changingCodeMap: Map[String, String]): List[String] = {
-    val res: ListBuffer[String] = ListBuffer()
+                   changingCodeMap: Map[String, String],
+                   charSystem: CharSystem): List[(String, Double)] = {
+    val res: ListBuffer[(String, Double)] = ListBuffer()
 
     for (entry <- outputCodes) {
       for (eachcode <- entry.codes) {
@@ -38,7 +180,20 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
             char.toString
           )
         }.mkString
-        res += output
+        var dub: Double = 0
+        if (charSystem.equals(CharSystem.Junda)) {
+          val jundaHead = entry.jundaReverseOrder.head
+          dub = jundaHead.junda.get.frequency / entry.jundaReverseOrder.size
+        } else if (charSystem.equals(CharSystem.Tzai)) {
+          val tzaiHead = entry.tzaiReverseOrder.head
+          dub = tzaiHead.tzai.get.frequency / entry.tzaiReverseOrder.size
+        } else {
+          throw new Exception("unknown CharSystem")
+        }
+        if (dub <= 0) {
+          throw new Exception("no double frequency detected")
+        }
+        res += ((output, dub))
       }
     }
     res.toList
@@ -80,6 +235,22 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
     res
   }
 
+  def changeTopRow():  Map[String, String]  = {
+    val changingCodeMap: Map[String, String] = Map(
+      "q" -> "p",
+      "w" -> "o",
+      "e" -> "i",
+      "r" -> "u",
+      "t" -> "y",
+      "y" -> "t",
+      "u" -> "r",
+      "i" -> "e",
+      "o" -> "w",
+      "p" -> "q"
+    )
+    changingCodeMap
+  }
+
   def changeMiddleRow():  Map[String, String]  = {
     val changingCodeMap: Map[String, String] = Map(
       "g" -> "h",
@@ -92,6 +263,17 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
       "k" -> "d",
       "l" -> "s",
       "m" -> "a"
+    )
+    changingCodeMap
+  }
+
+  def changeButtomRow() = {
+    val changingCodeMap: Map[String, String] = Map(
+      "x" -> "n",
+      "c" -> "b",
+      "v" -> "v",
+      "b" -> "c",
+      "n" -> "x"
     )
     changingCodeMap
   }
@@ -121,10 +303,31 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
 }
 
 object OutputFrequencyTesting {
+  val strokeQWERTY: Set[Char] = Set(
+    'q','w','e','r','t'
+  )
+
+  val strokeYUIOP: Set[Char] = Set(
+    'y', 'u', 'i', 'o', 'p'
+  )
+
+  val strokeASDFG: Set[Char] = Set(
+    'a', 's', 'd', 'f', 'g'
+  )
+
+  val strokeHJKLM: Set[Char] = Set(
+    'h', 'j', 'k', 'l','m'
+  )
+
+  val strokeXCVBN: Set[Char] = Set(
+    'x', 'c', 'v', 'b', 'n'
+  )
+
   val leftHand: Set[Char] = Set(
     'q','w','e','r','t',
     'a','s','d','f','g',
-    'x','c','v','b'
+    'x','c','v','b',
+    'z'
   )
   val rightHand: Set[Char] = Set(
     'y','u','i','o','p',

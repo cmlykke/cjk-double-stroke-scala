@@ -81,7 +81,7 @@ class OutputTranslation {
     val res: Set[OutputEntry] = outputCedict.filter(x =>
       x.tzaiReverseOrder.size == 1 &&
       x.tzaiReverseOrder(0).tzai.isDefined &&
-      x.jundaReverseOrder(0).tzai.get.ordinal <= 3000)
+      x.tzaiReverseOrder(0).tzai.get.ordinal <= 3000)
     return res
   }
 
@@ -99,7 +99,7 @@ class OutputTranslation {
     val res: Set[OutputEntry] = outputCedict.filter { x =>
       x.tzaiReverseOrder.size > 1 &&
       x.tzaiReverseOrder.forall(grapheme =>
-        grapheme.junda.exists(_.ordinal <= 3000)
+        grapheme.tzai.exists(_.ordinal <= 3000)
       )
     }
     res
@@ -114,5 +114,7 @@ object OutputTranslation {
   val outputCedict: Set[OutputEntry] = outClass.cedictToOutputEntry(cedict, TranslationFunctions.translateVersionOne)
   val jundaSingelOut: Set[OutputEntry] = outClass.getJundaSingle3000(outputCedict)
   val jundaMultiOut: Set[OutputEntry] = outClass.getJundaMulti3000(outputCedict)
+  val tzaiSingelOut: Set[OutputEntry] = outClass.getTzaiSingle3000(outputCedict)
+  val tzaiMultiOut: Set[OutputEntry] = outClass.getTzaiMulti3000(outputCedict)
 
 }
