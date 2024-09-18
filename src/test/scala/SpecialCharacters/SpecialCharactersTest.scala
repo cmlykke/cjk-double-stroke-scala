@@ -23,7 +23,7 @@ class SpecialCharactersTest extends AnyFlatSpec with Matchers {
     dublicate.size shouldBe 0
   }
 
-  it should "check that the special characters are noot CJK" in {
+  it should "check that the special characters are not CJK" in {
     val punct: Set[Grapheme] = ReadSpecialCharacters.punctiation
     val special: Set[Grapheme] = ReadSpecialCharacters.specialCharacters
     val conway: Set[Grapheme] = GenerateConwayCodes.conwaySet

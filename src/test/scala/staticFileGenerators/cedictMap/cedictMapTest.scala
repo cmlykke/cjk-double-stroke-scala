@@ -20,7 +20,7 @@ class cedictMapTest extends AnyFlatSpec with Matchers{
         conwayMissingFromCedict.addAll(entry.chineseStrGraphemes)
       }
     }
-    conwayMissingFromCedict.size shouldBe 14606
+    conwayMissingFromCedict.size shouldBe 14605
   }
 
   "testAllCedict" should "contain given entries" in {
@@ -32,7 +32,7 @@ class cedictMapTest extends AnyFlatSpec with Matchers{
 
     test1.size shouldBe 1
     test2.size shouldBe 1
-    cedict.size shouldBe 194080
+    cedict.size shouldBe 194079
   }
 
   "testAllCedict" should "containAllConway" in {
@@ -49,8 +49,8 @@ class cedictMapTest extends AnyFlatSpec with Matchers{
         }
       }
     }
-    conwayMissingFromCedict.size shouldBe 5
-    conwayMissingFromCedict.map(x => x.char).toSet shouldBe Set("□","○","·","ˋ","π")
+    conwayMissingFromCedict.size shouldBe 4
+    conwayMissingFromCedict.map(x => x.char).toSet shouldBe Set("○","·","ˋ","π")
   }
   
 }

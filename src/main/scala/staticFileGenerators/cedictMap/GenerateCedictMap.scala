@@ -30,12 +30,12 @@ class GenerateCedictMap {
         val tradSimp: String = words(0) + "|" + words(1) 
         val tradEntry = new CedictEntry(words(0), CharSystem.Tzai, trans2,meaning,pronounciation, tradSimp)
         val simpEntry = new CedictEntry(words(1), CharSystem.Junda, trans2,meaning,pronounciation, tradSimp)
-        if (!tradEntry.unambigous.isEmpty) {
+        if (!tradEntry.unambigous.isEmpty  && tradEntry.chineseStr != "□") {
           res.append(tradEntry)
         } else {
           failed.append(tradEntry)
         }
-        if (!simpEntry.unambigous.isEmpty) {
+        if (!simpEntry.unambigous.isEmpty  && simpEntry.chineseStr != "□") {
           res.append(simpEntry)
         } else {
           failed.append(simpEntry)
@@ -57,7 +57,7 @@ class GenerateCedictMap {
 
     val readyToWrote: ListBuffer[String] = new ListBuffer[String]()
     readyToWrote.addAll(stringRads)
-    readyToWrote.addAll(failedStr)
+    //readyToWrote.addAll(failedStr)
 
     val filePath = "src/main/scala/staticFileGenerators/Conway/failed.txt"
     return res.toSet
