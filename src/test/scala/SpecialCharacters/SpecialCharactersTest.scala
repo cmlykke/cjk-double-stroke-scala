@@ -12,11 +12,10 @@ import scala.collection.mutable
 
 class SpecialCharactersTest extends AnyFlatSpec with Matchers {
 
-  //ignore
-  it should "generate special character files. Should be diabled when not needed" in {
+  
+  ignore should "generate special character files. Should be diabled when not needed" in {
     val pathToWrite: String = "src/main/scala/staticFileGenerators/SpecialCharacters/"
     val generate = new GenerateSpecialCharacters()
-
 
     generate.generatePunctuation(pathToWrite + "punctuation.txt")
     generate.generateShapes("zq", pathToWrite + "geometric.txt", List(("U+25A0", "U+25FF")))
