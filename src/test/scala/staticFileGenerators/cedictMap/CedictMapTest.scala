@@ -8,7 +8,7 @@ import staticFileGenerators.Conway.GenerateConwayCodes
 
 import scala.collection.mutable
 
-class cedictMapTest extends AnyFlatSpec with Matchers{
+class CedictMapTest extends AnyFlatSpec with Matchers{
 
   "testAllCedict" should "contain only a fraction of the characters in conway" in {
     val cedict: Set[CedictEntry]  = GenerateCedictMap.cedictCompleteSet
