@@ -274,6 +274,15 @@ class GenerateSpecialCharacters {
                          |'	zzx
                          |`	zzx
                          |´	zzx
+                         | 	zzxa
+                         |.	zzxs
+                         |,	zzxd
+                         |:	zzxf
+                         |;	zzxg
+                         |"	zzxh
+                         |'	zzxj
+                         |`	zzxk
+                         |´	zzxl
                          |&	zzc
                          |~	zzc
                          |@	zzc
@@ -283,6 +292,15 @@ class GenerateSpecialCharacters {
                          |£	zzc
                          |€	zzc
                          |¥	zzc
+                         |&	zzca
+                         |~	zzcs
+                         |@	zzcd
+                         |#	zzcf
+                         |¶	zzcg
+                         |$	zzch
+                         |£	zzcj
+                         |€	zzck
+                         |¥	zzcl
                          |×	zzv
                          |%	zzv
                          |‰	zzv
@@ -291,6 +309,14 @@ class GenerateSpecialCharacters {
                          |¾	zzv
                          |²	zzv
                          |³	zzv
+                         |×	zzva
+                         |%	zzvs
+                         |‰	zzvd
+                         |½	zzvf
+                         |¼	zzvg
+                         |¾	zzvh
+                         |²	zzvj
+                         |³	zzvk
                          |()	zzb
                          |[]	zzb
                          |{}	zzb
@@ -299,6 +325,14 @@ class GenerateSpecialCharacters {
                          |/	zzb
                          |\	zzb
                          ||	zzb
+                         |()	zzba
+                         |[]	zzbs
+                         |{}	zzbd
+                         |<>	zzbf
+                         |^	zzbg
+                         |/	zzbh
+                         |\	zzbj
+                         ||	zzbk
                          |+	zzn
                          |-	zzn
                          |_	zzn
@@ -307,7 +341,16 @@ class GenerateSpecialCharacters {
                          |?	zzn
                          |!	zzn
                          |¿	zzn
-                         |¡	zzn""".stripMargin
+                         |¡	zzn
+                         |+	zzna
+                         |-	zzns
+                         |_	zznd
+                         |*	zznf
+                         |¤	zzng
+                         |?	zznh
+                         |!	zznj
+                         |¿	zznk
+                         |¡	zznl""".stripMargin
     val path = Paths.get(pathStr)
     Files.write(path, output.getBytes(StandardCharsets.UTF_8))
   }
