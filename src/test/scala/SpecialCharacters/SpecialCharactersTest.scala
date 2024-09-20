@@ -1,7 +1,7 @@
 package SpecialCharacters
 
 import OverlapCalc.OverlapCalculations
-import UtilityClasses.{CharSystem, ConwayUnambigous, Grapheme, StaticFileCharInfo}
+import UtilityClasses.{CharSystem, ConwayUnambigous, Grapheme, OutputEntry, StaticFileCharInfo}
 import org.scalatest.Ignore
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
@@ -12,7 +12,12 @@ import scala.collection.mutable
 
 class SpecialCharactersTest extends AnyFlatSpec with Matchers {
 
-  
+  it should "check that all special characters are wellformed" in {
+    val entry: List[OutputEntry] = ReadSpecialCharacters.allCharacterOutput
+    val str: List[String] = ReadSpecialCharacters.allLines
+    entry.size shouldBe 1482
+  }
+
   ignore should "generate special character files. Should be diabled when not needed" in {
     val pathToWrite: String = "src/main/scala/staticFileGenerators/SpecialCharacters/"
     val generate = new GenerateSpecialCharacters()
@@ -47,6 +52,7 @@ class SpecialCharactersTest extends AnyFlatSpec with Matchers {
   def generateShapes(initial: String, outputPath: String, ranges: List[(String, String)]): Unit
   */
 
+  /*
   ignore should "check that the special characters are not dublicates" in {
     val punct: Set[Grapheme] = ReadSpecialCharacters.punctiation
     val special: Set[Grapheme] = ReadSpecialCharacters.specialCharacters
@@ -57,8 +63,8 @@ class SpecialCharactersTest extends AnyFlatSpec with Matchers {
       }
     }
     dublicate.size shouldBe 0
-  }
-
+  }*/
+/*
   ignore should "check that the special characters are not CJK" in {
     val punct: Set[Grapheme] = ReadSpecialCharacters.punctiation
     val special: Set[Grapheme] = ReadSpecialCharacters.specialCharacters
@@ -78,6 +84,6 @@ class SpecialCharactersTest extends AnyFlatSpec with Matchers {
     }
     dublicate.size shouldBe 3
     dublicate.map(x => x.char).toSet shouldBe Set("，","：","、")
-  }
+  }*/
 
 }

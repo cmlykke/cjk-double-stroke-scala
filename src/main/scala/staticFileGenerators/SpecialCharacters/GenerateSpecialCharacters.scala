@@ -95,42 +95,42 @@ class GenerateSpecialCharacters {
                          |：	zxk
                          |；	zxl
                          |〇	zc
-                         |［］    zc
+                         |［］	zc
                          |《》	zc
-                         |「 」 zc
-                         |……  zc
+                         |「」	zc
+                         |……	zc
                          |·	zc
-                         |〻 zc
-                         |〃 zc
-                         |々 zc
+                         |〻	zc
+                         |〃	zc
+                         |々	zc
                          |〇	zca
-                         |［］    zcs
+                         |［］	zcs
                          |《》	zcd
-                         |「 」 zcf
-                         |……  zcg
+                         |「」	zcf
+                         |……	zcg
                          |·	zch
-                         |〻 zcj
-                         |〃 zck
-                         |々 zcl                        
+                         |〻	zcj
+                         |〃	zck
+                         |々	zcl
                          |⸺	zv
                          |–	zv
-                         |……  zv
+                         |……	zv
                          |⋯	zv
                          |·	zv
-                         |‧   zv
-                         |〜  zv
+                         |‧	zv
+                         |〜	zv
                          |～	zv
                          |〰	zv
                          |⸺	zva
                          |–	zvs
-                         |……  zvd
+                         |……	zvd
                          |⋯	zvf
                          |·	zvg
-                         |‧   zvh
-                         |〜  zvj
+                         |‧	zvh
+                         |〜	zvj
                          |～	zvk
                          |〰	zvl
-                         |［］    zb
+                         |［］	zb
                          |【】	zb
                          |〖〗	zb
                          |〈〉	zb
@@ -139,7 +139,7 @@ class GenerateSpecialCharacters {
                          |『』	zb
                          |〔〕	zb
                          |﹏﹏	zb
-                         |［］    zba
+                         |［］	zba
                          |【】	zbs
                          |〖〗	zbd
                          |〈〉	zbf
@@ -165,106 +165,106 @@ class GenerateSpecialCharacters {
                          |⭕️	znh
                          |✗	znj
                          |×	znk
-                         |△	znl                        
-                         |０ zmaq
-                         |１ zmaw
-                         |２ zmae
-                         |３ zmar
-                         |４ zmat
-                         |５ zmay
-                         |６ zmau
-                         |７ zmai
-                         |８ zmao
-                         |９ zmap
-                         |Ａ zmsa
-                         |Ｂ zmsb
-                         |Ｃ zmsc
-                         |Ｄ zmsd
-                         |Ｅ zmse
-                         |Ｆ zmsf
-                         |Ｇ zmsg
-                         |Ｈ zmsh
-                         |Ｉ zmsi
-                         |Ｊ zmsj
-                         |Ｋ zmsk
-                         |Ｌ zmsl
-                         |Ｍ zmsm
-                         |Ｎ zmsn
-                         |Ｏ zmso
-                         |Ｐ zmsp
-                         |Ｑ zmsq
-                         |Ｒ zmsr
-                         |Ｓ zmss
-                         |Ｔ zmst
-                         |Ｕ zmsu
-                         |Ｖ zmsv
-                         |Ｗ zmsw
-                         |Ｘ zmsx
-                         |Ｙ zmsy
-                         |Ｚ zmsz
-                         |ａ zmda
-                         |ｂ zmdb
-                         |ｃ zmdc
-                         |ｄ zmdd
-                         |ｅ zmde
-                         |ｆ zmdf
-                         |ｇ zmdg
-                         |ｈ zmdh
-                         |ｉ zmdi
-                         |ｊ zmdj
-                         |ｋ zmdk
-                         |ｌ zmdl
-                         |ｍ zmdm
-                         |ｎ zmdn
-                         |ｏ zmdo
-                         |ｐ zmdp
-                         |ｑ zmdq
-                         |ｒ zmdr
-                         |ｓ zmds
-                         |ｔ zmdt
-                         |ｕ zmdu
-                         |ｖ zmdv
-                         |ｗ zmdw
-                         |ｘ zmdx
-                         |ｙ zmdy
-                         |ｚ zmdz
-                         |， zmfa
-                         |． zmfs
-                         |： zmfd
-                         |； zmff
-                         |！ zmfg
-                         |？ zmfh
-                         |＂ zmfj
-                         |＇ zmfk
-                         |｀ zmfl
-                         |＾ zmga
-                         |～ zmgs
-                         |￣ zmgd
-                         |＿ zmgf
-                         |＆ zmgg
-                         |＠ zmgh
-                         |＃ zmgj
-                         |％ zmha
-                         |＋ zmhs
-                         |－ zmhd
-                         |＊ zmhf
-                         |＝ zmhg
-                         |＜ zmhh
-                         |＞ zmhj
-                         |（）  zmja
-                         |［］ zmjs
-                         |｛｝ zmjd
-                         |｟｠ zmjf
-                         |｜ zmjg
-                         |￤ zmjh
-                         |／ zmjj
-                         |＼ zmjk
-                         |￢ zmjl
-                         |＄ zmka
-                         |￡ zmks
-                         |￠ zmkd
-                         |￦ zmkf
-                         |￥ zmkg                        
+                         |△	znl
+                         |０	zmaq
+                         |１	zmaw
+                         |２	zmae
+                         |３	zmar
+                         |４	zmat
+                         |５	zmay
+                         |６	zmau
+                         |７	zmai
+                         |８	zmao
+                         |９	zmap
+                         |Ａ	zmsa
+                         |Ｂ	zmsb
+                         |Ｃ	zmsc
+                         |Ｄ	zmsd
+                         |Ｅ	zmse
+                         |Ｆ	zmsf
+                         |Ｇ	zmsg
+                         |Ｈ	zmsh
+                         |Ｉ	zmsi
+                         |Ｊ	zmsj
+                         |Ｋ	zmsk
+                         |Ｌ	zmsl
+                         |Ｍ	zmsm
+                         |Ｎ	zmsn
+                         |Ｏ	zmso
+                         |Ｐ	zmsp
+                         |Ｑ	zmsq
+                         |Ｒ	zmsr
+                         |Ｓ	zmss
+                         |Ｔ	zmst
+                         |Ｕ	zmsu
+                         |Ｖ	zmsv
+                         |Ｗ	zmsw
+                         |Ｘ	zmsx
+                         |Ｙ	zmsy
+                         |Ｚ	zmsz
+                         |ａ	zmda
+                         |ｂ	zmdb
+                         |ｃ	zmdc
+                         |ｄ	zmdd
+                         |ｅ	zmde
+                         |ｆ	zmdf
+                         |ｇ	zmdg
+                         |ｈ	zmdh
+                         |ｉ	zmdi
+                         |ｊ	zmdj
+                         |ｋ	zmdk
+                         |ｌ	zmdl
+                         |ｍ	zmdm
+                         |ｎ	zmdn
+                         |ｏ	zmdo
+                         |ｐ	zmdp
+                         |ｑ	zmdq
+                         |ｒ	zmdr
+                         |ｓ	zmds
+                         |ｔ	zmdt
+                         |ｕ	zmdu
+                         |ｖ	zmdv
+                         |ｗ	zmdw
+                         |ｘ	zmdx
+                         |ｙ	zmdy
+                         |ｚ	zmdz
+                         |，	zmfa
+                         |．	zmfs
+                         |：	zmfd
+                         |；	zmff
+                         |！	zmfg
+                         |？	zmfh
+                         |＂	zmfj
+                         |＇	zmfk
+                         |｀	zmfl
+                         |＾	zmga
+                         |～	zmgs
+                         |￣	zmgd
+                         |＿	zmgf
+                         |＆	zmgg
+                         |＠	zmgh
+                         |＃	zmgj
+                         |％	zmha
+                         |＋	zmhs
+                         |－	zmhd
+                         |＊	zmhf
+                         |＝	zmhg
+                         |＜	zmhh
+                         |＞	zmhj
+                         |（）	zmja
+                         |［］	zmjs
+                         |｛｝	zmjd
+                         |｟｠	zmjf
+                         |｜	zmjg
+                         |￤	zmjh
+                         |／	zmjj
+                         |＼	zmjk
+                         |￢	zmjl
+                         |＄	zmka
+                         |￡	zmks
+                         |￠	zmkd
+                         |￦	zmkf
+                         |￥	zmkg
                          | 	zzx
                          |.	zzx
                          |,	zzx
