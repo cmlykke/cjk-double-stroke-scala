@@ -9,9 +9,12 @@ import staticFileGenerators.cedictMap.GenerateCedictMap
 import scala.collection.mutable
 
 class OutputTranslationTest extends AnyFlatSpec with Matchers {
+  /*
+  it shoud "translate conway to OutputEntry with the same criteria as cedict" in {
+    xxx - write the needed code in OutputTranslation
+  }*/
   
   it should "check two character is firstLast-firstSecondLast" in {
-
     val cedictRaw: Set[CedictEntry] = GenerateCedictMap.cedictCompleteSet
     val cedictres: Set[OutputEntry] = OutputTranslation.outputCedict
 

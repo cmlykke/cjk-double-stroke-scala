@@ -1,10 +1,12 @@
 package OutputTranslation
 
-import UtilityClasses.{CedictEntry, ConwayUnambigous, Grapheme, OutputEntry}
+import ElementGenerator.ElementAdjustedCodes
+import UtilityClasses.{CedictEntry, ConwayColl, ConwayUnambigous, Grapheme, OutputEntry, StaticFileCharInfoWithLetterConway}
 import staticFileGenerators.Conway.GenerateConwayCodes
 import staticFileGenerators.cedictMap.GenerateCedictMap
 
 import scala.collection.mutable
+import scala.collection.mutable.HashMap
 
 type TranslationFunction = List[Set[ConwayUnambigous]] => Set[String]
 
@@ -44,7 +46,37 @@ class OutputTranslation {
     // Convert the set to a list and sort using the defined ordering
     chineseStrGraphemes.toList.sorted(ordering)
   }
+/*
+  def staticFileCharToOutputEntry(static: Set[StaticFileCharInfoWithLetterConway],
+                                  translationFn: TranslationFunction): Set[OutputEntry] = {
+    val res: mutable.Set[OutputEntry] = mutable.Set[OutputEntry]()
+    for (charInfo <- static) {
+      val info = charInfo.letterConway
+      val test = ""
+    }
+    res.toSet
+  }
 
+  def staticFileInfoToOutputEntry(staticFileInfo: Set[StaticFileCharInfoWithLetterConway]): Set[OutputEntry] = {
+    val res: mutable.Set[OutputEntry] = mutable.Set[OutputEntry]()
+    for (eachInfo <- staticFileInfo) {
+      val junda: List[Grapheme] = if (eachInfo.grapheme.junda.isDefined) List(eachInfo.grapheme) else List()
+      val tzai: List[Grapheme] = if (eachInfo.grapheme.tzai.isDefined) List(eachInfo.grapheme) else List()
+      val codes: Set[String] = eachInfo.letterConway.map(x => x.conwayPairs.mkString("")).toSet
+      val entry: OutputEntry = new OutputEntry(
+        eachInfo.grapheme.char,//ceEntry.chineseStr,
+        "", //ceEntry.meaning,
+        "", //ceEntry.pronounciation,
+        "", //ceEntry.tradSimp,
+        junda,
+        tzai,
+        codes
+      )
+      res.add(entry)
+    }
+    return res.toSet
+  }
+*/
   def cedictToOutputEntry(cedictEntries: Set[CedictEntry], 
                           translationFn: TranslationFunction): Set[OutputEntry] = {
     val res: mutable.Set[OutputEntry] = mutable.Set[OutputEntry]()
@@ -110,8 +142,15 @@ class OutputTranslation {
 object OutputTranslation {
   val outClass = new OutputTranslation()
   val cedict: Set[CedictEntry] = GenerateCedictMap.cedictCompleteSet
-  val conwayChars: Set[Grapheme] = GenerateConwayCodes.conwaySet
   val outputCedict: Set[OutputEntry] = outClass.cedictToOutputEntry(cedict, TranslationFunctions.translateVersionOne)
+  //class CedictSubEntry(chineseStr: String,
+  //                     inputGrap: Grapheme,
+  //                     //maybeInfo: Option[StaticFileCharInfoWithLetterConway],
+  //                     charMap: Map[Grapheme, StaticFileCharInfoWithLetterConway]) {
+  //val conwayWithElems: Set[CedictSubEntry] = outClass.generateSubentriesFromConway(conwayMap)
+  //val outputConway: Set[OutputEntry] = outClass.staticFileCharToOutputEntry(conwayWithElems, TranslationFunctions.translateVersionOne)
+  val conwayInfo: Set[StaticFileCharInfoWithLetterConway] = ElementAdjustedCodes.elemAdjustedAllChars
+  //val outputConway: Set[OutputEntry] = outClass.staticFileInfoToOutputEntry(conwayInfo)
   val jundaSingelOut: Set[OutputEntry] = outClass.getJundaSingle3000(outputCedict)
   val jundaMultiOut: Set[OutputEntry] = outClass.getJundaMulti3000(outputCedict)
   val tzaiSingelOut: Set[OutputEntry] = outClass.getTzaiSingle3000(outputCedict)
