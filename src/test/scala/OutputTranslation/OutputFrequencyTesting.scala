@@ -18,8 +18,10 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
   it should "check the number of uses of left vs right hand - single characters" in {
 
     val jundaUnchanged: (Double, Double) = countLeftRight(singleOut, Map(), Junda)
+    val jundaUnchangedLeftSelection: (Double, Double) = countLeftRightWithSelection(singleOut, Map(), Junda)
     val jundaTopChanged: (Double, Double) = countLeftRight(singleOut, changeTopRow(), Junda)
     val jundaMiddleChanged: (Double, Double) = countLeftRight(singleOut, changeMiddleRow(), Junda)
+    val jundaMiddleChangedWithSelection: (Double, Double) = countLeftRightWithSelection(singleOut, changeMiddleRow(), Junda)
     val jundaButtomChanged: (Double, Double) = countLeftRight(singleOut, changeButtomRow(), Junda)
     val jundaMiddleAndButtonChanged: (Double, Double) = countLeftRight(singleOut, changeMiddleAndButtomRow(), Junda)
 
@@ -32,12 +34,14 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
     //junda
     approximatelyEqual(jundaUnchanged._1, 3.174) == true
     approximatelyEqual(jundaUnchanged._2, 2.535) == true
+    approximatelyEqual(jundaUnchangedLeftSelection._1, 4.783) == true
 
     approximatelyEqual(jundaTopChanged._1, 3.439) == true
     approximatelyEqual(jundaTopChanged._2, 2.270) == true
 
     approximatelyEqual(jundaMiddleChanged._1, 2.569) == true
     approximatelyEqual(jundaMiddleChanged._2, 3.140) == true
+    approximatelyEqual(jundaMiddleChangedWithSelection._1, 4.179) == true
 
     approximatelyEqual(jundaButtomChanged._1, 3.121) == true
     approximatelyEqual(jundaButtomChanged._2, 2.588) == true
@@ -174,6 +178,14 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
     val calcShifts: (Double, Double) = calculateLeftRightDistribution(codes)
     calcShifts
   }
+  
+  def countLeftRightWithSelection(entries: Set[OutputEntry],
+                                  rowsChanged: Map[String, String],
+                                  charSystem: CharSystem): (Double, Double) = {
+    val codes: List[(String, Double)] = convertCodes(entries, rowsChanged, charSystem)
+    val calcShifts: (Double, Double) = calculateLeftRightDistributionWithLeftHandSelection(codes)
+    calcShifts
+  } 
 
   def countShifts(entries: Set[OutputEntry],
                   rowsChanged: Map[String, String],
@@ -183,6 +195,26 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
     calcShifts
   }
 
+  def calculateLeftRightDistributionWithLeftHandSelection(codes: List[(String, Double)]): (Double, Double) = {
+    var res: (Double, Double) = (0, 0)
+    var previous: Char = 'z'
+    for (eachcode <- codes) {
+      val output: String = eachcode._1.zipWithIndex.map { case (char, index) =>
+        if (OutputFrequencyTesting.leftHand.contains(char)) {
+          res = addTuples(res, (eachcode._2, 0))
+        } else if (OutputFrequencyTesting.rightHand.contains(char)) {
+          res = addTuples(res, (0, eachcode._2))
+        } else {
+          throw new Exception("unknown character")
+        }
+        if (index == eachcode._1.size-1) {
+          res = addTuples(res, (eachcode._2, 0))
+        }
+      }.mkString
+    }
+    res
+  }
+  
   def calculateLeftRightDistribution(codes: List[(String, Double)]): (Double, Double) = {
     var res: (Double, Double) = (0, 0)
     var previous: Char = 'z'
