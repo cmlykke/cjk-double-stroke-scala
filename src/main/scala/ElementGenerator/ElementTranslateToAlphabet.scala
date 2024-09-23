@@ -75,8 +75,8 @@ object ElementTranslateToAlphabet {
 
   val tras = new ElementTranslateToAlphabet() //ElementTranslateToAlphabet
   val allch: Set[StaticFileCharInfoWithLetterConway] = tras.generateTranslatedAllChars() //generateTranslatedAllChars   ElementTranslateToAlphabet
-  val trans2: Map[Grapheme, StaticFileCharInfoWithLetterConway] = tras.createMapFromSet(allch)
-
+  val completeTranslatedConwayMap: Map[Grapheme, StaticFileCharInfoWithLetterConway] = tras.createMapFromSet(allch)
+  val kuntest: String = ""
 
   // Static function returning a hardcoded map of string to string
   //top line is 4-3, 

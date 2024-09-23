@@ -1,11 +1,20 @@
 package ElementGenerator
 
-import UtilityClasses.{CharSystem, StaticFileCharInfoWithLetterConway}
+import UtilityClasses.{CharSystem, Grapheme, StaticFileCharInfoWithLetterConway}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
 class ElementTranslateToAlphabetTest extends AnyFlatSpec with Matchers {
 
+  it should "test that complete translated conway map has expected translations" in {
+    //completeTranslatedConwayMap: Map[Grapheme, StaticFileCharInfoWithLetterConway]
+    val completeConway: Map[Grapheme, StaticFileCharInfoWithLetterConway] =
+      ElementTranslateToAlphabet.completeTranslatedConwayMap
+    val  woI: Option[StaticFileCharInfoWithLetterConway] = completeConway.get(Grapheme("我"))
+    val codes: Set[String] = woI.get.letterConway.map(x => x.conwayPairs.mkString("")).toSet
+    
+    codes shouldBe Set("yxly", "yxkt")
+  }
   
   it should "junda - check that the map of character to alphabet has the same size" in {
     //createMapFromSet
@@ -14,6 +23,10 @@ class ElementTranslateToAlphabetTest extends AnyFlatSpec with Matchers {
     val toAlphabet = new ElementTranslateToAlphabet()
     val alphaMap = toAlphabet.createMapFromSet(first8000)
     alphaMap.size shouldBe first8000.size
+
+    val woI: Option[StaticFileCharInfoWithLetterConway] = alphaMap.get(Grapheme("我"))
+    val codes: Set[String] = woI.get.letterConway.map(x => x.conwayPairs.mkString("")).toSet
+    codes shouldBe Set("yxly", "yxkt")
   }
   
   it should "check Junda - frst 8000 chars with firstChoice translate map" in {
@@ -40,6 +53,10 @@ class ElementTranslateToAlphabetTest extends AnyFlatSpec with Matchers {
     val toAlphabet = new ElementTranslateToAlphabet()
     val alphaMap = toAlphabet.createMapFromSet(first8000)
     alphaMap.size shouldBe first8000.size
+    
+    val woI: Option[StaticFileCharInfoWithLetterConway] = alphaMap.get(Grapheme("我"))
+    val codes: Set[String] = woI.get.letterConway.map(x => x.conwayPairs.mkString("")).toSet
+    codes shouldBe Set("yxly", "yxkt")
   }
 
   it should "check Tzai - frst 8000 chars with firstChoice translate map" in {
