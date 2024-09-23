@@ -4,6 +4,7 @@ import ElementGenerator.ElementTranslateToAlphabet
 import UtilityClasses.{CedictEntry, CharSystem, Grapheme, StaticFileCharInfoWithLetterConway}
 
 import java.io.{File, PrintWriter}
+import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
 
@@ -63,7 +64,7 @@ class GenerateCedictMap {
     return res.toSet
   }
 
-  def writeSetToFile(set: List[String], filePath: String): Unit = {
+  private def writeSetToFile(set: List[String], filePath: String): Unit = {
     val fileWriter = new PrintWriter(new File(filePath))
     try {
       set.foreach(fileWriter.println)
@@ -72,7 +73,7 @@ class GenerateCedictMap {
     }
   }
 
-  def captureBetweenStrings(input: String,
+  private def captureBetweenStrings(input: String,
                             string1: String,
                             string2: String,
                             firstMatch: Boolean): String = {
@@ -95,10 +96,19 @@ class GenerateCedictMap {
     // Capture the substring between string1 and string2
     input.substring(startIdx + string1.length, endIdx)
   }
+  
+  def generateMap(cedictCompleteSet: Set[CedictEntry]): Map[String, CedictEntry] = {
+    val map = mutable.Map[String, CedictEntry]()
+    cedictCompleteSet.foreach { entry =>
+      map += (entry.chineseStr -> entry)
+    }
+    map.toMap
+  }
 
 }
 
 object GenerateCedictMap {
   private val generate = new GenerateCedictMap()
   val cedictCompleteSet: Set[CedictEntry] = generate.generateList()
+  val cedictMap: Map[String, CedictEntry] = generate.generateMap(cedictCompleteSet)
 }

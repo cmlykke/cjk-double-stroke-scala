@@ -10,6 +10,12 @@ import scala.collection.mutable
 
 class CedictMapTest extends AnyFlatSpec with Matchers{
 
+  "cedict map" should "have the same size as the cedict set" in {
+    val cedict: Set[CedictEntry]  = GenerateCedictMap.cedictCompleteSet
+    val cedictMap: Map[String, CedictEntry] = GenerateCedictMap.cedictMap
+    cedictMap.size shouldBe cedict.size
+  }
+  
   "testAllCedict" should "contain only a fraction of the characters in conway" in {
     val cedict: Set[CedictEntry]  = GenerateCedictMap.cedictCompleteSet
     val conwayChars: Set[Grapheme] = GenerateConwayCodes.conwaySet
