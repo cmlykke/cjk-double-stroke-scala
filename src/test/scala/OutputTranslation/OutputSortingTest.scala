@@ -19,6 +19,7 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
     val conwayMap: Map[Grapheme, StaticFileCharInfoWithLetterConway] = ElementTranslateToAlphabet.completeTranslatedConwayMap
     val lettersExceptZ = lettersSansAscii()
 
+    val otuputStrWithLies: StringBuilder = new StringBuilder
     var overlap: mutable.Set[OutputEntry] = mutable.Set[OutputEntry]()
     var overlapChars: mutable.Set[Char] = mutable.Set[Char]()
     for (entry <- conwaySansCedict) {
@@ -47,6 +48,7 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
       if (wordGrapehmesMissing.size > 0) {
         val chnStr: String = entry.chineseStr
         val codesToShow: String = entry.codes.mkString(" ")
+        otuputStrWithLies.append(chnStr).append(" ").append(codesToShow).append("\n")
         val test = ""
       }
     }
