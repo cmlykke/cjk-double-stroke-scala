@@ -60,6 +60,8 @@ class OutputSorting {
     return SortedMap.from(res)
   }
 
+  /////////////////////////////////////////
+  /*
   def sortSetOfOutput(input: Set[OutputEntry], charSystem: CharSystem): List[OutputEntry] = {
     implicit val entryOrdering: Ordering[OutputEntry] = new Ordering[OutputEntry] {
       override def compare(a: OutputEntry, b: OutputEntry): Int = {
@@ -80,7 +82,34 @@ class OutputSorting {
         }
       }
     }
+    input.toList.sorted
+  }*/
 
+  def sortSetOfOutput(input: Set[OutputEntry], charSystem: CharSystem): List[OutputEntry] = {
+    implicit val entryOrdering: Ordering[OutputEntry] = new Ordering[OutputEntry] {
+      override def compare(a: OutputEntry, b: OutputEntry): Int = {
+        val aOrdering = getGraphemeOrdering(a, charSystem)
+        val bOrdering = getGraphemeOrdering(b, charSystem)
+
+        (aOrdering, bOrdering) match {
+          case (Some(aOrd), Some(bOrd)) =>
+            val initialCompare = aOrd.compareTo(bOrd)
+            if (initialCompare != 0) {
+              initialCompare
+            } else {
+              val nextGraphemeCompare = compareNextGrapheme(a.jundaReverseOrder, b.jundaReverseOrder, charSystem)
+              if (nextGraphemeCompare != 0) {
+                nextGraphemeCompare
+              } else {
+                a.chineseStr.compareTo(b.chineseStr) // Fallback to comparing `inputChineseStr`
+              }
+            }
+          case (Some(_), None) => -1 // Entry `a` should come before Entry `b`
+          case (None, Some(_)) => 1 // Entry `b` should come before Entry `a`
+          case (None, None) => a.chineseStr.compareTo(b.chineseStr) // Both have no grapheme ordering data available, compare `inputChineseStr`
+        }
+      }
+    }
     input.toList.sorted
   }
 
@@ -112,6 +141,8 @@ class OutputSorting {
     }
   }
 
+  /////////////////////////////////////////////////////
+  
   def mergeOutputEntries(input: List[Set[OutputEntry]]): Set[OutputEntry] = {
     val res: mutable.Map[String, Set[OutputEntry]] = mutable.Map()
 
