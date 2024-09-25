@@ -1,19 +1,39 @@
 package OutputTranslation
 
 import ElementGenerator.ElementTranslateToAlphabet
+import UtilityClasses.CharSystem.Junda
 import UtilityClasses.{CedictEntry, Grapheme, OutputEntry, StaticFileCharInfoWithLetterConway}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
+import staticFileGenerators.SpecialCharacters.ReadSpecialCharacters
 import staticFileGenerators.cedictMap.GenerateCedictMap
 
-import scala.collection.mutable
+import scala.collection.{SortedMap, mutable}
 
 class OutputSortingTest extends AnyFlatSpec with Matchers {
 
   // create a test that tests if there are any z characters in cedict or conway
 
+  it should "test punctuation" in {
+    
+    val outJunda: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullJunda
+    val outTzai: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullTzai
+    
+    val zJunda = outJunda.get("z").get 
+    val zTzai = outTzai.get("z").get 
+    val zcJunda = outJunda.get("zc").get 
+    val zcTzai = outTzai.get("zc").get 
+    
+    zcJunda.map(x => x.chineseStr).toList shouldBe List("〇", "［］", "《》", "「」", "……", "·","〻", "〃", "々", "3C")
+    
+    val test = ""
+    //val conwayAll: Set[OutputEntry] = OutputSorting.conwayOutSansCedict
+
+
+  }
+
   it should "find any cedict or junda characters with z codes" in {
-    val conwaySansCedict: Set[OutputEntry] = OutputSorting.conwayOutSansCedict
+    val conwayOutFull: Set[OutputEntry] = OutputSorting.conFull
     //val cedictMap: Map[String, CedictEntry] = GenerateCedictMap.cedictMap
     val cedictOut: Set[OutputEntry] = OutputSorting.cedictSetOut
     val conwayMap: Map[Grapheme, StaticFileCharInfoWithLetterConway] = ElementTranslateToAlphabet.completeTranslatedConwayMap
@@ -22,7 +42,7 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
     val otuputStrWithLies: StringBuilder = new StringBuilder
     var overlap: mutable.Set[OutputEntry] = mutable.Set[OutputEntry]()
     var overlapChars: mutable.Set[Char] = mutable.Set[Char]()
-    for (entry <- conwaySansCedict) {
+    for (entry <- conwayOutFull) {
       for (eachCode <- entry.codes) {
         for (eachLetter <- eachCode) {
           if (!lettersExceptZ.contains(eachLetter) && eachCode.size > 1) {
@@ -65,25 +85,22 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
     return letters
   }
 
-  it should "check the codes of cedict and conwaySansCedict" in {
-    val conwaySansCedict: Set[OutputEntry] = OutputSorting.conwayOutSansCedict
+  it should "check the codes of cedict and conway" in {
+    val conwayOutFull: Set[OutputEntry] = OutputSorting.conFull
     val cedictOut: Set[OutputEntry] = OutputSorting.cedictSetOut
+    val conwayMap: Map[Grapheme, StaticFileCharInfoWithLetterConway] = ElementTranslateToAlphabet.completeTranslatedConwayMap
+
 
     var overlap: mutable.Set[OutputEntry] = mutable.Set[OutputEntry]()
-    var desiredChar: Option[OutputEntry] = None
-    for (entry <- conwaySansCedict) {
-      if (cedictOut.contains(entry)) {
-        overlap.add(entry)
-      }
+    var desiredChar1: Option[OutputEntry] = None
+    var desiredChar2: Option[OutputEntry] = None
+    for (entry <- conwayOutFull) {
       if (entry.chineseStr == "臒") {
-        desiredChar = Some(entry)
+        desiredChar1 = Some(entry)
       }
     }
-    overlap.size shouldBe 0
-
-    desiredChar should not be None
-
-    desiredChar.get.codes shouldBe Set("ptfful", "pgfxul", "ptxful", "pgfful", "pgfl", "pgxl",
+    desiredChar1 should not be None
+    desiredChar1.get.codes shouldBe Set("ptfful", "pgfxul", "ptxful", "pgfful", "pgfl", "pgxl",
       "pgxful", "ptfvbl", "ptfl", "ptxl", "pgfvbl", "ptfxul")
 
     val test: String = ""

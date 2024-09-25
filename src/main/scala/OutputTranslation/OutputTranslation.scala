@@ -146,6 +146,22 @@ class OutputTranslation {
                   inptzaiReverseOrder: List[Grapheme],
                   inpcodes: Set[String]) {
   */
+  def getConwayFull(conwayList: List[StaticFileCharInfoWithLetterConway],
+                         cedictMap: Map[String, CedictEntry]): Set[OutputEntry] = {
+    var res: mutable.Set[OutputEntry] = mutable.Set[OutputEntry]()
+    for (conway <- conwayList) {
+      //if (!cedictMap.contains(conway.grapheme.char)) {
+        val jundaList: List[Grapheme] = if (conway.grapheme.junda.isDefined) List(conway.grapheme) else List()
+        val tzaiList: List[Grapheme] = if (conway.grapheme.tzai.isDefined) List(conway.grapheme) else List()
+        val inpCodes: Set[String] = conway.letterConway.map(x => x.conwayPairs.mkString("")).toSet
+        val output: OutputEntry = new OutputEntry(
+          conway.grapheme.char, "", "", "", jundaList, tzaiList, inpCodes)
+        res.add(output)
+      //}
+    }
+    return res.toSet
+  }
+  
   def getConwaySanCedict(conwayList: List[StaticFileCharInfoWithLetterConway],
                          cedictMap: Map[String, CedictEntry]): Set[OutputEntry] = {
     var res: mutable.Set[OutputEntry] = mutable.Set[OutputEntry]()
@@ -156,7 +172,7 @@ class OutputTranslation {
         val inpCodes: Set[String] = conway.letterConway.map(x => x.conwayPairs.mkString("")).toSet
         val output: OutputEntry = new OutputEntry(
           conway.grapheme.char, "", "", "", jundaList, tzaiList, inpCodes)
-        res.add(output)  
+        res.add(output)
       }
     }
     return res.toSet
@@ -176,7 +192,7 @@ object OutputTranslation {
 
   val cedictMap: Map[String, CedictEntry] = GenerateCedictMap.cedictMap
   val conway: Map[Grapheme, StaticFileCharInfoWithLetterConway] = ElementTranslateToAlphabet.completeTranslatedConwayMap
-  val conwayOutSansCedict: Set[OutputEntry] = outClass.getConwaySanCedict(conway.values.toList, cedictMap)
+  val conwayOutFull: Set[OutputEntry] = outClass.getConwayFull(conway.values.toList, cedictMap)
   //create the function below
   //val outputConway: Set[OutputEntry] = outClass.conwayToOutputEntrySanCedict(conway, cedict)
   //val conwayInfo: Set[StaticFileCharInfoWithLetterConway] = ElementAdjustedCodes.elemAdjustedAllChars
