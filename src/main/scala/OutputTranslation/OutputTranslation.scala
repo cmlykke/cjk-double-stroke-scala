@@ -11,6 +11,7 @@ import scala.collection.mutable.HashMap
 type TranslationFunction = List[Set[ConwayUnambigous]] => Set[String]
 
 class OutputTranslation {
+  
   def generateJundaGraphemeOrder(chineseStrGraphemes: Set[Grapheme]): List[Grapheme] = {
     // Define an ordering based on the required sorting criteria
     val ordering: Ordering[Grapheme] = Ordering.by(grapheme => {
@@ -84,16 +85,16 @@ class OutputTranslation {
       if (ceEntry.chineseStr == "井陘礦") {
         val tes: String = ""
       }
-      val jundaOrder: List[Grapheme] = generateJundaGraphemeOrder(ceEntry.chineseStrGraphemes)
-      val tzaiOrder: List[Grapheme] = generateTzaiGraphemeOrder(ceEntry.chineseStrGraphemes)
+      val jundaReverseOrder: List[Grapheme] = generateJundaGraphemeOrder(ceEntry.chineseStrGraphemes).reverse
+      val tzaiReverseOrder: List[Grapheme] = generateTzaiGraphemeOrder(ceEntry.chineseStrGraphemes).reverse
       val outputCodes: Set[String] = translationFn(ceEntry.unambigous)
       val entry: OutputEntry = new OutputEntry(
         ceEntry.chineseStr,
         ceEntry.meaning,
         ceEntry.pronounciation,
         ceEntry.tradSimp,
-        jundaOrder,
-        tzaiOrder,
+        jundaReverseOrder,
+        tzaiReverseOrder,
         outputCodes
       )
       res.add(entry)

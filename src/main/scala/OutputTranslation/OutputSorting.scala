@@ -5,31 +5,13 @@ import UtilityClasses.{CedictEntry, CharSystem, Grapheme, OutputEntry}
 import staticFileGenerators.Conway.GenerateConwayCodes
 import staticFileGenerators.SpecialCharacters.ReadSpecialCharacters
 import staticFileGenerators.cedictMap.GenerateCedictMap
+import scala.math.Ordering.Implicits._
+import scala.jdk.StreamConverters._
 
 import scala.collection.{SortedMap, mutable}
 
 class OutputSorting {
-  def sortOutputEntries(): mutable.SortedMap[String, Int] = {
-    implicit val customOrdering: Ordering[String] = new Ordering[String] {
-      def compare(x: String, y: String): Int = {
-        val lengthCompare = x.length.compare(y.length)
-        if (lengthCompare != 0) lengthCompare else x.compare(y)
-      }
-    }
-
-    // Create a SortedMap using the custom ordering
-    val sortedMap: mutable.SortedMap[String, Int] = mutable.SortedMap(
-      "apple" -> 1,
-      "banana" -> 2,
-      "pear" -> 3,
-      "fig" -> 4,
-      "kiwi" -> 5,
-      "blueberry" -> 6
-    )
-    sortedMap
-  }
-
-
+  
   def codeToOutputEntry(input: Set[OutputEntry]): mutable.SortedMap[String, Set[OutputEntry]] = {
     implicit val customOrdering: Ordering[String] = new Ordering[String] {
       def compare(x: String, y: String): Int = {
@@ -48,7 +30,7 @@ class OutputSorting {
     sortedMap
   }
 
-  def mapFromOutput(input: List[Set[OutputEntry]], 
+  def mapFromOutput(input: List[Set[OutputEntry]],
                     charSystem: CharSystem): SortedMap[String, List[OutputEntry]] = {
     var res: mutable.SortedMap[String, List[OutputEntry]] = mutable.SortedMap[String, List[OutputEntry]]()
 
@@ -62,87 +44,71 @@ class OutputSorting {
   }
 
   /////////////////////////////////////////
-  /*
-  def sortSetOfOutput(input: Set[OutputEntry], charSystem: CharSystem): List[OutputEntry] = {
-    implicit val entryOrdering: Ordering[OutputEntry] = new Ordering[OutputEntry] {
-      override def compare(a: OutputEntry, b: OutputEntry): Int = {
-        val aOrdering = getGraphemeOrdering(a, charSystem)
-        val bOrdering = getGraphemeOrdering(b, charSystem)
+  
+  def sortSetOfOutput(input: Set[OutputEntry], primaryCharSystem: CharSystem): List[OutputEntry] = {
+    val secondaryCharSystem = if (primaryCharSystem == CharSystem.Junda) CharSystem.Tzai else CharSystem.Junda
 
-        (aOrdering, bOrdering) match {
-          case (Some(aOrd), Some(bOrd)) =>
-            val initialCompare = aOrd.compareTo(bOrd)
-            if (initialCompare != 0) {
-              initialCompare
-            } else {
-              compareNextGrapheme(a.jundaReverseOrder, b.jundaReverseOrder, charSystem)
-            }
-          case (Some(_), None) => -1 // Entry `a` should come before Entry `b`
-          case (None, Some(_)) => 1 // Entry `b` should come before Entry `a`
-          case (None, None) => 0 // Both have no grapheme ordering data available
-        }
-      }
-    }
-    input.toList.sorted
-  }*/
-
-  def sortSetOfOutput(input: Set[OutputEntry], charSystem: CharSystem): List[OutputEntry] = {
-    implicit val entryOrdering: Ordering[OutputEntry] = new Ordering[OutputEntry] {
-      override def compare(a: OutputEntry, b: OutputEntry): Int = {
-        val aOrdering = getGraphemeOrdering(a, charSystem)
-        val bOrdering = getGraphemeOrdering(b, charSystem)
-
-        (aOrdering, bOrdering) match {
-          case (Some(aOrd), Some(bOrd)) =>
-            val initialCompare = aOrd.compareTo(bOrd)
-            if (initialCompare != 0) {
-              initialCompare
-            } else {
-              val nextGraphemeCompare = compareNextGrapheme(a.jundaReverseOrder, b.jundaReverseOrder, charSystem)
-              if (nextGraphemeCompare != 0) {
-                nextGraphemeCompare
-              } else {
-                a.chineseStr.compareTo(b.chineseStr) // Fallback to comparing `inputChineseStr`
-              }
-            }
-          case (Some(_), None) => -1 // Entry `a` should come before Entry `b`
-          case (None, Some(_)) => 1 // Entry `b` should come before Entry `a`
-          case (None, None) => a.chineseStr.compareTo(b.chineseStr) // Both have no grapheme ordering data available, compare `inputChineseStr`
-        }
-      }
+    implicit val entryOrdering: Ordering[OutputEntry] = Ordering.by { (entry: OutputEntry) =>
+      (
+        getGraphemeOrdering(entry, primaryCharSystem),
+        //getReverseOrder(entry, primaryCharSystem), // Adjusting to dynamically get the reverse order based on primaryCharSystem
+        getGraphemeOrdering(entry, secondaryCharSystem),
+        //getReverseOrder(entry, secondaryCharSystem), // Secondary reverse order for comparison
+        entry.chineseStr.codePoints().toArray.toSeq
+      )
     }
     input.toList.sorted
   }
 
   def getGraphemeOrdering(entry: OutputEntry, charSystem: CharSystem): Option[Int] = {
     charSystem match {
-      case CharSystem.Junda =>
-        entry.jundaReverseOrder.headOption.flatMap(_.junda.map(_.ordinal))
-      case CharSystem.Tzai =>
-        entry.tzaiReverseOrder.headOption.flatMap(_.tzai.map(_.ordinal))
+      case CharSystem.Junda => entry.jundaReverseOrder.headOption
+        .flatMap(_.junda.map(_.ordinal)).orElse(Some(Int.MaxValue))
+      case CharSystem.Tzai => entry.tzaiReverseOrder.headOption
+        .flatMap(_.tzai.map(_.ordinal)).orElse(Some(Int.MaxValue))
     }
   }
 
-  def compareNextGrapheme(aList: List[Grapheme], bList: List[Grapheme], charSystem: CharSystem): Int = {
-    def orderingFunc(grapheme: Grapheme): Option[Int] = {
-      charSystem match {
-        case CharSystem.Junda => grapheme.junda.map(_.ordinal)
-        case CharSystem.Tzai => grapheme.tzai.map(_.ordinal)
+  def getReverseOrder(entry: OutputEntry, charSystem: CharSystem): List[Grapheme] = {
+    charSystem match {
+      case CharSystem.Junda => entry.jundaReverseOrder
+      case CharSystem.Tzai => entry.tzaiReverseOrder
+    }
+  }
+
+  implicit val graphemeOrdering: Ordering[Grapheme] = new Ordering[Grapheme] {
+    def compare(g1: Grapheme, g2: Grapheme): Int = {
+      (g1.junda, g2.junda, g1.tzai, g2.tzai) match {
+        case (Some(j1), Some(j2), _, _) => j1.ordinal.compare(j2.ordinal)
+        case (None, Some(_), _, _) => 1
+        case (Some(_), None, _, _) => -1
+        case (_, _, Some(t1), Some(t2)) => t1.ordinal.compare(t2.ordinal)
+        case (_, _, None, Some(_)) => 1
+        case (_, _, Some(_), None) => -1
+        case _ => 0
       }
     }
+  }
 
-    (aList.tail.headOption.flatMap(orderingFunc), bList.tail.headOption.flatMap(orderingFunc)) match {
-      case (Some(aOrdNext), Some(bOrdNext)) =>
-        val nextCompare = aOrdNext.compareTo(bOrdNext)
-        if (nextCompare != 0) nextCompare
-        else compareNextGrapheme(aList.tail, bList.tail, charSystem)
-      case (Some(_), None) => -1 // `a` has more graphemes remaining
-      case (None, Some(_)) => 1 // `b` has more graphemes remaining
-      case (None, None) => 0 // Both lists are exhausted
+  implicit def listOrdering(implicit ord: Ordering[Grapheme]): Ordering[List[Grapheme]] = new Ordering[List[Grapheme]] {
+    def compare(aList: List[Grapheme], bList: List[Grapheme]): Int = {
+      (aList, bList) match {
+        case (Nil, Nil) => 0
+        case (Nil, _) => -1
+        case (_, Nil) => 1
+        case (aHead :: aTail, bHead :: bTail) =>
+          ord.compare(aHead, bHead) match {
+            case 0 => compare(aTail, bTail)
+            case c => c
+          }
+      }
     }
   }
 
-  /////////////////////////////////////////////////////
+  implicit val tupleOrdering: Ordering[(Option[Int], List[Grapheme], Option[Int], String)] = {
+    val highOptionIntOrdering: Ordering[Option[Int]] = Ordering.Option(Ordering.by((i: Int) => -i))
+    Ordering.Tuple4(highOptionIntOrdering, listOrdering, highOptionIntOrdering, Ordering.String)
+  }
 
   def mergeOutputEntries(input: List[Set[OutputEntry]]): Set[OutputEntry] = {
     val res: mutable.Map[String, Set[OutputEntry]] = mutable.Map()
@@ -188,7 +154,7 @@ class OutputSorting {
           updatedCodes = updatedCodes ++ ent.codes
         }
 
-        val outputNewEntry = new OutputEntry(
+        val outputNewEntry = OutputEntry(
           chineseStr,
           updatedMeaning,
           updatedPron,
@@ -202,68 +168,6 @@ class OutputSorting {
     }
     finalRes.toSet
   }
-
-  /*
-  def mergeOutputEntries(input: List[Set[OutputEntry]]): Set[OutputEntry] = {
-    var res: mutable.Map[String, Set[OutputEntry]] = mutable.Map[String, Set[OutputEntry]]()
-    for (collOfEntry <- input) {
-      for (entry <- collOfEntry) {
-        if (entry.chineseStr == "七") {
-          val test = ""
-        }
-        if (!res.contains(entry.chineseStr)) {
-          res.addOne((entry.chineseStr, Set(entry)))
-        } else {
-
-          val updatedvalue: Set[OutputEntry] = res.get(entry.chineseStr).get ++ Set(entry)
-          res.update(entry.chineseStr, updatedvalue)
-        }
-      }
-    }
-    var finalRes: mutable.Set[OutputEntry] = mutable.Set[OutputEntry]()
-    for ((mykey, eachSet) <- res) {
-      if (eachSet.size == 1) {
-        finalRes.addOne(eachSet.toList(0))
-      } else{
-        //val chineseStr: String = inputChineseStr
-        //  val meaning: String = inputMeaning
-        //  val pron: String = inputPronounciation
-        //  val tradSimp: String = inputTradSimp
-        //  val jundaReverseOrder: List[Grapheme] = inpjundaReverseOrder
-        //  val tzaiReverseOrder: List[Grapheme] = inptzaiReverseOrder
-        //  val codes: Set[String] = inpcodes
-        var updatedMeaning = ""
-        var updatedPron = ""
-        var updatedTradSimp = ""
-        var updatedJundaReverseOrder: List[Grapheme] = List()
-        var updatedTzaiReverseOrder: List[Grapheme] = List()
-        var updatedCodes: Set[String] = Set()
-        for (ent <- eachSet) {
-          if (updatedMeaning.size < ent.meaning.size) {
-            updatedMeaning = ent.meaning
-          }
-          if (updatedPron.size < ent.pron.size) {
-            updatedPron = ent.pron
-          }
-          if (updatedTradSimp.size < ent.tradSimp.size) {
-            updatedTradSimp = ent.tradSimp
-          }
-          if (updatedJundaReverseOrder.size < ent.jundaReverseOrder.size) {
-            updatedJundaReverseOrder = ent.jundaReverseOrder
-          }
-          if (updatedTzaiReverseOrder.size < ent.tzaiReverseOrder.size) {
-            updatedTzaiReverseOrder = ent.tzaiReverseOrder
-          }
-          updatedCodes = updatedCodes ++ ent.codes
-        }
-        val outputNewEntry: OutputEntry = OutputEntry(mykey, updatedMeaning, updatedPron, updatedTradSimp,
-          updatedJundaReverseOrder, updatedTzaiReverseOrder, updatedCodes)
-        finalRes.addOne(outputNewEntry)
-      }
-    }
-    finalRes.toSet
-  }*/
-
 }
 
 object OutputSorting {
@@ -277,6 +181,4 @@ object OutputSorting {
     List(conFull, cedictSetOut), Junda)
   val mapFullTzai: SortedMap[String, List[OutputEntry]] = outSorting.mapFromOutput(
     List(conFull, cedictSetOut), Tzai)
-
-  //val conway: Set[OutputEntry] =  OutputTranslation.outputConway//GenerateConwayCodes.conwaySet
 }
