@@ -19,17 +19,25 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
     val outJunda: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullJunda
     val outTzai: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullTzai
     
-    val zJunda = outJunda.get("z").get 
-    val zTzai = outTzai.get("z").get 
-    val zcJunda = outJunda.get("zc").get 
-    val zcTzai = outTzai.get("zc").get 
+    val codesStartingWithZ: String = outJunda
+      .filter(x => x._1.startsWith("z")).map(y => y._1 + " " + y._2.map(z => z.chineseStr).mkString(" ").trim).mkString("\n").trim
     
-    zcJunda.map(x => x.chineseStr).toList shouldBe List("〇", "［］", "《》", "「」", "……", "·","〻", "〃", "々", "3C")
+    codesStartingWithZ == 
+    """z % ○
+      |zc 3C
+      |zng π日
+      |zp 3P
+      |zq 3Q
+      |zz 88
+      |zzgnu 21三體綜合症
+      |zzgum 21三体综合症
+      |zzih 95后
+      |zzil 95後
+      |zzz 421 996
+      |zzzpi 502膠
+      |zzzpo 502胶
+      |zzzzq 2019冠状病毒病 2019冠狀病毒病""".stripMargin
     
-    val test = ""
-    //val conwayAll: Set[OutputEntry] = OutputSorting.conwayOutSansCedict
-
-
   }
 
   it should "find any cedict or junda characters with z codes" in {

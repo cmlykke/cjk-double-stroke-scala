@@ -48,7 +48,8 @@ class OutputSorting {
     sortedMap
   }
 
-  def mapFromOutput(input: List[Set[OutputEntry]], charSystem: CharSystem): SortedMap[String, List[OutputEntry]] = {
+  def mapFromOutput(input: List[Set[OutputEntry]], 
+                    charSystem: CharSystem): SortedMap[String, List[OutputEntry]] = {
     var res: mutable.SortedMap[String, List[OutputEntry]] = mutable.SortedMap[String, List[OutputEntry]]()
 
     val merge: Set[OutputEntry] = mergeOutputEntries(input)
@@ -142,7 +143,7 @@ class OutputSorting {
   }
 
   /////////////////////////////////////////////////////
-  
+
   def mergeOutputEntries(input: List[Set[OutputEntry]]): Set[OutputEntry] = {
     val res: mutable.Map[String, Set[OutputEntry]] = mutable.Map()
 
@@ -201,7 +202,7 @@ class OutputSorting {
     }
     finalRes.toSet
   }
-  
+
   /*
   def mergeOutputEntries(input: List[Set[OutputEntry]]): Set[OutputEntry] = {
     var res: mutable.Map[String, Set[OutputEntry]] = mutable.Map[String, Set[OutputEntry]]()
@@ -213,7 +214,7 @@ class OutputSorting {
         if (!res.contains(entry.chineseStr)) {
           res.addOne((entry.chineseStr, Set(entry)))
         } else {
-          
+
           val updatedvalue: Set[OutputEntry] = res.get(entry.chineseStr).get ++ Set(entry)
           res.update(entry.chineseStr, updatedvalue)
         }
@@ -272,8 +273,10 @@ object OutputSorting {
   val cedictSetOut: Set[OutputEntry] = OutputTranslation.outputCedict
   val conFull: Set[OutputEntry] = OutputTranslation.conwayOutFull
   val specialChars: Set[OutputEntry] = ReadSpecialCharacters.allCharacterOutput.toSet
-  val mapFullJunda: SortedMap[String, List[OutputEntry]] = outSorting.mapFromOutput(List(specialChars, conFull, cedictSetOut), Junda)
-  val mapFullTzai: SortedMap[String, List[OutputEntry]] = outSorting.mapFromOutput(List(specialChars, conFull, cedictSetOut), Tzai)
-  
+  val mapFullJunda: SortedMap[String, List[OutputEntry]] = outSorting.mapFromOutput(
+    List(conFull, cedictSetOut), Junda)
+  val mapFullTzai: SortedMap[String, List[OutputEntry]] = outSorting.mapFromOutput(
+    List(conFull, cedictSetOut), Tzai)
+
   //val conway: Set[OutputEntry] =  OutputTranslation.outputConway//GenerateConwayCodes.conwaySet
 }
