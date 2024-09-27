@@ -7,11 +7,23 @@ import staticFileGenerators.SpecialCharacters.ReadSpecialCharacters
 import staticFileGenerators.cedictMap.GenerateCedictMap
 import scala.math.Ordering.Implicits._
 import scala.jdk.StreamConverters._
+import UtilityClasses.{CharSystem, OutputEntry}
+import OutputEntryOrdering._
+import scala.collection.immutable.SortedMap
+import scala.collection.mutable
 
-import scala.collection.{SortedMap, mutable}
+//import scala.collection.{SortedMap, mutable}
 
 class OutputSorting {
-  
+
+  // Implicit ordering definitions
+  implicit val optionIntOrdering: Ordering[Option[Int]] = Ordering.by {
+    case Some(value) => value
+    case None => Int.MaxValue // Consider 'None' as highest so it falls back to Unicode ordering
+  }
+
+  implicit val unicodeSeqOrdering: Ordering[Seq[Int]] = Ordering.by(identity)
+
   def codeToOutputEntry(input: Set[OutputEntry]): mutable.SortedMap[String, Set[OutputEntry]] = {
     implicit val customOrdering: Ordering[String] = new Ordering[String] {
       def compare(x: String, y: String): Int = {
@@ -30,86 +42,27 @@ class OutputSorting {
     sortedMap
   }
 
-  def mapFromOutput(input: List[Set[OutputEntry]],
-                    charSystem: CharSystem): SortedMap[String, List[OutputEntry]] = {
+  def mapFromOutput(
+                     input: List[Set[OutputEntry]],
+                     charSystem: CharSystem): SortedMap[String, List[OutputEntry]] = {
     var res: mutable.SortedMap[String, List[OutputEntry]] = mutable.SortedMap[String, List[OutputEntry]]()
 
     val merge: Set[OutputEntry] = mergeOutputEntries(input)
-    val codeToOutput:  mutable.SortedMap[String, Set[OutputEntry]] = codeToOutputEntry(merge)
+    val codeToOutput: mutable.SortedMap[String, Set[OutputEntry]] = codeToOutputEntry(merge)
+
     for ((myKey, myVal) <- codeToOutput) {
-      val sortedVal: List[OutputEntry] = sortSetOfOutput(myVal, charSystem)
+      val sortedVal: List[OutputEntry] = OutputEntryOrdering.sortSetOfOutput(myVal, charSystem)
+      if (sortedVal.size > 10) {
+        val test = ""
+      }
       res.addOne((myKey, sortedVal))
     }
-    return SortedMap.from(res)
+    SortedMap.from(res)
   }
 
-  /////////////////////////////////////////
+  // Ensure the implicit ordering is in scope when calling sortSetOfOutput
+  // mapFromOutput and other calling functions should provide the implicit ordering
   
-  def sortSetOfOutput(input: Set[OutputEntry], primaryCharSystem: CharSystem): List[OutputEntry] = {
-    val secondaryCharSystem = if (primaryCharSystem == CharSystem.Junda) CharSystem.Tzai else CharSystem.Junda
-
-    implicit val entryOrdering: Ordering[OutputEntry] = Ordering.by { (entry: OutputEntry) =>
-      (
-        getGraphemeOrdering(entry, primaryCharSystem),
-        //getReverseOrder(entry, primaryCharSystem), // Adjusting to dynamically get the reverse order based on primaryCharSystem
-        getGraphemeOrdering(entry, secondaryCharSystem),
-        //getReverseOrder(entry, secondaryCharSystem), // Secondary reverse order for comparison
-        entry.chineseStr.codePoints().toArray.toSeq
-      )
-    }
-    input.toList.sorted
-  }
-
-  def getGraphemeOrdering(entry: OutputEntry, charSystem: CharSystem): Option[Int] = {
-    charSystem match {
-      case CharSystem.Junda => entry.jundaReverseOrder.headOption
-        .flatMap(_.junda.map(_.ordinal)).orElse(Some(Int.MaxValue))
-      case CharSystem.Tzai => entry.tzaiReverseOrder.headOption
-        .flatMap(_.tzai.map(_.ordinal)).orElse(Some(Int.MaxValue))
-    }
-  }
-
-  def getReverseOrder(entry: OutputEntry, charSystem: CharSystem): List[Grapheme] = {
-    charSystem match {
-      case CharSystem.Junda => entry.jundaReverseOrder
-      case CharSystem.Tzai => entry.tzaiReverseOrder
-    }
-  }
-
-  implicit val graphemeOrdering: Ordering[Grapheme] = new Ordering[Grapheme] {
-    def compare(g1: Grapheme, g2: Grapheme): Int = {
-      (g1.junda, g2.junda, g1.tzai, g2.tzai) match {
-        case (Some(j1), Some(j2), _, _) => j1.ordinal.compare(j2.ordinal)
-        case (None, Some(_), _, _) => 1
-        case (Some(_), None, _, _) => -1
-        case (_, _, Some(t1), Some(t2)) => t1.ordinal.compare(t2.ordinal)
-        case (_, _, None, Some(_)) => 1
-        case (_, _, Some(_), None) => -1
-        case _ => 0
-      }
-    }
-  }
-
-  implicit def listOrdering(implicit ord: Ordering[Grapheme]): Ordering[List[Grapheme]] = new Ordering[List[Grapheme]] {
-    def compare(aList: List[Grapheme], bList: List[Grapheme]): Int = {
-      (aList, bList) match {
-        case (Nil, Nil) => 0
-        case (Nil, _) => -1
-        case (_, Nil) => 1
-        case (aHead :: aTail, bHead :: bTail) =>
-          ord.compare(aHead, bHead) match {
-            case 0 => compare(aTail, bTail)
-            case c => c
-          }
-      }
-    }
-  }
-
-  implicit val tupleOrdering: Ordering[(Option[Int], List[Grapheme], Option[Int], String)] = {
-    val highOptionIntOrdering: Ordering[Option[Int]] = Ordering.Option(Ordering.by((i: Int) => -i))
-    Ordering.Tuple4(highOptionIntOrdering, listOrdering, highOptionIntOrdering, Ordering.String)
-  }
-
   def mergeOutputEntries(input: List[Set[OutputEntry]]): Set[OutputEntry] = {
     val res: mutable.Map[String, Set[OutputEntry]] = mutable.Map()
 
