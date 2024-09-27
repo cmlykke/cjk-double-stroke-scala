@@ -15,7 +15,7 @@ import scala.collection.mutable
 //import scala.collection.{SortedMap, mutable}
 
 class OutputSorting {
-
+/*
   // Implicit ordering definitions
   implicit val optionIntOrdering: Ordering[Option[Int]] = Ordering.by {
     case Some(value) => value
@@ -23,7 +23,7 @@ class OutputSorting {
   }
 
   implicit val unicodeSeqOrdering: Ordering[Seq[Int]] = Ordering.by(identity)
-
+*/
   def codeToOutputEntry(input: Set[OutputEntry]): mutable.SortedMap[String, Set[OutputEntry]] = {
     implicit val customOrdering: Ordering[String] = new Ordering[String] {
       def compare(x: String, y: String): Int = {
