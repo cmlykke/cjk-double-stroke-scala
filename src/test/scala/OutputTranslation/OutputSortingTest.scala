@@ -18,17 +18,6 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
   val jundaAboveNine: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullJunda.filter(x => x._2.size > 9)
   val tzaiAboveNine: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullTzai.filter(x => x._2.size > 9)
 
-  private def getTestStringJunda(code: String, judaFull: SortedMap[String, List[OutputEntry]] ): String = {
-    val code_eongo: List[OutputEntry] = judaFull.get(code).get
-    val str_eongo: String = code_eongo
-      .map(x => x.chineseStr + " " +
-        x.jundaReverseOrder.map(y =>
-            " J: " + dataToStringJunda(y.junda) +
-            " T: " + dataToStringTzai(y.tzai)).mkString(" ")
-        + " " + x.meaning
-        + " uni: " +  unicodeOrdinals(x.chineseStr)).mkString("\r\n").trim
-    str_eongo
-  }
 
   private def unicodeOrdinals(s: String): String = {
     val codePoints = s.codePoints().toArray
@@ -36,70 +25,105 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
 
     ordinals.mkString("[", ", ", "]")
   }
+  
+  private def getTestStringJunda(code: String, judaFull: SortedMap[String, List[OutputEntry]]): String = {
+    if (code == "brho") {
+      val test = ""
+    }
+    val code_eongo: List[OutputEntry] = judaFull.get(code).getOrElse(List())
+    val sb = new StringBuilder
+    for (entry <- code_eongo) {
+      if (entry.chineseStr == "惿") {
+        val test2 = ""
+      }
+      sb.append(entry.chineseStr).append(" ")
+      sb.append("J: ")
+      for (reverseOrder <- entry.jundaReverseOrder) {
+        sb.append(dataToStringJunda(reverseOrder.junda)).append(" ")
+      }
+      sb.append("T: ")
+      for (reverseOrder <- entry.tzaiReverseOrder) {
+        sb.append(dataToStringTzai(reverseOrder.tzai)).append(" ")
+      }
+      //sb.append("T: ").append(dataToStringTzai(reverseOrder.tzai)).append(" ")
+      sb.append(entry.meaning).append(" ")
+      sb.append("uni: ").append(unicodeOrdinals(entry.chineseStr)).append("\r\n")
+    }
+    // Trim the trailing new line and return the result
+    sb.toString().trim
+  }
+  
 
   private def getTestStringTzai(code: String, full: SortedMap[String, List[OutputEntry]]): String = {
-    val code_eongo: List[OutputEntry] = full.get(code).get
-    val str_eongo: String = code_eongo
-      .map(x => x.chineseStr + " " +
-        x.tzaiReverseOrder.map(y =>
-          " T: " + dataToStringTzai(y.tzai) +
-            " J: " + dataToStringJunda(y.junda)).mkString(" ")
-        + " " + x.meaning
-        + " uni: " + unicodeOrdinals(x.chineseStr)).mkString("\r\n").trim
-    str_eongo
+    val code_eongo: List[OutputEntry] = full.get(code).getOrElse(List())
+    val sb = new StringBuilder
+    for (entry <- code_eongo) {
+      sb.append(entry.chineseStr).append(" ")
+      sb.append("J: ")
+      for (reverseOrder <- entry.jundaReverseOrder) {
+        sb.append(dataToStringJunda(reverseOrder.junda)).append(" ")
+      }
+      sb.append("T: ")
+      for (reverseOrder <- entry.tzaiReverseOrder) {
+        sb.append(dataToStringTzai(reverseOrder.tzai)).append(" ")
+      }
+      sb.append(entry.meaning).append(" ")
+      sb.append("uni: ").append(unicodeOrdinals(entry.chineseStr)).append("\r\n")
+    }
+    // Trim the trailing new line and return the result
+    sb.toString().trim
   }
-
 
   it should "junda and tzai - test the sorting of single characters" in {
 
     val outJunda: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullJunda
     val str_eongo: String = getTestStringJunda("brho", outJunda)
     val testJundaStr: String =
-      """惧  J: 1616 T: None  uni: [U+60E7]
-        |憬  J: 3693 T: 3048  uni: [U+61AC]
-        |怏  J: 4369 T: 5512  uni: [U+600F]
-        |愦  J: 5744 T: None  uni: [U+6126]
-        |憫   uni: [U+61AB]
-        |憒   uni: [U+6192]
-        |懆   uni: [U+61C6]
-        |惿   uni: [U+60FF]
-        |惈   uni: [U+60C8]
-        |愄   uni: [U+6104]
-        |懪   uni: [U+61EA]
-        |㤤   uni: [U+3924]
-        |㥏   uni: [U+394F]
-        |㥗   uni: [U+3957]
-        |㦨   uni: [U+39A8]
-        |怾   uni: [U+603E]
-        |悞   uni: [U+609E]
-        |悮   uni: [U+60AE]
-        |愪   uni: [U+612A]
-        |憹   uni: [U+61B9]""".stripMargin
+      """惧 J: 1616 T: None to fear uni: [U+60E7]
+        |憬 J: 3693 T: 3048 awaken uni: [U+61AC]
+        |怏 J: 4369 T: 5512 discontented uni: [U+600F]
+        |愦 J: 5744 T: None confused/troubled uni: [U+6126]
+        |憫 J: None T: 3140 to sympathize; to pity; to feel compassion for/(literary) to feel sorrow; to be grieved uni: [U+61AB]
+        |憒 J: None T: 6121 confused/troubled uni: [U+6192]
+        |懆 J: None T: 6211 anxious/sad uni: [U+61C6]
+        |惿 J: T: 8966  uni: [U+60FF]
+        |惈 J: None T: 10137 courageous/resolute and daring uni: [U+60C8]
+        |愄 J: T: 11473  uni: [U+6104]
+        |懪 J: T: 12685  uni: [U+61EA]
+        |㤤 J: T:  uni: [U+3924]
+        |㥏 J: None T: None ashamed uni: [U+394F]
+        |㥗 J: T:  uni: [U+3957]
+        |㦨 J: T:  uni: [U+39A8]
+        |怾 J: T:  uni: [U+603E]
+        |悞 J: None T: None to impede/to delay/variant of 誤|误[wu4] uni: [U+609E]
+        |悮 J: None T: None to impede/to delay/variant of 誤|误[wu4] uni: [U+60AE]
+        |愪 J: T:  uni: [U+612A]
+        |憹 J: None T: None used in 懊憹|懊𢙐[ao4nao2] uni: [U+61B9]""".stripMargin
     val resJunda: Boolean = str_eongo.trim == testJundaStr.trim
 
     val outTzai: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullTzai
     val str_eongo_tzai: String = getTestStringTzai("brho", outTzai)
     val testTzaiStr: String =
-      """憬  T: 3048 J: 3693  uni: [U+61AC]
-        |憫  T: 3140 J: None  uni: [U+61AB]
-        |怏  T: 5512 J: 4369  uni: [U+600F]
-        |憒  T: 6121 J: None  uni: [U+6192]
-        |懆  T: 6211 J: None  uni: [U+61C6]
-        |惿  T: 8966 J: None  uni: [U+60FF]
-        |惈  T: 10137 J: None  uni: [U+60C8]
-        |愄  T: 11473 J: None  uni: [U+6104]
-        |懪  T: 12685 J: None  uni: [U+61EA]
-        |惧   uni: [U+60E7]
-        |愦   uni: [U+6126]
-        |㤤   uni: [U+3924]
-        |㥏   uni: [U+394F]
-        |㥗   uni: [U+3957]
-        |㦨   uni: [U+39A8]
-        |怾   uni: [U+603E]
-        |悞   uni: [U+609E]
-        |悮   uni: [U+60AE]
-        |愪   uni: [U+612A]
-        |憹   uni: [U+61B9]""".stripMargin
+      """憬 J: 3693 T: 3048 awaken uni: [U+61AC]
+        |憫 J: None T: 3140 to sympathize; to pity; to feel compassion for/(literary) to feel sorrow; to be grieved uni: [U+61AB]
+        |怏 J: 4369 T: 5512 discontented uni: [U+600F]
+        |憒 J: None T: 6121 confused/troubled uni: [U+6192]
+        |懆 J: None T: 6211 anxious/sad uni: [U+61C6]
+        |惿 J: T: 8966  uni: [U+60FF]
+        |惈 J: None T: 10137 courageous/resolute and daring uni: [U+60C8]
+        |愄 J: T: 11473  uni: [U+6104]
+        |懪 J: T: 12685  uni: [U+61EA]
+        |惧 J: 1616 T: None to fear uni: [U+60E7]
+        |愦 J: 5744 T: None confused/troubled uni: [U+6126]
+        |㤤 J: T:  uni: [U+3924]
+        |㥏 J: None T: None ashamed uni: [U+394F]
+        |㥗 J: T:  uni: [U+3957]
+        |㦨 J: T:  uni: [U+39A8]
+        |怾 J: T:  uni: [U+603E]
+        |悞 J: None T: None to impede/to delay/variant of 誤|误[wu4] uni: [U+609E]
+        |悮 J: None T: None to impede/to delay/variant of 誤|误[wu4] uni: [U+60AE]
+        |愪 J: T:  uni: [U+612A]
+        |憹 J: None T: None used in 懊憹|懊𢙐[ao4nao2] uni: [U+61B9]""".stripMargin
     val resTzai: Boolean = str_eongo_tzai.trim == testTzaiStr.trim
 
     resJunda shouldBe true
@@ -112,31 +136,31 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
     val outJunda: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullJunda
     val str_eongo: String = getTestStringJunda("eongo", outJunda)
     val testJundaStr: String =
-    """米果  J: 575 T: 1154  J: 165 T: 99 rice cracker uni: [U+7C73, U+679C]
-      |美景  J: 814 T: 878  J: 151 T: 219 beautiful scenery uni: [U+7F8E, U+666F]
-      |美味  J: 844 T: 709  J: 151 T: 219 delicious/delicious food/delicacy uni: [U+7F8E, U+5473]
-      |火暴  J: 1028 T: 871  J: 433 T: 527 variant of 火爆[huo3 bao4] uni: [U+706B, U+66B4]
-      |兼具  J: 1515 T: 1526  J: 391 T: 679 to combine/to have both uni: [U+517C, U+5177]
-      |炊具  J: 3333 T: 3313  J: 391 T: 679 cooking utensils/cookware/cooker uni: [U+708A, U+5177]
-      |炊爨  J: 6143 T: 9314  J: 3333 T: 3313 to light a fire and cook a meal uni: [U+708A, U+7228]
-      |義縣  J: 9461 T: 1032  J: 6089 T: 326 Yi county in Jinzhou 錦州|锦州, Liaoning uni: [U+7FA9, U+7E23]
-      |榮景  J: None T: 926  J: 814 T: 878 period of prosperity uni: [U+69AE, U+666F]
-      |榮縣  J: None T: 926  J: 9461 T: 1032 Rong county in Zigong 自貢|自贡[Zi4 gong4], Sichuan uni: [U+69AE, U+7E23]""".stripMargin
+    """米果 J: 575 165 T: 1154 99 rice cracker uni: [U+7C73, U+679C]
+      |美景 J: 814 151 T: 878 219 beautiful scenery uni: [U+7F8E, U+666F]
+      |美味 J: 844 151 T: 709 219 delicious/delicious food/delicacy uni: [U+7F8E, U+5473]
+      |火暴 J: 1028 433 T: 871 527 variant of 火爆[huo3 bao4] uni: [U+706B, U+66B4]
+      |兼具 J: 1515 391 T: 1526 679 to combine/to have both uni: [U+517C, U+5177]
+      |炊具 J: 3333 391 T: 3313 679 cooking utensils/cookware/cooker uni: [U+708A, U+5177]
+      |炊爨 J: 6143 3333 T: 9314 3313 to light a fire and cook a meal uni: [U+708A, U+7228]
+      |義縣 J: 9461 6089 T: 1032 326 Yi county in Jinzhou 錦州|锦州, Liaoning uni: [U+7FA9, U+7E23]
+      |榮景 J: None 814 T: 926 878 period of prosperity uni: [U+69AE, U+666F]
+      |榮縣 J: None 9461 T: 1032 926 Rong county in Zigong 自貢|自贡[Zi4 gong4], Sichuan uni: [U+69AE, U+7E23]""".stripMargin
     val resJunda: Boolean = str_eongo.trim == testJundaStr.trim
 
     val outTzai: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullTzai
     val str_eongo_tzai: String = getTestStringTzai("eongo", outTzai)
     val testTzaiStr: String =
-    """美味  T: 709 J: 844  T: 219 J: 151 delicious/delicious food/delicacy uni: [U+7F8E, U+5473]
-      |火暴  T: 871 J: 1028  T: 527 J: 433 variant of 火爆[huo3 bao4] uni: [U+706B, U+66B4]
-      |美景  T: 878 J: 814  T: 219 J: 151 beautiful scenery uni: [U+7F8E, U+666F]
-      |榮景  T: 926 J: None  T: 878 J: 814 period of prosperity uni: [U+69AE, U+666F]
-      |義縣  T: 1032 J: 9461  T: 326 J: 6089 Yi county in Jinzhou 錦州|锦州, Liaoning uni: [U+7FA9, U+7E23]
-      |榮縣  T: 1032 J: 9461  T: 926 J: None Rong county in Zigong 自貢|自贡[Zi4 gong4], Sichuan uni: [U+69AE, U+7E23]
-      |米果  T: 1154 J: 575  T: 99 J: 165 rice cracker uni: [U+7C73, U+679C]
-      |兼具  T: 1526 J: 1515  T: 679 J: 391 to combine/to have both uni: [U+517C, U+5177]
-      |炊具  T: 3313 J: 3333  T: 679 J: 391 cooking utensils/cookware/cooker uni: [U+708A, U+5177]
-      |炊爨  T: 9314 J: 6143  T: 3313 J: 3333 to light a fire and cook a meal uni: [U+708A, U+7228]""".stripMargin
+    """美味 J: 844 151 T: 709 219 delicious/delicious food/delicacy uni: [U+7F8E, U+5473]
+      |火暴 J: 1028 433 T: 871 527 variant of 火爆[huo3 bao4] uni: [U+706B, U+66B4]
+      |美景 J: 814 151 T: 878 219 beautiful scenery uni: [U+7F8E, U+666F]
+      |榮景 J: None 814 T: 926 878 period of prosperity uni: [U+69AE, U+666F]
+      |義縣 J: 9461 6089 T: 1032 326 Yi county in Jinzhou 錦州|锦州, Liaoning uni: [U+7FA9, U+7E23]
+      |榮縣 J: None 9461 T: 1032 926 Rong county in Zigong 自貢|自贡[Zi4 gong4], Sichuan uni: [U+69AE, U+7E23]
+      |米果 J: 575 165 T: 1154 99 rice cracker uni: [U+7C73, U+679C]
+      |兼具 J: 1515 391 T: 1526 679 to combine/to have both uni: [U+517C, U+5177]
+      |炊具 J: 3333 391 T: 3313 679 cooking utensils/cookware/cooker uni: [U+708A, U+5177]
+      |炊爨 J: 6143 3333 T: 9314 3313 to light a fire and cook a meal uni: [U+708A, U+7228]""".stripMargin
     val resTzai: Boolean = str_eongo_tzai.trim == testTzaiStr.trim
 
     resJunda shouldBe true

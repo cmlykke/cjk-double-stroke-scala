@@ -16,6 +16,7 @@ object OutputEntryOrdering {
   def entryOrdering(primaryCharSystem: CharSystem): Ordering[OutputEntry] = new Ordering[OutputEntry] {
     override def compare(x: OutputEntry, y: OutputEntry): Int = {
       // Get primary and secondary orders
+      
       val primaryOrderX = getGraphemeOrdering(x, primaryCharSystem).getOrElse(Int.MaxValue)
       val primaryOrderY = getGraphemeOrdering(y, primaryCharSystem).getOrElse(Int.MaxValue)
 
@@ -23,22 +24,19 @@ object OutputEntryOrdering {
       val secondaryOrderX = getGraphemeOrdering(x, secondaryCharSystem).getOrElse(Int.MaxValue)
       val secondaryOrderY = getGraphemeOrdering(y, secondaryCharSystem).getOrElse(Int.MaxValue)
 
-      // Extract Unicode points
       val unicodeOrderX = x.chineseStr.codePoints().toArray.toSeq
       val unicodeOrderY = y.chineseStr.codePoints().toArray.toSeq
-
+      
       // Compare based on primary, secondary, and fall back to unicode
       val primaryComparison = primaryOrderX.compareTo(primaryOrderY)
       if (primaryComparison != 0) return primaryComparison
-
+      
       val secondaryComparison = secondaryOrderX.compareTo(secondaryOrderY)
       if (secondaryComparison != 0) return secondaryComparison
 
-      // Compare Unicode sequences when primary and secondary orders are equal
       val unicodeComparison = unicodeOrderX.compare(unicodeOrderY)
       if (unicodeComparison != 0) return unicodeComparison
-
-      // Final fallback: compare string representations of `chineseStr`
+      
       x.chineseStr.compareTo(y.chineseStr)
     }
   }

@@ -43,7 +43,7 @@ class OutputSorting {
   }
 
   def mapFromOutput(
-                     input: List[Set[OutputEntry]],
+                     input: List[List[OutputEntry]],
                      charSystem: CharSystem): SortedMap[String, List[OutputEntry]] = {
     var res: mutable.SortedMap[String, List[OutputEntry]] = mutable.SortedMap[String, List[OutputEntry]]()
 
@@ -62,24 +62,23 @@ class OutputSorting {
 
   // Ensure the implicit ordering is in scope when calling sortSetOfOutput
   // mapFromOutput and other calling functions should provide the implicit ordering
-  
-  def mergeOutputEntries(input: List[Set[OutputEntry]]): Set[OutputEntry] = {
-    val res: mutable.Map[String, Set[OutputEntry]] = mutable.Map()
+
+  def mergeOutputEntries(input: List[List[OutputEntry]]): Set[OutputEntry] = {
+    val res: mutable.Map[String, List[OutputEntry]] = mutable.Map()
 
     // Merge entries by their `chineseStr`
     for (collOfEntry <- input; entry <- collOfEntry) {
       res.updateWith(entry.chineseStr) {
-        case Some(existingEntries) => Some(existingEntries + entry)
-        case None => Some(Set(entry))
+        case Some(existingEntries) => Some(existingEntries :+ entry)
+        case None => Some(List(entry))
       }
     }
 
     val finalRes: mutable.Set[OutputEntry] = mutable.Set()
-
     // Create new merged entries based on the grouped values
-    for ((chineseStr, eachSet) <- res) {
-      if (eachSet.size == 1) {
-        finalRes.add(eachSet.head)
+    for ((chineseStr, eachList) <- res) {
+      if (eachList.size == 1) {
+        finalRes.add(eachList.head)
       } else {
         var updatedMeaning = ""
         var updatedPron = ""
@@ -88,20 +87,20 @@ class OutputSorting {
         var updatedTzaiReverseOrder: List[Grapheme] = List()
         var updatedCodes: Set[String] = Set()
 
-        for (ent <- eachSet) {
-          if (updatedMeaning.size < ent.meaning.size) {
+        for (ent <- eachList) {
+          if (updatedMeaning.isEmpty || ent.meaning.nonEmpty) {
             updatedMeaning = ent.meaning
           }
-          if (updatedPron.size < ent.pron.size) {
+          if (updatedPron.isEmpty || ent.pron.nonEmpty) {
             updatedPron = ent.pron
           }
-          if (updatedTradSimp.size < ent.tradSimp.size) {
+          if (updatedTradSimp.isEmpty || ent.tradSimp.nonEmpty) {
             updatedTradSimp = ent.tradSimp
           }
-          if (updatedJundaReverseOrder.size < ent.jundaReverseOrder.size) {
+          if (updatedJundaReverseOrder.isEmpty || ent.jundaReverseOrder.nonEmpty) {
             updatedJundaReverseOrder = ent.jundaReverseOrder
           }
-          if (updatedTzaiReverseOrder.size < ent.tzaiReverseOrder.size) {
+          if (updatedTzaiReverseOrder.isEmpty || ent.tzaiReverseOrder.nonEmpty) {
             updatedTzaiReverseOrder = ent.tzaiReverseOrder
           }
           updatedCodes = updatedCodes ++ ent.codes
@@ -131,7 +130,7 @@ object OutputSorting {
   val conFull: Set[OutputEntry] = OutputTranslation.conwayOutFull
   val specialChars: Set[OutputEntry] = ReadSpecialCharacters.allCharacterOutput.toSet
   val mapFullJunda: SortedMap[String, List[OutputEntry]] = outSorting.mapFromOutput(
-    List(conFull, cedictSetOut), Junda)
+    List(conFull.toList, cedictSetOut.toList), Junda)
   val mapFullTzai: SortedMap[String, List[OutputEntry]] = outSorting.mapFromOutput(
-    List(conFull, cedictSetOut), Tzai)
+    List(conFull.toList, cedictSetOut.toList), Tzai)
 }
