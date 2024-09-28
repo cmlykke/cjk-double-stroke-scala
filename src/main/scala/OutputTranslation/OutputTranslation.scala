@@ -8,7 +8,7 @@ import staticFileGenerators.cedictMap.GenerateCedictMap
 import scala.collection.mutable
 import scala.collection.mutable.HashMap
 
-type TranslationFunction = List[Set[ConwayUnambigous]] => Set[String]
+type TranslationFunction = (List[Set[ConwayUnambigous]], String) => Set[String]
 
 class OutputTranslation {
   
@@ -87,7 +87,7 @@ class OutputTranslation {
       }
       val jundaReverseOrder: List[Grapheme] = generateJundaGraphemeOrder(ceEntry.chineseStrGraphemes).reverse
       val tzaiReverseOrder: List[Grapheme] = generateTzaiGraphemeOrder(ceEntry.chineseStrGraphemes).reverse
-      val outputCodes: Set[String] = translationFn(ceEntry.unambigous)
+      val outputCodes: Set[String] = translationFn(ceEntry.unambigous, ceEntry.chineseStr)
       val entry: OutputEntry = new OutputEntry(
         ceEntry.chineseStr,
         ceEntry.meaning,

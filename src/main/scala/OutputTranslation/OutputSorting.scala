@@ -12,25 +12,18 @@ import OutputEntryOrdering._
 import scala.collection.immutable.SortedMap
 import scala.collection.mutable
 
-//import scala.collection.{SortedMap, mutable}
-
 class OutputSorting {
-/*
-  // Implicit ordering definitions
-  implicit val optionIntOrdering: Ordering[Option[Int]] = Ordering.by {
-    case Some(value) => value
-    case None => Int.MaxValue // Consider 'None' as highest so it falls back to Unicode ordering
+
+  // Method to provide custom ordering
+  def customOrdering: Ordering[String] = new Ordering[String] {
+    override def compare(x: String, y: String): Int = {
+      val lengthCompare = x.length.compare(y.length)
+      if (lengthCompare != 0) lengthCompare else x.compare(y)
+    }
   }
 
-  implicit val unicodeSeqOrdering: Ordering[Seq[Int]] = Ordering.by(identity)
-*/
   def codeToOutputEntry(input: Set[OutputEntry]): mutable.SortedMap[String, Set[OutputEntry]] = {
-    implicit val customOrdering: Ordering[String] = new Ordering[String] {
-      def compare(x: String, y: String): Int = {
-        val lengthCompare = x.length.compare(y.length)
-        if (lengthCompare != 0) lengthCompare else x.compare(y)
-      }
-    }
+    implicit val ordering: Ordering[String] = customOrdering
     val sortedMap: mutable.SortedMap[String, Set[OutputEntry]] = mutable.SortedMap[String, Set[OutputEntry]]()
 
     for (eachEntry <- input) {
@@ -42,9 +35,8 @@ class OutputSorting {
     sortedMap
   }
 
-  def mapFromOutput(
-                     input: List[List[OutputEntry]],
-                     charSystem: CharSystem): SortedMap[String, List[OutputEntry]] = {
+  def mapFromOutput(input: List[List[OutputEntry]], charSystem: CharSystem): SortedMap[String, List[OutputEntry]] = {
+    implicit val ordering: Ordering[String] = customOrdering
     var res: mutable.SortedMap[String, List[OutputEntry]] = mutable.SortedMap[String, List[OutputEntry]]()
 
     val merge: Set[OutputEntry] = mergeOutputEntries(input)
@@ -57,11 +49,8 @@ class OutputSorting {
       }
       res.addOne((myKey, sortedVal))
     }
-    SortedMap.from(res)
+    SortedMap.from(res)(ordering)
   }
-
-  // Ensure the implicit ordering is in scope when calling sortSetOfOutput
-  // mapFromOutput and other calling functions should provide the implicit ordering
 
   def mergeOutputEntries(input: List[List[OutputEntry]]): Set[OutputEntry] = {
     val res: mutable.Map[String, List[OutputEntry]] = mutable.Map()

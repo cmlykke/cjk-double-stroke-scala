@@ -102,8 +102,8 @@ class OutputOverlapTest extends AnyFlatSpec with Matchers {
   it should "check 6 codes" in {
     val jundaTest = sixJundaPair
     val tzaiTest = sixTzaiPair
-    jundaTest(0)._2 shouldBe 7522
-    tzaiTest(0)._2 shouldBe 6470
+    jundaTest.size shouldBe 0
+    tzaiTest.size shouldBe 0
     val test = ""
   }
 
@@ -120,6 +120,7 @@ class OutputOverlapTest extends AnyFlatSpec with Matchers {
     val tzaiTest = fourCodeCodeTzaiPair
     jundaTest(0)._2 shouldBe 5105
     val junda2 = OutputSorting.mapFullJunda.get("ngfo").get
+    val junda3 = OutputSorting.mapFullJunda.get("agnj").get
     tzaiTest(0)._2 shouldBe 5412
     val test = ""
   }

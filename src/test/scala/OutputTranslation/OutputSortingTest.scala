@@ -273,8 +273,7 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
       }
     }
     desiredChar1 should not be None
-    desiredChar1.get.codes shouldBe Set("ptfful", "pgfxul", "ptxful", "pgfful", "pgfl", "pgxl",
-      "pgxful", "ptfvbl", "ptfl", "ptxl", "pgfvbl", "ptfxul")
+    desiredChar1.get.codes shouldBe Set("pgfl", "pgxl", "ptfl", "ptxl")
 
     val test: String = ""
   }

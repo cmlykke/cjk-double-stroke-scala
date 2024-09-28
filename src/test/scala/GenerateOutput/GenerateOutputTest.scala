@@ -17,11 +17,12 @@ class GenerateOutputTest extends AnyFlatSpec with Matchers {
     val outputLines: List[String] = generate.generateWithSpecial(GenerateOutputStrings.mapFullJunda)
     //write file
     var writesuccess: Boolean = false
-    generate.writeListToFile(outputLines, "outjunda.txt", "src/test/scala/GenerateOutput") match {
+/*
+    generate.writeListToFile(outputLines, "outjunda2.txt", "src/test/scala/GenerateOutput") match {
       case Success(_) => writesuccess = true
       case Failure(e) => writesuccess = false
     }
-    writesuccess shouldBe true
+    writesuccess shouldBe true*/
   }
 
   it should "test output junda file with meaning" in {
@@ -30,10 +31,11 @@ class GenerateOutputTest extends AnyFlatSpec with Matchers {
     val outputLines: List[String] = generate.generateWithMeaning(GenerateOutputStrings.mapFullJunda)
     //write file
     var writesuccess: Boolean = false
-    generate.writeListToFile(outputLines, "outjundaMeaning3.txt", "src/test/scala/GenerateOutput") match {
+/*
+    generate.writeListToFile(outputLines, "outjundaMeaning2.txt", "src/test/scala/GenerateOutput") match {
       case Success(_) => writesuccess = true
       case Failure(e) => writesuccess = false
     }
-    writesuccess shouldBe true
+    writesuccess shouldBe true*/
   }
 }

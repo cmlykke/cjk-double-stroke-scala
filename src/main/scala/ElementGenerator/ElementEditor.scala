@@ -54,7 +54,7 @@ class ElementEditor {
       return res
     }
 
-    val combined: Set[ConwayUnambigous] = charIfo.conwayColl.rawConway.getSplitConwayList(Three_oneAndFive_one)
+    val combined: Set[ConwayUnambigous] = charIfo.conwayColl.rawConway.getSplitConwayList(Three_one)
     val res = new StaticFileCharInfoWithLetterConway(charIfo, combined)
     return res
   }

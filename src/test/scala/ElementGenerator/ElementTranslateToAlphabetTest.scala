@@ -41,7 +41,7 @@ class ElementTranslateToAlphabetTest extends AnyFlatSpec with Matchers {
     val snip: String = FormatUtils.summarizeOverlap(secondOverlapJunda)
     //First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 104
     //First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 105
-    snip shouldBe "First 3 keys: [5105, 5209, 5772], Total keys: 30, Total beyond index 8: 104"
+    snip shouldBe "First 3 keys: [5105, 5209, 5772], Total keys: 29, Total beyond index 8: 103"
 
     val test = ""
   }
@@ -71,7 +71,7 @@ class ElementTranslateToAlphabetTest extends AnyFlatSpec with Matchers {
     val snip: String = FormatUtils.summarizeOverlap(secondOverlapJunda)
 
     //"First 3 keys: [5168, 5168, 5412], Total keys: 24, Total beyond index 8: 86"
-    snip shouldBe "First 3 keys: [5412, 5477, 5724], Total keys: 22, Total beyond index 8: 67"
+    snip shouldBe "First 3 keys: [5412, 5477, 5724], Total keys: 20, Total beyond index 8: 59"
 
     val test = ""
   }
