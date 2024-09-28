@@ -35,7 +35,8 @@ object TranslationFunctions {
       val part2: String = getFirstSecondAndLast(conLi(1))
       res.add(part1+part2)
     }
-    return res.toSet
+    val finalRes = padStrings(res.toSet, 5)
+    return finalRes
   }
 
   private def generateReadyCodeForThree(unambigous: List[Set[ConwayUnambigous]]): Set[String] = {
@@ -47,7 +48,8 @@ object TranslationFunctions {
       val part3: String = getFirstAndLast(conLi(2))
       res.add(part1 + part2 + part3)
     }
-    return res.toSet
+    val finalRes = padStrings(res.toSet, 5)
+    return finalRes
   }
 
 
@@ -61,7 +63,8 @@ object TranslationFunctions {
       val part4: String = getFirstAndLast(conLi(3))
       res.add(part1 + part2 + part3 + part4)
     }
-    return res.toSet
+    val finalRes = padStrings(res.toSet, 5)
+    return finalRes
   }
 
 
@@ -76,7 +79,8 @@ object TranslationFunctions {
       val part5: String = getFirst(conLi(4))
       res.add(part1 + part2 + part3 + part4 + part5)
     }
-    return res.toSet
+    val finalRes = padStrings(res.toSet, 5)
+    return finalRes
   }
 
   private def getFirst(con: ConwayUnambigous): String = {
@@ -113,6 +117,15 @@ object TranslationFunctions {
           element <- head.toList
           combination <- generateCombinations(tail)
         } yield element :: combination
+    }
+  }
+
+  def padStrings(strings: Set[String], length: Int): Set[String] = {
+    strings.map { str =>
+      if (str.length > length)
+        throw new IllegalArgumentException(s"String '$str' has more characters than $length")
+      else
+        str.padTo(length, 'z')
     }
   }
 

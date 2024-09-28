@@ -32,22 +32,61 @@ class OutputOverlapTest extends AnyFlatSpec with Matchers {
         }
       }.toSeq: _*)
 
-  val fourCodeJunda: SortedMap[String, List[OutputEntry]] = jundaAboveNine.filter(x => x._1.size == 4)
+  // 4 codes - or less
+
+  val fourCodeOrLessJunda: SortedMap[String, List[OutputEntry]] = jundaAboveNine.filter(x => x._1.size <= 4)
   val fourCodeCodeJundaPair: List[(String, Int)] =
-    fourCodeJunda.flatMap { case (key, entries) =>
+    fourCodeOrLessJunda.flatMap { case (key, entries) =>
       for {
         firstEntry <- entries.headOption
         firstGrapheme <- firstEntry.jundaReverseOrder.headOption
         jundaData <- firstGrapheme.junda
       } yield (key, jundaData.ordinal)
     }.toList.sortBy { case (key, ordinal) => (ordinal, key) }
+
+  val fourCodeOrLessTzai: SortedMap[String, List[OutputEntry]] = tzaiAboveNine.filter(x => x._1.size <= 4)
+  val fourCodeCodeTzaiPair: List[(String, Int)] =
+    fourCodeOrLessTzai.flatMap { case (key, entries) =>
+      for {
+        firstEntry <- entries.headOption
+        firstGrapheme <- firstEntry.tzaiReverseOrder.headOption
+        tzaiData <- firstGrapheme.tzai
+      } yield (key, tzaiData.ordinal)
+    }.toList.sortBy { case (key, ordinal) => (ordinal, key) }
+
+  // five codes
+
+  val fiveJunda: SortedMap[String, List[OutputEntry]] = jundaAboveNine.filter(x => x._1.size == 5)
+  val fiveJundaPair: List[(String, Int, String)] =
+    fiveJunda.flatMap { case (key, entries) =>
+      for {
+        firstEntry <- entries.headOption
+        firstGrapheme <- firstEntry.jundaReverseOrder.headOption
+        jundaData <- firstGrapheme.junda
+      } yield (key, jundaData.ordinal, firstEntry.chineseStr)
+    }.toList.sortBy { case (key, ordinal, chinese) => (ordinal, key, chinese) }
+
+  val fiveTzai: SortedMap[String, List[OutputEntry]] = tzaiAboveNine.filter(x => x._1.size == 5)
+  val fiveTzaiPair: List[(String, Int, String)] =
+    fiveTzai.flatMap { case (key, entries) =>
+      for {
+        firstEntry <- entries.headOption
+        firstGrapheme <- firstEntry.tzaiReverseOrder.headOption
+        tzaiData <- firstGrapheme.tzai
+      } yield (key, tzaiData.ordinal, firstEntry.chineseStr)
+    }.toList.sortBy { case (key, ordinal, chinese) => (ordinal, key, chinese) }
+
   val test = ""
 
+  it should "check 5 codes" in {
+    fiveJundaPair(0)._2 shouldBe 1168
+    fiveTzaiPair(0)._2 shouldBe 621
+    val test = ""
+  }
+
   it should "check 4 code overlap" in {
-    val kojgCode = jundaAboveNine.get("kojg")
-    val ngjgCode = jundaAboveNine.get("ngjg")
-    kojgCode.get.size shouldBe 12
-    ngjgCode.get.size shouldBe 6
+    fourCodeCodeJundaPair(0)._2 shouldBe 5105
+    fourCodeCodeTzaiPair(0)._2 shouldBe 5412
     val test = ""
   }
 
