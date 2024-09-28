@@ -76,18 +76,51 @@ class OutputOverlapTest extends AnyFlatSpec with Matchers {
       } yield (key, tzaiData.ordinal, firstEntry.chineseStr)
     }.toList.sortBy { case (key, ordinal, chinese) => (ordinal, key, chinese) }
 
+  val sixJunda: SortedMap[String, List[OutputEntry]] = jundaAboveNine.filter(x => x._1.size == 6)
+  val sixJundaPair: List[(String, Int, String)] =
+    sixJunda.flatMap { case (key, entries) =>
+      for {
+        firstEntry <- entries.headOption
+        firstGrapheme <- firstEntry.jundaReverseOrder.headOption
+        jundaData <- firstGrapheme.junda
+      } yield (key, jundaData.ordinal, firstEntry.chineseStr)
+    }.toList.sortBy { case (key, ordinal, chinese) => (ordinal, key, chinese) }
+
+  val sixTzai: SortedMap[String, List[OutputEntry]] = tzaiAboveNine.filter(x => x._1.size == 6)
+  val sixTzaiPair: List[(String, Int, String)] =
+    sixTzai.flatMap { case (key, entries) =>
+      for {
+        firstEntry <- entries.headOption
+        firstGrapheme <- firstEntry.tzaiReverseOrder.headOption
+        tzaiData <- firstGrapheme.tzai
+      } yield (key, tzaiData.ordinal, firstEntry.chineseStr)
+    }.toList.sortBy { case (key, ordinal, chinese) => (ordinal, key, chinese) }
+
   val test = ""
 
-  it should "check 5 codes" in {
 
-    fiveJundaPair(0)._2 shouldBe 1168
-    fiveTzaiPair(0)._2 shouldBe 621
+  it should "check 6 codes" in {
+    val jundaTest = sixJundaPair
+    val tzaiTest = sixTzaiPair
+    jundaTest(0)._2 shouldBe 7522
+    tzaiTest(0)._2 shouldBe 6470
+    val test = ""
+  }
+
+  it should "check 5 codes" in {
+    val jundaTest = fiveJundaPair
+    val tzaiTest = fiveTzaiPair
+    jundaTest(0)._2 shouldBe 1168
+    tzaiTest(0)._2 shouldBe 621
     val test = ""
   }
 
   it should "check 4 code overlap" in {
-    fourCodeCodeJundaPair(0)._2 shouldBe 5105
-    fourCodeCodeTzaiPair(0)._2 shouldBe 5412
+    val jundaTest = fourCodeCodeJundaPair
+    val tzaiTest = fourCodeCodeTzaiPair
+    jundaTest(0)._2 shouldBe 5105
+    val junda2 = OutputSorting.mapFullJunda.get("ngfo").get
+    tzaiTest(0)._2 shouldBe 5412
     val test = ""
   }
 

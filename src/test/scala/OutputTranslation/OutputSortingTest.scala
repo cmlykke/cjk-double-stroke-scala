@@ -250,7 +250,7 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
     val allGraphemes: Set[Grapheme] = overlap.map(x => Grapheme.splitIntoGraphemes(x.chineseStr).map(y => Grapheme(y))).flatten.toSet
     val graphemesMissingFromConway: Set[Grapheme] = allGraphemes.filter(x => !conwayMap.contains(x)).toSet
 
-    overlap.size shouldBe 22025 //15613 //364 // there are many lines that contain z codes
+    overlap.size shouldBe 17909 //22025 //15613 //364 // there are many lines that contain z codes
   }
 
   private def lettersSansAscii(): Set[Char] = {

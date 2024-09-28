@@ -23,7 +23,7 @@ object TranslationFunctions3 {
       val part2: String = getFirstSecondAndLast(conLi(1))
       res.add(part1+part2)
     }
-    val finalRes = padStrings(res.toSet, 5)
+    val finalRes = setToLength(res.toSet, 5)
     return finalRes
   }
 
@@ -31,9 +31,9 @@ object TranslationFunctions3 {
     val combinations: List[List[ConwayUnambigous]] = generateCombinations(unambigous)
     var res: mutable.Set[String] = mutable.Set[String]()
     for (conLi <- combinations) {
-      val part1: String = getFirst(conLi(0))
+      val part1: String = getFirstAndLast(conLi(0))
       val part2: String = getFirstAndLast(conLi(1))
-      val part3: String = getFirstSecondAndLast(conLi(2))
+      val part3: String = getFirstAndLast(conLi(2))
       res.add(part1 + part2 + part3)
     }
     val finalRes = padStrings(res.toSet, 6)
@@ -126,10 +126,29 @@ object TranslationFunctions3 {
 
   def padStrings(strings: Set[String], length: Int): Set[String] = {
     strings.map { str =>
-      if (str.length > length)
+      if (str.length > length) {
         throw new IllegalArgumentException(s"String '$str' has more characters than $length")
-      else
-        str.padTo(length, 'z')
+      } else {
+        var paddedStr = str
+        while (paddedStr.length < length) {
+          paddedStr += "z"
+        }
+        paddedStr
+      }
+    }
+  }
+
+  def setToLength(strings: Set[String], length: Int): Set[String] = {
+    strings.map { str =>
+      if (str.length > length) {
+        str.take(length)
+      } else {
+        var paddedStr = str
+        while (paddedStr.length < length) {
+          paddedStr += "z"
+        }
+        paddedStr
+      }
     }
   }
 
