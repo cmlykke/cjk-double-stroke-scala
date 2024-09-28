@@ -14,11 +14,6 @@ import scala.collection.{SortedMap, mutable}
 
 class OutputSortingTest extends AnyFlatSpec with Matchers {
 
-  // create a test that tests if there are any z characters in cedict or conway
-  val jundaAboveNine: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullJunda.filter(x => x._2.size > 9)
-  val tzaiAboveNine: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullTzai.filter(x => x._2.size > 9)
-
-
   private def unicodeOrdinals(s: String): String = {
     val codePoints = s.codePoints().toArray
     val ordinals = codePoints.map(cp => f"U+${cp}%04X")
