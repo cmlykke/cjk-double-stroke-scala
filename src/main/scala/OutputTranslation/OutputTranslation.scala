@@ -47,37 +47,7 @@ class OutputTranslation {
     // Convert the set to a list and sort using the defined ordering
     chineseStrGraphemes.toList.sorted(ordering)
   }
-/*
-  def staticFileCharToOutputEntry(static: Set[StaticFileCharInfoWithLetterConway],
-                                  translationFn: TranslationFunction): Set[OutputEntry] = {
-    val res: mutable.Set[OutputEntry] = mutable.Set[OutputEntry]()
-    for (charInfo <- static) {
-      val info = charInfo.letterConway
-      val test = ""
-    }
-    res.toSet
-  }
-
-  def staticFileInfoToOutputEntry(staticFileInfo: Set[StaticFileCharInfoWithLetterConway]): Set[OutputEntry] = {
-    val res: mutable.Set[OutputEntry] = mutable.Set[OutputEntry]()
-    for (eachInfo <- staticFileInfo) {
-      val junda: List[Grapheme] = if (eachInfo.grapheme.junda.isDefined) List(eachInfo.grapheme) else List()
-      val tzai: List[Grapheme] = if (eachInfo.grapheme.tzai.isDefined) List(eachInfo.grapheme) else List()
-      val codes: Set[String] = eachInfo.letterConway.map(x => x.conwayPairs.mkString("")).toSet
-      val entry: OutputEntry = new OutputEntry(
-        eachInfo.grapheme.char,//ceEntry.chineseStr,
-        "", //ceEntry.meaning,
-        "", //ceEntry.pronounciation,
-        "", //ceEntry.tradSimp,
-        junda,
-        tzai,
-        codes
-      )
-      res.add(entry)
-    }
-    return res.toSet
-  }
-*/
+  
   def cedictToOutputEntry(cedictEntries: Set[CedictEntry], 
                           translationFn: TranslationFunction): Set[OutputEntry] = {
     val res: mutable.Set[OutputEntry] = mutable.Set[OutputEntry]()
@@ -138,15 +108,6 @@ class OutputTranslation {
     res
   }
 
-  /*
-  inputChineseStr: String,
-                  inputMeaning: String,
-                  inputPronounciation: String,
-                  inputTradSimp: String,
-                  inpjundaReverseOrder: List[Grapheme],
-                  inptzaiReverseOrder: List[Grapheme],
-                  inpcodes: Set[String]) {
-  */
   def getConwayFull(conwayList: List[StaticFileCharInfoWithLetterConway],
                          cedictMap: Map[String, CedictEntry]): Set[OutputEntry] = {
     var res: mutable.Set[OutputEntry] = mutable.Set[OutputEntry]()

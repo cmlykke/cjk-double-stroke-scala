@@ -6,6 +6,7 @@ import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 import staticFileGenerators.cedictMap.GenerateCedictMap
 
+import scala.collection.immutable.SortedMap
 import scala.collection.mutable.ListBuffer
 
 class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
@@ -219,6 +220,9 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
     var res: (Double, Double) = (0, 0)
     var previous: Char = 'z'
     for (eachcode <- codes) {
+      if (eachcode._1.size > 4) {
+        val test = ""
+      }
       val output: String = eachcode._1.zipWithIndex.map { case (char, index) =>
         if (OutputFrequencyTesting.leftHand.contains(char)) {
           res = addTuples(res, (eachcode._2, 0))
