@@ -82,7 +82,7 @@ object ElementTranslateToAlphabet {
   // Static function returning a hardcoded map of string to string
   //top line is 4-3, 
   //middleline is 5-1, 
-  //bottomline is 21-25
+  //bottomline is 25-21
 
   def thirdChoiceMap: Map[String, String] = {
     Map(
@@ -113,12 +113,12 @@ object ElementTranslateToAlphabet {
       "14" -> "l",//"s",
       "15" -> "m",//"a",
 
-      "2" -> "x",
-      "21" -> "x",
-      "22" -> "c",
-      "23" -> "v",
-      "24" -> "b",
-      "25" -> "n",
+      "2" -> "n",//"x",
+      "21" -> "n",//"x",
+      "22" -> "b",//"c",
+      "23" -> "v",//"v",
+      "24" -> "c",//"b",
+      "25" -> "x",//"n",
 
       "3" -> "y",
       "31" -> "y",

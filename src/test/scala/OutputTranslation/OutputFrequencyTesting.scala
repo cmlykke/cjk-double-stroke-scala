@@ -22,7 +22,7 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
     val jundaUnchangedLeftSelection: (Double, Double) = countLeftRightWithSelection(singleOut, Map(), Junda)
     val jundaTopChanged: (Double, Double) = countLeftRight(singleOut, changeTopRow(), Junda)
     val jundaTopChangedLeftSelection: (Double, Double) = countLeftRightWithSelection(singleOut, changeTopRow(), Junda)
-    
+
     val jundaMiddleChanged: (Double, Double) = countLeftRight(singleOut, changeMiddleRow(), Junda)
     val jundaMiddleChangedWithSelection: (Double, Double) = countLeftRightWithSelection(singleOut, changeMiddleRow(), Junda)
     val jundaButtomChanged: (Double, Double) = countLeftRight(singleOut, changeButtomRow(), Junda)
@@ -35,40 +35,56 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
     val tzaiMiddleAndButtonChanged: (Double, Double) = countLeftRight(singleOutTzai, changeMiddleAndButtomRow(), Tzai)
 
     //junda
-    approximatelyEqual(jundaUnchanged._1, 2.719) shouldBe true
-    approximatelyEqual(jundaUnchanged._2, 3.140) shouldBe true
-    approximatelyEqual(jundaUnchangedLeftSelection._1, 4.329) shouldBe true
-
-    approximatelyEqual(jundaTopChanged._1, 2.984) shouldBe true
-    approximatelyEqual(jundaTopChanged._2, 2.875) shouldBe true
-    approximatelyEqual(jundaTopChangedLeftSelection._1, 4.594) shouldBe true
+    var strResult = ""
+    + approximatelyEqual("jundaUnchanged._1", jundaUnchanged._1)
+    + approximatelyEqual("jundaUnchanged._2", jundaUnchanged._2)
+    + approximatelyEqual("jundaUnchangedLeftSelection._1", jundaUnchangedLeftSelection._1)
+    + approximatelyEqual("jundaTopChanged._1", jundaTopChanged._1)
+    + approximatelyEqual("jundaTopChanged._2", jundaTopChanged._2)
+    + approximatelyEqual("jundaTopChangedLeftSelection._1", jundaTopChangedLeftSelection._1)
     //jundaTopChangedLeftSelection
-    
-    approximatelyEqual(jundaMiddleChanged._1, 3.324) shouldBe true
-    approximatelyEqual(jundaMiddleChanged._2, 2.535) shouldBe true
-    approximatelyEqual(jundaMiddleChangedWithSelection._1, 4.934) shouldBe true
+    + approximatelyEqual("jundaMiddleChanged._1", jundaMiddleChanged._1)
+    + approximatelyEqual("jundaMiddleChanged._2", jundaMiddleChanged._2)
+    + approximatelyEqual("jundaMiddleChangedWithSelection._1", jundaMiddleChangedWithSelection._1)
+    + approximatelyEqual("jundaButtomChanged._1", jundaButtomChanged._1)
+    + approximatelyEqual("jundaButtomChanged._2", jundaButtomChanged._2)
+    + approximatelyEqual("jundaMiddleAndButtonChanged._1", jundaMiddleAndButtonChanged._1)
+    + approximatelyEqual("jundaMiddleAndButtonChanged._2", jundaMiddleAndButtonChanged._2)
+    + approximatelyEqual("tzaiUnchanged._1", tzaiUnchanged._1)
+    + approximatelyEqual("tzaiUnchanged._2", tzaiUnchanged._2)
+    + approximatelyEqual("tzaiTopChanged._1", tzaiTopChanged._1)
+    + approximatelyEqual("tzaiTopChanged._2", tzaiTopChanged._2)
+    + approximatelyEqual("tzaiMiddleChanged._1", tzaiMiddleChanged._1)
+    + approximatelyEqual("tzaiMiddleChanged._2", tzaiMiddleChanged._2)
+    + approximatelyEqual("tzaiButtomChanged._1", tzaiButtomChanged._1)
+    + approximatelyEqual("tzaiButtomChanged._2", tzaiButtomChanged._2)
+    + approximatelyEqual("tzaiMiddleAndButtonChanged._1", tzaiMiddleAndButtonChanged._1)
+    + approximatelyEqual("tzaiMiddleAndButtonChanged._2", tzaiMiddleAndButtonChanged._2)
 
-    approximatelyEqual(jundaButtomChanged._1, 2.666) shouldBe true
-    approximatelyEqual(jundaButtomChanged._2, 3.193) shouldBe true
-
-    approximatelyEqual(jundaMiddleAndButtonChanged._1, 3.271) shouldBe true
-    approximatelyEqual(jundaMiddleAndButtonChanged._2, 2.588) shouldBe true
-
-    //tzai
-    approximatelyEqual(tzaiUnchanged._1, 2.757) shouldBe true
-    approximatelyEqual(tzaiUnchanged._2, 3.717) shouldBe true
-
-    approximatelyEqual(tzaiTopChanged._1, 3.298) shouldBe true
-    approximatelyEqual(tzaiTopChanged._2, 3.176) shouldBe true
-
-    approximatelyEqual(tzaiMiddleChanged._1, 3.541) shouldBe true
-    approximatelyEqual(tzaiMiddleChanged._2, 2.933) shouldBe true
-
-    approximatelyEqual(tzaiButtomChanged._1, 2.768) shouldBe true
-    approximatelyEqual(tzaiButtomChanged._2, 3.706) shouldBe true
-
-    approximatelyEqual(tzaiMiddleAndButtonChanged._1, 3.552) shouldBe true
-    approximatelyEqual(tzaiMiddleAndButtonChanged._2, 2.922) shouldBe true
+    val finalRes = strResult.trim
+    finalRes shouldBe """2.666 jundaUnchanged._1
+                              |3.193 jundaUnchanged._2
+                              |4.276 jundaUnchangedLeftSelection._1
+                              |2.931 jundaTopChanged._1
+                              |2.928 jundaTopChanged._2
+                              |4.540 jundaTopChangedLeftSelection._1
+                              |3.271 jundaMiddleChanged._1
+                              |2.588 jundaMiddleChanged._2
+                              |4.881 jundaMiddleChangedWithSelection._1
+                              |2.719 jundaButtomChanged._1
+                              |3.140 jundaButtomChanged._2
+                              |3.324 jundaMiddleAndButtonChanged._1
+                              |2.535 jundaMiddleAndButtonChanged._2
+                              |2.768 tzaiUnchanged._1
+                              |3.706 tzaiUnchanged._2
+                              |3.309 tzaiTopChanged._1
+                              |3.166 tzaiTopChanged._2
+                              |3.552 tzaiMiddleChanged._1
+                              |2.922 tzaiMiddleChanged._2
+                              |2.757 tzaiButtomChanged._1
+                              |3.717 tzaiButtomChanged._2
+                              |3.541 tzaiMiddleAndButtonChanged._1
+                              |2.933 tzaiMiddleAndButtonChanged._2""".stripMargin
   }
 
 
@@ -87,36 +103,49 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
     val tzaiMiddleAndButtonChanged: (Double, Double) = countLeftRight(multiOutTzai, changeMiddleAndButtomRow(), Tzai)
 
     //junda
-    approximatelyEqual(jundaUnchanged._1, 43.38) shouldBe true
-    approximatelyEqual(jundaUnchanged._2, 48.27) shouldBe true
+    var strResult = ""
+    + approximatelyEqual("jundaUnchanged._1", jundaUnchanged._1)
+      + approximatelyEqual("jundaUnchanged._2", jundaUnchanged._2)
+      + approximatelyEqual("jundaTopChanged._1", jundaTopChanged._1)
+      + approximatelyEqual("jundaTopChanged._2", jundaTopChanged._2)
+      + approximatelyEqual("jundaMiddleChanged._1", jundaMiddleChanged._1)
+      + approximatelyEqual("jundaMiddleChanged._2", jundaMiddleChanged._2)
+      + approximatelyEqual("jundaButtomChanged._1", jundaButtomChanged._1)
+      + approximatelyEqual("jundaButtomChanged._2", jundaButtomChanged._2)
+      + approximatelyEqual("jundaMiddleAndButtonChanged._1", jundaMiddleAndButtonChanged._1)
+      + approximatelyEqual("jundaMiddleAndButtonChanged._2", jundaMiddleAndButtonChanged._2)
+      + approximatelyEqual("tzaiUnchanged._1", tzaiUnchanged._1)
+      + approximatelyEqual("tzaiUnchanged._2", tzaiUnchanged._2)
+      + approximatelyEqual("tzaiTopChanged._1", tzaiTopChanged._1)
+      + approximatelyEqual("tzaiTopChanged._2", tzaiTopChanged._2)
+      + approximatelyEqual("tzaiMiddleChanged._1", tzaiMiddleChanged._1)
+      + approximatelyEqual("tzaiMiddleChanged._2", tzaiMiddleChanged._2)
+      + approximatelyEqual("tzaiButtomChanged._1", tzaiButtomChanged._1)
+      + approximatelyEqual("tzaiButtomChanged._2", tzaiButtomChanged._2)
+      + approximatelyEqual("tzaiMiddleAndButtonChanged._1", tzaiMiddleAndButtonChanged._1)
+      + approximatelyEqual("tzaiMiddleAndButtonChanged._2", tzaiMiddleAndButtonChanged._2)
 
-    approximatelyEqual(jundaTopChanged._1, 46.28) shouldBe true
-    approximatelyEqual(jundaTopChanged._2, 45.37) shouldBe true
-
-    approximatelyEqual(jundaMiddleChanged._1, 53.61) shouldBe true
-    approximatelyEqual(jundaMiddleChanged._2, 38.03) shouldBe true
-
-    approximatelyEqual(jundaButtomChanged._1, 41.78) shouldBe true
-    approximatelyEqual(jundaButtomChanged._2, 49.87) shouldBe true
-
-    approximatelyEqual(jundaMiddleAndButtonChanged._1, 52.01) shouldBe true
-    approximatelyEqual(jundaMiddleAndButtonChanged._2, 39.63) shouldBe true
-
-    //tzai
-    approximatelyEqual(tzaiUnchanged._1, 36.80) shouldBe true
-    approximatelyEqual(tzaiUnchanged._2, 48.54) shouldBe true
-
-    approximatelyEqual(tzaiTopChanged._1, 44.75) shouldBe true
-    approximatelyEqual(tzaiTopChanged._2, 40.59) shouldBe true
-
-    approximatelyEqual(tzaiMiddleChanged._1, 47.90) shouldBe true
-    approximatelyEqual(tzaiMiddleChanged._2, 37.44) shouldBe true
-
-    approximatelyEqual(tzaiButtomChanged._1, 35.32) shouldBe true
-    approximatelyEqual(tzaiButtomChanged._2, 50.02) shouldBe true
-
-    approximatelyEqual(tzaiMiddleAndButtonChanged._1, 46.41) shouldBe true
-    approximatelyEqual(tzaiMiddleAndButtonChanged._2, 38.93) shouldBe true
+    val finalRes = strResult.trim
+    finalRes shouldBe """41.78 jundaUnchanged._1
+                              |49.87 jundaUnchanged._2
+                              |44.68 jundaTopChanged._1
+                              |46.97 jundaTopChanged._2
+                              |52.01 jundaMiddleChanged._1
+                              |39.63 jundaMiddleChanged._2
+                              |43.38 jundaButtomChanged._1
+                              |48.27 jundaButtomChanged._2
+                              |53.61 jundaMiddleAndButtonChanged._1
+                              |38.03 jundaMiddleAndButtonChanged._2
+                              |35.32 tzaiUnchanged._1
+                              |50.02 tzaiUnchanged._2
+                              |43.26 tzaiTopChanged._1
+                              |42.08 tzaiTopChanged._2
+                              |46.41 tzaiMiddleChanged._1
+                              |38.93 tzaiMiddleChanged._2
+                              |36.80 tzaiButtomChanged._1
+                              |48.54 tzaiButtomChanged._2
+                              |47.90 tzaiMiddleAndButtonChanged._1
+                              |37.44 tzaiMiddleAndButtonChanged._2""".stripMargin
   }
 
   it should "check the number of shifts for single characters" in {
@@ -132,17 +161,29 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
     val tzaiButtomChanged: Double = countShifts(singleOutTzai, changeButtomRow(), Tzai)
     val tzaiMiddleAndButtonChanged: Double = countShifts(singleOutTzai, changeMiddleAndButtomRow(), Tzai) //  7342
 
-    approximatelyEqual(jundaUnchanged, 2.095) shouldBe true
-    approximatelyEqual(jundaTopChanged, 2.091) shouldBe true
-    approximatelyEqual(jundaMiddleChanged, 2.258) shouldBe true
-    approximatelyEqual(jundaButtomChanged, 2.231) shouldBe true
-    approximatelyEqual(jundaMiddleAndButtonChanged, 2.059) shouldBe true
-
-    approximatelyEqual(tzaiUnchanged, 2.224) shouldBe true
-    approximatelyEqual(tzaiTopChanged, 2.328) shouldBe true
-    approximatelyEqual(tzaiMiddleChanged, 2.465) shouldBe true
-    approximatelyEqual(tzaiButtomChanged, 2.472) shouldBe true
-    approximatelyEqual(tzaiMiddleAndButtonChanged, 2.259) shouldBe true
+    val strRes = " " 
+      + approximatelyEqual("jundaUnchanged", jundaUnchanged)
+      + approximatelyEqual("jundaTopChanged", jundaTopChanged)
+      + approximatelyEqual("jundaMiddleChanged", jundaMiddleChanged)
+      + approximatelyEqual("jundaButtomChanged", jundaButtomChanged)
+      + approximatelyEqual("jundaMiddleAndButtonChanged",jundaMiddleAndButtonChanged)
+      + approximatelyEqual("tzaiUnchanged", tzaiUnchanged)
+      + approximatelyEqual("tzaiTopChanged", tzaiTopChanged)
+      + approximatelyEqual("tzaiMiddleChanged", tzaiMiddleChanged)
+      + approximatelyEqual("tzaiButtomChanged", tzaiButtomChanged)
+      + approximatelyEqual("tzaiMiddleAndButtonChanged", tzaiMiddleAndButtonChanged)
+    
+    val finalStr = strRes.trim
+    finalStr shouldBe """2.231 jundaUnchanged
+                           |2.304 jundaTopChanged
+                           |2.059 jundaMiddleChanged
+                           |2.095 jundaButtomChanged
+                           |2.258 jundaMiddleAndButtonChanged
+                           |2.472 tzaiUnchanged
+                           |2.534 tzaiTopChanged
+                           |2.259 tzaiMiddleChanged
+                           |2.224 tzaiButtomChanged
+                           |2.465 tzaiMiddleAndButtonChanged""".stripMargin
   }
 
 
@@ -157,32 +198,49 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
     val tzaiButtomChanged: Double = countShifts(multiOutTzai, changeButtomRow(), Tzai)
     val tzaiMiddleAndButtonChanged: Double = countShifts(multiOutTzai, changeMiddleAndButtomRow(), Tzai) //  7342
 
-    approximatelyEqual(jundaUnchanged, 202.358) == true
-    approximatelyEqual(jundaMiddleChanged, 206.332) == true
-    approximatelyEqual(jundaButtomChanged, 201.408) == true
-    approximatelyEqual(jundaMiddleAndButtonChanged, 211.556) == true
-
-    approximatelyEqual(tzaiUnchanged, 222.669) == true
-    approximatelyEqual(tzaiMiddleChanged, 202.353) == true
-    approximatelyEqual(tzaiButtomChanged, 224.580) == true
-    approximatelyEqual(tzaiMiddleAndButtonChanged, 226.667) == true
+    val strRes = ""
+      + approximatelyEqual("jundaUnchanged", jundaUnchanged)
+      + approximatelyEqual("jundaMiddleChanged", jundaMiddleChanged)
+      + approximatelyEqual("jundaButtomChanged", jundaButtomChanged)
+      + approximatelyEqual("jundaMiddleAndButtonChanged", jundaMiddleAndButtonChanged)
+      + approximatelyEqual("tzaiUnchanged", tzaiUnchanged)
+      + approximatelyEqual("tzaiMiddleChanged", tzaiMiddleChanged)
+      + approximatelyEqual("tzaiButtomChanged", tzaiButtomChanged)
+      + approximatelyEqual("tzaiMiddleAndButtonChanged", tzaiMiddleAndButtonChanged)
+    
+    val finalStr = strRes.trim
+    finalStr shouldBe """37.71 jundaUnchanged
+                           |37.42 jundaMiddleChanged
+                           |37.12 jundaButtomChanged
+                           |36.59 jundaMiddleAndButtonChanged
+                           |33.44 tzaiUnchanged
+                           |34.54 tzaiMiddleChanged
+                           |33.22 tzaiButtomChanged
+                           |33.48 tzaiMiddleAndButtonChanged""".stripMargin
   }
 
   def addTuples(tuple1: (Double, Double), tuple2: (Double, Double)): (Double, Double) = {
     (tuple1._1 + tuple2._1, tuple1._2 + tuple2._2)
   }
 
-  def approximatelyEqual(a: Double, b: Double, tolerance: Double = 1e-2): Boolean = {
-    val substract = math.abs(a - b)
-    val result = substract <= tolerance
-    return result
+  def approximatelyEqual(name: String, a: Double): String = {
+    return getFirstFiveDigits(a) + " " + name + "\r\n"
+  }
+
+  def getFirstFiveDigits(number: Double): String = {
+    // Convert the double to a String
+    val numberAsString = number.toString
+    // Ensure the number has at least four characters
+    if (numberAsString.length < 5) return numberAsString
+    // Return the first four characters
+    numberAsString.substring(0, 5)
   }
 
   def countLeftRight(entries: Set[OutputEntry],
                      rowsChanged: Map[String, String],
                      charSystem: CharSystem): (Double, Double) = {
-    val codes: List[(String, Double)] = convertCodes(entries, rowsChanged, charSystem)
-    val calcShifts: (Double, Double) = calculateLeftRightDistribution(codes)
+    val codes = convertCodes(entries, rowsChanged, charSystem)
+    val calcShifts = calculateLeftRightDistribution(codes)
     calcShifts
   }
   

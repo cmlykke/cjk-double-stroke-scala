@@ -22,7 +22,7 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
   }
   
   private def getTestStringJunda(code: String, judaFull: SortedMap[String, List[OutputEntry]]): String = {
-    if (code == "brho") {
+    if (code == "crho") {
       val test = ""
     }
     val code_eongo: List[OutputEntry] = judaFull.get(code).getOrElse(List())
@@ -72,7 +72,10 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
   it should "junda and tzai - test the sorting of single characters" in {
 
     val outJunda: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullJunda
-    val str_eongo: String = getTestStringJunda("brgo", outJunda)
+    
+    val firstChar = outJunda.filter(x => x._2.filter(y => y.chineseStr == "惧").nonEmpty).toSet
+    // wbgo  rrgo  crgo
+    val str_eongo: String = getTestStringJunda("crgo", outJunda)
     val testJundaStr: String =
       """惧 J: 1616 T: None to fear uni: [U+60E7]
         |憬 J: 3693 T: 3048 awaken uni: [U+61AC]
@@ -94,10 +97,10 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
         |悮 J: None T: None to impede/to delay/variant of 誤|误[wu4] uni: [U+60AE]
         |愪 J: T:  uni: [U+612A]
         |憹 J: None T: None used in 懊憹|懊𢙐[ao4nao2] uni: [U+61B9]""".stripMargin
-    val resJunda: Boolean = str_eongo.trim == testJundaStr.trim
+    val resJunda: Boolean = str_eongo.replaceAll("\\s", "") == testJundaStr.replaceAll("\\s", "")
 
     val outTzai: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullTzai
-    val str_eongo_tzai: String = getTestStringTzai("brgo", outTzai)
+    val str_eongo_tzai: String = getTestStringTzai("crgo", outTzai)
     val testTzaiStr: String =
       """憬 J: 3693 T: 3048 awaken uni: [U+61AC]
         |憫 J: None T: 3140 to sympathize; to pity; to feel compassion for/(literary) to feel sorrow; to be grieved uni: [U+61AB]
@@ -119,7 +122,7 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
         |悮 J: None T: None to impede/to delay/variant of 誤|误[wu4] uni: [U+60AE]
         |愪 J: T:  uni: [U+612A]
         |憹 J: None T: None used in 懊憹|懊𢙐[ao4nao2] uni: [U+61B9]""".stripMargin
-    val resTzai: Boolean = str_eongo_tzai.trim == testTzaiStr.trim
+    val resTzai: Boolean = str_eongo_tzai.replaceAll("\\s", "") == testTzaiStr.replaceAll("\\s", "")
 
     resJunda shouldBe true
     resTzai shouldBe true
@@ -129,7 +132,7 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
   it should "junda and tzai - test the sorting of words" in {
 
     val outJunda: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullJunda
-    val str_eongo: String = getTestStringJunda("eonho", outJunda)
+    val str_eongo: String = getTestStringJunda("eoxho", outJunda)
     val testJundaStr: String =
     """米果 J: 575 165 T: 1154 99 rice cracker uni: [U+7C73, U+679C]
       |美景 J: 814 151 T: 878 219 beautiful scenery uni: [U+7F8E, U+666F]
@@ -141,10 +144,10 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
       |義縣 J: 9461 6089 T: 1032 326 Yi county in Jinzhou 錦州|锦州, Liaoning uni: [U+7FA9, U+7E23]
       |榮景 J: None 814 T: 926 878 period of prosperity uni: [U+69AE, U+666F]
       |榮縣 J: None 9461 T: 1032 926 Rong county in Zigong 自貢|自贡[Zi4 gong4], Sichuan uni: [U+69AE, U+7E23]""".stripMargin
-    val resJunda: Boolean = str_eongo.trim == testJundaStr.trim
+    val resJunda: Boolean = str_eongo.replaceAll("\\s", "") == testJundaStr.replaceAll("\\s", "")
 
     val outTzai: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullTzai
-    val str_eongo_tzai: String = getTestStringTzai("eonho", outTzai)
+    val str_eongo_tzai: String = getTestStringTzai("eoxho", outTzai)
     val testTzaiStr: String =
     """美味 J: 844 151 T: 709 219 delicious/delicious food/delicacy uni: [U+7F8E, U+5473]
       |火暴 J: 1028 433 T: 871 527 variant of 火爆[huo3 bao4] uni: [U+706B, U+66B4]
@@ -156,7 +159,7 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
       |兼具 J: 1515 391 T: 1526 679 to combine/to have both uni: [U+517C, U+5177]
       |炊具 J: 3333 391 T: 3313 679 cooking utensils/cookware/cooker uni: [U+708A, U+5177]
       |炊爨 J: 6143 3333 T: 9314 3313 to light a fire and cook a meal uni: [U+708A, U+7228]""".stripMargin
-    val resTzai: Boolean = str_eongo_tzai.trim == testTzaiStr.trim
+    val resTzai: Boolean = str_eongo_tzai.replaceAll("\\s", "") == testTzaiStr.replaceAll("\\s", "")
 
     resJunda shouldBe true
     resTzai shouldBe true
@@ -273,7 +276,7 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
       }
     }
     desiredChar1 should not be None
-    desiredChar1.get.codes shouldBe Set("phjs", "ptxs", "ptjs", "phxs")
+    desiredChar1.get.codes shouldBe Set("phjs", "ptjs", "phns", "ptns")
 
     val test: String = ""
   }

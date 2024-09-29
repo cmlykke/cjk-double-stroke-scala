@@ -117,26 +117,26 @@ class OutputOverlapTest extends AnyFlatSpec with Matchers {
     val tzaiStr = tuppleToStr(tzaiTest)
     
     jundaStr shouldBe """(jhozz, 1168, 丁夫)
-                        |(jonht, 1169, 赵县)
-                        |(nhwkt, 1222, 冒头)
-                        |(jonho, 1272, 茶具)
+                        |(joxht, 1169, 赵县)
+                        |(xhwkt, 1222, 冒头)
+                        |(joxho, 1272, 茶具)
                         |(wowkt, 1721, 浅海)
-                        |(jonhh, 1725, 茶晶)
-                        |(nhnhh, 1725, 晶晶)
-                        |(jhnht, 1838, 霸县)
+                        |(joxhh, 1725, 茶晶)
+                        |(xhxhh, 1725, 晶晶)
+                        |(jhxht, 1838, 霸县)
                         |(dofhz, 2187, 猴子)
                         |(jgjjo, 2242, 坑蒙)""".stripMargin
     
-    tzaiStr shouldBe """(jonjy, 621, 救國)
-                       |(wonjo, 863, 寶典)
-                       |(jonho, 946, 載具)
-                       |(konho, 1032, 成縣)
-                       |(joknh, 1134, 頂面)
-                       |(jojxo, 1160, 歡聚)
+    tzaiStr shouldBe """(joxjy, 621, 救國)
+                       |(woxjo, 863, 寶典)
+                       |(joxho, 946, 載具)
+                       |(koxho, 1032, 成縣)
+                       |(jokxh, 1134, 頂面)
+                       |(jojno, 1160, 歡聚)
                        |(jgjjo, 1167, 西藥)
                        |(jojgo, 1193, 東歐)
                        |(joozz, 1198, 賢人)
-                       |(jsnho, 1246, 零數)""".stripMargin
+                       |(jsxho, 1246, 零數)""".stripMargin
     
     val test = ""
   }
@@ -150,27 +150,27 @@ class OutputOverlapTest extends AnyFlatSpec with Matchers {
     val jundaStr = tuppleToStr(jundaTest)
     val tzaiStr = tuppleToStr(tzaiTest)
 
-    jundaStr shouldBe """(nhjo, 5105, 題)
-                        |(jxho, 5209, 聩)
-                        |(knho, 5772, 砹)
+    jundaStr shouldBe """(xhjo, 5105, 題)
+                        |(jnho, 5209, 聩)
+                        |(kxho, 5772, 砹)
                         |(ejoo, 5898, 糇)
                         |(yhso, 5941, 锿)
                         |(yhds, 6247, 锾)
-                        |(pnjh, 6310, 鲭)
-                        |(pnjo, 6451, 鳜)
+                        |(pxjh, 6310, 鲭)
+                        |(pxjo, 6451, 鳜)
                         |(yhgo, 6536, 铗)
                         |(jjko, 6578, 趱)""".stripMargin
 
-    tzaiStr shouldBe """(jxno, 5412, 鞅)
-                       |(knho, 5477, 饜)
-                       |(njgo, 5724, 嘳)
-                       |(nhjo, 5811, 暪)
+    tzaiStr shouldBe """(jnxo, 5412, 鞅)
+                       |(kxho, 5477, 饜)
+                       |(xjgo, 5724, 嘳)
+                       |(xhjo, 5811, 暪)
                        |(wjgo, 5821, 漯)
                        |(wjgh, 6234, 澠)
                        |(jjjh, 6434, 莤)
-                       |(pnjo, 6470, 鯕)
+                       |(pxjo, 6470, 鯕)
                        |(djgo, 6856, 嬠)
-                       |(jjno, 6869, 藈)""".stripMargin
+                       |(jjxo, 6869, 藈)""".stripMargin
     val test = ""
   }
 
