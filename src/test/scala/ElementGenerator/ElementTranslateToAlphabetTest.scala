@@ -13,7 +13,7 @@ class ElementTranslateToAlphabetTest extends AnyFlatSpec with Matchers {
     val  woI: Option[StaticFileCharInfoWithLetterConway] = completeConway.get(Grapheme("我"))
     val codes: Set[String] = woI.get.letterConway.map(x => x.conwayPairs.mkString("")).toSet
     
-    codes shouldBe Set("yxly", "yxkt")
+    codes shouldBe Set("yxsy", "yxdt")
   }
   
   it should "junda - check that the map of character to alphabet has the same size" in {
@@ -26,7 +26,7 @@ class ElementTranslateToAlphabetTest extends AnyFlatSpec with Matchers {
 
     val woI: Option[StaticFileCharInfoWithLetterConway] = alphaMap.get(Grapheme("我"))
     val codes: Set[String] = woI.get.letterConway.map(x => x.conwayPairs.mkString("")).toSet
-    codes shouldBe Set("yxly", "yxkt")
+    codes shouldBe Set("yxsy", "yxdt")
   }
   
   it should "check Junda - frst 8000 chars with firstChoice translate map" in {
@@ -57,7 +57,7 @@ class ElementTranslateToAlphabetTest extends AnyFlatSpec with Matchers {
     
     val woI: Option[StaticFileCharInfoWithLetterConway] = alphaMap.get(Grapheme("我"))
     val codes: Set[String] = woI.get.letterConway.map(x => x.conwayPairs.mkString("")).toSet
-    codes shouldBe Set("yxly", "yxkt")
+    codes shouldBe Set("yxsy", "yxdt")
   }
 
   it should "check Tzai - frst 8000 chars with firstChoice translate map" in {

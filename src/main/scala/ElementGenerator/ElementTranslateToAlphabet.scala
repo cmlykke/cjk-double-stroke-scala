@@ -17,7 +17,7 @@ class ElementTranslateToAlphabet {
     val overlap8000 = ElementAdjustedCodes.elemAdjusted8000Junda
     val res = translateToAlphabetByMap(
       overlap8000,
-      ElementTranslateToAlphabet.secondChoiceMap)
+      ElementTranslateToAlphabet.thirdChoiceMap)
     return res
   }
 
@@ -27,7 +27,7 @@ class ElementTranslateToAlphabet {
     val allChars = ElementAdjustedCodes.elemAdjustedAllChars
     val res = translateToAlphabetByMap(
       allChars,
-      ElementTranslateToAlphabet.secondChoiceMap)
+      ElementTranslateToAlphabet.thirdChoiceMap)
     return res
   }
 
@@ -36,7 +36,7 @@ class ElementTranslateToAlphabet {
     val overlap8000 = ElementAdjustedCodes.elemAdjusted8000Tzai
     val res = translateToAlphabetByMap(
       overlap8000,
-      ElementTranslateToAlphabet.secondChoiceMap)
+      ElementTranslateToAlphabet.thirdChoiceMap)
     return res
   }
 
@@ -78,6 +78,71 @@ object ElementTranslateToAlphabet {
   val completeTranslatedConwayMap: Map[Grapheme, StaticFileCharInfoWithLetterConway] = tras.createMapFromSet(allch)
   val kuntest: String = ""
 
+
+  // Static function returning a hardcoded map of string to string
+  //top line is 4-3, 
+  //middleline is 5-1, 
+  //bottomline is 21-25
+
+  def thirdChoiceMap: Map[String, String] = {
+    Map(
+      "a" -> "d",//"k",//53
+      "b" -> "j",//"f",//12
+      "c" -> "f",//"j",//52
+      "d" -> "s",//"l",//54
+      "e" -> "l",//"s",//14
+      "f" -> "k",//"d",//13
+      //"g" -> "Cinco",
+      //"h" -> "Cinco",
+      //"i" -> "Cinco",
+      //"j" -> "Cinco",
+      "k" -> "i",//i
+      "l" -> "u",//u
+      "m" -> "r",//r
+      "n" -> "p",//p
+      "o" -> "w",//w
+      "p" -> "o",//o
+      "q" -> "e",//
+      //"r" -> "Cinco",
+      //"s" -> "Cinco",
+
+      "1" -> "h",//"g",
+      "11" -> "h",//"g",
+      "12" -> "j",//"f",
+      "13" -> "k",//"d",
+      "14" -> "l",//"s",
+      "15" -> "m",//"a",
+
+      "2" -> "x",
+      "21" -> "x",
+      "22" -> "c",
+      "23" -> "v",
+      "24" -> "b",
+      "25" -> "n",
+
+      "3" -> "y",
+      "31" -> "y",
+      "32" -> "u",
+      "33" -> "i",
+      "34" -> "o",
+      "35" -> "p",
+
+      "4" -> "t",
+      "41" -> "t",
+      "42" -> "r",
+      "43" -> "e",
+      "44" -> "w",
+      "45" -> "q",
+
+      "5" -> "g",//"h",
+      "51" -> "g",//"h",
+      "52" -> "f",//"j",
+      "53" -> "d",//"k",
+      "54" -> "s",//"l",
+      "55" -> "a"//"m"
+    )
+  }
+  
   // Static function returning a hardcoded map of string to string
   //top line is 4-3, 
   //middleline is 1-5, 

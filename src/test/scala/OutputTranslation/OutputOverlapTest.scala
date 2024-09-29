@@ -116,27 +116,27 @@ class OutputOverlapTest extends AnyFlatSpec with Matchers {
     val jundaStr = tuppleToStr(jundaTest)
     val tzaiStr = tuppleToStr(tzaiTest)
     
-    jundaStr shouldBe """(fgozz, 1168, 丁夫)
-                        |(fongt, 1169, 赵县)
-                        |(ngwdt, 1222, 冒头)
-                        |(fongo, 1272, 茶具)
-                        |(wowdt, 1721, 浅海)
-                        |(fongg, 1725, 茶晶)
-                        |(ngngg, 1725, 晶晶)
-                        |(fgngt, 1838, 霸县)
-                        |(kojgz, 2187, 猴子)
-                        |(fhffo, 2242, 坑蒙)""".stripMargin
+    jundaStr shouldBe """(jhozz, 1168, 丁夫)
+                        |(jonht, 1169, 赵县)
+                        |(nhwkt, 1222, 冒头)
+                        |(jonho, 1272, 茶具)
+                        |(wowkt, 1721, 浅海)
+                        |(jonhh, 1725, 茶晶)
+                        |(nhnhh, 1725, 晶晶)
+                        |(jhnht, 1838, 霸县)
+                        |(dofhz, 2187, 猴子)
+                        |(jgjjo, 2242, 坑蒙)""".stripMargin
     
-    tzaiStr shouldBe """(fonfy, 621, 救國)
-                       |(wonfo, 863, 寶典)
-                       |(fongo, 946, 載具)
-                       |(dongo, 1032, 成縣)
-                       |(fodng, 1134, 頂面)
-                       |(fofxo, 1160, 歡聚)
-                       |(fhffo, 1167, 西藥)
-                       |(fofho, 1193, 東歐)
-                       |(foozz, 1198, 賢人)
-                       |(flngo, 1246, 零數)""".stripMargin
+    tzaiStr shouldBe """(jonjy, 621, 救國)
+                       |(wonjo, 863, 寶典)
+                       |(jonho, 946, 載具)
+                       |(konho, 1032, 成縣)
+                       |(joknh, 1134, 頂面)
+                       |(jojxo, 1160, 歡聚)
+                       |(jgjjo, 1167, 西藥)
+                       |(jojgo, 1193, 東歐)
+                       |(joozz, 1198, 賢人)
+                       |(jsnho, 1246, 零數)""".stripMargin
     
     val test = ""
   }
@@ -150,27 +150,27 @@ class OutputOverlapTest extends AnyFlatSpec with Matchers {
     val jundaStr = tuppleToStr(jundaTest)
     val tzaiStr = tuppleToStr(tzaiTest)
 
-    jundaStr shouldBe """(ngfo, 5105, 題)
-                        |(fxgo, 5209, 聩)
-                        |(dngo, 5772, 砹)
-                        |(efoo, 5898, 糇)
-                        |(yglo, 5941, 锿)
-                        |(ygkl, 6247, 锾)
-                        |(pnfg, 6310, 鲭)
-                        |(pnfo, 6451, 鳜)
-                        |(ygho, 6536, 铗)
-                        |(ffdo, 6578, 趱)""".stripMargin
+    jundaStr shouldBe """(nhjo, 5105, 題)
+                        |(jxho, 5209, 聩)
+                        |(knho, 5772, 砹)
+                        |(ejoo, 5898, 糇)
+                        |(yhso, 5941, 锿)
+                        |(yhds, 6247, 锾)
+                        |(pnjh, 6310, 鲭)
+                        |(pnjo, 6451, 鳜)
+                        |(yhgo, 6536, 铗)
+                        |(jjko, 6578, 趱)""".stripMargin
 
-    tzaiStr shouldBe """(fxno, 5412, 鞅)
-                       |(dngo, 5477, 饜)
-                       |(nfho, 5724, 嘳)
-                       |(ngfo, 5811, 暪)
-                       |(wfho, 5821, 漯)
-                       |(wfhg, 6234, 澠)
-                       |(fffg, 6434, 莤)
-                       |(pnfo, 6470, 鯕)
-                       |(kfho, 6856, 嬠)
-                       |(ffno, 6869, 藈)""".stripMargin
+    tzaiStr shouldBe """(jxno, 5412, 鞅)
+                       |(knho, 5477, 饜)
+                       |(njgo, 5724, 嘳)
+                       |(nhjo, 5811, 暪)
+                       |(wjgo, 5821, 漯)
+                       |(wjgh, 6234, 澠)
+                       |(jjjh, 6434, 莤)
+                       |(pnjo, 6470, 鯕)
+                       |(djgo, 6856, 嬠)
+                       |(jjno, 6869, 藈)""".stripMargin
     val test = ""
   }
 

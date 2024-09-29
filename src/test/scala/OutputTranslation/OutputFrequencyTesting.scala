@@ -21,6 +21,8 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
     val jundaUnchanged: (Double, Double) = countLeftRight(singleOut, Map(), Junda)
     val jundaUnchangedLeftSelection: (Double, Double) = countLeftRightWithSelection(singleOut, Map(), Junda)
     val jundaTopChanged: (Double, Double) = countLeftRight(singleOut, changeTopRow(), Junda)
+    val jundaTopChangedLeftSelection: (Double, Double) = countLeftRightWithSelection(singleOut, changeTopRow(), Junda)
+    
     val jundaMiddleChanged: (Double, Double) = countLeftRight(singleOut, changeMiddleRow(), Junda)
     val jundaMiddleChangedWithSelection: (Double, Double) = countLeftRightWithSelection(singleOut, changeMiddleRow(), Junda)
     val jundaButtomChanged: (Double, Double) = countLeftRight(singleOut, changeButtomRow(), Junda)
@@ -33,38 +35,40 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
     val tzaiMiddleAndButtonChanged: (Double, Double) = countLeftRight(singleOutTzai, changeMiddleAndButtomRow(), Tzai)
 
     //junda
-    approximatelyEqual(jundaUnchanged._1, 3.174) == true
-    approximatelyEqual(jundaUnchanged._2, 2.535) == true
-    approximatelyEqual(jundaUnchangedLeftSelection._1, 4.783) == true
+    approximatelyEqual(jundaUnchanged._1, 2.719) shouldBe true
+    approximatelyEqual(jundaUnchanged._2, 3.140) shouldBe true
+    approximatelyEqual(jundaUnchangedLeftSelection._1, 4.329) shouldBe true
 
-    approximatelyEqual(jundaTopChanged._1, 3.439) == true
-    approximatelyEqual(jundaTopChanged._2, 2.270) == true
+    approximatelyEqual(jundaTopChanged._1, 2.984) shouldBe true
+    approximatelyEqual(jundaTopChanged._2, 2.875) shouldBe true
+    approximatelyEqual(jundaTopChangedLeftSelection._1, 4.594) shouldBe true
+    //jundaTopChangedLeftSelection
+    
+    approximatelyEqual(jundaMiddleChanged._1, 3.324) shouldBe true
+    approximatelyEqual(jundaMiddleChanged._2, 2.535) shouldBe true
+    approximatelyEqual(jundaMiddleChangedWithSelection._1, 4.934) shouldBe true
 
-    approximatelyEqual(jundaMiddleChanged._1, 2.569) == true
-    approximatelyEqual(jundaMiddleChanged._2, 3.140) == true
-    approximatelyEqual(jundaMiddleChangedWithSelection._1, 4.179) == true
+    approximatelyEqual(jundaButtomChanged._1, 2.666) shouldBe true
+    approximatelyEqual(jundaButtomChanged._2, 3.193) shouldBe true
 
-    approximatelyEqual(jundaButtomChanged._1, 3.121) == true
-    approximatelyEqual(jundaButtomChanged._2, 2.588) == true
-
-    approximatelyEqual(jundaMiddleAndButtonChanged._1, 2.516) == true
-    approximatelyEqual(jundaMiddleAndButtonChanged._2, 3.193) == true
+    approximatelyEqual(jundaMiddleAndButtonChanged._1, 3.271) shouldBe true
+    approximatelyEqual(jundaMiddleAndButtonChanged._2, 2.588) shouldBe true
 
     //tzai
-    approximatelyEqual(tzaiUnchanged._1, 3.407) == true
-    approximatelyEqual(tzaiUnchanged._2, 2.933) == true
+    approximatelyEqual(tzaiUnchanged._1, 2.757) shouldBe true
+    approximatelyEqual(tzaiUnchanged._2, 3.717) shouldBe true
 
-    approximatelyEqual(tzaiTopChanged._1, 3.948) == true
-    approximatelyEqual(tzaiTopChanged._2, 2.392) == true
+    approximatelyEqual(tzaiTopChanged._1, 3.298) shouldBe true
+    approximatelyEqual(tzaiTopChanged._2, 3.176) shouldBe true
 
-    approximatelyEqual(tzaiMiddleChanged._1, 2.623) == true
-    approximatelyEqual(tzaiMiddleChanged._2, 3.717) == true
+    approximatelyEqual(tzaiMiddleChanged._1, 3.541) shouldBe true
+    approximatelyEqual(tzaiMiddleChanged._2, 2.933) shouldBe true
 
-    approximatelyEqual(tzaiButtomChanged._1, 3.418) == true
-    approximatelyEqual(tzaiButtomChanged._2, 2.922) == true
+    approximatelyEqual(tzaiButtomChanged._1, 2.768) shouldBe true
+    approximatelyEqual(tzaiButtomChanged._2, 3.706) shouldBe true
 
-    approximatelyEqual(tzaiMiddleAndButtonChanged._1, 2.634) == true
-    approximatelyEqual(tzaiMiddleAndButtonChanged._2, 3.706) == true
+    approximatelyEqual(tzaiMiddleAndButtonChanged._1, 3.552) shouldBe true
+    approximatelyEqual(tzaiMiddleAndButtonChanged._2, 2.922) shouldBe true
   }
 
 
@@ -83,36 +87,36 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
     val tzaiMiddleAndButtonChanged: (Double, Double) = countLeftRight(multiOutTzai, changeMiddleAndButtomRow(), Tzai)
 
     //junda
-    approximatelyEqual(jundaUnchanged._1, 299.574) == true
-    approximatelyEqual(jundaUnchanged._2, 227.931) == true
+    approximatelyEqual(jundaUnchanged._1, 43.38) shouldBe true
+    approximatelyEqual(jundaUnchanged._2, 48.27) shouldBe true
 
-    approximatelyEqual(jundaTopChanged._1, 319.991) == true
-    approximatelyEqual(jundaTopChanged._2, 207.514) == true
+    approximatelyEqual(jundaTopChanged._1, 46.28) shouldBe true
+    approximatelyEqual(jundaTopChanged._2, 45.37) shouldBe true
 
-    approximatelyEqual(jundaMiddleChanged._1, 226.641) == true
-    approximatelyEqual(jundaMiddleChanged._2, 300.863) == true
+    approximatelyEqual(jundaMiddleChanged._1, 53.61) shouldBe true
+    approximatelyEqual(jundaMiddleChanged._2, 38.03) shouldBe true
 
-    approximatelyEqual(jundaButtomChanged._1, 299.663) == true
-    approximatelyEqual(jundaButtomChanged._2, 227.842) == true
+    approximatelyEqual(jundaButtomChanged._1, 41.78) shouldBe true
+    approximatelyEqual(jundaButtomChanged._2, 49.87) shouldBe true
 
-    approximatelyEqual(jundaMiddleAndButtonChanged._1, 226.730) == true
-    approximatelyEqual(jundaMiddleAndButtonChanged._2, 300.774) == true
+    approximatelyEqual(jundaMiddleAndButtonChanged._1, 52.01) shouldBe true
+    approximatelyEqual(jundaMiddleAndButtonChanged._2, 39.63) shouldBe true
 
     //tzai
-    approximatelyEqual(tzaiUnchanged._1, 326.095) == true
-    approximatelyEqual(tzaiUnchanged._2, 261.326) == true
+    approximatelyEqual(tzaiUnchanged._1, 36.80) shouldBe true
+    approximatelyEqual(tzaiUnchanged._2, 48.54) shouldBe true
 
-    approximatelyEqual(tzaiTopChanged._1, 379.638) == true
-    approximatelyEqual(tzaiTopChanged._2, 207.783) == true
+    approximatelyEqual(tzaiTopChanged._1, 44.75) shouldBe true
+    approximatelyEqual(tzaiTopChanged._2, 40.59) shouldBe true
 
-    approximatelyEqual(tzaiMiddleChanged._1, 230.378) == true
-    approximatelyEqual(tzaiMiddleChanged._2, 357.042) == true
+    approximatelyEqual(tzaiMiddleChanged._1, 47.90) shouldBe true
+    approximatelyEqual(tzaiMiddleChanged._2, 37.44) shouldBe true
 
-    approximatelyEqual(tzaiButtomChanged._1, 324.173) == true
-    approximatelyEqual(tzaiButtomChanged._2, 263.248) == true
+    approximatelyEqual(tzaiButtomChanged._1, 35.32) shouldBe true
+    approximatelyEqual(tzaiButtomChanged._2, 50.02) shouldBe true
 
-    approximatelyEqual(tzaiMiddleAndButtonChanged._1, 228.457) == true
-    approximatelyEqual(tzaiMiddleAndButtonChanged._2, 358.964) == true
+    approximatelyEqual(tzaiMiddleAndButtonChanged._1, 46.41) shouldBe true
+    approximatelyEqual(tzaiMiddleAndButtonChanged._2, 38.93) shouldBe true
   }
 
   it should "check the number of shifts for single characters" in {
@@ -128,17 +132,17 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
     val tzaiButtomChanged: Double = countShifts(singleOutTzai, changeButtomRow(), Tzai)
     val tzaiMiddleAndButtonChanged: Double = countShifts(singleOutTzai, changeMiddleAndButtomRow(), Tzai) //  7342
 
-    approximatelyEqual(jundaUnchanged, 2.226) == true
-    approximatelyEqual(jundaTopChanged, 2.197) == true
-    approximatelyEqual(jundaMiddleChanged, 2.055) == true
-    approximatelyEqual(jundaButtomChanged, 2.020) == true
-    approximatelyEqual(jundaMiddleAndButtonChanged, 2.183) == true
+    approximatelyEqual(jundaUnchanged, 2.095) shouldBe true
+    approximatelyEqual(jundaTopChanged, 2.091) shouldBe true
+    approximatelyEqual(jundaMiddleChanged, 2.258) shouldBe true
+    approximatelyEqual(jundaButtomChanged, 2.231) shouldBe true
+    approximatelyEqual(jundaMiddleAndButtonChanged, 2.059) shouldBe true
 
-    approximatelyEqual(tzaiUnchanged, 2.440) == true
-    approximatelyEqual(tzaiTopChanged, 2.409) == true
-    approximatelyEqual(tzaiMiddleChanged, 2.185) == true
-    approximatelyEqual(tzaiButtomChanged, 2.232) == true
-    approximatelyEqual(tzaiMiddleAndButtonChanged, 2.431) == true
+    approximatelyEqual(tzaiUnchanged, 2.224) shouldBe true
+    approximatelyEqual(tzaiTopChanged, 2.328) shouldBe true
+    approximatelyEqual(tzaiMiddleChanged, 2.465) shouldBe true
+    approximatelyEqual(tzaiButtomChanged, 2.472) shouldBe true
+    approximatelyEqual(tzaiMiddleAndButtonChanged, 2.259) shouldBe true
   }
 
 
@@ -168,8 +172,10 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
     (tuple1._1 + tuple2._1, tuple1._2 + tuple2._2)
   }
 
-  def approximatelyEqual(a: Double, b: Double, tolerance: Double = 1e-6): Boolean = {
-    math.abs(a - b) <= tolerance
+  def approximatelyEqual(a: Double, b: Double, tolerance: Double = 1e-2): Boolean = {
+    val substract = math.abs(a - b)
+    val result = substract <= tolerance
+    return result
   }
 
   def countLeftRight(entries: Set[OutputEntry],

@@ -72,7 +72,7 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
   it should "junda and tzai - test the sorting of single characters" in {
 
     val outJunda: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullJunda
-    val str_eongo: String = getTestStringJunda("brho", outJunda)
+    val str_eongo: String = getTestStringJunda("brgo", outJunda)
     val testJundaStr: String =
       """惧 J: 1616 T: None to fear uni: [U+60E7]
         |憬 J: 3693 T: 3048 awaken uni: [U+61AC]
@@ -97,7 +97,7 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
     val resJunda: Boolean = str_eongo.trim == testJundaStr.trim
 
     val outTzai: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullTzai
-    val str_eongo_tzai: String = getTestStringTzai("brho", outTzai)
+    val str_eongo_tzai: String = getTestStringTzai("brgo", outTzai)
     val testTzaiStr: String =
       """憬 J: 3693 T: 3048 awaken uni: [U+61AC]
         |憫 J: None T: 3140 to sympathize; to pity; to feel compassion for/(literary) to feel sorrow; to be grieved uni: [U+61AB]
@@ -129,7 +129,7 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
   it should "junda and tzai - test the sorting of words" in {
 
     val outJunda: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullJunda
-    val str_eongo: String = getTestStringJunda("eongo", outJunda)
+    val str_eongo: String = getTestStringJunda("eonho", outJunda)
     val testJundaStr: String =
     """米果 J: 575 165 T: 1154 99 rice cracker uni: [U+7C73, U+679C]
       |美景 J: 814 151 T: 878 219 beautiful scenery uni: [U+7F8E, U+666F]
@@ -144,7 +144,7 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
     val resJunda: Boolean = str_eongo.trim == testJundaStr.trim
 
     val outTzai: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullTzai
-    val str_eongo_tzai: String = getTestStringTzai("eongo", outTzai)
+    val str_eongo_tzai: String = getTestStringTzai("eonho", outTzai)
     val testTzaiStr: String =
     """美味 J: 844 151 T: 709 219 delicious/delicious food/delicacy uni: [U+7F8E, U+5473]
       |火暴 J: 1028 433 T: 871 527 variant of 火爆[huo3 bao4] uni: [U+706B, U+66B4]
@@ -273,7 +273,7 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
       }
     }
     desiredChar1 should not be None
-    desiredChar1.get.codes shouldBe Set("pgfl", "pgxl", "ptfl", "ptxl")
+    desiredChar1.get.codes shouldBe Set("phjs", "ptxs", "ptjs", "phxs")
 
     val test: String = ""
   }
