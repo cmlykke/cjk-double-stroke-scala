@@ -61,8 +61,8 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
     + approximatelyEqual("tzaiMiddleAndButtonChanged._1", tzaiMiddleAndButtonChanged._1)
     + approximatelyEqual("tzaiMiddleAndButtonChanged._2", tzaiMiddleAndButtonChanged._2)
 
-    val finalRes = strResult.trim
-    finalRes shouldBe """2.666 jundaUnchanged._1
+    val finalRes = strResult.replaceAll("\\s", "")
+    finalRes shouldBe """      2.666 jundaUnchanged._1
                               |3.193 jundaUnchanged._2
                               |4.276 jundaUnchangedLeftSelection._1
                               |2.931 jundaTopChanged._1
@@ -84,7 +84,7 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
                               |2.757 tzaiButtomChanged._1
                               |3.717 tzaiButtomChanged._2
                               |3.541 tzaiMiddleAndButtonChanged._1
-                              |2.933 tzaiMiddleAndButtonChanged._2""".stripMargin
+                              |2.933 tzaiMiddleAndButtonChanged._2""".stripMargin.replaceAll("\\s", "")
   }
 
 
@@ -125,8 +125,8 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
       + approximatelyEqual("tzaiMiddleAndButtonChanged._1", tzaiMiddleAndButtonChanged._1)
       + approximatelyEqual("tzaiMiddleAndButtonChanged._2", tzaiMiddleAndButtonChanged._2)
 
-    val finalRes = strResult.trim
-    finalRes shouldBe """41.78 jundaUnchanged._1
+    val finalRes = strResult.replaceAll("\\s", "")
+    finalRes shouldBe """      41.78 jundaUnchanged._1
                               |49.87 jundaUnchanged._2
                               |44.68 jundaTopChanged._1
                               |46.97 jundaTopChanged._2
@@ -145,7 +145,7 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
                               |36.80 tzaiButtomChanged._1
                               |48.54 tzaiButtomChanged._2
                               |47.90 tzaiMiddleAndButtonChanged._1
-                              |37.44 tzaiMiddleAndButtonChanged._2""".stripMargin
+                              |37.44 tzaiMiddleAndButtonChanged._2""".stripMargin.replaceAll("\\s", "")
   }
 
   it should "check the number of shifts for single characters" in {
@@ -173,8 +173,8 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
       + approximatelyEqual("tzaiButtomChanged", tzaiButtomChanged)
       + approximatelyEqual("tzaiMiddleAndButtonChanged", tzaiMiddleAndButtonChanged)
     
-    val finalStr = strRes.trim
-    finalStr shouldBe """2.231 jundaUnchanged
+    val finalStr = strRes.replaceAll("\\s", "")
+    finalStr shouldBe """   2.231 jundaUnchanged
                            |2.304 jundaTopChanged
                            |2.059 jundaMiddleChanged
                            |2.095 jundaButtomChanged
@@ -183,7 +183,7 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
                            |2.534 tzaiTopChanged
                            |2.259 tzaiMiddleChanged
                            |2.224 tzaiButtomChanged
-                           |2.465 tzaiMiddleAndButtonChanged""".stripMargin
+                           |2.465 tzaiMiddleAndButtonChanged""".stripMargin.replaceAll("\\s", "")
   }
 
 
@@ -208,15 +208,15 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
       + approximatelyEqual("tzaiButtomChanged", tzaiButtomChanged)
       + approximatelyEqual("tzaiMiddleAndButtonChanged", tzaiMiddleAndButtonChanged)
     
-    val finalStr = strRes.trim
-    finalStr shouldBe """37.71 jundaUnchanged
+    val finalStr = strRes.replaceAll("\\s", "")
+    finalStr shouldBe """   37.71 jundaUnchanged
                            |37.42 jundaMiddleChanged
                            |37.12 jundaButtomChanged
                            |36.59 jundaMiddleAndButtonChanged
                            |33.44 tzaiUnchanged
                            |34.54 tzaiMiddleChanged
                            |33.22 tzaiButtomChanged
-                           |33.48 tzaiMiddleAndButtonChanged""".stripMargin
+                           |33.48 tzaiMiddleAndButtonChanged""".stripMargin.replaceAll("\\s", "")
   }
 
   def addTuples(tuple1: (Double, Double), tuple2: (Double, Double)): (Double, Double) = {
