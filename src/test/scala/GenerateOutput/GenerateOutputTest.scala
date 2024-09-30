@@ -32,7 +32,7 @@ class GenerateOutputTest extends AnyFlatSpec with Matchers {
 
     val generate = new GenerateOutputStrings()
     val readMeta = new ReadConfigFiles()
-    val dictSimp: List[String] = readMeta.readConfig("simpDictConfig_basic.txt")
+    val dictSimp: List[String] = readMeta.readConfig("simpSchemaConfig_basic.txt")
     val mergedList: List[String] = dictSimp
     var writesuccess: Boolean = false
     /*
@@ -64,7 +64,7 @@ class GenerateOutputTest extends AnyFlatSpec with Matchers {
 
     val generate = new GenerateOutputStrings()
     val readMeta = new ReadConfigFiles()
-    val dictSimp: List[String] = readMeta.readConfig("simpDictConfig_meaning.txt")
+    val dictSimp: List[String] = readMeta.readConfig("simpSchemaConfig_meaning.txt")
     val mergedList: List[String] = dictSimp
     var writesuccess: Boolean = false
     /*
@@ -97,15 +97,15 @@ class GenerateOutputTest extends AnyFlatSpec with Matchers {
 
     val generate = new GenerateOutputStrings()
     val readMeta = new ReadConfigFiles()
-    val dictTrad: List[String] = readMeta.readConfig("tradDictConfig_basic.txt")
+    val dictTrad: List[String] = readMeta.readConfig("tradSchemaConfig_basic.txt")
     val mergedList: List[String] = dictTrad
     var writesuccess: Boolean = false
-    /*
+
         generate.writeListToFile(mergedList, "POFtrad.schema.yaml", "src/test/scala/GenerateOutput") match {
           case Success(_) => writesuccess = true
           case Failure(e) => writesuccess = false
         }
-        writesuccess shouldBe true*/
+        writesuccess shouldBe true
   }
 
   it should "test output tzai file with meaning" in {
@@ -118,7 +118,7 @@ class GenerateOutputTest extends AnyFlatSpec with Matchers {
     //write file
     var writesuccess: Boolean = false
     /*
-        generate.writeListToFile(mergedList, "POFtzaiM.dict.yaml", "src/test/scala/GenerateOutput") match {
+        generate.writeListToFile(mergedList, "POFtradM.dict.yaml", "src/test/scala/GenerateOutput") match {
           case Success(_) => writesuccess = true
           case Failure(e) => writesuccess = false
         }
@@ -129,7 +129,7 @@ class GenerateOutputTest extends AnyFlatSpec with Matchers {
 
     val generate = new GenerateOutputStrings()
     val readMeta = new ReadConfigFiles()
-    val dictTrad: List[String] = readMeta.readConfig("tradDictConfig_meaning.txt")
+    val dictTrad: List[String] = readMeta.readConfig("tradSchemaConfig_meaning.txt")
     val mergedList: List[String] = dictTrad
     var writesuccess: Boolean = false
     /*

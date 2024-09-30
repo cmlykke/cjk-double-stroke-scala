@@ -1,0 +1,58 @@
+
+# To change between configured input methods:
+when rime is installed and the desired input methods are configured,
+you change between them by pressing F4
+
+# To configure input methods after installing rime
+required: you need a .dict.yaml file and a .schema.yaml file for the input method to work
+eg. POFsimp.dict.yaml and POFsimp.schema.yaml
+Go to C:\Users\User\AppData\Roaming\Rime
+
+add the files to the folder
+
+then look for the file default.custom.yaml
+in my case it looks like this:
+
+"""
+customization:
+  distribution_code_name: Weasel
+  distribution_version: 0.14.3
+  generator: "Rime::SwitcherSettings"
+  modified_time: "Fri May  5 22:30:30 2023"
+  rime_version: 1.5.3
+patch:
+  schema_list:
+    - {schema: zmhant}
+    - {schema: tnine}
+    - {schema: array30}
+    - {schema: cangjie5}
+    - {schema: cangjie6}
+    - {schema: cangjie6_express}
+"""
+
+
+add the Schema names to this file so it looks something like this:
+
+
+"""
+customization:
+  distribution_code_name: Weasel
+  distribution_version: 0.14.3
+  generator: "Rime::SwitcherSettings"
+  modified_time: "Fri May  5 22:30:30 2023"
+  rime_version: 1.5.3
+patch:
+  schema_list:
+    - {schema: POFsimp}
+    - {schema: POFtrad}
+    - {schema: zmhant}
+    - {schema: tnine}
+    - {schema: array30}
+    - {schema: cangjie5}
+    - {schema: cangjie6}
+    - {schema: cangjie6_express}
+"""
+
+then restart the computer.
+then open a text document and press the F4 key,
+POFsimp should then be among the choices.
