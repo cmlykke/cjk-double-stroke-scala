@@ -29,9 +29,12 @@ class GenerateOutputTest extends AnyFlatSpec with Matchers {
   }
 
   it should "test output junda file - schema" in {
+
+    val generate = new GenerateOutputStrings()
     val readMeta = new ReadConfigFiles()
     val dictSimp: List[String] = readMeta.readConfig("simpDictConfig_basic.txt")
     val mergedList: List[String] = dictSimp
+    var writesuccess: Boolean = false
     /*
         generate.writeListToFile(mergedList, "POFsimp.schema.yaml", "src/test/scala/GenerateOutput") match {
           case Success(_) => writesuccess = true
@@ -58,9 +61,12 @@ class GenerateOutputTest extends AnyFlatSpec with Matchers {
   }
 
   it should "test output junda file with meaning - schema" in {
+
+    val generate = new GenerateOutputStrings()
     val readMeta = new ReadConfigFiles()
     val dictSimp: List[String] = readMeta.readConfig("simpDictConfig_meaning.txt")
     val mergedList: List[String] = dictSimp
+    var writesuccess: Boolean = false
     /*
     generate.writeListToFile(mergedList, "POFsimpM.schema.yaml", "src/test/scala/GenerateOutput") match {
       case Success(_) => writesuccess = true
@@ -88,9 +94,12 @@ class GenerateOutputTest extends AnyFlatSpec with Matchers {
   }
 
   it should "test output tzai file - schema" in {
+
+    val generate = new GenerateOutputStrings()
     val readMeta = new ReadConfigFiles()
     val dictTrad: List[String] = readMeta.readConfig("tradDictConfig_basic.txt")
     val mergedList: List[String] = dictTrad
+    var writesuccess: Boolean = false
     /*
         generate.writeListToFile(mergedList, "POFtrad.schema.yaml", "src/test/scala/GenerateOutput") match {
           case Success(_) => writesuccess = true
@@ -117,9 +126,12 @@ class GenerateOutputTest extends AnyFlatSpec with Matchers {
   }
 
   it should "test output tzai file with meaning - schema" in {
+
+    val generate = new GenerateOutputStrings()
     val readMeta = new ReadConfigFiles()
     val dictTrad: List[String] = readMeta.readConfig("tradDictConfig_meaning.txt")
     val mergedList: List[String] = dictTrad
+    var writesuccess: Boolean = false
     /*
     generate.writeListToFile(mergedList, "POFtradM.schema.yaml", "src/test/scala/GenerateOutput") match {
       case Success(_) => writesuccess = true
