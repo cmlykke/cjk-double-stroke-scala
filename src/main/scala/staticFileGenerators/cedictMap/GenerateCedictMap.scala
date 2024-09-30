@@ -10,7 +10,7 @@ import scala.io.Source
 
 class GenerateCedictMap {
   
-  def generateList(): Set[CedictEntry] = {
+  def generateCedictList(): Set[CedictEntry] = {
     val idsFilePath = "src/main/scala/staticFileGenerators/staticFiles/cedict_ts.u8" // replace with your actual file path
     val radicalSupplement = "src/main/scala/staticFileGenerators/staticFiles/radicals1.txt"
 
@@ -112,6 +112,6 @@ class GenerateCedictMap {
 
 object GenerateCedictMap {
   private val generate = new GenerateCedictMap()
-  val cedictCompleteSet: Set[CedictEntry] = generate.generateList()
+  val cedictCompleteSet: Set[CedictEntry] = generate.generateCedictList()
   val cedictMap: Map[String, CedictEntry] = generate.generateMap(cedictCompleteSet)
 }
