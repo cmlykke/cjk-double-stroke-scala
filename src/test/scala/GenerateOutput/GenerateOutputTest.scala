@@ -68,4 +68,63 @@ class GenerateOutputTest extends AnyFlatSpec with Matchers {
     }
     writesuccess shouldBe true*/
   }
+
+
+  it should "test output tzai file" in {
+
+    val generate = new GenerateOutputStrings()
+    val readMeta = new ReadConfigFiles()
+    val dictTrad: List[String] = readMeta.readConfig("tradDictConfig_basic.txt")
+    val outputLines: List[String] = generate.generateWithSpecial(GenerateOutputStrings.mapFullTzai)
+    val mergedList: List[String] = dictTrad ++ outputLines
+    //write file
+    var writesuccess: Boolean = false
+    /*
+        generate.writeListToFile(mergedList, "POFtrad.dict.yaml", "src/test/scala/GenerateOutput") match {
+          case Success(_) => writesuccess = true
+          case Failure(e) => writesuccess = false
+        }
+        writesuccess shouldBe true*/
+  }
+
+  it should "test output tzai file - schema" in {
+    val readMeta = new ReadConfigFiles()
+    val dictTrad: List[String] = readMeta.readConfig("tradDictConfig_basic.txt")
+    val mergedList: List[String] = dictTrad
+    /*
+        generate.writeListToFile(mergedList, "POFtrad.schema.yaml", "src/test/scala/GenerateOutput") match {
+          case Success(_) => writesuccess = true
+          case Failure(e) => writesuccess = false
+        }
+        writesuccess shouldBe true*/
+  }
+
+  it should "test output tzai file with meaning" in {
+
+    val generate = new GenerateOutputStrings()
+    val readMeta = new ReadConfigFiles()
+    val dictTrad: List[String] = readMeta.readConfig("tradDictConfig_meaning.txt")
+    val outputLines: List[String] = generate.generateWithMeaning(GenerateOutputStrings.mapFullTzai)
+    val mergedList: List[String] = dictTrad ++ outputLines
+    //write file
+    var writesuccess: Boolean = false
+    /*
+        generate.writeListToFile(mergedList, "POFtzaiM.dict.yaml", "src/test/scala/GenerateOutput") match {
+          case Success(_) => writesuccess = true
+          case Failure(e) => writesuccess = false
+        }
+        writesuccess shouldBe true*/
+  }
+
+  it should "test output tzai file with meaning - schema" in {
+    val readMeta = new ReadConfigFiles()
+    val dictTrad: List[String] = readMeta.readConfig("tradDictConfig_meaning.txt")
+    val mergedList: List[String] = dictTrad
+    /*
+    generate.writeListToFile(mergedList, "POFtradM.schema.yaml", "src/test/scala/GenerateOutput") match {
+      case Success(_) => writesuccess = true
+      case Failure(e) => writesuccess = false
+    }
+    writesuccess shouldBe true*/
+  }
 }

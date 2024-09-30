@@ -3,7 +3,7 @@
 
 ---
 name: POFtrad
-version: "1.0"
+version: "1.1"
 sort: original
 columns:
   - text
