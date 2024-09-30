@@ -10,7 +10,7 @@ schema:
   description: |
     First published 2024-04-21
     Repository:
-    https://github.com/Weiqifan1/rime-pof-input-method
+    https://github.com/Weiqifan1/cjk-double-stroke-scala
 
     stoke data source:
     Compiled manually by Conway (@yawnoc).
