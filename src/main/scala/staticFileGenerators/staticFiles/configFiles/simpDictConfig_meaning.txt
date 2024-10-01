@@ -6,8 +6,8 @@ name: POFsimpM
 version: "1.1"
 sort: original
 columns:
-  - text
   - code
+  - text
 encoder:
   rules:
     - length_equal: 2

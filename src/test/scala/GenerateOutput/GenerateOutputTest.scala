@@ -20,27 +20,28 @@ class GenerateOutputTest extends AnyFlatSpec with Matchers {
     val mergedList: List[String] = dictSimp ++ outputLines
     //write file
     var writesuccess: Boolean = false
-/*
+
     generate.writeListToFile(mergedList, "POFsimp.dict.yaml", "src/test/scala/GenerateOutput") match {
       case Success(_) => writesuccess = true
       case Failure(e) => writesuccess = false
     }
-    writesuccess shouldBe true*/
+    writesuccess shouldBe true
   }
 
   it should "test output junda file - schema" in {
 
     val generate = new GenerateOutputStrings()
     val readMeta = new ReadConfigFiles()
+    //val dictSimp: List[String] = readMeta.readConfig("simpDictConfig_basic.txt")
     val dictSimp: List[String] = readMeta.readConfig("simpSchemaConfig_basic.txt")
     val mergedList: List[String] = dictSimp
     var writesuccess: Boolean = false
-    /*
+
         generate.writeListToFile(mergedList, "POFsimp.schema.yaml", "src/test/scala/GenerateOutput") match {
           case Success(_) => writesuccess = true
           case Failure(e) => writesuccess = false
         }
-        writesuccess shouldBe true*/
+        writesuccess shouldBe true
   }
 
   it should "test output junda file with meaning" in {
@@ -52,12 +53,12 @@ class GenerateOutputTest extends AnyFlatSpec with Matchers {
     val mergedList: List[String] = dictSimp ++ outputLines
     //write file
     var writesuccess: Boolean = false
-/*
+
     generate.writeListToFile(mergedList, "POFsimpM.dict.yaml", "src/test/scala/GenerateOutput") match {
       case Success(_) => writesuccess = true
       case Failure(e) => writesuccess = false
     }
-    writesuccess shouldBe true*/
+    writesuccess shouldBe true
   }
 
   it should "test output junda file with meaning - schema" in {
@@ -67,12 +68,12 @@ class GenerateOutputTest extends AnyFlatSpec with Matchers {
     val dictSimp: List[String] = readMeta.readConfig("simpSchemaConfig_meaning.txt")
     val mergedList: List[String] = dictSimp
     var writesuccess: Boolean = false
-    /*
+
     generate.writeListToFile(mergedList, "POFsimpM.schema.yaml", "src/test/scala/GenerateOutput") match {
       case Success(_) => writesuccess = true
       case Failure(e) => writesuccess = false
     }
-    writesuccess shouldBe true*/
+    writesuccess shouldBe true
   }
 
 
@@ -85,18 +86,19 @@ class GenerateOutputTest extends AnyFlatSpec with Matchers {
     val mergedList: List[String] = dictTrad ++ outputLines
     //write file
     var writesuccess: Boolean = false
-    /*
+
         generate.writeListToFile(mergedList, "POFtrad.dict.yaml", "src/test/scala/GenerateOutput") match {
           case Success(_) => writesuccess = true
           case Failure(e) => writesuccess = false
         }
-        writesuccess shouldBe true*/
+        writesuccess shouldBe true
   }
 
   it should "test output tzai file - schema" in {
 
     val generate = new GenerateOutputStrings()
     val readMeta = new ReadConfigFiles()
+    //val dictTrad: List[String] = readMeta.readConfig("tradDictConfig_basic.txt")
     val dictTrad: List[String] = readMeta.readConfig("tradSchemaConfig_basic.txt")
     val mergedList: List[String] = dictTrad
     var writesuccess: Boolean = false
@@ -117,12 +119,12 @@ class GenerateOutputTest extends AnyFlatSpec with Matchers {
     val mergedList: List[String] = dictTrad ++ outputLines
     //write file
     var writesuccess: Boolean = false
-    /*
+
         generate.writeListToFile(mergedList, "POFtradM.dict.yaml", "src/test/scala/GenerateOutput") match {
           case Success(_) => writesuccess = true
           case Failure(e) => writesuccess = false
         }
-        writesuccess shouldBe true*/
+        writesuccess shouldBe true
   }
 
   it should "test output tzai file with meaning - schema" in {
@@ -132,11 +134,11 @@ class GenerateOutputTest extends AnyFlatSpec with Matchers {
     val dictTrad: List[String] = readMeta.readConfig("tradSchemaConfig_meaning.txt")
     val mergedList: List[String] = dictTrad
     var writesuccess: Boolean = false
-    /*
+
     generate.writeListToFile(mergedList, "POFtradM.schema.yaml", "src/test/scala/GenerateOutput") match {
       case Success(_) => writesuccess = true
       case Failure(e) => writesuccess = false
     }
-    writesuccess shouldBe true*/
+    writesuccess shouldBe true
   }
 }
