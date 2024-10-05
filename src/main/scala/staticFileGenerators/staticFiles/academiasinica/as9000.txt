@@ -1,0 +1,989 @@
+{{#invoke:Mandarin frequency list|list
+|白人|白人|báirén|whity, Caucasian, whitey, white man, buckra, white people, griffin, White, white race, haole, honky, gryphon, white person, white_man, paleface
+|獎章|奖章|jiǎngzhāng|medal, decoration
+|用餐|用餐|yòngcān|feed, dine, sup, eat a meal, have a meal
+|機密|机密|jīmì|top secret
+|一大早|一大早|yīdàzǎo|at dawn
+|不得已|不得已|bùdéyǐ|have no alternative
+|本性|本性|běnxìng|suchness, conscience, instinct, essentiality, mettle, inbeing, nature, self, natural disposition, natural character, sense, natural instincts, inwardness, interior, inherent quality
+|大專院校|大专院校|dàzhuānyuànxiào|community colleges
+|史語所|史语所|shǐyǔsuǒ|Institute of History and Philology
+|黨員|党员|dǎngyuán|Party member
+|點點|点点|diǎndiǎn|det.: a tiny bit
+|人手|人手|rénshǒu|hired man, manpower, hired hand, hand
+|總體|总体|zǒngtǐ|population, gross, entirety, macrocosm, ensemble, wholeness, collectivity, totality, oneness, whole, universe
+|認|认|rèn|recognize, know, enter into a certain relationship with, admit, own up, accept as unavoidable, undertake to do sth.
+|操|操|cāo|grasp, hold
+|關係|关系|guānxì|concern, affect, to matter
+|甄選|甄选|zhēnxuǎn|select, pick
+|蔓延|蔓延|mànyán|spread out, extend
+|奪得|夺得|duódé|strive for, contend for, compete for, carry off
+|云|云|yún|say
+|遠東|远东|yuǎndōng|Far East
+|調高|调高|tiáogāo|transfer sth. to higher agency
+|隨地|随地|suídì|anyplace, everywhere, anywhere
+|弊端|弊端|bìduān|rigging, irregularity, malpractice, disadvantage, corrupt practice, abuse
+|積分|积分|jīfēn|integration, score, integral calculus, integral_calculus, integral, total credits earned by student
+|課堂|课堂|kètáng|classroom
+|蒙古|蒙古|ménggǔ|Mongolia
+|摘|摘|zhé|pick, pluck, make extracts
+|歐洲人|欧洲人|ōuzhōurén|European
+|燈具|灯具|dēngjù|lamps and lanterns
+|調高|调高|tiáogāo|transfer sth. to higher agency
+|勞保|劳保|láobǎo|labor insurance
+|買進|买进|mǎijìn|buy, purchase
+|意識到|意识到|yìshìdào|smell, be conscious, be aware of, sense, aware of, awake to, appreciate, be conscious of, realize, be conscious/aware of
+|渴望|渴望|kěwàng|thirst/long for
+|麥克風|麦克风|màikèfēng|microphone, mike
+|發放|发放|fāfàng|provide, grant, extend
+|節點|节点|jiédiǎn|knob, knot, node
+|違建|违建|wéijiàn|non-conforming building
+|農田|农田|nóngtián|country, farming area, farmland, soil, cultivated land, cropland
+|遊覽車|遊览车|yóulǎnchē|charabanc, coach, tourist coach, tourer
+|接待|接待|jiēdài|receive (guests), serve (customers)
+|軸|轴|zhóu|axle, shaft, axis, spool, rod
+|標竿|标竿|biāogān|surveyor's pole
+|載入|载入|zàirù|load, enter into, record in
+|要緊|要紧|yàojǐn|be in a hurry to, serious, critical, essential, weigh, be anxious to, count, signify, important, matter
+|訂購|订购|dìnggòu|order goods
+|前方|前方|qiánfāng|front_line, (war) front, ahead, front direction, front, the front
+|軍官|军官|jūnguān|wardroom, officer, military officer, military_officer, striper, officiary
+|烈|烈|liè|strong, violent, intense
+|保送|保送|bǎosòng|recommend sb. for admission to school/etc.
+|美妙|美妙|měimiào|beautiful, splendid, wonderful
+|哈佛|哈佛|hāfó|Harvard
+|東區|东区|dōngqū|Eastern area
+|保費|保费|bǎofèi|insurance premium, premium, insurance (fee)
+|近代史|近代史|jìndàishǐ|modern history
+|相通|相通|xiāngtōng|communicate, intercommunicate, communicate with each other, be interlinked
+|怨|怨|yuàn|blame, reproach, reprove
+|相對於|相对于|xiāngduìyú|relative
+|恰好|恰好|qiàhǎo|exactly, just right
+|乘坐|乘坐|chéngzuò|travel (by a conveyance)
+|受損|受损|shòusǔn|suffer loss, go, damage from
+|祈求|祈求|qíqiú|call_down, invoke, plead, petition, earnestly hope, may, pray for, supplicate, adjure, pray
+|立|立|lì|stand, exist, live
+|佛法|佛法|fófǎ|Buddha dharma, Buddhist doctrine, power of Buddha
+|弦|弦|xián|spring (of watch, string, quarter, string of musical instrument, etc.), catling, chord, quadrature, bowstring, spring (of watch/etc.), spring, the string of a musical instrument, quartile, catgut, cord, subtense, hypotenuse
+|汗|汗|hàn|sudor, khan, sweat, lather, perspiration
+|作成|作成|zuòchéng|help, consummate, successfully complete, compose
+|法治|法治|fǎzhì|constitutionality, rule of law, law
+|成年|成年|chéngnián|grow up, come of age
+|非凡|非凡|fēifán|outstanding, extraordinary, uncommon
+|白雪|白雪|báixuě|white snow
+|肺|肺|fèi|lungs
+|官司|官司|guānsī|lawsuit
+|樹幹|树干|shùgàn|shaft, tree_trunk, trunk, stock, bole, tree trunk
+|拜託|拜托|bàituō|request sb. to do sth.
+|比對|比对|bǐduì|map
+|山東|山东|shāndōng|Shantung, Shandong province, Shandong
+|加值|加值|jiāzhí|add value
+|水分|水分|shuǐfèn|moisture, inprecision, humidity, wet, moisture content, exaggeration
+|左邊|左边|zuǒbiān|portside, nearside, the left-hand side, the left side, left, the left, left side
+|史前|史前|shǐqián|prehistoric era
+|台中縣|台中县|táizhōngxiàn|Taichung County
+|敲|敲|qiāo|strike, beat (drum/etc.)
+|水土|水土|shuǐtǔ|natural environment and climate, climate, water and soil
+|幕僚|幕僚|mùliáo|aides and staff, assistant to high official/general
+|鞏固|巩固|gǒnggù|consolidate, strengthen, solidify
+|演習|演习|yǎnxí|maneuver, exercise, drill, practice
+|福特|福特|fútè|Ford
+|演習|演习|yǎnxí|maneuver, exercise, drill, practice
+|調|调|tiáo|regulate, adjust, mediate
+|鞏固|巩固|gǒnggù|consolidate, strengthen, solidify
+|賠|赔|péi|compensate, pay for, stand a loss
+|出動|出动|chūdòng|start_out, set out, dispatch, start off, send out
+|覆蓋|覆盖|fùgài|plate, enshroud, cap, overlay, deluge, inundate, bestrew, steep, blanket, bespread, superimpose, clothe, clot, submerge, muffle, shroud, face, spread, shadow, drape, overflow, spread over, mantle, cover, sheathe, smother, coat, hood, lap, enclothe
+|點心|点心|diǎnxīn|collation, snack, refreshment, refection, dimsum, pastry, light refreshments
+|舉凡|举凡|jǔfán|conj.: whatever
+|響應|响应|xiǎngyìng|respond, answer
+|聯誼|联谊|liányí|socialize
+|職責|职责|zhízé|department, responsibility, function, incumbency, office, charge, province, duty, obligation, role
+|謊言|谎言|huǎngyán|tarradiddle, lie, inveracity, false statement, taradiddle, squib, falsehood, falsity, story, prevarication, fib, fairy-tale, crammer, fibbery, leasing, flam, untruth, tale, unveracity, fabrication
+|人類學|人类学|rénlèixué|physical_anthropology, Pithecanthropus, humanics, anthropology
+|手足|手足|shǒuzú|brothers
+|會報|会报|huìbào|proceeding, transactions
+|主講|主讲|zhǔjiǎng|be the speaker, give a lecture
+|刀子|刀子|dāozi5|knife, pocketknife, dagger, small knife
+|北平|北平|běipíng|Beiping, Peking, Peiping
+|古物|古物|gǔwù|ancient objects, antiquities
+|天使|天使|tiānshǐ|intelligence, angel, angelic, nimbus, spirit
+|大哥大|大哥大|dàgēdà|hand phone, man with power, rich person, cellular telephone, super boss, cellular_phone, portable, walkie-talkie, boss, mobile phone, portable/cellular telephone, godfather, powerful person, portable telephone, rich/powerful person
+|比對|比对|bǐduì|map
+|四肢|四肢|sìzhī|arms and legs, extremity, four limbs
+|情意|情意|qíngyì|tender regards, affection
+|液晶|液晶|yìjīng|liquid crystal
+|陪伴|陪伴|péibàn|accompany, keep sb. company
+|陳述|陈述|chénshù|state
+|莫不|莫不|mòbù|there's no one who doesn't/isn't
+|陸軍|陆军|lùjūn|ground force, army, ground, ground/land force, land force
+|聲稱|声称|shēngchēng|avouch, claim, assertion, purport, hold, profession, allege, represent, avow, declare, confess, announce, assert, say, aver, profess
+|追趕|追赶|zhuīgǎn|chase after, pursue
+|教化|教化|jiàohuà|enlighten people by education
+|細則|细则|xìzé|detailed rules and regulations
+|累計|累计|lěijì|add up
+|處|处|chǔ|punish, sentence
+|累計|累计|lěijì|add up
+|動植物|动植物|dòngzhíwù|animal and plant
+|長年|长年|chángnián|all year around
+|封閉|封闭|fēngbì|seal, seal off, close
+|桶|桶|tǒng|m.[container]
+|透視|透视|tòushì|perspective
+|急|急|jí|impatiently, anxiously, rapidly, urgently
+|賊|贼|zéi|thief
+|毀滅|毁灭|huǐmiè|destroy, exterminate
+|殘障者|残障者|cánzhàngzhě|disabled, handicapped person, cripple
+|詩歌|诗歌|shīgē|ode, verse, poetic, strain, rhyme, song, poems and songs, poetry, Parnassus
+|落成|落成|luòchéng|be completed (of a building/etc.)
+|幾|几|jī|almost, nearly
+|貧困|贫困|pínkùn|poor, impoverished
+|募款|募款|mùkuǎn|raise money
+|透視|透视|tòushì|perspective
+|停下來|停下来|tíngxiàlái|stop
+|晚飯|晚饭|wǎnfàn|supper, dinner
+|祕密|祕密|mìmì|confidential, sly, darkness, stealth, confidentiality, privacy, penetralia, huggermugger, arcanum, hugger-muggery, secrecy, secret
+|貧困|贫困|pínkùn|poor, impoverished
+|記住|记住|jìzhù|remember, learn by heart, bear in mind
+|剪|剪|jiǎn|wipe out, exterminate, cut (with scissors), clip, trim
+|教化|教化|jiàohuà|enlighten people by education
+|飲茶|饮茶|yǐnchá|drink tea
+|落成|落成|luòchéng|be completed (of a building/etc.)
+|李遠哲|李远哲|lǐyuǎnzhé|Yuan Tseh Lee, Nobel laureate
+|活生生|活生生|huóshēngshēng|actually, really, while still alive, real, in real life, actual, living
+|國軍|国军|guójūn|armed forces of Republic of China
+|青菜|青菜|qīngcài|greengrocery, vegetable, greenstuff, green vegetables, greens, Chinese cabbage, vegetables, pakchoi, Ch. cabbage
+|幽浮|幽浮|yōufú|UFO
+|虐待|虐待|nuèdài|maltreat, tyrannize, abuse
+|准|准|zhǔn|allow, grant, permit
+|為數|为数|wéishù|amount to, number
+|面對面|面对面|miànduìmiàn|face to face
+|組|组|zǔ|form, make up (into), compose
+|細部|细部|xìbù|detail (of drawing)
+|堂哥|堂哥|tánggē|elder male cousin (with same surname)
+|素養|素养|sùyǎng|accomplishment, attainment
+|掃|扫|sǎo|sweep, sweep away
+|理事|理事|lǐshì|trustee, senator, manager, directorate, commissioner, director, governor, council member, board member, syndic, administrator
+|放入|放入|fàngrù|interpose, load into, include
+|高漲|高涨|gāozhǎng|rise, surge up, run high
+|商務|商务|shāngwù|business affairs
+|高漲|高涨|gāozhǎng|rise, surge up, run high
+|能幹|能干|nénggàn|able-minded, competent
+|核能|核能|hénéng|nuclear_power, nuclear energy, atomic power, atomic energy, nuclear_energy, nuclear power
+|造訪|造访|zàofǎng|pay visit, call on
+|通|通|tōng|communicate/connect (with), join, share, be interchangeable with...
+|淚水|泪水|lèishuǐ|tear, tear-drops
+|教育部長|教育部长|jiàoyūbùzhǎng|minister of Education
+|時而|时而|shíér|from time to time, sometimes, now...now, sometimes...sometimes
+|造訪|造访|zàofǎng|pay visit, call on
+|雪梨|雪梨|xuělí|Sydney
+|快要|快要|kuàiyào|in a short time, promptly, at once, instantly, pronto, immediately, shortly, without delay, tout-de-suite, right away, forthwith, soon, in a few seconds, before long, straightaway, in a minute, in no time
+|合理化|合理化|hélǐhuà|rationalize
+|佔領|佔领|zhànlǐng|occupy, possess, hold, invade, seize, seizure, occupation, capture, conquer, take over
+|汽機車|汽机车|qìjīchē|vehicle
+|批准|批准|pīzhǔn|ratify, approve, sanction
+|刺激|刺激|cìjī|provoking
+|西德|西德|xīdé|West Germany
+|份量|份量|fènliàng|percentage, weight, quantity
+|合同|合同|hétong|bond, paction, covenant, bargain, compact, agreement, indenture, contract, whiz
+|似|似|sì|seem
+|村莊|村庄|cūnzhuāng|small town, village, thorpe, wick, settlement, thorp, hamlet
+|那裡|那里|nàlǐ|how could it be possible?
+|洞穴|洞穴|dòngxuè|cavern, grotto, scoop, subterranean, pocket, cave, subterrane, burrow, mine, souterrain, pothole, opening
+|老化|老化|lǎohuà|age, grow older
+|風光|风光|fēngguāng|grand
+|走過去|走过去|zǒuguòqù|walk to
+|伸|伸|shēn|extend, crane, stretch, extension
+|老化|老化|lǎohuà|age, grow older
+|免於|免于|miǎnyū|avoid, fend off, debar, head off, cheat, avert, ward off, deflect, stave off, obviate
+|房租|房租|fángzū|house rent, rent (for house, rent (for house/flat/etc.), etc.), rent, flat
+|阿美族|阿美族|āměizú|Ami ethnic minority (in Taiwan)
+|糾纏|纠缠|jiūchán|bug, be in a tangle, pester, shadow, imply, worry, beset, enlace, intertwine, beleaguer, badger, tease, besiege, mat, tangle, weave, lock, kink, entangle, snarl, haunt, nag, harass, pursue, get entangled
+|放出|放出|fàngchū|radiate, emission, give_off, spew, give off, extricate, deflate, emit, expel, release, effuse, evolve, pay_out, let_out, give, discharge, let out, give out, eject, discard
+|風箏|风筝|fēngzhēng|kite
+|放映|放映|fàngyìng|project (film), screen, projection, project, show
+|風光|风光|fēngguāng|grand
+|電|电|diàn|give/get an electric shock
+|改用|改用|gǎiyòng|change to use of sth., change use of sth.
+|方位|方位|fāngwèi|AZ, aspect, quarter, exposure, position, trend, spatial relation, azimuth, points of the compass, direction, orientation, bearing
+|頭銜|头衔|tóuxián|viscountcy, title, official title, inheritance, style, handle, doctorate, prefix
+|碼|码|mǎ|sth. indicating number, code
+|整|整|zhěng|put in order, arrange, consolidate, repair, mend, do
+|踏上|踏上|tàshàng|tread on, step on
+|憧憬|憧憬|chōngjǐng|long for, look forward to
+|總務|总务|zǒngwù|general affairs, person in charge of general affairs
+|憧憬|憧憬|chōngjǐng|long for, look forward to
+|臺北縣|台北县|táiběixiàn|Taipei County
+|撞|撞|zhuàng|run into, strike, collide, meet by chance, rush, dash, dupe
+|認清|认清|rènqīng|recognition, see clearly, see through to, get a clear understanding of, recognize
+|出爐|出炉|chūlú|come out of the oven
+|期許|期许|qíxǔ|hope, expect
+|子彈|子弹|zǐdàn|musket ball, lead, shell, cartridge, bullet, ball, payload, slug
+|嘗試|尝试|chángshì|try
+|回流|回流|huíliú|regurgitate, refluent, regurgitation, backwash
+|大肆|大肆|dàsì|wantonly
+|公演|公演|gōngyǎn|perform in public
+|不慎|不慎|búshèn|immodest, incautious
+|外長|外长|wàizhǎng|Foreign Minister, exogenous, Minister of Foreign Affairs, foreign minister
+|水電|水电|shuǐdiàn|hydropower, water and electricity
+|心臟病|心脏病|xīnzàngbìng|heart trouble, heart disease, cardiopathy, heart_disease, heart condition
+|公演|公演|gōngyǎn|perform in public
+|巴格達|巴格达|bāgédá|Bagdad, Baghdad, capital of Iraq
+|小販|小贩|xiǎofàn|wallah, hucksterer, grifter, hawker, Higgler, pedlar, coster, badger, vendor, chapman, peddler, roadman, faker
+|公認|公认|gōngrèn|legalize, acknowledge generally, recognize, accept, generally acknowledge/recognize/accept, acknowledged, generally recognize/accept, generally acknowledge, vote
+|瀑布|瀑布|pùbù|falls, linn, overfall, Niagara, waterfall, fall, cataract, chute, cascade, sault
+|女郎|女郎|nǔláng|young_girl, young lady, young woman, fille, girl, miss, missy, maiden
+|意涵|意涵|yìhán|meaning, implication, connotation
+|合理化|合理化|hélǐhuà|rationalize
+|須要|须要|xūyào|must, have to
+|復興|复兴|fùxīng|revive, resurge, rejuvenate
+|期許|期许|qíxǔ|hope, expect
+|禁|禁|jìn|prohibit
+|遇見|遇见|yūjiàn|come across, encounter, come_across, forgather, meet, meet up with
+|解說|解说|jiěshuō|comment, interpretation
+|照射|照射|zhàoshè|shine on, light up
+|景物|景物|jǐngwù|scenery
+|量|量|liáng|estimate, measure
+|發洩|发泄|fāxiè|exhale, give vent to, give vent, let off, ventilate, let_out, abreact, vent, wreak
+|銜接|衔接|xiánjiē|link up, join
+|幹員|干员|gànyuán|capable official
+|銜接|衔接|xiánjiē|link up, join
+|照射|照射|zhàoshè|shine on, light up
+|順|顺|shùn|smooth-going, plain sailing, arrange, put in order
+|開闊|开阔|kāikuò|tolerant, open, widen, spacious, expansive
+|質詢|质询|zhíxún|request explanation
+|熱絡|热络|rèluò|enthusiastic
+|選取|选取|xuǎnqǔ|select
+|熱絡|热络|rèluò|enthusiastic
+|質詢|质询|zhíxún|request explanation
+|圖畫|图画|túhuà|illustration, painting, picture, portrait, graphic, depiction, drawing
+|盤旋|盘旋|pánxuán|circle, whorl, stay, linger, hover, twist, wheel, spiral, yaw, whirl, convolve
+|餘地|余地|yūdì|leeway, margin, room, latitude
+|魚塭|鱼塭|yūwēn|fishpond
+|感恩|感恩|gǎnēn|feel grateful, be thankful
+|雞蛋|鸡蛋|jīdàn|hen's egg
+|攤位|摊位|tānwèi|stand, booth, stall
+|嚼|嚼|jué|chew, munch
+|驚喜|惊喜|jīngxǐ|be pleasantly surprised
+|雜貨店|杂货店|záhuòdiàn|grocery store, chandlery, drugstore, chandler, sundry store, grocery, bodega, grocery_store, general store
+|批准|批准|pīzhǔn|ratify, approve, sanction
+|法律系|法律系|fǎlùxì|legal department
+|鍵盤|键盘|jiànpán|clavier, keyset, keyboard, fingerboard, piano keyboard, Klavier
+|偶而|偶而|ǒuér|occasionally
+|虔誠|虔诚|qiánchéng|pious, devout
+|偶然|偶然|ǒurán|fortuitous, chance
+|脈絡|脉络|mòluò|arteries and veins, vein (of leaf/etc.), sequence of ideas
+|耗費|耗费|hàofèi|consume, expend
+|抗原|抗原|kàngyuán|antigen
+|耗費|耗费|hàofèi|consume, expend
+|效用|效用|xiàoyòng|effectuality, service, efficiency, effectivity, help, value, effectualness, usefulness, utility, avail, effectiveness
+|婚禮|婚礼|hūnlǐ|wedding ceremony
+|起|起|qǐ|start
+|時髦|时髦|shímáo|fashionable, in vogue
+|情調|情调|qíngdiào|sentiment, tone and mood, taste
+|係數|系数|xìshù|quotiety, coefficient, ingredient, factor, constituent, modulus, element, component
+|這裏|这里|zhèlǐ|here
+|拍賣|拍卖|pāimài|auction, sell at reduced price
+|虔誠|虔诚|qiánchéng|pious, devout
+|盛況|盛况|shèngkuàng|grand occation, spectacular event, pomp, grand occasion, eclat
+|混淆|混淆|hǔnyáo|blur, confuse, mix up
+|國手|国手|guóshǒu|national contestant (in chess/etc.)
+|窄|窄|zhǎi|narrow, petty, hard up
+|神仙|神仙|shénxiān|immortal
+|時效|时效|shíxiào|effectiveness, aging, prescription, period of effectiveness
+|頂多|顶多|dǐngduō|at most/best
+|連鎖|连锁|liánsuǒ|chain
+|疼|疼|téng|hurt, ache, pain
+|依循|依循|yīxún|follow
+|任用|任用|rènyòng|appoint, assign to post
+|沉重|沉重|chénzhòng|heavy, serious
+|來不及|来不及|láibùjí|be too late to do sth.
+|字眼|字眼|zìyǎn|words, wording, diction
+|作曲家|作曲家|zuòqǔjiā|tunesmith, harmonist, musician, songsmith, composer
+|自強|自强|zìqiáng|improve oneself, self-strengthening
+|任用|任用|rènyòng|appoint, assign to post
+|盯|盯|dīng|fix one's eyes on, gaze/stare at, gaze, stare at, gaze at
+|前輩|前辈|qiánbèi|senior (in age/experience/etc.), elder, older generation
+|疫苗|疫苗|yìmiáo|bacterin, inoculum, vaccine
+|疲倦|疲倦|píjuàn|languid, weary, tire, tiredness, lassitude, languor, jade, tired, ennui
+|巷|巷|xiàng|back street, lane, alleyway, alley
+|服|服|fú|take (medicine)
+|政客|政客|zhèngkè|hack, politico, ward-heeler, politician, political hack, machine politician, statist
+|版權|版权|bǎnquán|right of first publication, copyright
+|服氣|服气|fúqì|be convinced, convince, feel things are fair
+|服藥|服药|fúyào|take medicine
+|爭奪|争夺|zhēngduó|fight for, enter into rivalry over, campaign, agitate, contend for, fight, push, crusade, scramble, vie with sb. for sth.
+|病例|病例|bìnglì|case of illness, case (of illness), case
+|信件|信件|xìnjiàn|correspondence, missive, mail, letters, post, letter
+|拍賣|拍卖|pāimài|auction, sell at reduced price
+|票價|票价|piàojià|admission fee, the price of a ticket, entrance fee, ticket price, carfare
+|長短|长短|chángduǎn|length, right and wrong, strong and weak points
+|座位|座位|zuòwèi|perch, table, saddle, pew, place to sit, place, seat, locus
+|上去|上去|shàngqù|go up
+|預先|预先|yūxiān|in advance, beforehand
+|實話|实话|shíhuà|true statement, truth, true story
+|縣委|县委|xiànwěi|county Party committee
+|北區|北区|běiqū|northern area
+|母|母|mǔ|female (of birds/animals/etc.)
+|而今|而今|érjīn|now
+|互|互|hù|mutually, each other, mutual, together
+|下挫|下挫|xiàcuò|fall, decline, decrease
+|山頂|山顶|shāndǐng|mountaintop, summit of a mountain, hilltop, top of a mountain, mountain top, knap, ben
+|未知|未知|wèizhī|unknow
+|打到|打到|dǎdào|hit (the target)
+|淹沒|淹没|yānmò|engross, float, overshadow, deluge, submerse, inundate, overwhelm, die, flood, submerge, drench, deafen, bury, swallow up, flood out, swallow, drown, whelm, inundation, swamp, immerse, submergence, overwhelming, eat up
+|地層|地层|dìcéng|measure, geological formation, formation, geology, bed, stratification, stratum, layer
+|謀生|谋生|móushēng|make a living, seek a livelihood, seek livelihood
+|一手|一手|yīshǒu|single-handedly, alone
+|中斷|中断|zhōngduàn|drop, go_off, go off, cut_off, suspend, discontinuance, intermit, discontinue, pause, break_off, terminate, suspension, break off, corrupt, fall_through, break, interrupt, knock off
+|餵|餵|wèi|salt, feed
+|懲罰|惩罚|chéngfá|punish, penalize
+|講解|讲解|jiǎngjiě|explain, narrate
+|聽取|听取|tīngqǔ|listen to
+|蘇格蘭|苏格兰|sūgélán|Scotland
+|礦工|矿工|kuànggōng|miner
+|籌措|筹措|chóucuò|raise money
+|舉起|举起|jǔqǐ|heize, heave, elevate, put_up, wind, put up, lift_up, set up, lift_out, hoist, uphold, hold_up, uprear, hold up, uplift, upraise, uptake, raise_up, raise, pry, rear, lift, erect, upheave, hoise, heft
+|檳榔|槟榔|bīnláng|betel_nut, betel palm, areca, areca_nut, betel nut, pinang, areca nut
+|下挫|下挫|xiàcuò|fall, decline, decrease
+|畫廊|画廊|huàláng|painted corridor, (picture) gallery
+|貨車|货车|huòchē|goods/freight train/wagon/van/car, truck, lorry
+|酗酒|酗酒|xùjiǔ|drink excessively
+|無常|无常|wúcháng|impermanent, changeable
+|發揚|发扬|fāyáng|develop, carry on, make most of
+|煩|烦|fán|trouble
+|感人|感人|gǎnrén|touching, moving
+|發揚|发扬|fāyáng|develop, carry on, make most of
+|策劃|策划|cèhuà|plan, plot, engineer
+|遇上|遇上|yūshàng|come across
+|殖民地|殖民地|zhímíndì|Colony, plantation, colony, habitation, settlement, colonial
+|順|顺|shùn|obey, follow, submit to
+|墾丁|垦丁|kěndīng|Kenting (national park)
+|路段|路段|lùduàn|section of highway/railway
+|館長|馆长|guǎnzhǎng|director (of library, head, director (of library/etc.), etc.), curator, director, conservator
+|童工|童工|tónggōng|child laborer, child labor
+|嗜好|嗜好|shìhào|hobby, addiction, habit
+|親愛|亲爱|qīnài|endear, beloved, dear
+|營利|营利|yínglì|VA4
+|論點|论点|lùndiǎn|line, question, line of reasoning, argumentation, talking point, logical argument, contention, thesis, argument
+|獲取|获取|huòqǔ|derive, obtain, procure, gain, get, liberate, angle, win
+|編號|编号|biānhào|serial number
+|獨裁|独裁|dúcái|dictatorial, autarchical, despotism, dictatorship
+|歷史系|历史系|lìshǐxì|department of history, Department of History, history department
+|雌|雌|cí|female
+|臺南|台南|táinán|Tainan
+|混淆|混淆|hǔnyáo|blur, confuse, mix up
+|著想|着想|zháoxiǎng|consider, take into consideration
+|依循|依循|yīxún|follow
+|祕書|祕书|mìshū|secretary
+|送往|送往|sòngwǎng|deliver to
+|傑作|杰作|jiézuò|tour de force, masterwork, showpiece, classic, tour_de_force, masterpiece
+|紛爭|纷争|fēnzhēng|odds, affray, trouble, fracas, wrangle, dispute, squall, dispeace, imbroglio, strife, dissension, altercation
+|途|途|tú|road, route, journey, way
+|參選|参选|cānxuǎn|take part in election, enter election
+|食用|食用|shíyòng|edible, eat
+|張貼|张贴|zhāngtiē|put up (poster/etc.)
+|得失|得失|déshī|gains and losses, successes and failures, merits and faults
+|抽籤|抽籤|chōuqiān|draw/cast lots
+|剝削|剥削|bōxuè|exploit
+|服從|服从|fúcóng|obey, submit (oneself) to, be subordinated to
+|風行|风行|fēngxíng|be in fashion, be popular
+|到時候|到时候|dàoshíhòu|at appointed time, on the occasion
+|張|张|zhāng|stretch, spread, expand, display, set out
+|現成|现成|xiànchéng|ready-made
+|損壞|损坏|sǔnhuài|damage, injure
+|農夫|农夫|nóngfū|farmer
+|農藥|农药|nóngyào|agricultural chemical, pesticide, farm chemical, insecticide, agricultural
+|登陸|登陆|dēnglù|land, disembark
+|剩餘|剩余|shèngyū|be left over, leave, remain
+|假設|假设|jiǎshè|hypothesis
+|陣容|阵容|zhènróng|battle array, lineup, disposition
+|最多|最多|zuìduō|at (the) most
+|張貼|张贴|zhāngtiē|put up (poster/etc.)
+|參選|参选|cānxuǎn|take part in election, enter election
+|健行|健行|jiànxíng|hike
+|莫名其妙|莫名其妙|mòmíngqímiào|be baffled, without rhyme or reason, inexplicable
+|侮辱|侮辱|wǔrù|insult, humiliate
+|郵政|邮政|yóuzhèng|dawk, postal service, dak, mail, postal_service, post, postal
+|投降|投降|tóuxiáng|surrender, capitulate
+|風行|风行|fēngxíng|be in fashion, be popular
+|振動|振动|zhèndòng|judder, ruffle, vibration, rock, riffle, oscillate, pulse, vibratory, vibrate, flick, flutter, flap, shimmy, pulsate
+|剝削|剥削|bōxuè|exploit
+|肥|肥|féi|fertile, fat, fertilize, rich
+|約談|约谈|yuētán|schedule a meeting
+|苦難|苦难|kǔnàn|suffering, misery, distress
+|投降|投降|tóuxiáng|surrender, capitulate
+|省思|省思|xǐngsī|introspect
+|吃掉|吃掉|chīdiào|polish_off, wipe out, annihilate, consume (food)
+|沈默|沈默|chénmò|reticent, taciturn, silent
+|交流道|交流道|jiāoliúdào|slip road
+|好事|好事|hǎoshì|an act of charity, alms, good deed/turn, good turn, good works, turn, good deed
+|波蘭|波兰|pōlán|Poland
+|因緣|因缘|yīnyuán|principal and secondary causes, silver dollar, predestined relationship, opportunity, chance
+|吸血鬼|吸血鬼|xīxiěguǐ|bloodsucker, lamia, vampire, leech, Dracula
+|初中|初中|chūzhōng|junior high school, junior_high_school, junior middle school, junior high
+|為由|为由|wéiyóu|for the reason of...
+|烈酒|烈酒|lièjiǔ|strong drink, hard drink, grog, tipple, aqua vitae, firewater, poison, spirits, tanglefoot, rozener, John Barleycorn, hard liquor, hooch, tangle-legs, short, spirit, ardent_spirits, strong_drink, knockdown, ardent spirits, liquor, booze, hard_drink, eyewater
+|約談|约谈|yuētán|schedule a meeting
+|沼澤|沼泽|zhǎozé|sump, cienaga, curragh, marshland, moss, vlaie, peat bog, morass, moorland, fen, slough, bog, fenland, marish, swamp, marsh, mere, moor
+|計算機|计算机|jìsuànjī|counter, arithmometer, calculating machine, calculating_machine, computer, calculator
+|省思|省思|xǐngsī|introspect
+|抽籤|抽籤|chōuqiān|draw/cast lots
+|揮|挥|huī|brandish, wipe off/away, command (an army), scatter, disperse, squander (money/etc.)
+|陌生人|陌生人|mòshēngrén|unco, alien, stranger, outcomer, outlander, foreigner, unknown
+|香檳|香槟|xiāngbīn|Champagne, champagne
+|服從|服从|fúcóng|obey, submit (oneself) to, be subordinated to
+|枕頭|枕头|zhěntou|pillow
+|飛翔|飞翔|fēixiáng|wheel, circle in the air, hover, fly
+|侮辱|侮辱|wǔrù|insult, humiliate
+|首相|首相|shǒuxiàng|prime minister
+|分擔|分担|fēndān|share responsibility for
+|反觀|反观|fǎnguān|look_back, look at sth. from different aspect
+|功利|功利|gōnglì|utility, material gain
+|分|分|fēn|distribute, allot
+|人世|人世|rénshì|the human world, human world
+|巨|巨|jù|huge, gigantic
+|考核|考核|kǎohé|examination
+|本領|本领|běnlǐng|address, proficiency, skill, knack, ability, capability, flair
+|生育|生育|shēngyū|give birth to, bear
+|天命|天命|tiānmìng|Destiny, dispensation, destiny, vocation, the mandate of heaven, kismet, Fate, mandate of heaven, manifest destiny, fate, God's will
+|田園|田园|tiányuán|pastoral, fields and gardens, homestead, countryside, geoponics
+|公務|公务|gōngwù|public service, public affairs, official business
+|分擔|分担|fēndān|share responsibility for
+|公債|公债|gōngzhài|government_bond, Treasury bond, government bond, fund, public loan, security, loan, government loan
+|損壞|损坏|sǔnhuài|damage, injure
+|月球|月球|yuèqiú|luminary, moon
+|太陽能|太阳能|tàiyángnéng|solar_energy, solar power, solar_power, solar energy
+|縮減|缩减|suōjiǎn|reduce, cut
+|鍵|键|jiàn|key (of piano/computer/etc.), bond, bolt (of door)
+|覺|觉|jiào|sleeping
+|鎮壓|镇压|zhènyā|suppress, repress, put down, execute (counterrevolutionary)
+|灌輸|灌输|guànshū|instill into, imbue with, teach, impart
+|大規模|大规模|dàguīmó|large-handed, on large-scale, largely
+|大街|大街|dàjiē|calzada, thoroughfare, prado, avenue, high street, boulevard, street, main street
+|共產|共产|gòngchǎn|communist
+|回教|回教|huíjiào|Moslemism, Islam, Mohammedanism, Islamism
+|心智|心智|xīnzhì|intelligence, psyche, mental, wit, mental capacity, brain, mentality, wisdom, learning ability, brainpower
+|下手|下手|xiàshǒu|put one's hand to, start, set about, set to, start
+|大夥|大伙|dàhuǒ|us, we, we all, everyone
+|出海|出海|chūhǎi|outstand, go to or put out to sea, put out to sea, go to sea
+|打斷|打断|dǎduàn|fragment, disrupt, desist_from, cut_off, put_in, cut off, put in, discontinue, break up, cut short, barge in, punctuate, chime in, break_in, break in, butt in, interruption, burst_in_on, interpellate, cut in, break, interrupt
+|大大小小|大大小小|dàdàxiǎoxiǎo|all sorts/kinds, various
+|登陸|登陆|dēnglù|land, disembark
+|天色|天色|tiānsè|sky, time of day, color of sky, weather
+|滴|滴|dī|m.[general]
+|歌壇|歌坛|gētán|vocal circle/group
+|頑皮|顽皮|wánpí|naughty, mischievous
+|歌舞|歌舞|gēwǔ|song and dance
+|綿延|绵延|miányán|continuing, be continuous, stretch long and unbroken
+|適宜|适宜|shìyí|fit, accommodate, befit, suitable, suit, appropriate
+|精進|精进|jīngjìn|energetic, aggressive, enterprising
+|節慶|节庆|jiéqìng|fete, fiesta, feast, festival
+|喜好|喜好|xǐhào|like, love, be fond of
+|悶|闷|mēn|shut indoors, seal, stuffy, shut oneself or sb. indoors, muffled (of sound), in low spirits, bored, cover tightly, frowsty
+|搜集|搜集|sōují|glean, conglomerate, pile up, amass, gather, accumulate, collect, cumulate, collection, gathering
+|湖南|湖南|húnán|Hunan province
+|喜好|喜好|xǐhào|like, love, be fond of
+|頑皮|顽皮|wánpí|naughty, mischievous
+|撿|捡|jiǎn|pick up, collect, gather
+|切入|切入|qiērù|incise
+|民選|民选|mínxuǎn|elected by the people, popularly elected
+|人行道|人行道|rénxíngdào|path, pavement, sidewalk, footpath, banquette, paseo, footway, walkway, trottoir, sideway, causeway, walk
+|生育|生育|shēngyū|give birth to, bear
+|戰士|战士|zhànshì|man, belligerent, fighter, scrapper, gladiator, champion, paladin, soldier, warrior, hero, battler, combatant
+|樂於|乐于|lèyú|indulge, delight, be happy to, take delight in
+|濕地|湿地|shīdì|peat bog, fen, bog, marshland, fenland, dismal, marsh, swamp, quag, wash, swale, everglade, wetland
+|視線|视线|shìxiàn|line of sight, view, line of vision, sight, line_of_vision, line_of_sight
+|製作人|制作人|zhìzuórén|producer, manager
+|營地|营地|yíngdì|encampment, post, camp, cantonment, bivouac, summer camp, campsite, camping ground, camping site, camping area, campground
+|糊塗|糊涂|hútú|muddled, confused, thoughtless, slipshod
+|慕尼黑|慕尼黑|mùníhēi|Munich
+|賣出|卖出|màichū|(actually) sell
+|閩南語|闽南语|mǐnnányǔ|Southern Fujian topolect
+|存活|存活|cúnhuó|survive
+|博物院|博物院|bówùyuàn|museum
+|沈默|沈默|chénmò|reticent, taciturn, silent
+|孤立|孤立|gūlì|isolated
+|奉|奉|fèng|give, present, receive, esteem, revere, respect, believe in, wait upon, attend to, have the honor to
+|交錯|交错|jiāocuò|intersect, interlace, interlock, intertwine, counterchange, crisscross
+|刻板|刻板|kèbǎn|cut blocks for printing, inflexible, stiff, mechanical
+|征服|征服|zhēngfú|break_through, subjugate, reduce, subdue, conquest, subjugation, subject, prostrate, vanquish, devastate, dragoon, master, conquer, overmaster, overcome
+|受益|受益|shòuyì|be benefited, profit by, benefit, do good, benefit from
+|車行|车行|chēháng|place for buying and hiring carts, garage
+|合辦|合办|hébàn|run jointly, operate jointly, run cooperatively
+|光緒|光绪|guāngxù|Guangxu (1875-1908), Guangxu reign period (1875-l908), Guangxu reign period
+|成形|成形|chéngxíng|jell, take shape, hew, form, shape, shaping, forming
+|多方|多方|duōfāng|in many ways, in every way
+|每隔|每隔|měigé|at a distance from, after an interval of
+|羽球|羽球|yǔqiú|badminton, shuttlecock
+|孤立|孤立|gūlì|isolated
+|存活|存活|cúnhuó|survive
+|強壯|强壮|qiángzhuàng|strong, sturdy
+|悠閒|悠閒|yōuxián|leisurely and carefree
+|追問|追问|zhuīwèn|question/examine minutely
+|通往|通往|tōngwǎng|lead/go to
+|密碼|密码|mìmǎ|cipher/secret code
+|前所未有|前所未有|qiánsuǒwèiyǒu|unprecedented, hitherto unknown
+|為首|为首|wéishǒu|head up, head, be headed by, serve as the leader
+|眉|眉|méi|vallum, brow, eyebrow, the top margin of a page, supercilium, top margin of page
+|強制|强制|qiángzhì|obligatorily
+|匯集|汇集|huìjí|collect, compile, come together, converge, assemble
+|看病|看病|kànbìng|consult a doctor, see a doctor, see doctor, see a patient, see patient
+|國文|国文|guówén|written national language, national language and literature, Ch. literature
+|笛子|笛子|dízi5|fife, flute, bamboo flute
+|執法|执法|zhífǎ|enforce law
+|處理器|处理器|chǔlǐqì|processor
+|蚊|蚊|wén|mosquito
+|堆積|堆积|duījī|heap/pile up
+|許許多多|许许多多|xǔxǔduōduō|det.: many, much, a lot of
+|侵入|侵入|qīnrù|invade, intrude into
+|商用|商用|shāngyòng|for business use
+|原油|原油|yuányóu|crude_oil, crude, crude (oil), crude oil
+|註明|注明|zhùmíng|indicate/note clearly
+|悲傷|悲伤|bēishāng|sad, sorrowful
+|堆積|堆积|duījī|heap/pile up
+|性命|性命|xìngmìng|life
+|自此|自此|zìcǐ|since then
+|串|串|chuàn|m.[general]
+|估算|估算|gūsuàn|estimate, reckon, appraise, calculate roughly
+|立志|立志|lìzhì|resolve, be determined
+|育樂|育乐|yūlè|education and entertainment
+|安全感|安全感|ānquángǎn|sense of security
+|吃力|吃力|chīlì|entail strenuous effort, be a strain
+|西南|西南|xīnán|sou'-west, SW, southwest, Southwest China, southwestward, the Southwest
+|呵|呵|hē|ah, oh
+|村落|村落|cūnluò|village, dorp, hamlet
+|佣金|佣金|yōngjīn|middleman's fee, brokerage, commission, procuration, rake-off, poundage, brokage, kickback
+|肥料|肥料|féiliào|fecundation, soil, fertilization, dung, dressing, manure, fertilizer
+|重現|重现|chóngxiàn|reappear
+|保全|保全|bǎoquán|keep safe, preserve, maintain
+|爭相|争相|zhēngxiāng|vie with each other
+|原告|原告|yuángào|suitor, claimant, libelee, libelant, complainant, demandant, petitioner, pursuer, complaint, accuser, plaintiff, prosecutor, procecutor, relator, claimer
+|跟進|跟进|gēnjìn|follow in wake of
+|芭蕾|芭蕾|bālěi|ballet
+|跟進|跟进|gēnjìn|follow in wake of
+|保全|保全|bǎoquán|keep safe, preserve, maintain
+|重覆|重复|chóngfù|duplicate, recurrent, ditto, repeat
+|砂石|砂石|shāshí|sandstone
+|直線|直线|zhíxiàn|straight_line, airline, straight, straight line, beeline
+|重現|重现|chóngxiàn|reappear
+|根據|根据|gēnjù|basis, grounds, foundation
+|侵入|侵入|qīnrù|invade, intrude into
+|研習會|研习会|yánxíhuì|workshop, seminar
+|上前|上前|shàngqián|approach, go forward, come forward, come_forward, come
+|不准|不准|bùzhǔn|deny
+|中鋒|中锋|zhōngfēng|center (basketball), centre, center forward, center forward (football), center
+|市議員|市议员|shìyìyuán|city councilor
+|包圍|包围|bāowéi|surround, encircle
+|甘肅|甘肃|gānsù|Kansu, Gansu, Gansu province
+|木頭|木头|mùtóu|wood, log, timber
+|大三|大三|dàsān|third year class, upper class
+|下水道|下水道|xiàshuǐdào|sump, drainage_system, sewer, sewerage, culvert, cloaca, drainage, drainage system, sink, cesspit, cesspool, drain
+|奴隸|奴隶|núlì|vassal, servant, Helot, serf, helot, chattel, thrall, slave, bondslave, bondservant, Mameluke, bondman, bond servant, minion, bondsman
+|不忘|不忘|búwàng|remember, bear in mind
+|充當|充当|chōngdāng|act_as, play the role of, allot, play the part of, act as, serve, serve/act as, serve as
+|僑生|侨生|shēng|overseas Ch. students in China
+|右邊|右边|yòubiān|right-hand side, the right
+|屢|屡|lǔ|over and over again, again and again, repeatedly, over and over, time and again, frequently, time_and_again, time and time again
+|未免|未免|wèimiǎn|rather, truly, inevitably
+|大理石|大理石|dàlǐshí|marble
+|人質|人质|rénzhí|surety, pawn, hostage
+|回饋|回馈|huíkuì|feedback
+|打聽|打听|dǎtīng|ask about, check_up_on, snoop, inquire/ask about, pry, inquire, find_out, seek, inquire about
+|人影|人影|rényǐng|figure, sign of human presence, human shadow
+|丈|丈|zhàng|male elder relative, a form of address for certain male relatives by ma, m.[standard], ,male elder person, male elder relative/person
+|包圍|包围|bāowéi|surround, encircle
+|山洞|山洞|shāndòng|cave, cavern
+|護|护|hù|protect, guard, be partial to, shield, cover
+|鴿子|鸽子|gēzi5|<Nab> pigeon, dove
+|蹤跡|踪迹|zōngjī|slot, track, footprint, scent, trace, trail
+|全國性|全国性|quánguóxìng|nationwide, countrywide, national
+|單調|单调|dāndiào|monotonous, dull, drab, boring
+|微妙|微妙|wéimiào|delicate, subtle
+|悲傷|悲伤|bēishāng|sad, sorrowful
+|圍繞|围绕|wéirào|move around, center on, revolve around
+|景致|景致|jǐngzhì|view, aspect, prospect, scene, scenery, vista, panorama
+|匯集|汇集|huìjí|collect, compile, come together, converge, assemble
+|來往|来往|láiwǎng|come and go
+|絲|丝|sī|silk, threadlike thing, tiny bit, trace
+|自信心|自信心|zìxìnxīn|self-confidence
+|新奇|新奇|xīnqí|novel, newfangled, new, strange
+|無用|无用|wúyòng|wasted, useless
+|過境|过境|guòjìng|be in transit, pass through the territory of a country, be in transit (international travel), pass through a country's territory
+|飽受|饱受|bǎoshòu|suffer enough from, have one's fill of, be subject to, endure one's fill of, endure one's fill of (hardship)
+|網絡|网络|wǎngluò|meshwork, net, network, mesh, reticulation
+|著稱|著称|zhùchēng|be widely known as
+|寫照|写照|xiězhào|portraying, portrayal, depicting, representation, mirror, depiction, portraiture
+|惡|恶|è|evil
+|督促|督促|dūcù|supervise and urge
+|感嘆|感叹|gǎntàn|sigh, exclaim
+|源頭|源头|yuántóu|origin, wellspring, springhead, beginning, spring, well, fountainhead, root, source
+|壺|壶|hú|kettle, pot, bottle, flask
+|暫|暂|zhàn|temporary
+|標示|标示|biāoshì|designate, highlight
+|錢|钱|qián|Surname
+|零組件|零组件|língzǔjiàn|spare parts, spares, components
+|盡頭|尽头|jìntóu|vanishing_point, side, dead_end, vanishing point, end, nonplus, impasse, extremity
+|語言學|语言学|yǔyánxué|phonology, language, glossology, language learning, linguistic, philology, linguistics
+|普渡|普渡|pǔdù|save all beings
+|督促|督促|dūcù|supervise and urge
+|好奇心|好奇心|hàoqíxīn|curiosity
+|來自於|来自于|láizìyū|originate in, originate from, stem, come
+|走動|走动|zǒudòng|stump, visit each other, stretch one's legs, slope, ambulate, go, walk about, get around, navigate, get about
+|諒解|谅解|liàngjiě|understand, make allowance for
+|飲|饮|yǐn|drink, swallow (insults/etc.), be hit (by bullet/etc.)
+|天皇|天皇|tiānhuáng|the emperor of Japan, emperor, Mikado, mikado, emperor of Japan
+|儘|尽|jǐn|to the greatest extent, utmost
+|蒙|蒙|méng|cover
+|辣|辣|là|sharp, spicy, biting (of smell/taste), sharp, spicy, biting (of smell/taste)
+|慚愧|惭愧|cánkuì|be ashamed, ashamed, blush
+|榕樹|榕树|róngshù|small-fruited fig/banyan tree
+|模組|模组|mózǔ|module
+|山丘|山丘|shānqiū|hummock, height, eminence, swelling, hill, tomb, hillock
+|團圓|团圆|tuányuán|reunion
+|代表會|代表会|dàibiǎohuì|congress
+|燃料|燃料|ránliào|combustible, firing, fuel, elding, fueling, combustible material
+|歌仔戲|歌仔戏|gēzǎixì|Taiwan regional opera
+|憲政|宪政|xiànzhèng|constitutional government, constitutionalism
+|夢幻|梦幻|mènghuàn|chimera, languor, reverie, dreaminess, pipe_dream, dream, illusion, dreaming, translunary, somnolence
+|滑水|滑水|huáshuǐ|water-ski
+|結盟|结盟|jiéméng|form alliance, ally, align
+|舅舅|舅舅|jiùjiù|mother's brother, uncle
+|圓形|圆形|yuánxíng|circular, roundness, rondure, rotundity, round, circularity, wreath, circular shape
+|諒解|谅解|liàngjiě|understand, make allowance for
+|欠|欠|qiàn|yawn, be short of, lack, aught, wanting, slightly raise one's body, be not enough, raise slightly, lacking, owe, be behind with
+|倡導|倡导|chàngdǎo|lead, initiate, introduce, proposal, initiation, propose
+|繩子|绳子|shéngzi5|rope, string
+|覺悟|觉悟|juéwù|come to understand, realize
+|讚賞|赞赏|zànshǎng|applaud, praise, appreciate
+|額度|额度|édù|volume, limit
+|藝品|艺品|yìpǐn|work of art
+|分泌|分泌|fēnmì|secrete
+|上方|上方|shàngfāng|surface of, upward, upwards, above, on top, upper
+|王朝|王朝|wángcháo|reign, imperial court, dynasty, royal court, dynastic, imperial/royal court, imperial
+|北上|北上|běishàng|proceed/go northward
+|不自覺|不自觉|búzìjué|be not conscious/aware
+|由來|由来|yóulái|filiation, origin, pedigree, derivation, cause, causal agent, whence, causal agency
+|主計處|主计处|zhǔjìchù|Budget Accounting Statistics
+|日夜|日夜|rìyè|day and night
+|不盡|不尽|bújìn|not quite so
+|分泌|分泌|fēnmì|secrete
+|只不過|只不过|zhǐbúguò|only, just, merely
+|外圍|外围|wàiwéi|circumference, margin, periphery
+|少爺|少爷|shàoyé|childe, young master of the house, young son, child, Signorino, your son
+|北上|北上|běishàng|proceed/go northward
+|美滿|美满|měimǎn|happy, harmonious (of a family)
+|偏好|偏好|piānhào|be partial to sth.
+|清澈|清澈|qīngchè|limpid, clear
+|送來|送来|sònglái|deliver
+|船長|船长|chuánzhǎng|captain, skipper
+|晚年|晚年|wǎnnián|old age, one's later years
+|書局|书局|shūjú|bookstore, bookstall, press, publishing house, book company, bookshop
+|曹操|曹操|cáocāo|one of most celebrated figures in Three Kingdoms period
+|偏好|偏好|piānhào|be partial to sth.
+|偽造|伪造|wěizào|forge, counterfeit
+|海灣|海湾|hǎiwān|frith, estuary, gulf, bight, firth, loch, bay, fjord, sound, bayou, lough, arm, beach
+|倉儲|仓储|cāngchú|keep (grain/goods/etc.) in storehouse
+|音樂家|音乐家|yīnyuèjiā|musician
+|信息|信息|xìnxí|data, communication, message, information, news
+|知情|知情|zhīqíng|know the facts of a case
+|庫存|库存|kùcún|inventory, armory, armoury, reserve, stock
+|振興|振兴|zhènxīng|develop vigorously, promote
+|捏|捏|niē|trump up, mould, hold between the finger and thumb, knead with the fingers, hold between fingers, mold, knead, pinch, nip, work, fabricate
+|超出|超出|chāochū|overtop, surpass, exceed, outstep, outrun, forereach, transcend, overstep, go beyond, beyond, rise
+|中立|中立|zhōnglì|neutral
+|南管|南管|nánguǎn|Chinese tradtional instrument
+|結盟|结盟|jiéméng|form alliance, ally, align
+|勝過|胜过|shèngguò|be superior to
+|感冒|感冒|gǎnmào|common cold
+|振興|振兴|zhènxīng|develop vigorously, promote
+|盛會|盛会|shènghuì|distinguished gathering, grand meeting
+|塞納河|塞纳河|sènàhé|Seine_River
+|飽|饱|bǎo|having eaten one's fill, satisfied, stuffed, full, satisfy, plump, be full, satiated
+|飾演|饰演|shìyǎn|impersonate, act the part of, act, play part of, personate, play the role of, play, portray
+|奧林匹克|奥林匹克|àolínpīkè|Olympia, Olympic, Olimpic Games
+|準時|准时|zhǔnshí|punctual, punctually
+|過渡|过渡|guòdù|ferry stream
+|造勢|造势|zàoshì|create better situation
+|著實|着实|zhuóshí|really, indeed, severely
+|清洗|清洗|qīngxǐ|rinse, wash, purge
+|笙|笙|shēng|reed pipe wind instrument
+|清洗|清洗|qīngxǐ|rinse, wash, purge
+|將要|将要|jiāngyào|going to, will, shall
+|偽造|伪造|wěizào|forge, counterfeit
+|排定|排定|páidìng|arrange, put in order, sequence
+|追究|追究|zhuījiù|look into, find out, investigate
+|華文|华文|huáwén|Ch. language/script
+|呼應|呼应|hūyìng|echo, work in concert with
+|赤字|赤字|chìzì|shortfall, deficit, shortage, red, budget deficit, trade deficit
+|年級|年级|niánjí|grade, year (in school, etc.)
+|到場|到场|dàochǎng|turn_out, be present, turn out, turn up, show up
+|自家|自家|zìjiā|oneself
+|向善|向善|xiàngshàn|do good turns
+|西裝|西装|xīzhuāng|business suit, lounge suit, Western-style clothes, double breasted suit, single breasted suit, two piece suit, three piece suit
+|多加|多加|duōjiā|in addition, moreover
+|受難|受难|shòunàn|suffer calamities, be in distress, suffer disaster, suffer calamity
+|洪水|洪水|hóngshuǐ|cataclysm, freshet, floodwater, flood, deluge, overflow, outpouring, alluvion, inundation, spate
+|技法|技法|jìfǎ|skill and technique, technique and method
+|多寡|多寡|duōguǎ|number, amount
+|形勢|形势|xíngshì|aspect, lie, tide, state of affairs, state_of_affairs, contour, complexion, terrain, circumstances, topographical features, situation, outlook, posture, position, topological features
+|京都|京都|jīngdū|capital of a country, Kyoto (Jp.), Kyoto
+|呼應|呼应|hūyìng|echo, work in concert with
+|防守|防守|fángshǒu|defend, guard
+|江|江|jiāng|Surname
+|些許|些许|xiēxǔ|littleness, det.: a little, thought, groat, a few, a bit
+|竹林|竹林|zhúlín|bamboo forest/grove, bamboo forest, grove, bamboo grove
+|防守|防守|fángshǒu|defend, guard
+|法務部|法务部|fǎwùbù|Ministry of Justice
+|步伐|步伐|bùfá|marching, gait, walking, foot, footing, march, pace, cadence, step
+|經理人|经理人|jīnglǐrén|handler, operator, syndic, impresario
+|發脾氣|发脾气|fāpíqì|angry, be cross, lose one's temper, lose temper, get worked up, forget, get angry, be peevish
+|想出|想出|xiǎngchū|formulate, excogitate, devise, recur, figure_out, invent, contrive, work out, call to mind, puzzle_out, project, dope, evolve, think_up, forge, drum_up, originate, think, think_of, think of
+|喘|喘|chuǎn|gasp for breath, pant
+|端|端|duān|hold sth. level, carry
+|腎|肾|shèn|kidney
+|照樣|照样|zhàoyàng|after a model, after a pattern, as_usual, likewise, in the same old way, as before, model
+|麻痺|麻痺|mábì|torpify, slacken vigilance, anesthetize, blunt, paralytic, slumber, benumb
+|漲停|涨停|zhǎngtíng|Limit Up
+|傳真|传真|chuánzhēn|fax
+|歷時|历时|lìshí|occupy, take (a period of time), last, take, use up
+|筷子|筷子|kuàizi5|chopsticks
+|做愛|做爱|zuòài|make love
+|預訂|预订|yūdìng|set, place an order, book, subscribe, book_up, reserve, speak_for, hold, book up, subscription
+|銅像|铜像|tóngxiàng|bronze statue
+|趕上|赶上|gǎnshàng|emulate, happen to, overtake, run into, forereach, catch up with, run into (situation), catch_up, meet up with, catch up, pull_up, be in time for, catch_up_with, catch, overhaul, make
+|報章|报章|bàozhāng|newspapers
+|連忙|连忙|liánmáng|promptly, at once
+|救援|救援|jiùyuán|rescue, come to sb.'s help
+|粗糙|粗糙|cūcào|coarse, rough, crude
+|大腦|大脑|dànǎo|brain, cerebral, encephalon, cerebrum
+|機票|机票|jīpiào|plane ticket
+|接送|接送|jiēsòng|receive and send off (guests/visitors)
+|添加|添加|tiānjiā|add, increase
+|酒吧|酒吧|jiǔbā|bar
+|處分|处分|chǔfèn|discipline/punish sb.
+|惡鬼|恶鬼|èguǐ|bogie, goblin, monster, bogy, cacodemon, demon, hobgoblin, hellhound, bogey
+|純樸|纯朴|chúnpú|honest, simple, unsophisticated
+|做愛|做爱|zuòài|make love
+|票房|票房|piàofáng|booking/box office
+|時程|时程|shíchéng|schedule
+|盛大|盛大|shèngdà|grand, magnificent
+|添加|添加|tiānjiā|add, increase
+|單價|单价|dānjià|unit price
+|送醫|送医|sùyī|be sent to hospital
+|內戰|内战|nèizhàn|civil_war, civil war
+|功勞|功劳|gōngláo|service, meritorious service, merit, meritoriousness, credit, contribution, exploit, deservingness
+|出擊|出击|chūjí|launch attack, make sally
+|大軍|大军|dàjūn|army, great concentration of troops, large contingent, main force, battalion, legion
+|外海|外海|wàihǎi|open sea
+|介於|介于|jièyū|be situated in between
+|位址|位址|wèizhǐ|location, address
+|出擊|出击|chūjí|launch attack, make sally
+|天文學|天文学|tiānwénxué|astronomy
+|工商業|工商业|gōngshāngyè|industry and commerce
+|舉止|举止|jǔzhǐ|dispose, ongoing, demeanor, deportment, mien, behavior, conduct, manner, goings-on, carriage, demeanour, address, setup, comportment, guise, going, bearing, sort
+|瀰漫|瀰漫|mímàn|fill the air, spread everywhere
+|攝|摄|shè|absorb, assimilate, take photograph of, shoot, conserve (one's health), act for
+|禮儀|礼仪|lǐyí|ceremony, courtesy, code, form, properness, correctitude, propriety, protocol, etiquette, ceremonial, amenity, decorum, decency, rite, devoir
+|強硬|强硬|qiángyìng|strong, tough, unyielding
+|高出|高出|gāochū|be higher/taller than
+|打獵|打猎|dǎliè|hunt
+|總工會|总工会|zǒnggōnghuì|federation of trade unions
+|審美|审美|shěnměi|appreciate beauty
+|噢|噢|òu|of surprised understanding
+|箭|箭|jiàn|arrow
+|像|像|xiàng|portrait, picture
+|精靈|精灵|jīnglíng|spirit, demon
+|幕後|幕后|mùhòu|background, backcloth, scene, backstage, behind the scenes, backdrop
+|小徑|小径|xiǎojìng|back street, path, lane, defile, footpath, close, trackway, alley, alleyway, trail, narrow path
+|廣闊|广阔|guǎngkuò|vast, capacious, broad
+|午後|午后|wǔhòu|PM, P.M., pm, post meridiem, afternoon, evening, postmeridian
+|截然不同|截然不同|jiéránbùtóng|sharply/completely different
+|賣壓|卖压|màiyā|Selling Climax
+|不予|不予|bùyǔ|not grant
+|打入|打入|dǎrù|throw into, infiltrate
+|支票|支票|zhīpiào|cheque, chequer, (bank) check, bank check, check
+|一般性|一般性|yībānxìng|universality, generic, Oxbridge, universalism, generality, vague generalization, universal, universal joint
+|據悉|据悉|jùxī|it is reported, it is reported that...
+|樂意|乐意|lèyì|willing, be willing, be willing to, be willing/ready to, be ready to
+|辛勤|辛勤|xīnqín|industrious, hardworking
+|甚為|甚为|shènwéi|extremely, very, even, exceeding, vitally, much
+|事業部|事业部|shìyèbù|business department/ministry
+|抄襲|抄袭|chāoxí|plagiarize, indiscriminately copy from others
+|孤單|孤单|gūdān|solitary, friendless, alone
+|尖峰|尖峰|jiānfēng|peak, highest peak
+|列|列|liè|m.[general]
+|沉默|沉默|chénmò|reticent, taciturn, silent
+|抑或|抑或|yìhuò|conj.: or else, could it be that...?
+|立足|立足|lìzú|have a footing, stand
+|辛勤|辛勤|xīnqín|industrious, hardworking
+|沉默|沉默|chénmò|reticent, taciturn, silent
+|直覺|直觉|zhíjué|intuition
+|空虛|空虚|kōngxū|hollow, void, devoid of meaning
+|重慶|重庆|chóngqìng|city in Sichuan
+|空虛|空虚|kōngxū|hollow, void, devoid of meaning
+|封鎖|封锁|fēngsuǒ|blockade, block, seal off
+|名次|名次|míngcì|position in a name list, position, place, place in a competition
+|有利於|有利于|yǒulìyū|support, facilitate, profit, advantage, be advantageous, help, beneficial at
+|往返|往返|wǎngfǎn|go and return
+|江南|江南|jiāngnán|south of the river, area south of Yangtze
+|注視|注视|zhùshì|watch attentively, gaze at
+|淨化|淨化|jìnghuà|purify
+|江湖|江湖|jiānghú|rivers and lakes, all corners of the country
+|沒落|没落|mòluò|decline, wane
+|伊朗|伊朗|yīlǎng|Iran
+|成語|成语|chéngyǔ|set phrase, phrase, phrasal idiom, idiomatic expression, parlance, set_phrase, idiom
+|抄襲|抄袭|chāoxí|plagiarize, indiscriminately copy from others
+|企管|企管|qìguǎn|enterprise management
+|往返|往返|wǎngfǎn|go and return
+|身後|身后|shēnhòu|behind, in the rear, behind/at the back
+|沒落|没落|mòluò|decline, wane
+|攸關|攸关|yōuguān|affect, be related to
+|伙伴|伙伴|huǒbàn|feller, associate, group, sodality, coagent, crony, butty, colleague, confrere, mate, lad, crew_member, sport, helpmeet, pard, fellow, coachfellow, haver, sidekick, consort, rival, coadjutor, stooge, associator, pal, teammate, cully, familiar, supporter, adherent, companion, gossip, fellowship, compeer, compadre, paisano, matey, hearty, copemate, cocker, bedfellow, marrow, cobber, buddy, par
+|豈不|岂不|qǐbù|how couldn't/wouldn't
+|粗糙|粗糙|cūcào|coarse, rough, crude
+|飛毛腿|飞毛腿|fēimáotuǐ|fleet-footed, fleet-footed runner
+|初次|初次|chūcì|for the first time
+|砍伐|砍伐|kǎnfā|fell (trees)
+|消|消|xiāo|removal, disappearance, need, efface, disappear, elimination, while away, pass the time in a leisurely way, dispel, remove, while away (time), take, eliminate, annul, slake, vanish
+|祭拜|祭拜|jìbài|worship
+|陶藝|陶艺|táoyì|ceramics
+|流域|流域|liúyū|river_basin, drainage area, drainage basin, valley, river basin, basin, drainage, water system, catchment, watershed, catchment basin, catchment area
+|純樸|纯朴|chúnpú|honest, simple, unsophisticated
+|配上|配上|pèishàng|group, pair
+|淨化|淨化|jìnghuà|purify
+|救援|救援|jiùyuán|rescue, come to sb.'s help
+|浪|浪|làng|furlong, breaker, wave, storm, billow
+|寂靜|寂静|jíjìng|quiet, still
+|青蛙|青蛙|qīngwā|frog
+|吸取|吸取|xīqǔ|sop, take in, absorption, absorb, imbibe, assimilate, sop up, suck, drag, take up, draw, drink_in, suck up, puff, soak up, assimilation
+|起身|起身|qǐshēn|get/stand up, leave, start (journey)
+|治好|治好|zhìhǎo|heal, cure, restore health
+|星座|星座|xīngzuò|sign of the zodiac, sign, star, mansion, planetary house, constellation, asterism, house
+|猛|猛|měng|fierce, valiant, fearsome, severe
+|俟|俟|sì|wait
+|狩獵|狩猎|shòuliè|jack, run, track down, hunting, hunt, gun, hunt down
+|板塊|板块|bǎnkuài|plate, tectonic plate
+|封鎖|封锁|fēngsuǒ|blockade, block, seal off
+|砍伐|砍伐|kǎnfā|fell (trees)
+|飛行員|飞行员|fēixíngyuán|skyman, birdman, pilot, flyboy, flier, airman, aeronaut, flyer, aviator
+|花卉|花卉|huāhuì|blossom, painting of flowers/plants, painting of plants, flower, plants, flowering plant, bloom, flowers and plants, painting of flowers
+|家門|家门|jiāmén|door of house, clan, household, family
+|抱歉|抱歉|bàoqiàn|feel apologetic, regret, apologetic, be sorry, be sorry/apologetic, be apologetic, sorry
+|迫害|迫害|pòhài|persecute
+|南洋|南洋|nányáng|Southeast China coastal provinces, Malay archipelago, South Sea, South Asia, South Seas
+|便捷|便捷|biànjié|convenient, facile
+|迫害|迫害|pòhài|persecute
+|便捷|便捷|biànjié|convenient, facile
+|補救|补救|bǔjiù|remedy
+|發包|发包|fābāo|put out to contract
+|過分|过分|guòfèn|excessive, undue
+|經過|经过|jīngguò|process, course
+|農人|农人|nóngrén|redneck, farmer
+|塗|涂|tú|spread on, overlay, blot out, smear, bedaub, put on, apply, imbrue, besmear, paste, scrawl, scribble, application, cross out
+|漢語|汉语|hànyǔ|Chinese/Sinitic language(s), Chinese, Sinitic language, Chinese language, Sinitic, Sinitic language(s)
+|豬公|猪公|zhūgōng|pig, hog, swine
+|聚落|聚落|jùluò|station, village, settlement, dwelling place, town
+|漫畫家|漫画家|mánhuàjiā|caricaturist, distortionist, cartoonist
+|演練|演练|yǎnliàn|drill, practice
+|稀少|稀少|xīshǎo|few, rare, scarce
+|審理|审理|shěnlǐ|try, hear (case)
+|漢字|汉字|hànzì|Sinogram, kanji, sinograph, Chinese character, Ch. character
+|審理|审理|shěnlǐ|try, hear (case)
+|隔|隔|gé|at a distance from, after an interval of
+|揚言|扬言|yángyán|blazon, broadcast threats, threaten
+|農家|农家|nóngjiā|peasant family
+|補救|补救|bǔjiù|remedy
+|結晶|结晶|jiéjīng|crystallisation, crystal, crystalline, crystallization
+|補償|补偿|bǔcháng|remedy, recompense
+|發包|发包|fābāo|put out to contract
+|氣憤|气愤|qìfèn|angry, furious
+|挨|挨|āi|suffer, endure
+|強暴|强暴|qiángbào|rape
+|認可|认可|rènkě|approve
+|樣本|样本|yàngběn|example, exemplar, pattern, representative, sample book, specimen, instance, individual, stylebook, illustration, sample, piece, model
+|氣憤|气愤|qìfèn|angry, furious
+|強暴|强暴|qiángbào|rape
+|無辜|无辜|wúgū|guiltless, innocent
+|機型|机型|jīxíng|aircraft type
+|浮動|浮动|fúdòng|float, drift, be unsteady, fluctuate
+|挨|挨|āi|suffer, endure
+|反攻|反攻|fǎngōng|counterstrike, counterattack, react, counteroffensive
+|一舉|一举|yījǔ|at one stroke
+|公然|公然|gōngrán|publically, brazenly, publicly, professedly, openly, in public
+|大二|大二|dàèr|sophomore
+|不由得|不由得|bùyóude5|can't help
+|去除|去除|qùchú|disembarrass, unclothe, cure, eradicate, clear_away, sublate, shake_off, shift, free, remove, eliminate, dismiss, weed out, clear, do_away_with, rid, seed, get_rid_of, pick, molt, get rid of, remedy, knock, exorcize, shunt
+|人氣|人气|rénqì|limelight
+|天主教|天主教|tiānzhǔjiào|papistry, Roman Catholicism, provincial, papism, catholicity, Catholicism, catholicism, Romanism, Catholic
+|心疼|心疼|xīnténg|feel sorry, love, love dearly, make one's heart ache
+|口腔|口腔|kǒuqiāng|oral_cavity, stomatological, oral, oral cavity
+|認得|认得|rèndé|know, recognition, acknowledge, recognize, be acquainted with
+|擬訂|拟订|nǐdìng|draw up, formulate
+|精|精|jīng|perfect, excellent, refined, meticulous, precise, sharp, clever, shrewd, skilled, conversant, proficient
+|認可|认可|rènkě|approve
+|誤以為|误以为|wùyǐwéi|mistake, misapprehension
+|鞋|鞋|xié|heel, shoes, boot, shoe
+|稿|稿|gǎo|original text, original, stalk of grain, manuscript, stalk of cereal crops, (rough) draft, sketch, draft, straw
+|蒸汽|蒸汽|zhēngqì|reek, evaporation, vapor, steam, vaporish, vapour, water vapor
+|篩選|筛选|shāixuǎn|sift through, cull
+|墓|墓|mù|grave, tomb, mausoleum
+|諾貝爾|诺贝尔|nuòbèiěr|Noble, Nobel, Nobel Alfred Bernhard
+|精神科|精神科|jīngshénkē|Department of Psychiatry
+|慶典|庆典|qìngdiǎn|blowout, celebration, festa, gala, national celebration, potlatch, jamboree, festivity, commemoration, gala affair
+|導覽|导览|dǎolǎn|conduct sightseeing tour
+|管理處|管理处|guǎnlǐchù|management (office), administration
+|課長|课长|kèzhǎng|section chief
+|市公所|市公所|shìgōngsuǒ|public affairs office, administrative office
+|命名|命名|mìngmíng|name (sb./sth.)
+|侵蝕|侵蚀|qīnshí|corrode, erode
+|花草|花草|huācǎo|flowers and plants
+|東北|东北|dōngběi|the northeast
+|浮動|浮动|fúdòng|float, drift, be unsteady, fluctuate
+|派遣|派遣|pàiqiǎn|station, base, detail, detach, post, send, dispatch, send off, mission, despatch, place
+|拉開|拉开|lākāi|draw_away, space out, pull open, draw away, undraw, draw back, pull_off, draw, draw off, pull off, unfurl, draft
+|法定|法定|fǎdìng|constitutional, legal, statutory, lawful, legitimate
+|交涉|交涉|jiāoshè|negotiate, make representations
+|吃驚|吃惊|chījīng|stagger, scare, affright, be surprised, galvanize, fright, be startled, shocked, frighten, be shocked/amazed, frightened, be taken aback, startle, be shocked, amazed, start, be amazed, jump
+|有害|有害|yǒuhài|disagree with, harmful, pernicious, detrimental, disagree_with
+|呆|呆|dāi|idiotic, stay, silly, maladroit, blank, be, foolish
+|吾人|吾人|wúrén|we
+|計|计|jì|count, compute, calculate
+|命名|命名|mìngmíng|name (sb./sth.)
+|自然而然|自然而然|zìránérrán|naturally, of oneself, spontaneously, automatically
+|定時|定时|dìngshí|fix a time
+|每每|每每|měiměi|often, invariably
+|回味|回味|huíwèi|live over, call sth. to mind and ponder over it, relive, recall sth. and ponder it
+|呈現出|呈现出|chéngxiànchū|present, appear, emerge
+|收盤|收盘|shōupán|closing quotation (on exchange/etc.)
+|年少|年少|niánshào|young of age
+|快門|快门|kuàimén|camera shutter
+|妥當|妥当|tuǒdàng|appropriate, proper
+|忍心|忍心|rěnxīn|unfeeling, be hardhearted enough to, have the heart to
+|判定|判定|pàndìng|judge, determine
+|政治家|政治家|zhèngzhìjiā|politician, solon, statesman, national leader, statist
+|氣流|气流|qìliú|breath, draught, overdraft, air_current, airstream, windage, air current, airflow, draft
+|交涉|交涉|jiāoshè|negotiate, make representations
+|救濟|救济|jiùjì|relieve, succor
+|判定|判定|pàndìng|judge, determine
+|香港人|香港人|xiānggǎngrén|Hong Konger
+|陸地|陆地|lùdì|terrene, ground, earth, shore, landfall, solid ground, terra_firma, dry_land, terra firma, continent, dry land, land, terrestrial
+|租金|租金|zūjīn|reprise, hire, letting, charterage, rental, rent, paycheck, borrowing cost
+|最終|最终|zuìzhōng|last, final
+|救濟|救济|jiùjì|relieve, succor
+|接手|接手|jiēshǒu|take over (duties/etc.)
+|陶器|陶器|táoqì|lathe, clayware, crockery, pottery, ceramic, ware, china, jug, earthen, earthenware, ceramics
+|紳士|绅士|shēnshì|gentlemen, gentry
+|殺手|杀手|shāshǒu|hit man, killer, able person
+|深信|深信|shēnxìn|firmly believe
+|神色|神色|shénsè|aspect, expression, look
+|宣揚|宣扬|xuānyáng|publicize, propagate, advertise
+|夏|夏|xià|Surname
+|炸彈|炸弹|zhàdàn|bomb
+|所及|所及|suǒjí|from what one reaches
+|放眼|放眼|fàngyǎn|take broad view, scan widely
+|建設局|建设局|jiànshèjú|Department of Economic Development
+|炸|炸|zhà|saute, explosion, scamper, explode, blast, fry, flare up, deep-fry, blow up, fly into rage, flee in terror, bomb, burst
+|明瞭|明瞭|míngliǎo|take_in, clarify, be clear about, understand, manifest
+|青睞|青睐|qīnglài|favor, good graces
+|紅包|红包|hóngbāo|payola, payoff, kickback, bonus, bribe, red paper bag with gift money
+}}
