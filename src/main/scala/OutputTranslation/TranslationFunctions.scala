@@ -18,7 +18,7 @@ object TranslationFunctions {
       case 4 => TranslationFunctions3.generateReadyCodeForFour(unambigous)
       case 5 => TranslationFunctions3.generateReadyCodeForFive(unambigous)
       case n if n > 5 => TranslationFunctions3.generateReadyCodeOverSix(unambigous)
-      case _ => throw IllegalArgumentException("translateVersionOne" + " does not have any codes")
+      //case _ => throw IllegalArgumentException("translateVersionOne" + " does not have any codes")
     }
   }
 /*

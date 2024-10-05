@@ -49,7 +49,7 @@ class ElementEditor {
 
       val unambigWithInitialLetters: Set[ConwayUnambigous]  =  withInitial.map(new ConwayUnambigous(_, is4Code = true))
       val unambig52: Set[ConwayUnambigous] = withInputSize52.map(new ConwayUnambigous(_, is4Code = false))
-      val combined = unambigWithInitialLetters //unambig52 ++ unambigWithInitialLetters
+      val combined = unambig52 ++ unambigWithInitialLetters
       val res: StaticFileCharInfoWithLetterConway = new StaticFileCharInfoWithLetterConway(charIfo, combined)
       return res
     }

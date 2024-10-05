@@ -31,12 +31,12 @@ object TranslationFunctions3 {
     val combinations: List[List[ConwayUnambigous]] = generateCombinations(unambigous)
     var res: mutable.Set[String] = mutable.Set[String]()
     for (conLi <- combinations) {
-      val part1: String = getFirstAndLast(conLi(0))
+      val part1: String = getFirst(conLi(0))
       val part2: String = getFirstAndLast(conLi(1))
       val part3: String = getFirstAndLast(conLi(2))
       res.add(part1 + part2 + part3)
     }
-    val finalRes = padStrings(res.toSet, 6)
+    val finalRes = padStrings(res.toSet, 5)
     return finalRes
   }
 
@@ -47,11 +47,11 @@ object TranslationFunctions3 {
     for (conLi <- combinations) {
       val part1: String = getFirst(conLi(0))
       val part2: String = getFirst(conLi(1))
-      val part3: String = getFirstAndLast(conLi(2))
+      val part3: String = getFirst(conLi(2))
       val part4: String = getFirstAndLast(conLi(3))
       res.add(part1 + part2 + part3 + part4)
     }
-    val finalRes = padStrings(res.toSet, 6)
+    val finalRes = padStrings(res.toSet, 5)
     return finalRes
   }
 
@@ -64,10 +64,10 @@ object TranslationFunctions3 {
       val part2: String = getFirst(conLi(1))
       val part3: String = getFirst(conLi(2))
       val part4: String = getFirst(conLi(3))
-      val part5: String = getFirstAndLast(conLi(4))
+      val part5: String = getFirst(conLi(4))
       res.add(part1 + part2 + part3 + part4 + part5)
     }
-    val finalRes = padStrings(res.toSet, 6)
+    val finalRes = padStrings(res.toSet, 5)
     return finalRes
   }
 
@@ -80,10 +80,10 @@ object TranslationFunctions3 {
       val part3: String = getFirst(conLi(2))
       val part4: String = getFirst(conLi(3))
       val part5: String = getFirst(conLi(4))
-      val part6: String = getFirst(conLi(5))
-      res.add(part1 + part2 + part3 + part4 + part5 + part6)
+      //val part6: String = getFirst(conLi(5))
+      res.add(part1 + part2 + part3 + part4 + part5) //+ part6)
     }
-    val finalRes = padStrings(res.toSet, 6)
+    val finalRes = padStrings(res.toSet, 5)
     return finalRes
   }
 

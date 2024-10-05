@@ -32,6 +32,48 @@ class OutputOverlapTest extends AnyFlatSpec with Matchers {
         }
       }.toSeq: _*)
 
+  //sinicaCharsBeyond9
+  val sinicaJundaAboveNineFourCode: List[(String, String, Int)] =
+    jundaAboveNine.filter(y => y._1.size == 4).flatMap { case (key, entries) =>
+      for {
+        firstEntry <- entries.headOption
+        sinicaOption: Int = firstEntry.sinicaOption.map(_.ordinal).getOrElse(999999)//firstGrapheme <- firstEntry.jundaReverseOrder.headOption
+        //jundaData <- firstGrapheme.junda
+      } yield (key, firstEntry.chineseStr, sinicaOption)
+    }.toList.sortBy { case (key, chineseStr, sinicaOption) => (sinicaOption, key, chineseStr) }
+
+  val sinicaJundaAboveNineFiveCode: List[(String, String, Int)] =
+    jundaAboveNine.filter(y => y._1.size == 5).flatMap { case (key, entries) =>
+      for {
+        firstEntry <- entries.headOption
+        sinicaOption: Int = firstEntry.sinicaOption.map(_.ordinal).getOrElse(999999)
+        //firstGrapheme <- firstEntry.jundaReverseOrder.headOption
+        //jundaData <- firstGrapheme.junda
+      } yield (key, firstEntry.chineseStr, sinicaOption)
+    }.toList.sortBy { case (key, chineseStr, sinicaOption) => (sinicaOption, key, chineseStr) }
+
+  val sinicaTzaiAboveNineFourCode: List[(String, String, Int)] =
+      tzaiAboveNine.filter(y => y._1.size == 4).flatMap { case (key, entries) =>
+        for {
+          firstEntry <- entries.headOption
+          sinicaOption: Int = firstEntry.sinicaOption.map(_.ordinal).getOrElse(999999)
+          //firstGrapheme <- firstEntry.jundaReverseOrder.headOption
+          //jundaData <- firstGrapheme.junda
+        } yield (key, firstEntry.chineseStr, sinicaOption)
+      }.toList.sortBy { case (key, chineseStr, sinicaOption) => (sinicaOption, key, chineseStr) }
+
+
+  val sinicaTzaiAboveNineFiveCode: List[(String, String, Int)] =
+    tzaiAboveNine.filter(y => y._1.size == 5).flatMap { case (key, entries) =>
+      for {
+        firstEntry <- entries.headOption
+        sinicaOption: Int = firstEntry.sinicaOption.map(_.ordinal).getOrElse(999999)
+        //firstGrapheme <- firstEntry.jundaReverseOrder.headOption
+        //jundaData <- firstGrapheme.junda
+      } yield (key, firstEntry.chineseStr, sinicaOption)
+    }.toList.sortBy { case (key, chineseStr, sinicaOption) => (sinicaOption, key, chineseStr) }
+
+
   // 4 codes - or less
 
   val fourCodeOrLessJunda: SortedMap[String, List[OutputEntry]] = jundaAboveNine.filter(x => x._1.size <= 4)
@@ -96,14 +138,28 @@ class OutputOverlapTest extends AnyFlatSpec with Matchers {
       } yield (key, tzaiData.ordinal, firstEntry.chineseStr)
     }.toList.sortBy { case (key, ordinal, chinese) => (ordinal, key, chinese) }
 
-  val test = ""
+  
+  it should "check that junda sinica is low, ie. most frequent sinica words a below 9" in {
+    val sinicafour = sinicaJundaAboveNineFourCode
+    val sinicafive = sinicaJundaAboveNineFiveCode
+    sinicafour.length shouldBe 60
+    sinicafive.length shouldBe 191
+    val test = ""
+  }
 
+  it should "check that tzai sinica is low, ie. most frequent sinica words a below 9" in {
+    val sinicafour = sinicaTzaiAboveNineFourCode
+    val sinicafive = sinicaTzaiAboveNineFiveCode
+    sinicafour.length shouldBe 117
+    sinicafive.length shouldBe 185
+    val test = ""
+  }
 
   it should "check 6 codes" in {
     val jundaTest = sixJundaPair
     val tzaiTest = sixTzaiPair
-    jundaTest.size shouldBe 0
-    tzaiTest.size shouldBe 0
+    jundaTest.size shouldBe 3
+    tzaiTest.size shouldBe 18
     val test = ""
   }
 

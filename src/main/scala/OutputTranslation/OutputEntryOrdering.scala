@@ -15,8 +15,18 @@ object OutputEntryOrdering {
   // Obtain the ordering for OutputEntry based on the primary character system
   def entryOrdering(primaryCharSystem: CharSystem): Ordering[OutputEntry] = new Ordering[OutputEntry] {
     override def compare(x: OutputEntry, y: OutputEntry): Int = {
+      val xGraphemes = Grapheme.splitIntoGraphemes(x.chineseStr)
+      val yGraphemes = Grapheme.splitIntoGraphemes(y.chineseStr)
+      //checkReverseOrderLength(x)
+      //checkReverseOrderLength(y)
+
+      // If x should be sorted last and y shouldn't, return 1
+      if ((xGraphemes.length == 2) && !(yGraphemes.length == 2)) return 1
+
+      // If y should be sorted last and x shouldn't, return -1
+      if (!(xGraphemes.length == 2) && (yGraphemes.length == 2)) return -1
+
       // Get primary and secondary orders
-      
       val primaryOrderX = getGraphemeOrdering(x, primaryCharSystem).getOrElse(Int.MaxValue)
       val primaryOrderY = getGraphemeOrdering(y, primaryCharSystem).getOrElse(Int.MaxValue)
 
@@ -39,6 +49,17 @@ object OutputEntryOrdering {
       
       x.chineseStr.compareTo(y.chineseStr)
     }
+  }
+
+  private def checkReverseOrderLength(entry: OutputEntry): Unit = {
+    if (entry.jundaReverseOrder.length != entry.tzaiReverseOrder.length) {
+      throw new IllegalArgumentException("inpjundaReverseOrder and inptzaiReverseOrder have different lengths")
+    }
+  }
+
+  // Method to determine if an entry should be sorted last
+  private def shouldSortLast(entry: OutputEntry): Boolean = {
+    entry.jundaReverseOrder.length == 2 && entry.tzaiReverseOrder.length == 2
   }
 
   // Retrieve the grapheme ordering based on the char system

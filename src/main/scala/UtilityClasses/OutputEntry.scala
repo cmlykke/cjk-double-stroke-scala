@@ -1,5 +1,9 @@
 package UtilityClasses
 
+import staticFileGenerators.Academiasinica.{GenerateSinicaMap, SinicaData}
+
+import scala.collection.mutable.LinkedHashMap
+
 class OutputEntry(inputChineseStr: String,
                   inputMeaning: String,
                   inputPronounciation: String,
@@ -14,6 +18,7 @@ class OutputEntry(inputChineseStr: String,
   val jundaReverseOrder: List[Grapheme] = inpjundaReverseOrder
   val tzaiReverseOrder: List[Grapheme] = inptzaiReverseOrder
   val codes: Set[String] = inpcodes
+  val sinicaOption: Option[SinicaData] = OutputEntry.sinicaMap.get(inputChineseStr)
 
   override def equals(obj: Any): Boolean = obj match {
     case g: OutputEntry => g.chineseStr == this.chineseStr
@@ -21,4 +26,8 @@ class OutputEntry(inputChineseStr: String,
   }
 
   override def hashCode(): Int = chineseStr.hashCode
+}
+
+object OutputEntry {
+  val sinicaMap: LinkedHashMap[String, SinicaData] = GenerateSinicaMap.sinicaMap
 }
