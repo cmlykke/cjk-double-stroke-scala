@@ -1,6 +1,8 @@
 package UtilityClasses
 
 import staticFileGenerators.Academiasinica.{GenerateSinicaMap, SinicaData}
+import staticFileGenerators.BLCUmap.{GenerateBLCUmap, BLCUData}
+
 
 import scala.collection.mutable.LinkedHashMap
 
@@ -19,7 +21,8 @@ class OutputEntry(inputChineseStr: String,
   val tzaiReverseOrder: List[Grapheme] = inptzaiReverseOrder
   val codes: Set[String] = inpcodes
   val sinicaOption: Option[SinicaData] = OutputEntry.sinicaMap.get(inputChineseStr)
-
+  val BCLUoption: Option[BLCUData] = OutputEntry.BCLUmap.get(inputChineseStr)
+  
   override def equals(obj: Any): Boolean = obj match {
     case g: OutputEntry => g.chineseStr == this.chineseStr
     case _           => false
@@ -30,4 +33,5 @@ class OutputEntry(inputChineseStr: String,
 
 object OutputEntry {
   val sinicaMap: LinkedHashMap[String, SinicaData] = GenerateSinicaMap.sinicaMap
+  val BCLUmap: LinkedHashMap[String, BLCUData] = GenerateBLCUmap.blcuMap
 }
