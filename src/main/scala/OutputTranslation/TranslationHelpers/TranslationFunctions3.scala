@@ -24,7 +24,15 @@ object TranslationFunctions3 {
       res.add(part1+part2)
     }
     val finalRes = setToLength(res.toSet, 5)
-    return finalRes
+
+    var res2: mutable.Set[String] = mutable.Set[String]()
+    for (conLi <- combinations) {
+      val part3: String = getFirst(conLi(0))
+      val part4: String = getFirstAndLast(conLi(1))
+      res2.add(part3 + part4)
+    }
+    val finalRes2 = setToLength(res2.toSet, 3)
+    return finalRes union finalRes2
   }
 
   def generateReadyCodeForThree(unambigous: List[Set[ConwayUnambigous]]): Set[String] = {

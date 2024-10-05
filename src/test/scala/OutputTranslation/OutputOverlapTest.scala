@@ -32,6 +32,16 @@ class OutputOverlapTest extends AnyFlatSpec with Matchers {
         }
       }.toSeq: _*)
 
+  val BLCUjundaAboveNineThreeCode: List[(String, String, Int)] =
+    jundaAboveNine.filter(y => y._1.size <= 3).flatMap { case (key, entries) =>
+      for {
+        firstEntry <- entries.headOption
+        BCLUOption: Int = firstEntry.BCLUoption.map(_.ordinal).getOrElse(9999999) //firstGrapheme <- firstEntry.jundaReverseOrder.headOption
+        //jundaData <- firstGrapheme.junda
+      } yield (key, firstEntry.chineseStr, BCLUOption)
+    }.toList.sortBy { case (key, chineseStr, sinicaOption) => (sinicaOption, key, chineseStr) }
+
+
   val BLCUjundaAboveNineFourCode: List[(String, String, Int)] =
     jundaAboveNine.filter(y => y._1.size == 4).flatMap { case (key, entries) =>
       for {
@@ -49,7 +59,16 @@ class OutputOverlapTest extends AnyFlatSpec with Matchers {
         //jundaData <- firstGrapheme.junda
       } yield (key, firstEntry.chineseStr, BCLUOption)
     }.toList.sortBy { case (key, chineseStr, sinicaOption) => (sinicaOption, key, chineseStr) }
-
+  
+  val BLCUTzaiAboveNineThreeCode: List[(String, String, Int)] =
+    tzaiAboveNine.filter(y => y._1.size <= 3).flatMap { case (key, entries) =>
+      for {
+        firstEntry <- entries.headOption
+        BCLUOption: Int = firstEntry.BCLUoption.map(_.ordinal).getOrElse(9999999) //firstGrapheme <- firstEntry.jundaReverseOrder.headOption
+        //jundaData <- firstGrapheme.junda
+      } yield (key, firstEntry.chineseStr, BCLUOption)
+    }.toList.sortBy { case (key, chineseStr, sinicaOption) => (sinicaOption, key, chineseStr) }
+  
   val BLCUTzaiAboveNineFourCode: List[(String, String, Int)] =
     tzaiAboveNine.filter(y => y._1.size == 4).flatMap { case (key, entries) =>
       for {
@@ -67,7 +86,6 @@ class OutputOverlapTest extends AnyFlatSpec with Matchers {
         //jundaData <- firstGrapheme.junda
       } yield (key, firstEntry.chineseStr, BCLUOption)
     }.toList.sortBy { case (key, chineseStr, sinicaOption) => (sinicaOption, key, chineseStr) }
-
 
   //sinicaCharsBeyond9
   val sinicaJundaAboveNineFourCode: List[(String, String, Int)] =
@@ -175,15 +193,19 @@ class OutputOverlapTest extends AnyFlatSpec with Matchers {
       } yield (key, tzaiData.ordinal, firstEntry.chineseStr)
     }.toList.sortBy { case (key, ordinal, chinese) => (ordinal, key, chinese) }
 
+  
   it should "check that junda BCLU is low, ie. most frequent BCLU words a below 9" in {
+    val BCLUthree = BLCUjundaAboveNineThreeCode //BLCUJundaAboveNineThreeCode
     val BCLUfour = BLCUjundaAboveNineFourCode
     val BCLUfive = BLCUJundaAboveNineFiveCode
+    BCLUthree.length shouldBe 3317
     BCLUfour.length shouldBe 60
     BCLUfive.length shouldBe 191
     val test = ""
   }
 
   it should "check that tzai BCLU is low, ie. most frequent BCLU words a below 9" in {
+    val BCLUthree = BLCUTzaiAboveNineThreeCode
     val BCLUfour = BLCUTzaiAboveNineFourCode
     val BCLUfive = BLCUTzaiAboveNineFiveCode
     BCLUfour.length shouldBe 117
