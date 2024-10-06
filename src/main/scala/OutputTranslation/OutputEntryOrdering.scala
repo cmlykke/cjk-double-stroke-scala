@@ -15,8 +15,8 @@ object OutputEntryOrdering {
   // Obtain the ordering for OutputEntry based on the primary character system
   def entryOrdering(primaryCharSystem: CharSystem): Ordering[OutputEntry] = new Ordering[OutputEntry] {
     override def compare(x: OutputEntry, y: OutputEntry): Int = {
-      val xGraphemes = Grapheme.splitIntoGraphemes(x.chineseStr)
-      val yGraphemes = Grapheme.splitIntoGraphemes(y.chineseStr)
+      val xGraphemes: List[String] = Grapheme.splitIntoGraphemes(x.chineseStr)
+      val yGraphemes: List[String] = Grapheme.splitIntoGraphemes(y.chineseStr)
       //checkReverseOrderLength(x)
       //checkReverseOrderLength(y)
 

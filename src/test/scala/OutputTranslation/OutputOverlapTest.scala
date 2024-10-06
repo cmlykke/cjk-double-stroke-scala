@@ -59,7 +59,7 @@ class OutputOverlapTest extends AnyFlatSpec with Matchers {
         //jundaData <- firstGrapheme.junda
       } yield (key, firstEntry.chineseStr, BCLUOption)
     }.toList.sortBy { case (key, chineseStr, sinicaOption) => (sinicaOption, key, chineseStr) }
-  
+
   val BLCUTzaiAboveNineThreeCode: List[(String, String, Int)] =
     tzaiAboveNine.filter(y => y._1.size <= 3).flatMap { case (key, entries) =>
       for {
@@ -68,7 +68,7 @@ class OutputOverlapTest extends AnyFlatSpec with Matchers {
         //jundaData <- firstGrapheme.junda
       } yield (key, firstEntry.chineseStr, BCLUOption)
     }.toList.sortBy { case (key, chineseStr, sinicaOption) => (sinicaOption, key, chineseStr) }
-  
+
   val BLCUTzaiAboveNineFourCode: List[(String, String, Int)] =
     tzaiAboveNine.filter(y => y._1.size == 4).flatMap { case (key, entries) =>
       for {
@@ -193,11 +193,20 @@ class OutputOverlapTest extends AnyFlatSpec with Matchers {
       } yield (key, tzaiData.ordinal, firstEntry.chineseStr)
     }.toList.sortBy { case (key, ordinal, chinese) => (ordinal, key, chinese) }
 
-  
+
   it should "check that junda BCLU is low, ie. most frequent BCLU words a below 9" in {
     val BCLUthree = BLCUjundaAboveNineThreeCode //BLCUJundaAboveNineThreeCode
     val BCLUfour = BLCUjundaAboveNineFourCode
     val BCLUfive = BLCUJundaAboveNineFiveCode
+
+    val allThreeWordsUnder5000 = jundaAboveNine.filter(y => y._1.size <= 3).map(x => x._2).flatten
+      .toList.map(z => {
+        val ordinal: Int = if (z.BCLUoption.isDefined) z.BCLUoption.get.ordinal else 9999999
+        (ordinal, z.chineseStr)
+      }).toList.sortBy(x => (x._1, x._2))
+
+    val shenme = OutputSorting.mapFullJunda.get("upt")
+    
     BCLUthree.length shouldBe 3317
     BCLUfour.length shouldBe 60
     BCLUfive.length shouldBe 191
@@ -212,8 +221,8 @@ class OutputOverlapTest extends AnyFlatSpec with Matchers {
     BCLUfive.length shouldBe 185
     val test = ""
   }
-  
-  
+
+
   it should "check that junda sinica is low, ie. most frequent sinica words a below 9" in {
     val sinicafour = sinicaJundaAboveNineFourCode
     val sinicafive = sinicaJundaAboveNineFiveCode
