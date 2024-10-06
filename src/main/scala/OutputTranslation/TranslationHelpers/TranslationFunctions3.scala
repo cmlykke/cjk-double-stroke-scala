@@ -1,18 +1,40 @@
 package OutputTranslation.TranslationHelpers
 
-import UtilityClasses.ConwayUnambigous
+import UtilityClasses.{ConwayUnambigous, Grapheme}
 
 import scala.collection.mutable
 
 object TranslationFunctions3 {
 
-  def generateReadyCodeForOne(unambigous: List[Set[ConwayUnambigous]]): Set[String] = {
+  def generateReadyCodeForOne(unambigous: List[Set[ConwayUnambigous]], graphemes: List[String]): Set[String] = {
+    if (graphemes(0) == "仫") {
+      val test = ""
+    }
+    val grapheme: Grapheme = Grapheme(graphemes(0))
+    val jundaNumber: Int = if (grapheme.junda.isDefined) grapheme.junda.get.ordinal else Int.MaxValue
+    val tzaiNumber: Int = if (grapheme.tzai.isDefined) grapheme.tzai.get.ordinal else Int.MaxValue
+    
     val resultSet: mutable.Set[String] = mutable.Set[String]()
     val codes = unambigous.flatten
     for (code <- codes) {
       resultSet.add(code.conwayPairs.mkString(""))
     }
-    resultSet.toSet
+    var res: mutable.Set[String] = mutable.Set[String]()
+    for (eachCode <- resultSet) {
+      if (eachCode.length == 4) {
+        res.add(eachCode)
+      } else if (eachCode.length < 4 && jundaNumber <= 5000 || tzaiNumber <= 5000) {
+        res.add(eachCode)
+        val paddedCode = padStrings(Set(eachCode), 4)
+        res.addAll(paddedCode)
+      } else if (eachCode.length < 4) {
+        val paddedCode = padStrings(Set(eachCode), 4)
+        res.addAll(paddedCode)
+      } else {
+        res.add(eachCode)
+      }
+    }
+    res.toSet
   }
 
   def generateReadyCodeForTwo(unambigous: List[Set[ConwayUnambigous]]): Set[String] = {

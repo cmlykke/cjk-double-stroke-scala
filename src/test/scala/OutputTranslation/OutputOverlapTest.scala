@@ -206,6 +206,7 @@ class OutputOverlapTest extends AnyFlatSpec with Matchers {
       }).toList.sortBy(x => (x._1, x._2))
 
     val shenme = OutputSorting.mapFullJunda.get("upt")
+    val shenmeWithz = OutputSorting.mapFullJunda.get("uptz")
     
     BCLUthree.length shouldBe 3317
     BCLUfour.length shouldBe 60

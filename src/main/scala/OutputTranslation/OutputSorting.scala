@@ -116,7 +116,7 @@ object OutputSorting {
   val outSorting = new OutputSorting()
   val cedictSet: Set[CedictEntry] = GenerateCedictMap.cedictCompleteSet
   val cedictSetOut: Set[OutputEntry] = OutputTranslation.outputCedict
-  val conFull: Set[OutputEntry] = OutputTranslation.conwayOutFull
+  val conFull: Set[OutputEntry] = OutputTranslation.outputConway //OutputTranslation.conwayOutFull
   val specialChars: List[OutputEntry] = ReadSpecialCharacters.allCharacterOutput
   val mapFullJunda: SortedMap[String, List[OutputEntry]] = outSorting.mapFromOutput(
     List(conFull.toList, cedictSetOut.toList), Junda)

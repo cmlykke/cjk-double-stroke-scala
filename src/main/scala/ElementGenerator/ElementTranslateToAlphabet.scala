@@ -1,5 +1,6 @@
 package ElementGenerator
 
+import OutputTranslation.TranslationFunctions
 import UtilityClasses.{ConwayUnambigous, Grapheme, StaticFileCharInfoWithLetterConway}
 
 import scala.collection.mutable
@@ -69,8 +70,6 @@ object ElementTranslateToAlphabet {
 
   val currentChoice8000Juda: Set[StaticFileCharInfoWithLetterConway] = translatorInstance.generate8000Junda()
   val currentChoice8000Tzai: Set[StaticFileCharInfoWithLetterConway] = translatorInstance.generate8000Tzai()
-  val basicConwayMap: Map[Grapheme, StaticFileCharInfoWithLetterConway] =
-    translatorInstance.createMapFromSet(translatorInstance.generateTranslatedAllChars())
     
 
   val tras = new ElementTranslateToAlphabet() //ElementTranslateToAlphabet
