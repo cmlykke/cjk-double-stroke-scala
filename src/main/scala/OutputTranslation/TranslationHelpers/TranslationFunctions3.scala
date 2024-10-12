@@ -23,7 +23,7 @@ object TranslationFunctions3 {
     for (eachCode <- resultSet) {
       if (eachCode.length == 4) {
         res.add(eachCode)
-      } else if (eachCode.length < 4 && jundaNumber <= 5000 || tzaiNumber <= 5000) {
+      } else if (eachCode.length < 4 && (jundaNumber <= 5000 || tzaiNumber <= 5000)) {
         res.add(eachCode)
         val paddedCode = padStrings(Set(eachCode), 4)
         res.addAll(paddedCode)
@@ -49,8 +49,8 @@ object TranslationFunctions3 {
 
     var res2: mutable.Set[String] = mutable.Set[String]()
     for (conLi <- combinations) {
-      val part3: String = getFirst(conLi(0))
-      val part4: String = getFirstAndLast(conLi(1))
+      val part3: String = getFirstAndLast(conLi(0))
+      val part4: String = getFirst(conLi(1))
       res2.add(part3 + part4)
     }
     val finalRes2 = setToLength(res2.toSet, 3)

@@ -42,6 +42,7 @@ class OutputSorting {
     val merge: Set[OutputEntry] = mergeOutputEntries(input)
     val codeToOutput: mutable.SortedMap[String, Set[OutputEntry]] = codeToOutputEntry(merge)
 
+    val test = ""
     for ((myKey, myVal) <- codeToOutput) {
       val sortedVal: List[OutputEntry] = OutputEntryOrdering.sortSetOfOutput(myVal, charSystem)
       if (sortedVal.size > 10) {
@@ -87,10 +88,10 @@ class OutputSorting {
             updatedTradSimp = ent.tradSimp
           }
           if (updatedJundaReverseOrder.isEmpty || ent.jundaReverseOrder.nonEmpty) {
-            updatedJundaReverseOrder = ent.jundaReverseOrder
+            updatedJundaReverseOrder = ent.jundaReverseOrderG
           }
           if (updatedTzaiReverseOrder.isEmpty || ent.tzaiReverseOrder.nonEmpty) {
-            updatedTzaiReverseOrder = ent.tzaiReverseOrder
+            updatedTzaiReverseOrder = ent.tzaiReverseOrderG
           }
           updatedCodes = updatedCodes ++ ent.codes
         }
@@ -122,4 +123,24 @@ object OutputSorting {
     List(conFull.toList, cedictSetOut.toList), Junda)
   val mapFullTzai: SortedMap[String, List[OutputEntry]] = outSorting.mapFromOutput(
     List(conFull.toList, cedictSetOut.toList), Tzai)
+  //yveo 449 称 449, 颓 2996, 頺 8820, 稧 8851, 秼 9416, 龝 9710, 稴 9748, 頽 2147483647, 棃 2147483647, 穕 2147483647
+  
+  val test = mapFullTzai.get("yveo")
+  val tes2 = ""
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

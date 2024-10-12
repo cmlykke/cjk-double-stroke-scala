@@ -33,11 +33,11 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
       }
       sb.append(entry.chineseStr).append(" ")
       sb.append("J: ")
-      for (reverseOrder <- entry.jundaReverseOrder) {
+      for (reverseOrder <- entry.jundaReverseOrderG) {
         sb.append(dataToStringJunda(reverseOrder.junda)).append(" ")
       }
       sb.append("T: ")
-      for (reverseOrder <- entry.tzaiReverseOrder) {
+      for (reverseOrder <- entry.tzaiReverseOrderG) {
         sb.append(dataToStringTzai(reverseOrder.tzai)).append(" ")
       }
       //sb.append("T: ").append(dataToStringTzai(reverseOrder.tzai)).append(" ")
@@ -55,11 +55,11 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
     for (entry <- code_eongo) {
       sb.append(entry.chineseStr).append(" ")
       sb.append("J: ")
-      for (reverseOrder <- entry.jundaReverseOrder) {
+      for (reverseOrder <- entry.jundaReverseOrderG) {
         sb.append(dataToStringJunda(reverseOrder.junda)).append(" ")
       }
       sb.append("T: ")
-      for (reverseOrder <- entry.tzaiReverseOrder) {
+      for (reverseOrder <- entry.tzaiReverseOrderG) {
         sb.append(dataToStringTzai(reverseOrder.tzai)).append(" ")
       }
       sb.append(entry.meaning).append(" ")
@@ -84,19 +84,19 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
         |憫 J: None T: 3140 to sympathize; to pity; to feel compassion for/(literary) to feel sorrow; to be grieved uni: [U+61AB]
         |憒 J: None T: 6121 confused/troubled uni: [U+6192]
         |懆 J: None T: 6211 anxious/sad uni: [U+61C6]
-        |惿 J: T: 8966  uni: [U+60FF]
+        |惿 J: None T: 8966  uni: [U+60FF]
         |惈 J: None T: 10137 courageous/resolute and daring uni: [U+60C8]
-        |愄 J: T: 11473  uni: [U+6104]
-        |懪 J: T: 12685  uni: [U+61EA]
-        |㤤 J: T:  uni: [U+3924]
-        |㥏 J: None T: None ashamed uni: [U+394F]
-        |㥗 J: T:  uni: [U+3957]
-        |㦨 J: T:  uni: [U+39A8]
-        |怾 J: T:  uni: [U+603E]
-        |悞 J: None T: None to impede/to delay/variant of 誤|误[wu4] uni: [U+609E]
+        |愄 J: None T: 11473  uni: [U+6104]
+        |懪 J: None T: 12685  uni: [U+61EA]
+        |愪 J: None T: None  uni: [U+612A]
         |悮 J: None T: None to impede/to delay/variant of 誤|误[wu4] uni: [U+60AE]
-        |愪 J: T:  uni: [U+612A]
-        |憹 J: None T: None used in 懊憹|懊𢙐[ao4nao2] uni: [U+61B9]""".stripMargin
+        |憹 J: None T: None used in 懊憹|懊𢙐[ao4nao2] uni: [U+61B9]
+        |悞 J: None T: None to impede/to delay/variant of 誤|误[wu4] uni: [U+609E]
+        |怾 J: None T: None  uni: [U+603E]
+        |㦨 J: None T: None  uni: [U+39A8]
+        |㥗 J: None T: None  uni: [U+3957]
+        |㥏 J: None T: None ashamed uni: [U+394F]
+        |㤤 J: None T: None  uni: [U+3924]""".stripMargin
     val resJunda: Boolean = str_eongo.replaceAll("\\s", "") == testJundaStr.replaceAll("\\s", "")
 
     val outTzai: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullTzai
@@ -107,21 +107,21 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
         |怏 J: 4369 T: 5512 discontented uni: [U+600F]
         |憒 J: None T: 6121 confused/troubled uni: [U+6192]
         |懆 J: None T: 6211 anxious/sad uni: [U+61C6]
-        |惿 J: T: 8966  uni: [U+60FF]
+        |惿 J: None T: 8966  uni: [U+60FF]
         |惈 J: None T: 10137 courageous/resolute and daring uni: [U+60C8]
-        |愄 J: T: 11473  uni: [U+6104]
-        |懪 J: T: 12685  uni: [U+61EA]
+        |愄 J: None T: 11473  uni: [U+6104]
+        |懪 J: None T: 12685  uni: [U+61EA]
         |惧 J: 1616 T: None to fear uni: [U+60E7]
         |愦 J: 5744 T: None confused/troubled uni: [U+6126]
-        |㤤 J: T:  uni: [U+3924]
-        |㥏 J: None T: None ashamed uni: [U+394F]
-        |㥗 J: T:  uni: [U+3957]
-        |㦨 J: T:  uni: [U+39A8]
-        |怾 J: T:  uni: [U+603E]
-        |悞 J: None T: None to impede/to delay/variant of 誤|误[wu4] uni: [U+609E]
+        |愪 J: None T: None  uni: [U+612A]
         |悮 J: None T: None to impede/to delay/variant of 誤|误[wu4] uni: [U+60AE]
-        |愪 J: T:  uni: [U+612A]
-        |憹 J: None T: None used in 懊憹|懊𢙐[ao4nao2] uni: [U+61B9]""".stripMargin
+        |憹 J: None T: None used in 懊憹|懊𢙐[ao4nao2] uni: [U+61B9]
+        |悞 J: None T: None to impede/to delay/variant of 誤|误[wu4] uni: [U+609E]
+        |怾 J: None T: None  uni: [U+603E]
+        |㦨 J: None T: None  uni: [U+39A8]
+        |㥗 J: None T: None  uni: [U+3957]
+        |㥏 J: None T: None ashamed uni: [U+394F]
+        |㤤 J: None T: None  uni: [U+3924]""".stripMargin
     val resTzai: Boolean = str_eongo_tzai.replaceAll("\\s", "") == testTzaiStr.replaceAll("\\s", "")
 
     resJunda shouldBe true
@@ -134,12 +134,12 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
     val outJunda: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullJunda
     val str_eongo: String = getTestStringJunda("eoxho", outJunda)
     val testJundaStr: String =
-    """米果 J: 575 165 T: 1154 99 rice cracker uni: [U+7C73, U+679C]
+    """美味 J: 844 151 T: 709 219 delicious/delicious food/delicacy uni: [U+7F8E, U+5473]
       |美景 J: 814 151 T: 878 219 beautiful scenery uni: [U+7F8E, U+666F]
-      |美味 J: 844 151 T: 709 219 delicious/delicious food/delicacy uni: [U+7F8E, U+5473]
       |火暴 J: 1028 433 T: 871 527 variant of 火爆[huo3 bao4] uni: [U+706B, U+66B4]
-      |兼具 J: 1515 391 T: 1526 679 to combine/to have both uni: [U+517C, U+5177]
       |炊具 J: 3333 391 T: 3313 679 cooking utensils/cookware/cooker uni: [U+708A, U+5177]
+      |米果 J: 575 165 T: 1154 99 rice cracker uni: [U+7C73, U+679C]
+      |兼具 J: 1515 391 T: 1526 679 to combine/to have both uni: [U+517C, U+5177]
       |炊爨 J: 6143 3333 T: 9314 3313 to light a fire and cook a meal uni: [U+708A, U+7228]
       |義縣 J: 9461 6089 T: 1032 326 Yi county in Jinzhou 錦州|锦州, Liaoning uni: [U+7FA9, U+7E23]
       |榮景 J: None 814 T: 926 878 period of prosperity uni: [U+69AE, U+666F]
@@ -149,14 +149,14 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
     val outTzai: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullTzai
     val str_eongo_tzai: String = getTestStringTzai("eoxho", outTzai)
     val testTzaiStr: String =
-    """美味 J: 844 151 T: 709 219 delicious/delicious food/delicacy uni: [U+7F8E, U+5473]
+    """美景 J: 814 151 T: 878 219 beautiful scenery uni: [U+7F8E, U+666F]
+      |兼具 J: 1515 391 T: 1526 679 to combine/to have both uni: [U+517C, U+5177]
+      |美味 J: 844 151 T: 709 219 delicious/delicious food/delicacy uni: [U+7F8E, U+5473]
       |火暴 J: 1028 433 T: 871 527 variant of 火爆[huo3 bao4] uni: [U+706B, U+66B4]
-      |美景 J: 814 151 T: 878 219 beautiful scenery uni: [U+7F8E, U+666F]
       |榮景 J: None 814 T: 926 878 period of prosperity uni: [U+69AE, U+666F]
       |義縣 J: 9461 6089 T: 1032 326 Yi county in Jinzhou 錦州|锦州, Liaoning uni: [U+7FA9, U+7E23]
       |榮縣 J: None 9461 T: 1032 926 Rong county in Zigong 自貢|自贡[Zi4 gong4], Sichuan uni: [U+69AE, U+7E23]
       |米果 J: 575 165 T: 1154 99 rice cracker uni: [U+7C73, U+679C]
-      |兼具 J: 1515 391 T: 1526 679 to combine/to have both uni: [U+517C, U+5177]
       |炊具 J: 3333 391 T: 3313 679 cooking utensils/cookware/cooker uni: [U+708A, U+5177]
       |炊爨 J: 6143 3333 T: 9314 3313 to light a fire and cook a meal uni: [U+708A, U+7228]""".stripMargin
     val resTzai: Boolean = str_eongo_tzai.replaceAll("\\s", "") == testTzaiStr.replaceAll("\\s", "")
@@ -253,7 +253,7 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
     val allGraphemes: Set[Grapheme] = overlap.map(x => Grapheme.splitIntoGraphemes(x.chineseStr).map(y => Grapheme(y))).flatten.toSet
     val graphemesMissingFromConway: Set[Grapheme] = allGraphemes.filter(x => !conwayMap.contains(x)).toSet
 
-    overlap.size shouldBe 17909 //22025 //15613 //364 // there are many lines that contain z codes
+    overlap.size shouldBe 17978 //22025 //15613 //364 // there are many lines that contain z codes
   }
 
   private def lettersSansAscii(): Set[Char] = {

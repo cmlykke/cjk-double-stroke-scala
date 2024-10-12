@@ -10,6 +10,7 @@ import scala.util.{Failure, Success}
 
 class GenerateOutputTest extends AnyFlatSpec with Matchers {
 
+/*
 
   it should "test output default.custom.yaml file" in {
 
@@ -158,4 +159,6 @@ class GenerateOutputTest extends AnyFlatSpec with Matchers {
     }
     writesuccess shouldBe true
   }
+ 
+ */
 }

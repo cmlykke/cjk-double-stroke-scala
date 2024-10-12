@@ -93,24 +93,24 @@ class OutputTranslation {
   
   def getJundaSingle3000(outputCedict: Set[OutputEntry]): Set[OutputEntry] = {
     val res: Set[OutputEntry] = outputCedict.filter(x => 
-      x.jundaReverseOrder.size == 1 &&
-      x.jundaReverseOrder(0).junda.isDefined && 
-      x.jundaReverseOrder(0).junda.get.ordinal <= 3000)
+      x.jundaReverseOrderG.size == 1 &&
+      x.jundaReverseOrderG(0).junda.isDefined && 
+      x.jundaReverseOrderG(0).junda.get.ordinal <= 3000)
     return res
   }
 
   def getTzaiSingle3000(outputCedict: Set[OutputEntry]): Set[OutputEntry] = {
     val res: Set[OutputEntry] = outputCedict.filter(x =>
-      x.tzaiReverseOrder.size == 1 &&
-      x.tzaiReverseOrder(0).tzai.isDefined &&
-      x.tzaiReverseOrder(0).tzai.get.ordinal <= 3000)
+      x.tzaiReverseOrderG.size == 1 &&
+      x.tzaiReverseOrderG(0).tzai.isDefined &&
+      x.tzaiReverseOrderG(0).tzai.get.ordinal <= 3000)
     return res
   }
 
   def getJundaMulti3000(outputCedict: Set[OutputEntry]): Set[OutputEntry] = {
     val res: Set[OutputEntry] = outputCedict.filter { x =>
-      x.jundaReverseOrder.size > 1 &&
-        x.jundaReverseOrder.forall(grapheme =>
+      x.jundaReverseOrderG.size > 1 &&
+        x.jundaReverseOrderG.forall(grapheme =>
           grapheme.junda.exists(_.ordinal <= 3000)
         )
     }
@@ -119,8 +119,8 @@ class OutputTranslation {
 
   def getTzaiMulti3000(outputCedict: Set[OutputEntry]): Set[OutputEntry] = {
     val res: Set[OutputEntry] = outputCedict.filter { x =>
-      x.tzaiReverseOrder.size > 1 &&
-      x.tzaiReverseOrder.forall(grapheme =>
+      x.tzaiReverseOrderG.size > 1 &&
+      x.tzaiReverseOrderG.forall(grapheme =>
         grapheme.tzai.exists(_.ordinal <= 3000)
       )
     }

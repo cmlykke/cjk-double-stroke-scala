@@ -15,7 +15,7 @@ class SpecialCharactersTest extends AnyFlatSpec with Matchers {
   it should "check that all special characters are wellformed" in {
     val entry: List[OutputEntry] = ReadSpecialCharacters.allCharacterOutput
     val str: List[String] = ReadSpecialCharacters.allLines
-    entry.size shouldBe 1482
+    entry.size shouldBe 1488
   }
 
   ignore should "generate special character files. Should be diabled when not needed" in {
