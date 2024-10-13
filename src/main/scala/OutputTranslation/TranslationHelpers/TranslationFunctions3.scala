@@ -31,7 +31,8 @@ object TranslationFunctions3 {
         val paddedCode = padStrings(Set(eachCode), 4)
         res.addAll(paddedCode)
       } else {
-        res.add(eachCode)
+        val paddedCode = padStrings(Set(eachCode), 6)
+        res.addAll(paddedCode)
       }
     }
     res.toSet
@@ -46,14 +47,8 @@ object TranslationFunctions3 {
       res.add(part1+part2)
     }
     val finalRes = setToLength(res.toSet, 5)
+    val finalRes2: Set[String] = finalRes.map(x => x.take(3)).toSet 
 
-    var res2: mutable.Set[String] = mutable.Set[String]()
-    for (conLi <- combinations) {
-      val part3: String = getFirstAndLast(conLi(0))
-      val part4: String = getFirst(conLi(1))
-      res2.add(part3 + part4)
-    }
-    val finalRes2 = setToLength(res2.toSet, 3)
     return finalRes union finalRes2
   }
 

@@ -209,8 +209,8 @@ joxht 102344 荣县 102344, 藤县 106459, 共时 0, 某时 0, 索国 0
 xhwkt 105874 明沟 105874, 唱头 281911, 日没 0, 冒头 0, 日沒 0
 jpjjm 106945 芫花 106945, 花萼 107019, 老花 0""".replaceAll("\\s", "")
 
-    BCLUthree.length shouldBe 3828
-    BCLUfive.length shouldBe 334
+    BCLUthree.length shouldBe 3834
+    BCLUfive.length shouldBe 329
     val test22 = ""
   }
 
@@ -288,8 +288,8 @@ doxho 2147483647 賀縣 0, 棋具 0, 頗具 0, 穎果 0, 榛果 0, 横是 0, 颖
 dyhgj 2147483647 加利福尼亚大学洛杉矶分校 0
 dyqgj 2147483647 加利福尼亚大学洛杉矶分校 0""".replaceAll("\\s", "")
     
-    SINICAthree.length shouldBe 3828
-    SINICAfive.length shouldBe 334
+    SINICAthree.length shouldBe 3834
+    SINICAfive.length shouldBe 329
     val test22 = ""
   }
 
@@ -339,9 +339,9 @@ qnh 69 让 69
 cht 159 情况 159, 情状 56117, 情变 0, 情资 0, 当夜 35022, 阎魔 0, 间充 0
 fnh 191 出现 191, 出动 7098, 出击 7817, 篮球 4157, 凹进 62459, 陆丰 47014, 陆运 77625
 mdw 220 比赛 220, 比湿 173709, 轮空 36561, 轮流 11135, 切实 2826, 轮滑 0, 轮渡 23726
+dty 240 发生 240, 飞舞 16369, 发毛 44396, 刀库 0, 飞升 29875, 村镇 16483, 村长 16607, 栈租 0, 发愁 15806, 飞秒 0
 qyi 270 必须 270
 ytx 311 我国 311, 失败 2049
-pta 326 系统 326, 系综 148820, 外线 16454, 外阴 30954, 外乡 47446, 久经 43323, 丹阳 33616, 夕阳 11512, 乐陵 102870, 乐队 6385
 oog 358 领导 358, 从属 30934, 关张 62537
 htl 633 未来 633, 未报 0, 违抗 43656, 麦霸 0, 迂执 501344, 违拗 102166, 进来 3264, 远扬 52729, 运势 350284
 ctp 680 快乐 680, 快鱼 0, 闲逸 102602, 闲逛 25672, 闲杂 59455""".replaceAll("\\s", "")
@@ -366,8 +366,8 @@ xotpo 5600 内衣 5600, 贵庚 126422
 jsozz 11917 过人 11917
 jtjjg 12319 葫芦 12319""".replaceAll("\\s", "")
 
-    BCLUthree.length shouldBe 3828
-    BCLUfive.length shouldBe 334
+    BCLUthree.length shouldBe 3834
+    BCLUfive.length shouldBe 329
     val test = ""
   }
 
@@ -440,14 +440,14 @@ joxjy 908 英國 908, 越國 0, 故國 0, 索國 0, 救國 0, 貢國 0, 賣國 0
 ynfhz 1942 種子 1942
 woozz 2247 漢人 2247, 滿人 0, 懶人 0, 駭人 0
 jhjnh 2397 藉著 2397, 古舊 0, 聶耳 0
+jhnjh 2397 藉著 2397, 古舊 0
 toxho 4002 次數 4002, 哀嘆 0, 變數 4703
 jnfhz 4505 莊子 4505, 墊子 0
 jgjjn 5836 菩薩 5836
-woyvn 6747 賽程 6747, 賽季 0, 滅種 0
-tojho 7115 次長 7115, 族長 0, 旅長 0, 廠長 0""".replaceAll("\\s", "")
+woyvn 6747 賽程 6747, 賽季 0, 滅種 0""".replaceAll("\\s", "")
 
-    SINICAthree.length shouldBe 3828
-    SINICAfive.length shouldBe 334
+    SINICAthree.length shouldBe 3834
+    SINICAfive.length shouldBe 329
     val test22 = ""
   }
 
