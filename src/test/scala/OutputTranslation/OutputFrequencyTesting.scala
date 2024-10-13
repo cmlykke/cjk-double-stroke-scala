@@ -62,28 +62,28 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
     + approximatelyEqual("tzaiMiddleAndButtonChanged._2", tzaiMiddleAndButtonChanged._2)
 
     val finalRes = strResult.replaceAll("\\s", "")
-    finalRes shouldBe """4.307 jundaUnchanged._1
+    finalRes shouldBe """3.313 jundaUnchanged._1
                         |4.297 jundaUnchanged._2
-                        |6.653 jundaUnchangedLeftSelection._1
-                        |4.705 jundaTopChanged._1
+                        |5.659 jundaUnchangedLeftSelection._1
+                        |3.712 jundaTopChanged._1
                         |3.898 jundaTopChanged._2
-                        |7.052 jundaTopChangedLeftSelection._1
-                        |5.133 jundaMiddleChanged._1
+                        |6.058 jundaTopChangedLeftSelection._1
+                        |4.139 jundaMiddleChanged._1
                         |3.471 jundaMiddleChanged._2
-                        |7.479 jundaMiddleChangedWithSelection._1
-                        |4.377 jundaButtomChanged._1
+                        |6.485 jundaMiddleChangedWithSelection._1
+                        |3.384 jundaButtomChanged._1
                         |4.226 jundaButtomChanged._2
-                        |5.204 jundaMiddleAndButtonChanged._1
+                        |4.210 jundaMiddleAndButtonChanged._1
                         |3.400 jundaMiddleAndButtonChanged._2
-                        |4.051 tzaiUnchanged._1
+                        |3.240 tzaiUnchanged._1
                         |4.724 tzaiUnchanged._2
-                        |4.769 tzaiTopChanged._1
+                        |3.958 tzaiTopChanged._1
                         |4.005 tzaiTopChanged._2
-                        |5.126 tzaiMiddleChanged._1
+                        |4.315 tzaiMiddleChanged._1
                         |3.648 tzaiMiddleChanged._2
-                        |4.036 tzaiButtomChanged._1
+                        |3.225 tzaiButtomChanged._1
                         |4.738 tzaiButtomChanged._2
-                        |5.111 tzaiMiddleAndButtonChanged._1
+                        |4.300 tzaiMiddleAndButtonChanged._1
                         |3.663 tzaiMiddleAndButtonChanged._2
                         |""".stripMargin.replaceAll("\\s", "")
   }
@@ -127,25 +127,25 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
       + approximatelyEqual("tzaiMiddleAndButtonChanged._2", tzaiMiddleAndButtonChanged._2)
 
     val finalRes = strResult.replaceAll("\\s", "")
-    finalRes shouldBe """52.25 jundaUnchanged._1
+    finalRes shouldBe """48.84 jundaUnchanged._1
                         |62.42 jundaUnchanged._2
-                        |55.87 jundaTopChanged._1
+                        |52.47 jundaTopChanged._1
                         |58.79 jundaTopChanged._2
-                        |65.18 jundaMiddleChanged._1
+                        |61.77 jundaMiddleChanged._1
                         |49.48 jundaMiddleChanged._2
-                        |53.24 jundaButtomChanged._1
+                        |49.83 jundaButtomChanged._1
                         |61.43 jundaButtomChanged._2
-                        |66.17 jundaMiddleAndButtonChanged._1
+                        |62.76 jundaMiddleAndButtonChanged._1
                         |48.49 jundaMiddleAndButtonChanged._2
-                        |44.12 tzaiUnchanged._1
+                        |41.28 tzaiUnchanged._1
                         |62.73 tzaiUnchanged._2
-                        |54.13 tzaiTopChanged._1
+                        |51.29 tzaiTopChanged._1
                         |52.72 tzaiTopChanged._2
-                        |58.22 tzaiMiddleChanged._1
+                        |55.38 tzaiMiddleChanged._1
                         |48.63 tzaiMiddleChanged._2
-                        |45.08 tzaiButtomChanged._1
+                        |42.24 tzaiButtomChanged._1
                         |61.77 tzaiButtomChanged._2
-                        |59.18 tzaiMiddleAndButtonChanged._1
+                        |56.34 tzaiMiddleAndButtonChanged._1
                         |47.67 tzaiMiddleAndButtonChanged._2
                         |""".stripMargin.replaceAll("\\s", "")
   }
@@ -176,16 +176,17 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
       + approximatelyEqual("tzaiMiddleAndButtonChanged", tzaiMiddleAndButtonChanged)
     
     val finalStr = strRes.replaceAll("\\s", "")
-    finalStr shouldBe """ 3.101 jundaUnchanged
-                        |3.206 jundaTopChanged
-                        |2.942 jundaMiddleChanged
-                        |2.907 jundaButtomChanged
-                        |3.148 jundaMiddleAndButtonChanged
-                        |3.223 tzaiUnchanged
-                        |3.311 tzaiTopChanged
-                        |2.936 tzaiMiddleChanged
-                        |2.870 tzaiButtomChanged
-                        |3.153 tzaiMiddleAndButtonChanged
+    finalStr shouldBe """  
+                        |3.365 jundaUnchanged
+                        |3.544 jundaTopChanged
+                        |3.222 jundaMiddleChanged
+                        |3.288 jundaButtomChanged
+                        |3.544 jundaMiddleAndButtonChanged
+                        |3.392 tzaiUnchanged
+                        |3.531 tzaiTopChanged
+                        |3.253 tzaiMiddleChanged
+                        |3.133 tzaiButtomChanged
+                        |3.563 tzaiMiddleAndButtonChanged
                         |""".stripMargin.replaceAll("\\s", "")
   }
 
@@ -212,14 +213,14 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
       + approximatelyEqual("tzaiMiddleAndButtonChanged", tzaiMiddleAndButtonChanged)
     
     val finalStr = strRes.replaceAll("\\s", "")
-    finalStr shouldBe """44.28 jundaUnchanged
-                        |43.92 jundaMiddleChanged
-                        |43.81 jundaButtomChanged
-                        |43.30 jundaMiddleAndButtonChanged
-                        |39.43 tzaiUnchanged
-                        |40.76 tzaiMiddleChanged
-                        |39.32 tzaiButtomChanged
-                        |39.78 tzaiMiddleAndButtonChanged
+    finalStr shouldBe """43.94 jundaUnchanged
+                        |43.96 jundaMiddleChanged
+                        |43.72 jundaButtomChanged
+                        |43.60 jundaMiddleAndButtonChanged
+                        |39.17 tzaiUnchanged
+                        |41.11 tzaiMiddleChanged
+                        |39.19 tzaiButtomChanged
+                        |40.24 tzaiMiddleAndButtonChanged
                         |""".stripMargin.replaceAll("\\s", "")
   }
 
@@ -274,7 +275,9 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
         } else if (OutputFrequencyTesting.rightHand.contains(char)) {
           res = addTuples(res, (0, eachcode._2))
         } else {
-          throw new Exception("unknown character")
+          if (char != 'z') {
+            throw new Exception("unknown character")  
+          }
         }
         if (index == eachcode._1.size-1) {
           res = addTuples(res, (eachcode._2, 0))
@@ -297,7 +300,9 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
         } else if (OutputFrequencyTesting.rightHand.contains(char)) {
           res = addTuples(res, (0, eachcode._2))
         } else {
-          throw new Exception("unknown character")
+          if (char != 'z') {
+            throw new Exception("unknown character")
+          }
         }
       }.mkString
     }
@@ -478,8 +483,7 @@ object OutputFrequencyTesting {
   val leftHand: Set[Char] = Set(
     'q','w','e','r','t',
     'a','s','d','f','g',
-    'x','c','v','b',
-    'z'
+    'x','c','v','b' //, 'z'
   )
   val rightHand: Set[Char] = Set(
     'y','u','i','o','p',
