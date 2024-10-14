@@ -1,4 +1,6 @@
 
+!NOTE: as of 2024-10-14 - the data below is outdated and need to be replaced with updated data
+
 all characters in the junda and tzai character sets
 whose has a 4-keystroke code that fall beyond the first 9
 most common characters with that code
