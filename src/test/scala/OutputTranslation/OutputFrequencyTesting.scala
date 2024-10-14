@@ -16,6 +16,37 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
   val singleOutTzai: Set[OutputEntry] = OutputTranslation.tzaiSingelOut
   val multiOutTzai: Set[OutputEntry] = OutputTranslation.tzaiMultiOut
 
+  it should "check the number of final keys hit with left vs right hand" in {
+
+    val jundaUnchanged: (Double, Double) = countLeftRightFinalKeystroke(singleOut, Map(), Junda)
+    val jundaTopChanged: (Double, Double) = countLeftRightFinalKeystroke(singleOut, changeTopRow(), Junda)
+
+    val tzaiUnchanged: (Double, Double) = countLeftRightFinalKeystroke(singleOutTzai, Map(), Tzai)
+    val tzaiTopChanged: (Double, Double) = countLeftRightFinalKeystroke(singleOutTzai, changeTopRow(), Tzai)
+
+    var strResult = ""
+      + approximatelyEqual("jundaUnchanged._1", jundaUnchanged._1)
+      + approximatelyEqual("jundaUnchanged._2", jundaUnchanged._2)
+      + approximatelyEqual("jundaTopChanged._1", jundaTopChanged._1)
+      + approximatelyEqual("jundaTopChanged._2", jundaTopChanged._2)
+      + approximatelyEqual("tzaiUnchanged._1", tzaiUnchanged._1)
+      + approximatelyEqual("tzaiUnchanged._2", tzaiUnchanged._2)
+      + approximatelyEqual("tzaiTopChanged._1", tzaiTopChanged._1)
+      + approximatelyEqual("tzaiTopChanged._2", tzaiTopChanged._2)
+
+
+    val finalRes = strResult.replaceAll("\\s", "")
+    finalRes shouldBe """1.051 jundaUnchanged._1
+                        |1.294 jundaUnchanged._2
+                        |1.216 jundaTopChanged._1
+                        |1.129 jundaTopChanged._2
+                        |0.948 tzaiUnchanged._1
+                        |1.395 tzaiUnchanged._2
+                        |1.198 tzaiTopChanged._1
+                        |1.145 tzaiTopChanged._2
+                        |""".stripMargin.replaceAll("\\s", "")
+  }
+
   it should "check the number of uses of left vs right hand - single characters" in {
 
     val jundaUnchanged: (Double, Double) = countLeftRight(singleOut, Map(), Junda)
@@ -176,7 +207,7 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
       + approximatelyEqual("tzaiMiddleAndButtonChanged", tzaiMiddleAndButtonChanged)
     
     val finalStr = strRes.replaceAll("\\s", "")
-    finalStr shouldBe """  
+    finalStr shouldBe """
                           3.365 jundaUnchanged
                         |3.544 jundaTopChanged
                         |3.222 jundaMiddleChanged
@@ -248,6 +279,14 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
     val calcShifts = calculateLeftRightDistribution(codes)
     calcShifts
   }
+
+  def countLeftRightFinalKeystroke(entries: Set[OutputEntry],
+                     rowsChanged: Map[String, String],
+                     charSystem: CharSystem): (Double, Double) = {
+    val codes = convertCodes(entries, rowsChanged, charSystem)
+    val calcShifts = calculateLeftRightDistributionOfFinalKeyStrokes(codes)
+    calcShifts
+  }
   
   def countLeftRightWithSelection(entries: Set[OutputEntry],
                                   rowsChanged: Map[String, String],
@@ -276,7 +315,7 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
           res = addTuples(res, (0, eachcode._2))
         } else {
           if (char != 'z') {
-            throw new Exception("unknown character")  
+            throw new Exception("unknown character")
           }
         }
         if (index == eachcode._1.size-1) {
@@ -286,7 +325,22 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
     }
     res
   }
-  
+
+  def calculateLeftRightDistributionOfFinalKeyStrokes(codes: List[(String, Double)]): (Double, Double) = {
+    var res: (Double, Double) = (0, 0)
+    var previous: Char = 'z'
+    for (eachcode <- codes) {
+      val removedZchars = removeTrailingZs(eachcode._1)
+      val lastChar: Char = removedZchars.last
+      if (OutputFrequencyTesting.leftHand.contains(lastChar)) {
+        res = addTuples(res, (eachcode._2, 0))
+      } else if (OutputFrequencyTesting.rightHand.contains(lastChar)) {
+        res = addTuples(res, (0, eachcode._2))
+      }
+    }
+    res
+  }
+
   def calculateLeftRightDistribution(codes: List[(String, Double)]): (Double, Double) = {
     var res: (Double, Double) = (0, 0)
     var previous: Char = 'z'
@@ -455,6 +509,11 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
       "n" -> "x"
     )
     changingCodeMap
+  }
+
+  def removeTrailingZs(input: String): String = {
+    if (input.isEmpty || input.last != 'z') input
+    else removeTrailingZs(input.dropRight(1))
   }
 
 }
