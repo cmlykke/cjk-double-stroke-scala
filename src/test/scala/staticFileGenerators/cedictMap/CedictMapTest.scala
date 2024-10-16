@@ -26,7 +26,7 @@ class CedictMapTest extends AnyFlatSpec with Matchers{
         conwayMissingFromCedict.addAll(entry.chineseStrGraphemes)
       }
     }
-    conwayMissingFromCedict.size shouldBe 14605
+    conwayMissingFromCedict.size shouldBe 14607
   }
 
   "testAllCedict" should "contain given entries" in {
@@ -38,7 +38,7 @@ class CedictMapTest extends AnyFlatSpec with Matchers{
 
     test1.size shouldBe 1
     test2.size shouldBe 1
-    cedict.size shouldBe 194079
+    cedict.size shouldBe 194386
   }
 
   "testAllCedict" should "containAllConway" in {

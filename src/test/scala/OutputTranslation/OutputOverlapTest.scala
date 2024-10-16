@@ -209,8 +209,8 @@ joxht 102344 荣县 102344, 藤县 106459, 共时 0, 某时 0, 索国 0
 xhwkt 105874 明沟 105874, 唱头 281911, 日没 0, 冒头 0, 日沒 0
 jpjjm 106945 芫花 106945, 花萼 107019, 老花 0""".replaceAll("\\s", "")
 
-    BCLUthree.length shouldBe 3834
-    BCLUfive.length shouldBe 329
+    BCLUthree.length shouldBe 3836
+    BCLUfive.length shouldBe 334
     val test22 = ""
   }
 
@@ -288,8 +288,8 @@ doxho 2147483647 賀縣 0, 棋具 0, 頗具 0, 穎果 0, 榛果 0, 横是 0, 颖
 dyhgj 2147483647 加利福尼亚大学洛杉矶分校 0
 dyqgj 2147483647 加利福尼亚大学洛杉矶分校 0""".replaceAll("\\s", "")
     
-    SINICAthree.length shouldBe 3834
-    SINICAfive.length shouldBe 329
+    SINICAthree.length shouldBe 3836
+    SINICAfive.length shouldBe 334
     val test22 = ""
   }
 
@@ -310,21 +310,21 @@ dyqgj 2147483647 加利福尼亚大学洛杉矶分校 0""".replaceAll("\\s", "")
     val cht = OutputSorting.mapFullTzai.get("cht")
     val fnh = OutputSorting.mapFullTzai.get("fnh")
     val mdw = OutputSorting.mapFullTzai.get("mdw")
-    val qyi = OutputSorting.mapFullTzai.get("qyi")
+    val dty = OutputSorting.mapFullTzai.get("dty")
 
     val towho = OutputSorting.mapFullTzai.get("towho")
     val lnkxh = OutputSorting.mapFullTzai.get("lnkxh")
     val wojho = OutputSorting.mapFullTzai.get("wojho")
     val towgo = OutputSorting.mapFullTzai.get("towgo")
-    val woxjt = OutputSorting.mapFullTzai.get("woxjt")
+    val jtjno = OutputSorting.mapFullTzai.get("jtjno")
 
     val res1 = OutputOverlapObjects.outputElevenEntryNestedListToString(
-      List("qnh", "cht", "fnh", "mdw", "qyi"),
-      List(qnh, cht, fnh, mdw, qyi), OutputEntryFrequency.BCLU)
+      List("qnh", "cht", "fnh", "mdw", "dty"),
+      List(qnh, cht, fnh, mdw, dty), OutputEntryFrequency.BCLU)
 
     val res2 = OutputOverlapObjects.outputElevenEntryNestedListToString(
-      List("towho", "lnkxh", "wojho", "towgo", "woxjt"),
-      List(towho, lnkxh, wojho, towgo, woxjt), OutputEntryFrequency.BCLU)
+      List("towho", "lnkxh", "wojho", "towgo", "jtjno"),
+      List(towho, lnkxh, wojho, towgo, jtjno), OutputEntryFrequency.BCLU)
     
     res1.replaceAll("\\s", "") shouldBe
       """
@@ -332,14 +332,14 @@ qnh 福祉 30426, 福瑞 0, 袖珍 30592, 裡脊 0, 祉祿 0, 评理 71462, 训�
 cht 情意 21231, 情資 0, 情變 0, 情商 0, 情敵 0, 情癡 0, 情痴 78927, 怕癢 0, 怕痒 108120, 情况 159
 fnh 出現 0, 籃球 0, 出資 0, 出神 30015, 阿三 0, 出示 9373, 出于 4577, 阿瑟 66894, 墜琴 0, 出现 191
 mdw 比賽 0, 比容 98754, 比安 555614, 切實 0, 切激 0, 房室 28791, 房客 25389, 切割 12729, 比濕 0, 比赛 220
-qyi 必須 0, 必得 32329, 初設 0, 初試 0, 禮讓 0, 禮記 0, 初升 291352, 禮讚 0, 诊所 11538, 必须 270""".replaceAll("\\s", "")
+dty 力度 1932, 皮重 147798, 皮毛 21262, 刀庫 0, 皮秒 0, 娟秀 77250, 妖氣 0, 妖物 70129, 妖气 53736, 发生 240""".replaceAll("\\s", "")
 
     firstTest.replaceAll("\\s", "") shouldBe """
 qnh 69 让 69
 cht 159 情况 159, 情状 56117, 情变 0, 情资 0, 当夜 35022, 阎魔 0, 间充 0
 fnh 191 出现 191, 出动 7098, 出击 7817, 篮球 4157, 凹进 62459, 陆丰 47014, 陆运 77625
 mdw 220 比赛 220, 比湿 173709, 轮空 36561, 轮流 11135, 切实 2826, 轮滑 0, 轮渡 23726
-dty 240 发生 240, 飞舞 16369, 发毛 44396, 刀库 0, 飞升 29875, 村镇 16483, 村长 16607, 栈租 0, 发愁 15806, 飞秒 0
+dty 240 发生 240, 飞手 0, 飞舞 16369, 发毛 44396, 刀库 0, 飞升 29875, 村镇 16483, 村长 16607, 栈租 0, 发愁 15806
 qyi 270 必须 270
 ytx 311 我国 311, 失败 2049
 oog 358 领导 358, 从属 30934, 关张 62537
@@ -352,22 +352,22 @@ towho 資源 0, 病源 50208, 廣漢 0, 族滅 0, 資淺 0, 廉潔 0, 廣漠 0, 
 lnkxh 擁有 0, 平面 7504, 平直 42212, 握有 0, 扯直 0, 拙直 624576, 挂面 50939, 拌面 0, 抻面 152177, 拥有 649
 wojho 家長 0, 深長 0, 源城 0, 漢城 0, 滿載 0, 涼城 0, 濱城 0, 兴城 67787, 滨城 68943, 实践 1362
 towgo 六家 0, 病家 79562, 文宗 84049, 廣宗 0, 廠家 0, 哀家 0, 庚寅 63227, 亲家 31496, 决定 394, 决赛 2211
-woxjt 滿足 0, 家園 0, 實足 0, 滅團 0, 額骨 0, 梁園 0, 寮國 0, 湊足 0, 定员 42017, 演员 2239""".replaceAll("\\s", "")
+jtjno 豆瓣菜 270516, 求職 0, 求歡 0, 去職 0, 走散 46984, 艾葉 0, 去职 57969, 求职 10557, 苏共 0, 苏联 2455""".replaceAll("\\s", "")
     
     secondTest.replaceAll("\\s", "") shouldBe """
 towho 592 资源 592, 装潢 16524, 装满 15097, 亵渎 26872, 资浅 0
 lnkxh 649 拥有 649
 wojho 1362 实践 1362, 满载 15865
 towgo 2211 决赛 2211
-woxjt 2239 演员 2239, 满足 1114, 实足 84036, 额骨 89797, 满员 49757
 jtjno 2455 苏联 2455
 poxho 3277 风景 3277
-xotpo 5600 内衣 5600, 贵庚 126422
+xotpo 7727 贵族 7727, 内衣 5600, 贵庚 126422
 jsozz 11917 过人 11917
-jtjjg 12319 葫芦 12319""".replaceAll("\\s", "")
+jtjjg 12319 葫芦 12319
+jsnjo 12608 菠菜 12608, 芍藥 0""".replaceAll("\\s", "")
 
-    BCLUthree.length shouldBe 3834
-    BCLUfive.length shouldBe 329
+    BCLUthree.length shouldBe 3836
+    BCLUfive.length shouldBe 334
     val test = ""
   }
 
@@ -395,15 +395,15 @@ jtjjg 12319 葫芦 12319""".replaceAll("\\s", "")
     val joxht = OutputSorting.mapFullJunda.get("joxht")
     val ynfhz = OutputSorting.mapFullJunda.get("ynfhz")
     val woozz = OutputSorting.mapFullJunda.get("woozz")
-    val jhjnh = OutputSorting.mapFullJunda.get("jhjnh")
+    val lhxho = OutputSorting.mapFullJunda.get("lhxho")
 
     val res1 = OutputOverlapObjects.outputElevenEntryNestedListToString(
       List("lsi", "ugi", "soi", "twk", "lmx"),
       List(lsi, ugi, soi, twk, lmx), OutputEntryFrequency.Sinica)
     
     val res2 = OutputOverlapObjects.outputElevenEntryNestedListToString(
-      List("lnkxh", "joxht", "ynfhz", "woozz", "jhjnh"),
-      List(lnkxh, joxht, ynfhz, woozz, jhjnh), OutputEntryFrequency.Sinica)
+      List("lnkxh", "joxht", "ynfhz", "woozz", "lhxho"),
+      List(lnkxh, joxht, ynfhz, woozz, lhxho), OutputEntryFrequency.Sinica)
     
     res1.replaceAll("\\s", "") shouldBe
       """
@@ -431,7 +431,7 @@ lnkxh 拥有 0, 平面 3739, 平直 0, 挂面 0, 抻面 0, 拙直 0, 握有 0, �
 joxht 英国 0, 救国 0, 卖国 0, 赵国 0, 越国 0, 故国 0, 赵县 0, 萧县 0, 茂县 0, 荣县 0
 ynfhz 钉子 0, 罐子 0, 锥子 0, 壬子 0, 重子 0, 稚子 0, 镏子 0, 季子 0, 程子 0, 種子 1942
 woozz 深入 1511, 家人 1336, 惊人 0, 懒人 0, 浪人 0, 满人 0, 淡入 0, 恨人 0, 慎入 0, 漢人 2247
-jhjnh 本期 0, 工期 0, 土著 6035, 巨著 0, 本著 0, 正著 0, 朝著 0, 雪耳 0, 古昔 0, 藉著 2397""".replaceAll("\\s", "")
+lhxho 拉夫罗夫 0, 拉夫羅夫 0, 霜晨 0, 雪暴 0, 雪景 0, 扣题 0, 扣題 0, 抬顯 0, 霸縣 0, 指數 2327""".replaceAll("\\s", "")
 
 
     secondTest.replaceAll("\\s", "") shouldBe """
@@ -439,15 +439,15 @@ lnkxh 560 擁有 560
 joxjy 908 英國 908, 越國 0, 故國 0, 索國 0, 救國 0, 貢國 0, 賣國 0, 兩國 0
 ynfhz 1942 種子 1942
 woozz 2247 漢人 2247, 滿人 0, 懶人 0, 駭人 0
+lhxho 2327 指數 2327, 招數 0
 jhjnh 2397 藉著 2397, 古舊 0, 聶耳 0
 jhnjh 2397 藉著 2397, 古舊 0
 toxho 4002 次數 4002, 哀嘆 0, 變數 4703
 jnfhz 4505 莊子 4505, 墊子 0
-jgjjn 5836 菩薩 5836
-woyvn 6747 賽程 6747, 賽季 0, 滅種 0""".replaceAll("\\s", "")
+jgjjn 5836 菩薩 5836""".replaceAll("\\s", "")
 
-    SINICAthree.length shouldBe 3834
-    SINICAfive.length shouldBe 329
+    SINICAthree.length shouldBe 3836
+    SINICAfive.length shouldBe 334
     val test22 = ""
   }
 

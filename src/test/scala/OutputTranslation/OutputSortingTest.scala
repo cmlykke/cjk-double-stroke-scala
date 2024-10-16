@@ -68,7 +68,28 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
     // Trim the trailing new line and return the result
     sb.toString().trim
   }
-
+  
+  it should "test the total number of single characters and multi-character words" in {
+    val conwaySet: Set[OutputEntry] = OutputSorting.conFull
+    val cedictSet: Set[OutputEntry] = OutputSorting.cedictSetOut
+    val totalSet: Set[OutputEntry] = cedictSet union conwaySet
+    
+    val singleChars: mutable.Set[OutputEntry] = mutable.Set[OutputEntry]()
+    val multiChars: mutable.Set[OutputEntry] = mutable.Set[OutputEntry]()
+    for (each <- totalSet) {
+      if (each.tzaiReverseOrderG.size > 1 && each.jundaReverseOrderG.size > 1) {
+        multiChars.add(each)
+      } else if (each.tzaiReverseOrderG.size == 1 && each.jundaReverseOrderG.size == 1) {
+        singleChars.add(each)
+      } else {
+        throw new Exception("cant determine word length")
+      }
+    }
+    
+    singleChars.size shouldBe 28863
+    multiChars.size shouldBe 179226    
+  }
+  
   it should "junda and tzai - test the sorting of single characters" in {
 
     val outJunda: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullJunda
@@ -253,7 +274,7 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
     val allGraphemes: Set[Grapheme] = overlap.map(x => Grapheme.splitIntoGraphemes(x.chineseStr).map(y => Grapheme(y))).flatten.toSet
     val graphemesMissingFromConway: Set[Grapheme] = allGraphemes.filter(x => !conwayMap.contains(x)).toSet
 
-    overlap.size shouldBe 18360 //22025 //15613 //364 // there are many lines that contain z codes
+    overlap.size shouldBe 18389 //22025 //15613 //364 // there are many lines that contain z codes
   }
 
   private def lettersSansAscii(): Set[Char] = {

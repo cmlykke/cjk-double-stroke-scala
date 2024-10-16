@@ -33,16 +33,16 @@ class OutputTranslationTest extends AnyFlatSpec with Matchers {
     val cedictRaw: Set[CedictEntry] = GenerateCedictMap.cedictCompleteSet
     val cedictres: Set[OutputEntry] = OutputTranslation.outputCedict
 
-    val ceRaw: CedictEntry = cedictRaw.filter(x => x.chineseStr == "井陘礦").toList.head
-    val getEntryList: List[OutputEntry] = cedictres.filter(x => x.chineseStr == "井陘礦").toList
+    val ceRaw: CedictEntry = cedictRaw.filter(x => x.chineseStr == "亞原子").toList.head
+    val getEntryList: List[OutputEntry] = cedictres.filter(x => x.chineseStr == "亞原子").toList
     val myentry: OutputEntry = getEntryList(0)
     val old1: Set[String] = ceRaw.unambigous.lift(0).get.map(x => x.conwayPairs.mkString("")).toSet
     val old2: Set[String] = ceRaw.unambigous.lift(1).get.map(x => x.conwayPairs.mkString("")).toSet
     val old3: Set[String] = ceRaw.unambigous.lift(2).get.map(x => x.conwayPairs.mkString("")).toSet
-    old1 == Set("gu")
-    old2 == Set("mxmx","jamx")
-    old3 == Set("dnso")
-    myentry.codes == Set("gjxdo", "gmxdo")
+    old1 == Set("jmgn")
+    old2 == Set("kugo")
+    old3 == Set("fh")
+    myentry.codes == Set("jkofh")
   }
 
   it should "check four character is first-first-first-firstLast" in {

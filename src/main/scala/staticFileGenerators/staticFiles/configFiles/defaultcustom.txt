@@ -6,5 +6,5 @@ customization:
   rime_version: 1.5.3
 patch:
   schema_list:
-    - {schema: POFsimp}
-    - {schema: POFtrad}
+    - {schema: liumajian}
+    - {schema: liumafan}

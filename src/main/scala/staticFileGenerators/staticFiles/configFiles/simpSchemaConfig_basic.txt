@@ -1,33 +1,23 @@
-# Rime schema settings: POFsimp
+# Rime schema settings: liumajian
 # encoding: utf-8
 
 schema:
-  schema_id: POFsimp
-  name: "POFsimp"
-  version: "1.1"
+  schema_id: liumajian
+  name: "刘码简"
+  version: "1.0"
   author:
-    - cmlykke
+    - 刘可力  c m l y k k e h o t m a i l c o m
   description: |
-    First published 2024-04-21
-    Repository:
-    https://github.com/Weiqifan1/cjk-double-stroke-scala
-
-    stoke data source:
-    Compiled manually by Conway (@yawnoc).
-    Part of 'Conway Stroke Data',
-    see <https://github.com/stroke-input/stroke-input-data>.
-    Licensed under Creative Commons Attribution 4.0 International (CC-BY-4.0)
-
-    IDS data source:
-    # Copyright (c) 2014-2017 CJKVI Database
-    # Based on CHISE IDS Database
-    https://github.com/cjkvi/cjkvi-ids/blob/master/ids.txt
-
-    frequency data source:
-    simplified:
-    https://lingua.mtsu.edu/chinese-computing/statistics/char/list.php?Which=MO
-    traditional:
-    http://technology.chtsai.org/charfreq/sorted.html
+    Release: 1.0 - 2024-10-16
+    First published 2024-10-16
+    劉碼 / 刘码 Liuma is a shape-based input system that you can learn in 10 minutes.
+    It contains 28.863 different single characters, and 179.226 multi-character words.
+    You can write any of the 5.000 most common characters without having to scroll,
+    using only 4 keystrokes per character (plus selection using the number keys).
+    It comes in to versions:
+    劉碼繁 liumafan for writing traditional characters, and
+    刘码简 liumajian for writing simplified characters.
+    Read more at https://github.com/Weiqifan1/cjk-double-stroke-scala/blob/master/README.md
 
   dependencies:
     - pinyin123
