@@ -26,9 +26,6 @@ class GenerateCedictMap {
     for (eachline <- lines) {
       if (!eachline.startsWith("#")) {
         val words: Array[String] = eachline.split("\\s+")
-        if (words(0) == "迈克尔·杰克逊") {
-          
-        }
         val meaning: String = captureBetweenStrings(eachline, "/", "/",false)
         val pronounciation: String = captureBetweenStrings(eachline, "[", "]",true)
         val tradSimp: String = words(0) + "|" + words(1) 

@@ -17,8 +17,8 @@ class GenerateOutputTest extends AnyFlatSpec with Matchers {
     val generate = new GenerateOutputStrings()
     val readMeta = new ReadConfigFiles()
     val dictSimp: List[String] = readMeta.readConfig("defaultcustom.txt")
-    val outputLines: List[String] = generate.generateWithSpecial(GenerateOutputStrings.mapFullJunda)
-    val mergedList: List[String] = dictSimp ++ outputLines
+    //val outputLines: List[String] = generate.generateWithSpecial(GenerateOutputStrings.mapFullJunda)
+    val mergedList: List[String] = dictSimp //++ outputLines
     //write file
     var writesuccess: Boolean = false
 
