@@ -94,7 +94,11 @@ class OutputSortingTest extends AnyFlatSpec with Matchers {
 
     val outJunda: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullJunda
     
-    val firstChar = outJunda.filter(x => x._2.filter(y => y.chineseStr == "惧").nonEmpty).toSet
+    val firstChar = outJunda.filter(x => x._2.filter(y => y.chineseStr == "撒村").nonEmpty).toSet
+    //lodjt
+    val firstChar2 = outJunda.filter(x => x._2.filter(y => y.chineseStr == "掛繩").nonEmpty).toSet
+    //lcuxh lcu
+    
     // wbgo  rrgo  crgo
     val str_eongo: String = getTestStringJunda("crgo", outJunda)
     val testJundaStr: String =
