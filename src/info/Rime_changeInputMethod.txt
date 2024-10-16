@@ -5,7 +5,7 @@ you change between them by pressing F4
 
 # To configure input methods after installing rime
 required: you need a .dict.yaml file and a .schema.yaml file for the input method to work
-eg. POFsimp.dict.yaml and POFsimp.schema.yaml
+eg. liumajian.dict.yaml and liumajian.schema.yaml
 Go to C:\Users\User\AppData\Roaming\Rime
 
 add the files to the folder
@@ -43,8 +43,7 @@ customization:
   rime_version: 1.5.3
 patch:
   schema_list:
-    - {schema: POFsimp}
-    - {schema: POFtrad}
+    - {schema: liumajian}
     - {schema: zmhant}
     - {schema: tnine}
     - {schema: array30}

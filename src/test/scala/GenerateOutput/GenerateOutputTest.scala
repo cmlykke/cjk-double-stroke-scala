@@ -60,7 +60,7 @@ class GenerateOutputTest extends AnyFlatSpec with Matchers {
         }
         writesuccess shouldBe true
   }
-  
+
   it should "test output tzai file" in {
 
     val generate = new GenerateOutputStrings()
