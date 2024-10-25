@@ -1,5 +1,6 @@
 package staticFileGenerators.Conway
 
+import ElementGenerator.ElementList
 import UtilityClasses.{Cluster, ConwayColl, Grapheme, InputSizes}
 //import staticFileGenerators.IdsMap.GenerateIdsMap
 
@@ -146,13 +147,19 @@ class GenerateConwayCodes {
   def generateAllConway(): HashMap[Grapheme, ConwayColl] = {
     val basicConway = GenerateConwayCodes.conwayFilePath
     val orderedfile = GenerateConwayCodes.orderedMissingConway
-
     val readconway = new ReadConwayData()
     val basicconwayMap: mutable.HashMap[Grapheme, ConwayColl] =
     readconway.mapConwayData(basicConway)
     val missingconwayMap: mutable.HashMap[Grapheme, ConwayColl] =
     readconway.mapConwayData(orderedfile)
-    basicconwayMap.clone().addAll(missingconwayMap)
+    val elementCharacters: mutable.HashMap[Grapheme, ConwayColl] =
+      readconway.generateCowayCollMapFromElement(ElementList.elementTypes)
+
+    val mergedMap = mutable.HashMap[Grapheme, ConwayColl]()
+    mergedMap ++= basicconwayMap
+    mergedMap ++= missingconwayMap
+    mergedMap ++= elementCharacters
+    mergedMap
   }
 
 }

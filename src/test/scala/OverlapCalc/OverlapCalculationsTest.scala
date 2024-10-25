@@ -37,7 +37,7 @@ class OverlapCalculationsTest extends AnyFlatSpec with Matchers {
 
     //the number of characters in result1b should matches the total number of codes in test1
     val totalNumberOfCodes = countEntriesInMap(result1b)
-    totalNumberOfCodes shouldBe 17322
+    totalNumberOfCodes shouldBe 17325
   }
 
 
@@ -50,7 +50,7 @@ class OverlapCalculationsTest extends AnyFlatSpec with Matchers {
 
     //the number of characters in result1b should matches the total number of codes in test1
     val totalNumberOfCodes = countEntriesInMap(result1b)
-    totalNumberOfCodes shouldBe 20233
+    totalNumberOfCodes shouldBe 20237
 
   }
 

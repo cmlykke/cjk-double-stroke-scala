@@ -7,7 +7,6 @@ you change between them by pressing F4
 required: you need a .dict.yaml file and a .schema.yaml file for the input method to work
 eg. liumajian.dict.yaml and liumajian.schema.yaml
 Go to C:\Users\User\AppData\Roaming\Rime
-
 add the files to the folder
 
 then look for the file default.custom.yaml

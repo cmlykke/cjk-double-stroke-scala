@@ -15,6 +15,23 @@ class ElementTranslateToAlphabetTest extends AnyFlatSpec with Matchers {
     
     codes shouldBe Set("ynsy", "yndt")
   }
+
+  it should "test codes of all elements" in {
+    //completeTranslatedConwayMap: Map[Grapheme, StaticFileCharInfoWithLetterConway]
+    val completeConway: Map[Grapheme, StaticFileCharInfoWithLetterConway] =
+      ElementTranslateToAlphabet.completeTranslatedConwayMap
+    val allelements: Set[ElementType] = ElementList.elementTypes
+    var charactersAndletter: List[(String, List[String])] = List[(String, List[String])]()
+    for (elem <- allelements) {
+      if (Grapheme.isGrapheme(elem.rawString)) {
+        val woI: StaticFileCharInfoWithLetterConway = completeConway.get(Grapheme(elem.rawString)).get
+        val elemCodes: Set[List[String]] = woI.letterConway.map(x => x.conwayPairs).toSet
+        val letterIncluded: List[List[String]] = elemCodes.filter(x => (x.size == 1) && (x.head.length == 1)).toList
+        charactersAndletter = charactersAndletter.appended((elem.rawString, letterIncluded.head))
+      }
+    }
+    charactersAndletter.size shouldBe 35
+  }
   
   it should "junda - check that the map of character to alphabet has the same size" in {
     //createMapFromSet
@@ -72,6 +89,5 @@ class ElementTranslateToAlphabetTest extends AnyFlatSpec with Matchers {
 
     val test = ""
   }
-
   
 }

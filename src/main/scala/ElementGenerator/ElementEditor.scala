@@ -9,7 +9,7 @@ class ElementEditor {
 
   def createDecoratedCharInfo[C[X] <: Iterable[X]](
                                                     charInfos: C[StaticFileCharInfo],
-                                                    elements: List[ElementType]
+                                                    elements: Set[ElementType]
                                                   )(using factory: Factory[StaticFileCharInfoWithLetterConway, C[StaticFileCharInfoWithLetterConway]]
                                                   ): C[StaticFileCharInfoWithLetterConway] = {
     val newFeature = "New Feature"
@@ -21,7 +21,7 @@ class ElementEditor {
   }
 
   private def createNewFeature(charIfo: StaticFileCharInfo,
-                               elements: List[ElementType]): StaticFileCharInfoWithLetterConway = {
+                               elements: Set[ElementType]): StaticFileCharInfoWithLetterConway = {
     val conwayObj: Conway = charIfo.conwayColl.rawConway
     val rawConway = charIfo.conwayColl.rawConway.rawConway
     val mychar = charIfo.grapheme.char
@@ -29,29 +29,44 @@ class ElementEditor {
       val test2 = ""
     }
     val idsWithShapes = charIfo.ids
-    val matchingElement: Option[ElementType] = findMatchingElement(elements, rawConway, idsWithShapes)
+    //val matchingElement: Option[ElementType] = findMatchingElement(elements, rawConway, idsWithShapes)
 
+    var matchingElement: Option[ElementType] = try {
+      findMatchingElement(elements, charIfo.grapheme,rawConway, idsWithShapes)
+    } catch {
+      case e: Exception => throw new RuntimeException("Failed to find matching element", e)
+    }
+    if (ElementList.elementTypes.contains(new ElementType("", new Cluster("木"), "a", charIfo.grapheme.char))) {
+      matchingElement = ElementList.elementTypes.filter(x => x.rawString == charIfo.grapheme.char).toList.headOption
+      if (matchingElement.get.elementVersions != charIfo.conwayColl.rawConway.rawConway) {
+        throw Exception("element conway doest match character conway")
+      }
+    }
+    
     if (matchingElement.isDefined) {
-      val elemConway = matchingElement.get.elementVersions
-      val elemRolloutConway = Conway.generateConway.expandAlternatives(elemConway)
-      val charRolloutConway = Conway.generateConway.expandAlternatives(rawConway)
+      try {
+        val elemConway = matchingElement.get.elementVersions
+        val elemRolloutConway = Conway.generateConway.expandAlternatives(elemConway)
+        val charRolloutConway = Conway.generateConway.expandAlternatives(rawConway)
 
-      val substracted = substratcElemConwayFromItem(charRolloutConway, elemRolloutConway)
+        val substracted = substratcElemConwayFromItem(charRolloutConway, elemRolloutConway)
 
-      //create 2-1 two char combinations that should then have the initial added
-      val splitsingle: Set[List[String]] = substracted.map(x => Conway.generateConway.splitSingle(x))
-      val withInputSize: Set[List[String]] = splitsingle.flatten(x => Conway.generateConway.adaptToInputSize(x, Two_one))
-      val withInitial: Set[List[String]] = withInputSize.map(matchingElement.get.elementKeyLetter :: _)
+        //create 2-1 two char combinations that should then have the initial added
+        val splitsingle: Set[List[String]] = substracted.map(x => Conway.generateConway.splitSingle(x))
+        val withInputSize: Set[List[String]] = splitsingle.flatten(x => Conway.generateConway.adaptToInputSize(x, Two_one))
+        val withInitial: Set[List[String]] = withInputSize.map(matchingElement.get.elementKeyLetter :: _)
 
-      // create 5-1 two char combinations for the original rolled out conway - charRolloutConway
-      val splitsingle52: Set[List[String]] = charRolloutConway.map(x => Conway.generateConway.splitSingle(x))
-      val withInputSize52: Set[List[String]] = splitsingle52.flatten(x => Conway.generateConway.adaptToInputSize(x, Five_one))
+        // create 5-1 two char combinations for the original rolled out conway - charRolloutConway
+        val splitsingle52: Set[List[String]] = charRolloutConway.map(x => Conway.generateConway.splitSingle(x))
+        val withInputSize52: Set[List[String]] = splitsingle52.flatten(x => Conway.generateConway.adaptToInputSize(x, Five_one))
 
-      val unambigWithInitialLetters: Set[ConwayUnambigous]  =  withInitial.map(new ConwayUnambigous(_, is4Code = true))
-      val unambig52: Set[ConwayUnambigous] = withInputSize52.map(new ConwayUnambigous(_, is4Code = false))
-      val combined = unambig52 ++ unambigWithInitialLetters
-      val res: StaticFileCharInfoWithLetterConway = new StaticFileCharInfoWithLetterConway(charIfo, combined)
-      return res
+        val unambigWithInitialLetters: Set[ConwayUnambigous] = withInitial.map(new ConwayUnambigous(_, is4Code = true))
+        val unambig52: Set[ConwayUnambigous] = withInputSize52.map(new ConwayUnambigous(_, is4Code = false))
+        val combined = unambig52 ++ unambigWithInitialLetters
+        val res: StaticFileCharInfoWithLetterConway = new StaticFileCharInfoWithLetterConway(charIfo, combined)
+        return res
+      } catch  //requirement failed: conwayPairs can contain strings of length one with a single alphabet character or strings of length one or two containing characters between '1' and '5'.
+        case e => throw e
     }
 
     val combined: Set[ConwayUnambigous] = charIfo.conwayColl.rawConway.getSplitConwayList(Three_one)
@@ -84,7 +99,8 @@ class ElementEditor {
     res
   }
 
-  private def findMatchingElement(elements: List[ElementType],
+  private def findMatchingElement(elements: Set[ElementType],
+                                  graph: Grapheme,
                                   rawConway: String,
                                   idsWithShapes: List[Cluster]): Option[ElementType] = {
     var allrelevantElements: List[ElementType] = List()

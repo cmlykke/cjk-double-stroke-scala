@@ -1,6 +1,7 @@
 
 劉碼輸入法 / 刘码输入法 / Liuma input method
-repository - https://github.com/Weiqifan1/cjk-double-stroke-scala
+main repository: https://github.com/Weiqifan1/rime-liuma
+code repository: https://github.com/Weiqifan1/cjk-double-stroke-scala
 
 author: - 劉可力 / 刘可力 c m l y k k e - h o t m a i l - c o m
 description:
@@ -10,7 +11,7 @@ First published 2024-10-16
 It contains 28.863 different single characters, and 179.226 multi-character words.
 You can write any of the 5.000 most common characters without having to scroll,
 using a maximum of 4 keystrokes per character (plus selection using the number keys).
-It comes in to versions:
+It comes in two versions:
 劉碼繁 Liumafan for writing traditional characters, and
 刘码简 Liumajian for writing simplified characters.
 

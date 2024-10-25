@@ -1,4 +1,5 @@
 package staticFileGenerators.Conway
+import ElementGenerator.ElementType
 import UtilityClasses.{ConwayColl, Grapheme}
 
 import java.nio.charset.StandardCharsets
@@ -30,6 +31,19 @@ class ReadConwayData {
       StandardOpenOption.CREATE,
       StandardOpenOption.TRUNCATE_EXISTING
     )
+  }
+
+  def generateCowayCollMapFromElement(elements: Set[ElementType]): HashMap[Grapheme, ConwayColl] = {
+    var resultMap = new HashMap[Grapheme, ConwayColl]()
+    for (eachElemType <- elements) {
+      if (Grapheme.isGrapheme(eachElemType.rawString)) {
+        val graphemeFromStr: Grapheme = Grapheme(eachElemType.rawString)
+        val conwaycoll: ConwayColl = ConwayColl(graphemeFromStr, eachElemType.elementVersions)
+        resultMap.put(graphemeFromStr, conwaycoll)
+        val test = ""
+      }
+    }
+    return resultMap
   }
 
   def mapConwayData(filePath: String): HashMap[Grapheme, ConwayColl] = {
