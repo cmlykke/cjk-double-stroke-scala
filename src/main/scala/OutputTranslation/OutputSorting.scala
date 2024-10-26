@@ -1,14 +1,17 @@
 package OutputTranslation
 
+import ElementGenerator.{ElementList, ElementType}
 import UtilityClasses.CharSystem.{Junda, Tzai}
 import UtilityClasses.{CedictEntry, CharSystem, Grapheme, OutputEntry}
 import staticFileGenerators.Conway.GenerateConwayCodes
 import staticFileGenerators.SpecialCharacters.ReadSpecialCharacters
 import staticFileGenerators.cedictMap.GenerateCedictMap
-import scala.math.Ordering.Implicits._
-import scala.jdk.StreamConverters._
+
+import scala.math.Ordering.Implicits.*
+import scala.jdk.StreamConverters.*
 import UtilityClasses.{CharSystem, OutputEntry}
-import OutputEntryOrdering._
+import OutputEntryOrdering.*
+
 import scala.collection.immutable.SortedMap
 import scala.collection.mutable
 
@@ -110,11 +113,22 @@ class OutputSorting {
     }
     finalRes.toSet
   }
+
+  def getStringsFromElements(elems: Set[ElementType]): Set[String] = {
+    val res: Set[String] = elems.map(x => x.rawString)
+    if (res != null && res.nonEmpty) {
+      return res
+    } else {
+      throw new Exception("No elements found")
+    }
+  }
+
 }
 
 object OutputSorting {
   val outClass = new OutputTranslation()
   val outSorting = new OutputSorting()
+  val elements: Set[String] = outSorting.getStringsFromElements(ElementList.elementTypes)
   val cedictSet: Set[CedictEntry] = GenerateCedictMap.cedictCompleteSet
   val cedictSetOut: Set[OutputEntry] = OutputTranslation.outputCedict
   val conFull: Set[OutputEntry] = OutputTranslation.outputConway //OutputTranslation.conwayOutFull

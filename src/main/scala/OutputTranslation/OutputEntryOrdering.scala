@@ -24,6 +24,7 @@ object OutputEntryOrdering {
       if ((x.chineseStr == "穄" && y.chineseStr == "称" ) || (y.chineseStr == "穄" && x.chineseStr == "称" )) {
         val test = ""
       }
+      val compareElementsResults: Int = compareElements(x, y, OutputSorting.elements)
       val compareSmallSingleResult: Int = compareSmallSingle(x, y, xGraphemes, yGraphemes, primaryCharSystem)
       val compareStrSize: Int = compareSize(xGraphemes, yGraphemes)
       val compareAnySingleResult: Int = compareJundaAndTzaiSingle(x, y, xGraphemes, yGraphemes, primaryCharSystem)
@@ -35,6 +36,8 @@ object OutputEntryOrdering {
       }
 
       //order:
+      // elements come first
+      if (compareElementsResults != 0) {return compareElementsResults}
       // single characters under 5000 of the chrSystem
       if (compareSmallSingleResult != 0) {return compareSmallSingleResult}
       // >2 comes first, then 2, then 1
@@ -90,7 +93,24 @@ object OutputEntryOrdering {
 
   }
 
+  private def compareElements(x: OutputEntry, y: OutputEntry, elems: Set[String]): Int = {
+    try {
+      val xIsInElem = elems.contains(x.chineseStr)
+      val yIsInElem = elems.contains(y.chineseStr)
 
+      if (xIsInElem && yIsInElem) {
+        0
+      } else if (xIsInElem) {
+        -1
+      } else if (yIsInElem) {
+        1
+      } else {
+        0
+      }
+    } catch {
+      case e: Exception => throw new Exception(e)
+    }
+  }
 
   private def compareSmallSingle(x: OutputEntry, y: OutputEntry,
                                  XinpGraphemes: List[String], YinpGraphemes: List[String],
