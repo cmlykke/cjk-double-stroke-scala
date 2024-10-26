@@ -8,7 +8,7 @@ schema:
   author:
     - 刘可力  c m l y k k e h o t m a i l c o m
   description: |
-    Release: 1.1 - 2024-10-25
+    Version: 1.1 - 2024-10-26
     First published 2024-10-16
     劉碼 / 刘码 Liuma is a shape-based input system that you can learn in 10 minutes.
     It contains 28.320 different single characters, and 179.780 multi-character words.
@@ -55,7 +55,7 @@ speller:
   max_code_length: 6
 
 translator:
-  dictionary: POFsimp
+  dictionary: liumajian
   enable_charset_filter: true
   enable_completion: true
   enable_sentence: false
