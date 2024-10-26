@@ -1,5 +1,6 @@
 package OutputTranslation
 
+import GenerateOutput.GenerateOutputStrings
 import UtilityClasses.{Grapheme, OutputEntry}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
@@ -8,57 +9,60 @@ import scala.collection.immutable.SortedMap
 
 class CharacterCount extends AnyFlatSpec with Matchers {
 
+  val generate = new GenerateOutputStrings()
+  val outputLinesJ: List[String] = generate.generateWithSpecial(GenerateOutputStrings.mapFullJunda)
+  val outJStr: Set[String] = outputLinesJ
+    .map(x => x.split("\\s+")).flatten
+    .filter(_.exists(ch => ch > 127)).toSet
+
+  val outputLinesT: List[String] = generate.generateWithSpecial(GenerateOutputStrings.mapFullTzai)
+  val outTStr: Set[String] = outputLinesT
+    .map(x => x.split("\\s+")).flatten
+    .filter(_.exists(ch => ch > 127)).toSet
+
   it should "check the number of different character" in {
-    val junda: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullJunda
-    val tzai: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullTzai
 
-    val singleJunda = junda.values.flatten.map(x => x.chineseStr)
+    val singleJunda = outJStr
       .filter(z => Grapheme.isGrapheme(z)).toSet
-    val singleTzai = tzai.values.flatten.map(x => x.chineseStr)
+    val singleTzai = outTStr
       .filter(z => Grapheme.isGrapheme(z)).toSet
 
-    singleJunda.size shouldBe 28320
-    singleTzai.size shouldBe 28320
+    singleJunda.size shouldBe 29482
+    singleTzai.size shouldBe 29482
   }
 
 
   it should "check the number of different words" in {
-    val junda: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullJunda
-    val tzai: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullTzai
 
-    val singleJunda = junda.values.flatten.map(x => x.chineseStr)
+    val singleJunda = outJStr
       .filter(z => Grapheme.splitIntoGraphemes(z).size > 1).toSet
-    val singleTzai = tzai.values.flatten.map(x => x.chineseStr)
+    val singleTzai = outTStr
       .filter(z => Grapheme.splitIntoGraphemes(z).size > 1).toSet
 
-    singleJunda.size shouldBe 179780
-    singleTzai.size shouldBe 179780
+    singleJunda.size shouldBe 179767
+    singleTzai.size shouldBe 179767
   }
 
   it should "check the number of different two-character words" in {
-    val junda: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullJunda
-    val tzai: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullTzai
 
-    val singleJunda = junda.values.flatten.map(x => x.chineseStr)
+    val singleJunda = outJStr
       .filter(z => Grapheme.splitIntoGraphemes(z).size == 2).toSet
-    val singleTzai = tzai.values.flatten.map(x => x.chineseStr)
+    val singleTzai = outTStr
       .filter(z => Grapheme.splitIntoGraphemes(z).size == 2).toSet
 
-    singleJunda.size shouldBe 93554
-    singleTzai.size shouldBe 93554
+    singleJunda.size shouldBe 93553
+    singleTzai.size shouldBe 93553
   }
 
   it should "check the number of different multi-character words" in {
-    val junda: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullJunda
-    val tzai: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullTzai
 
-    val singleJunda = junda.values.flatten.map(x => x.chineseStr)
+    val singleJunda = outJStr
       .filter(z => Grapheme.splitIntoGraphemes(z).size > 2).toSet
-    val singleTzai = tzai.values.flatten.map(x => x.chineseStr)
+    val singleTzai = outTStr
       .filter(z => Grapheme.splitIntoGraphemes(z).size > 2).toSet
 
-    singleJunda.size shouldBe 86226
-    singleTzai.size shouldBe 86226
+    singleJunda.size shouldBe 86214
+    singleTzai.size shouldBe 86214
   }
 
 }

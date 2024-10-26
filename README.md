@@ -5,10 +5,11 @@ code repository: https://github.com/Weiqifan1/cjk-double-stroke-scala
 
 author: - 劉可力 / 刘可力 c m l y k k e - h o t m a i l - c o m
 description:
-Release: 1.0 - 2024-10-16
+Release: 1.1 - 2024-10-26
 First published 2024-10-16
 劉碼 / 刘码 Liuma is a shape-based input method for typing chinese that you can learn in 10 minutes.
-It contains 28.863 different single characters, and 179.226 multi-character words.
+It contains 29.482 different single characters, and 179.767 multi-character words 
+(counting traditional and simplified separately).
 You can write any of the 5.000 most common characters without having to scroll,
 using a maximum of 4 keystrokes per character (plus selection using the number keys).
 It comes in two versions:
