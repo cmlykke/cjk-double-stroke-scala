@@ -29,9 +29,3 @@ Take the matching .dict.yaml and .schema.yaml files and paste it
 into you local rime folder. Then edit your preexisting default.custom.yaml
 file as needed.
 
-The complete .yaml files for Liuma version 1.0 can be found in this folder:
-cjk-double-stroke-scala\src\v1_0
-
-To see detailed information about the Liuma input method or how to configure RIME, 
-go to the folder:
-cjk-double-stroke-scala\src\info
