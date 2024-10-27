@@ -7,7 +7,7 @@ author: - 劉可力 / 刘可力 c m l y k k e - h o t m a i l - c o m
 description:
 Release: 1.1 - 2024-10-26
 First published 2024-10-16
-劉碼 / 刘码 Liuma is a shape-based input method for typing chinese that you can learn in 10 minutes.
+劉碼 / 刘码 Liuma is a shape-based input method for typing chinese that you can memorize in a few minutes.
 It contains 29.482 different single characters, and 179.767 multi-character words 
 (counting traditional and simplified separately).
 You can write any of the 5.000 most common characters without having to scroll,
