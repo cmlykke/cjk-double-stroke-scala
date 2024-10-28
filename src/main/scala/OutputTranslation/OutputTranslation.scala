@@ -9,6 +9,7 @@ import scala.collection.mutable
 import scala.collection.mutable.{HashMap, ListBuffer}
 
 type TranslationFunction = (List[Set[ConwayUnambigous]], String) => Set[String]
+type TranslationFunctionCedict = (CedictEntry, List[Set[ConwayUnambigous]], String) => Set[String]
 
 class OutputTranslation {
   
@@ -68,7 +69,7 @@ class OutputTranslation {
   } 
   
   def cedictToOutputEntry(cedictEntries: Set[CedictEntry], 
-                          translationFn: TranslationFunction): Set[OutputEntry] = {
+                          translationFn: TranslationFunctionCedict): Set[OutputEntry] = {
     val res: mutable.Set[OutputEntry] = mutable.Set[OutputEntry]()
     for (ceEntry <- cedictEntries) {
       if (ceEntry.chineseStr == "仫") {
@@ -76,7 +77,7 @@ class OutputTranslation {
       }
       val jundaReverseOrder: List[Grapheme] = generateJundaGraphemeOrder(ceEntry.chineseStrGraphemes).reverse
       val tzaiReverseOrder: List[Grapheme] = generateTzaiGraphemeOrder(ceEntry.chineseStrGraphemes).reverse
-      val outputCodes: Set[String] = translationFn(ceEntry.unambigous, ceEntry.chineseStr)
+      val outputCodes: Set[String] = translationFn(ceEntry, ceEntry.unambigous, ceEntry.chineseStr)
       val entry: OutputEntry = new OutputEntry(
         ceEntry.chineseStr,
         ceEntry.meaning,
@@ -166,7 +167,7 @@ object OutputTranslation {
   //create cedict entries from conway
   val tras = new ElementTranslateToAlphabet() //ElementTranslateToAlphabet
   val conwayallch: Set[StaticFileCharInfoWithLetterConway] = tras.generateTranslatedAllChars()
-  val outputCedict: Set[OutputEntry] = outClass.cedictToOutputEntry(cedict, TranslationFunctions.translateVersionOne)
+  val outputCedict: Set[OutputEntry] = outClass.cedictToOutputEntry(cedict, TranslationFunctions.translateVersionCedict)
   val outputConway: Set[OutputEntry] = outClass.conwayToOutputEntry(conwayallch, TranslationFunctions.translateVersionOne)
   
   val jundaSingelOut: Set[OutputEntry] = outClass.getJundaSingle3000(outputCedict)
