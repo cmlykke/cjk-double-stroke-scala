@@ -7,6 +7,17 @@ import staticFileGenerators.StaticFileGeneratorFacade.{generateConway, generateN
 
 class StaticFileGeneratorFacade {
   
+
+}
+
+object StaticFileGeneratorFacade {
+
+  val generateConway = new GenerateConwayCodes()
+  val generateNestedIds = new GenerateNestedIdsMap()
+  //var charsWithInfo: scala.collection.mutable.Set[StaticFileCharInfo] =
+  //  scala.collection.mutable.Set[StaticFileCharInfo]()
+
+
   def get(chrInput: Grapheme): StaticFileCharInfo = {
     val con: ConwayColl = generateConway.get(chrInput)
     val ids: List[Cluster] = generateNestedIds.get(chrInput)
@@ -21,15 +32,5 @@ class StaticFileGeneratorFacade {
     val res = collection.map(x => this.get(x)).toSet
     return res
   }
-
-}
-
-object StaticFileGeneratorFacade {
-
-  val generateConway = new GenerateConwayCodes()
-  val generateNestedIds = new GenerateNestedIdsMap()
-  //var charsWithInfo: scala.collection.mutable.Set[StaticFileCharInfo] =
-  //  scala.collection.mutable.Set[StaticFileCharInfo]()
-  
 }
 

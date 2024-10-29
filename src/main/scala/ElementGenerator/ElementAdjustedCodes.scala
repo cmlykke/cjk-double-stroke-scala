@@ -4,6 +4,7 @@ import OverlapCalc.OverlapCalculations
 import OverlapCalc.OverlapCalculations.staticfile
 import UtilityClasses.{CharSystem, ConwayColl, ConwayUnambigous, Grapheme, InputSizes, StaticFileCharInfo, StaticFileCharInfoWithLetterConway}
 import staticFileGenerators.Conway.ReadConwayData
+import staticFileGenerators.StaticFileGeneratorFacade
 
 import scala.collection.mutable
 import scala.collection.mutable.HashMap
@@ -62,7 +63,7 @@ object ElementAdjustedCodes {
     adjusted.secondOverlapMap(CharSystem.Tzai, elemAdjusted8000Tzai)
   
   def generateElementAdjustedCodes(graphemes: Set[Grapheme]): Set[StaticFileCharInfoWithLetterConway] = {
-    val charInfoSet: Set[StaticFileCharInfo] = staticfile.getAll(graphemes)
+    val charInfoSet: Set[StaticFileCharInfo] = StaticFileGeneratorFacade.getAll(graphemes)
     val elements = ElementList.elementTypes
     val decoratedList: Set[StaticFileCharInfoWithLetterConway] =
       new ElementEditor().createDecoratedCharInfo(charInfoSet, elements)

@@ -13,8 +13,7 @@ class StaticFileGeneratorFacadeTest extends AnyFlatSpec with Matchers
   "test StaticFileGeneratorFacade get " should "single grapheme should have all needed info" in {
     //val conway: Set[Grapheme] = GenerateConwayCodes.conwayChars
     val firstChar = new Grapheme("暴")
-    val facade = new StaticFileGeneratorFacade()
-    val get01: StaticFileCharInfo = facade.get(firstChar)
+    val get01: StaticFileCharInfo = StaticFileGeneratorFacade.get(firstChar)
     get01 should not be null
 
     val test = ""
@@ -23,8 +22,7 @@ class StaticFileGeneratorFacadeTest extends AnyFlatSpec with Matchers
   "test StaticFileGeneratorFacade getAll " should "all graphemes should have all needed info" in {
     //val conway: Set[Grapheme] = GenerateConwayCodes.conwayChars
     val conway: Set[Grapheme] = GenerateConwayCodes.conwaySet
-    val facade = new StaticFileGeneratorFacade()
-    val get01: Set[StaticFileCharInfo] = facade.getAll(conway)
+    val get01: Set[StaticFileCharInfo] = StaticFileGeneratorFacade.getAll(conway)
     get01 should not be null
 
     val test = ""

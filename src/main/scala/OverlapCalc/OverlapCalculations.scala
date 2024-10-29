@@ -77,7 +77,7 @@ class OverlapCalculations {
                         charSystem: CharSystem,
                         inputSize: InputSizes
                       ): mutable.Map[ConwayUnambigous, mutable.Set[StaticFileCharInfo]] = {
-    val test: Set[StaticFileCharInfo] = staticfile.getAll(input)
+    val test: Set[StaticFileCharInfo] = StaticFileGeneratorFacade.getAll(input)
     processOverlap(test, charSystem, inputSize)
   }
 
