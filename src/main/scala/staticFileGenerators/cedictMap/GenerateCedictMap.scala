@@ -14,9 +14,8 @@ class GenerateCedictMap {
     val idsFilePath = "src/main/scala/staticFileGenerators/staticFiles/cedict_ts.u8" // replace with your actual file path
     val radicalSupplement = "src/main/scala/staticFileGenerators/staticFiles/radicals1.txt"
 
-    val tras = new ElementTranslateToAlphabet() //ElementTranslateToAlphabet
-    val allch: Set[StaticFileCharInfoWithLetterConway] = tras.generateTranslatedAllChars() //generateTranslatedAllChars   ElementTranslateToAlphabet
-    val trans2: Map[Grapheme, StaticFileCharInfoWithLetterConway] = tras.createMapFromSet(allch)
+    val allch: Set[StaticFileCharInfoWithLetterConway] = ElementTranslateToAlphabet.generateTranslatedAllChars() //generateTranslatedAllChars   ElementTranslateToAlphabet
+    val trans2: Map[Grapheme, StaticFileCharInfoWithLetterConway] = ElementTranslateToAlphabet.createMapFromSet(allch)
 
     val res: ListBuffer[CedictEntry] = ListBuffer()
     val failed: ListBuffer[CedictEntry] = ListBuffer()

@@ -37,8 +37,7 @@ class ElementTranslateToAlphabetTest extends AnyFlatSpec with Matchers {
     //createMapFromSet
 
     val first8000 = ElementTranslateToAlphabet.currentChoice8000Juda
-    val toAlphabet = new ElementTranslateToAlphabet()
-    val alphaMap = toAlphabet.createMapFromSet(first8000)
+    val alphaMap = ElementTranslateToAlphabet.createMapFromSet(first8000)
     alphaMap.size shouldBe first8000.size
 
     val woI: Option[StaticFileCharInfoWithLetterConway] = alphaMap.get(Grapheme("我"))
@@ -66,8 +65,7 @@ class ElementTranslateToAlphabetTest extends AnyFlatSpec with Matchers {
     //createMapFromSet
 
     val first8000 = ElementTranslateToAlphabet.currentChoice8000Tzai
-    val toAlphabet = new ElementTranslateToAlphabet()
-    val alphaMap = toAlphabet.createMapFromSet(first8000)
+    val alphaMap = ElementTranslateToAlphabet.createMapFromSet(first8000)
     alphaMap.size shouldBe first8000.size
     
     val woI: Option[StaticFileCharInfoWithLetterConway] = alphaMap.get(Grapheme("我"))

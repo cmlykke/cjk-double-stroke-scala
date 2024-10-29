@@ -8,73 +8,13 @@ import scala.collection.mutable
 class ElementTranslateToAlphabet {
 
 
-  def createMapFromSet(inputSet: Set[StaticFileCharInfoWithLetterConway]):
-  Map[Grapheme, StaticFileCharInfoWithLetterConway] = {
-    inputSet.map(item => item.grapheme -> item).toMap
-  }
-
-  def generate8000Junda(): Set[StaticFileCharInfoWithLetterConway] = {
-    val ajustClass = ElementAdjustedCodes
-    val overlap8000 = ElementAdjustedCodes.elemAdjusted8000Junda
-    val res = translateToAlphabetByMap(
-      overlap8000,
-      ElementTranslateToAlphabet.thirdChoiceMap)
-    return res
-  }
-
-
-  def generateTranslatedAllChars(): Set[StaticFileCharInfoWithLetterConway] = {
-    //val ajustClass = ElementAdjustedCodes
-    val allChars = ElementAdjustedCodes.elemAdjustedAllChars
-    val res = translateToAlphabetByMap(
-      allChars,
-      ElementTranslateToAlphabet.thirdChoiceMap)
-    return res
-  }
-
-  def generate8000Tzai(): Set[StaticFileCharInfoWithLetterConway] = {
-    val ajustClass = ElementAdjustedCodes
-    val overlap8000 = ElementAdjustedCodes.elemAdjusted8000Tzai
-    val res = translateToAlphabetByMap(
-      overlap8000,
-      ElementTranslateToAlphabet.thirdChoiceMap)
-    return res
-  }
-
-
-  def translateToAlphabetByMap(charsWithProtoElems: Set[StaticFileCharInfoWithLetterConway],
-                               translateToFinalKeyboard: Map[String, String])
-  : Set[StaticFileCharInfoWithLetterConway] = {
-    val tempres: mutable.Set[StaticFileCharInfoWithLetterConway] = mutable.Set()
-    charsWithProtoElems.foreach(elems => {
-      val codesToBeTranslated: Set[ConwayUnambigous] = elems.letterConway
-
-      val translatedCodes = codesToBeTranslated.map { conway =>
-        val translatedList = conway.conwayPairs.map { code =>
-          translateToFinalKeyboard.getOrElse(code, throw new IllegalArgumentException(s"Key $code not found in translateToFinalKeyboard map"))
-        }
-        new ConwayUnambigous(translatedList, conway.is4Code)
-      }
-
-      // Create a new instance of StaticFileCharInfoWithLetterConway
-      val newElems = new StaticFileCharInfoWithLetterConway(elems.decorated, translatedCodes)
-      tempres += newElems
-    })
-
-    tempres.toSet
-  }
 }
 
 object ElementTranslateToAlphabet {
-  private val translatorInstance = new ElementTranslateToAlphabet()
-
-  val currentChoice8000Juda: Set[StaticFileCharInfoWithLetterConway] = translatorInstance.generate8000Junda()
-  val currentChoice8000Tzai: Set[StaticFileCharInfoWithLetterConway] = translatorInstance.generate8000Tzai()
-    
-
-  val tras = new ElementTranslateToAlphabet() //ElementTranslateToAlphabet
-  val allch: Set[StaticFileCharInfoWithLetterConway] = tras.generateTranslatedAllChars() //generateTranslatedAllChars   ElementTranslateToAlphabet
-  val completeTranslatedConwayMap: Map[Grapheme, StaticFileCharInfoWithLetterConway] = tras.createMapFromSet(allch)
+  val currentChoice8000Juda: Set[StaticFileCharInfoWithLetterConway] = ElementTranslateToAlphabet.generate8000Junda()
+  val currentChoice8000Tzai: Set[StaticFileCharInfoWithLetterConway] = ElementTranslateToAlphabet.generate8000Tzai()
+  val allch: Set[StaticFileCharInfoWithLetterConway] = ElementTranslateToAlphabet.generateTranslatedAllChars() //generateTranslatedAllChars   ElementTranslateToAlphabet
+  val completeTranslatedConwayMap: Map[Grapheme, StaticFileCharInfoWithLetterConway] = ElementTranslateToAlphabet.createMapFromSet(allch)
   val kuntest: String = ""
 
 
@@ -82,7 +22,7 @@ object ElementTranslateToAlphabet {
   //top line is 4-3, 
   //middleline is 5-1, 
   //bottomline is 25-21
-
+  
   def thirdChoiceMap: Map[String, String] = {
     Map(
       "a" -> "d",//"k",//53
@@ -270,5 +210,62 @@ object ElementTranslateToAlphabet {
       "54" -> "s",
       "55" -> "a"
     )
+  }
+
+
+  def createMapFromSet(inputSet: Set[StaticFileCharInfoWithLetterConway]):
+  Map[Grapheme, StaticFileCharInfoWithLetterConway] = {
+    inputSet.map(item => item.grapheme -> item).toMap
+  }
+
+  def generate8000Junda(): Set[StaticFileCharInfoWithLetterConway] = {
+    val ajustClass = ElementAdjustedCodes
+    val overlap8000 = ElementAdjustedCodes.elemAdjusted8000Junda
+    val res = translateToAlphabetByMap(
+      overlap8000,
+      ElementTranslateToAlphabet.thirdChoiceMap)
+    return res
+  }
+
+
+  def generateTranslatedAllChars(): Set[StaticFileCharInfoWithLetterConway] = {
+    //val ajustClass = ElementAdjustedCodes
+    val allChars = ElementAdjustedCodes.elemAdjustedAllChars
+    val res = translateToAlphabetByMap(
+      allChars,
+      ElementTranslateToAlphabet.thirdChoiceMap)
+    return res
+  }
+
+  def generate8000Tzai(): Set[StaticFileCharInfoWithLetterConway] = {
+    val ajustClass = ElementAdjustedCodes
+    val overlap8000 = ElementAdjustedCodes.elemAdjusted8000Tzai
+    val res = translateToAlphabetByMap(
+      overlap8000,
+      ElementTranslateToAlphabet.thirdChoiceMap)
+    return res
+  }
+
+
+  def translateToAlphabetByMap(charsWithProtoElems: Set[StaticFileCharInfoWithLetterConway],
+                               translateToFinalKeyboard: Map[String, String])
+  : Set[StaticFileCharInfoWithLetterConway] = {
+    val tempres: mutable.Set[StaticFileCharInfoWithLetterConway] = mutable.Set()
+    charsWithProtoElems.foreach(elems => {
+      val codesToBeTranslated: Set[ConwayUnambigous] = elems.letterConway
+
+      val translatedCodes = codesToBeTranslated.map { conway =>
+        val translatedList = conway.conwayPairs.map { code =>
+          translateToFinalKeyboard.getOrElse(code, throw new IllegalArgumentException(s"Key $code not found in translateToFinalKeyboard map"))
+        }
+        new ConwayUnambigous(translatedList, conway.is4Code)
+      }
+
+      // Create a new instance of StaticFileCharInfoWithLetterConway
+      val newElems = new StaticFileCharInfoWithLetterConway(elems.decorated, translatedCodes)
+      tempres += newElems
+    })
+
+    tempres.toSet
   }
 }

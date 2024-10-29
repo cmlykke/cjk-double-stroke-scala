@@ -164,9 +164,7 @@ class OutputTranslation {
 object OutputTranslation {
   val outClass = new OutputTranslation()
   val cedict: Set[CedictEntry] = GenerateCedictMap.cedictCompleteSet
-  //create cedict entries from conway
-  val tras = new ElementTranslateToAlphabet() //ElementTranslateToAlphabet
-  val conwayallch: Set[StaticFileCharInfoWithLetterConway] = tras.generateTranslatedAllChars()
+  val conwayallch: Set[StaticFileCharInfoWithLetterConway] = ElementTranslateToAlphabet.generateTranslatedAllChars()
   val outputCedict: Set[OutputEntry] = outClass.cedictToOutputEntry(cedict, TranslationFunctions.translateVersionCedict)
   val outputConway: Set[OutputEntry] = outClass.conwayToOutputEntry(conwayallch, TranslationFunctions.translateVersionOne)
   

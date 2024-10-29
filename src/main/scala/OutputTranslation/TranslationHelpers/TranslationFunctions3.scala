@@ -1,6 +1,6 @@
 package OutputTranslation.TranslationHelpers
 
-import ElementGenerator.{ElementAdjustedCodes, ElementAdjustedCodesNrTwo, ElementList, ElementType}
+import ElementGenerator.{ElementAdjustedCodes, ElementAdjustedCodesNrTwo, ElementList, ElementTranslateToAlphabet, ElementType}
 import UtilityClasses.{CedictEntry, ConwayUnambigous, Grapheme, InputSizes, StaticFileCharInfoWithLetterConway}
 import UtilityClasses.InputSizes.*
 
@@ -71,13 +71,15 @@ object TranslationFunctions3 {
     return res
   }*/
   
+
   def generateReadyCodeForTwoCedict(ced: CedictEntry, unambigous: List[Set[ConwayUnambigous]]): Set[String] = {
     val allGraphemes: List[Grapheme] = ced.chineseStrGraphemes
     val charOne: Option[StaticFileCharInfoWithLetterConway] =
       ElementAdjustedCodesNrTwo.generateElementAdjustedCodeSingle(allGraphemes(0))
     val charTwo: Option[StaticFileCharInfoWithLetterConway] =
       ElementAdjustedCodesNrTwo.generateElementAdjustedCodeSingle(allGraphemes(1))
-
+    //val charOnestrings = aplha  ElementTranslateToAlphabet  
+    
     val combinations: List[List[ConwayUnambigous]] = generateCombinations(unambigous)
     var res: mutable.Set[String] = mutable.Set[String]()
     for (conLi <- combinations) {
