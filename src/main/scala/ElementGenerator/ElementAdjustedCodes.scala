@@ -50,9 +50,9 @@ object ElementAdjustedCodes {
   val adjusted: ElementAdjustedCodes = new ElementAdjustedCodes()
 
   // Generating element adjusted codes
-  val elemAdjusted8000Junda: Set[StaticFileCharInfoWithLetterConway] = ElementAdjustedCodes.generateElementAdjustedCodes(jundaChars)
-  val elemAdjusted8000Tzai: Set[StaticFileCharInfoWithLetterConway] = ElementAdjustedCodes.generateElementAdjustedCodes(tzaiChars)
-  val elemAdjustedAllChars: Set[StaticFileCharInfoWithLetterConway] = ElementAdjustedCodes.generateElementAdjustedCodes(OverlapCalculations.allGraphemes)
+  val elemAdjusted8000Junda: Set[StaticFileCharInfoWithLetterConway] = ElementAdjustedCodesNrTwo.generateElementAdjustedCodes(jundaChars)
+  val elemAdjusted8000Tzai: Set[StaticFileCharInfoWithLetterConway] = ElementAdjustedCodesNrTwo.generateElementAdjustedCodes(tzaiChars)
+  val elemAdjustedAllChars: Set[StaticFileCharInfoWithLetterConway] = ElementAdjustedCodesNrTwo.generateElementAdjustedCodes(OverlapCalculations.allGraphemes)
   // generate overlap maps
   
 
@@ -62,12 +62,48 @@ object ElementAdjustedCodes {
   val secondOverlapTzai: List[(Int, List[StaticFileCharInfoWithLetterConway])] =
     adjusted.secondOverlapMap(CharSystem.Tzai, elemAdjusted8000Tzai)
   
+}
+
+object ElementAdjustedCodesNrTwo {
+  /*
   def generateElementAdjustedCodes(graphemes: Set[Grapheme]): Set[StaticFileCharInfoWithLetterConway] = {
-    val charInfoSet: Set[StaticFileCharInfo] = StaticFileGeneratorFacade.getAll(graphemes)
-    val elements = ElementList.elementTypes
-    val decoratedList: Set[StaticFileCharInfoWithLetterConway] =
-      new ElementEditor().createDecoratedCharInfo(charInfoSet, elements)
-    decoratedList
+    try {
+      val charInfoSet: Set[StaticFileCharInfo] = StaticFileGeneratorFacade.getAll(graphemes)
+      val elements = ElementList.elementTypes
+      val decoratedList: Set[StaticFileCharInfoWithLetterConway] =
+        new ElementEditor().createDecoratedCharInfo(charInfoSet, elements)
+      return decoratedList
+    } catch {
+      case e: Exception => throw Exception("adjusted code error")//e.printStackTrace() // Handle the exception appropriately
+    }
+  }*/
+
+  def generateElementAdjustedCodeSingle(grapheme: Grapheme): Option[StaticFileCharInfoWithLetterConway] = {
+    try {
+      val charInfoSet: Set[StaticFileCharInfo] = StaticFileGeneratorFacade.getAll(Set(grapheme))
+      val elements = ElementList.elementTypes
+      // Assuming createDecoratedCharInfo returns a collection of StaticFileCharInfoWithLetterConway
+      val res = new ElementEditor().createDecoratedCharInfo(charInfoSet, elements).head
+      Some(res)
+    } catch {
+      case _: Exception => None // Specific or general exception can be caught
+    }
   }
+
+  // Main function that takes a Set[Grapheme]
+  def generateElementAdjustedCodes(graphemes: Set[Grapheme]): Set[StaticFileCharInfoWithLetterConway] = {
+    var res: mutable.Set[StaticFileCharInfoWithLetterConway] = mutable.Set()
+    for (graph <- graphemes) {
+      val opt: Option[StaticFileCharInfoWithLetterConway] = 
+        generateElementAdjustedCodeSingle(graph)
+      if (opt.isDefined) {
+        res.add(opt.get)
+      } else {
+        throw Exception("adjusted code error")
+      }
+    }
+    return res.toSet
+  }
+  
   
 }

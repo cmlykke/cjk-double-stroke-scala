@@ -6,7 +6,7 @@ import staticFileGenerators.IdsMap.GenerateNestedIdsMap
 import staticFileGenerators.StaticFileGeneratorFacade.{generateConway, generateNestedIds}
 
 class StaticFileGeneratorFacade {
-  
+
 
 }
 
@@ -22,9 +22,6 @@ object StaticFileGeneratorFacade {
     val con: ConwayColl = generateConway.get(chrInput)
     val ids: List[Cluster] = generateNestedIds.get(chrInput)
     val res: StaticFileCharInfo = StaticFileCharInfo(chrInput, con, ids)
-    //if (!charsWithInfo.contains(res)) {
-    //charsWithInfo.add(res)
-    //}
     return res
   }
 
