@@ -22,7 +22,7 @@ class CedictMapTest extends AnyFlatSpec with Matchers{
 
     var conwayMissingFromCedict: mutable.HashSet[Grapheme] = mutable.HashSet[Grapheme]()
     for (entry <- cedict) {
-      if (entry.chineseStrGraphemes.size == 1) {
+      if (entry.chineseStrGraphemes.toSet.size == 1) {
         conwayMissingFromCedict.addAll(entry.chineseStrGraphemes)
       }
     }

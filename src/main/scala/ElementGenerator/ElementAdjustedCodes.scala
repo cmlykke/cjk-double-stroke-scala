@@ -11,13 +11,7 @@ import scala.collection.mutable.HashMap
 class ElementAdjustedCodes {
 
   // Generates element adjusted codes for a given character system
-  def generateElementAdjustedCodes(graphemes: Set[Grapheme]): Set[StaticFileCharInfoWithLetterConway] = {
-    val charInfoSet: Set[StaticFileCharInfo] = staticfile.getAll(graphemes)
-    val elements = ElementList.elementTypes
-    val decoratedList: Set[StaticFileCharInfoWithLetterConway] =
-      new ElementEditor().createDecoratedCharInfo(charInfoSet, elements)
-    decoratedList
-  }
+  
 
   // Generates the overlap map for a given character system
   def generateOverlapMap(charSystem: CharSystem, decorated: Set[StaticFileCharInfoWithLetterConway]):
@@ -55,9 +49,9 @@ object ElementAdjustedCodes {
   val adjusted: ElementAdjustedCodes = new ElementAdjustedCodes()
 
   // Generating element adjusted codes
-  val elemAdjusted8000Junda: Set[StaticFileCharInfoWithLetterConway] = adjusted.generateElementAdjustedCodes(jundaChars)
-  val elemAdjusted8000Tzai: Set[StaticFileCharInfoWithLetterConway] = adjusted.generateElementAdjustedCodes(tzaiChars)
-  val elemAdjustedAllChars: Set[StaticFileCharInfoWithLetterConway] = adjusted.generateElementAdjustedCodes(OverlapCalculations.allGraphemes)
+  val elemAdjusted8000Junda: Set[StaticFileCharInfoWithLetterConway] = ElementAdjustedCodes.generateElementAdjustedCodes(jundaChars)
+  val elemAdjusted8000Tzai: Set[StaticFileCharInfoWithLetterConway] = ElementAdjustedCodes.generateElementAdjustedCodes(tzaiChars)
+  val elemAdjustedAllChars: Set[StaticFileCharInfoWithLetterConway] = ElementAdjustedCodes.generateElementAdjustedCodes(OverlapCalculations.allGraphemes)
   // generate overlap maps
   
 
@@ -66,5 +60,13 @@ object ElementAdjustedCodes {
     adjusted.secondOverlapMap(CharSystem.Junda, elemAdjusted8000Junda)
   val secondOverlapTzai: List[(Int, List[StaticFileCharInfoWithLetterConway])] =
     adjusted.secondOverlapMap(CharSystem.Tzai, elemAdjusted8000Tzai)
-
+  
+  def generateElementAdjustedCodes(graphemes: Set[Grapheme]): Set[StaticFileCharInfoWithLetterConway] = {
+    val charInfoSet: Set[StaticFileCharInfo] = staticfile.getAll(graphemes)
+    val elements = ElementList.elementTypes
+    val decoratedList: Set[StaticFileCharInfoWithLetterConway] =
+      new ElementEditor().createDecoratedCharInfo(charInfoSet, elements)
+    decoratedList
+  }
+  
 }

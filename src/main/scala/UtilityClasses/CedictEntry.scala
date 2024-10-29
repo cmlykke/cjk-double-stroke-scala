@@ -12,8 +12,8 @@ class CedictEntry(chineseStrInp: String, systemInp: CharSystem,
   val meaning: String = inputMeaning
   val pronounciation: String = inputPronounciation
   val tradSimp: String = inputTradSimp
-  val chineseStrGraphemes: Set[Grapheme] = 
-    Grapheme.splitIntoGraphemes(chineseStr).map(Grapheme(_)).toSet
+  val chineseStrGraphemes: List[Grapheme] = 
+    Grapheme.splitIntoGraphemes(chineseStr).map(Grapheme(_)).toList
   val cedict: List[CedictSubEntry] = generateSubEntry(chineseStr, charMap)
   val unambigous: List[Set[ConwayUnambigous]] = generateUnambique(cedict)
   val system = systemInp

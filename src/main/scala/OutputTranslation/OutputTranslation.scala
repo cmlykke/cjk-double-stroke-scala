@@ -13,7 +13,7 @@ type TranslationFunctionCedict = (CedictEntry, List[Set[ConwayUnambigous]], Stri
 
 class OutputTranslation {
   
-  def generateJundaGraphemeOrder(chineseStrGraphemes: Set[Grapheme]): List[Grapheme] = {
+  def generateJundaGraphemeOrder(chineseStrGraphemes: List[Grapheme]): List[Grapheme] = {
     // Define an ordering based on the required sorting criteria
     val ordering: Ordering[Grapheme] = Ordering.by(grapheme => {
       def extractHexValue(hexString: String): Int = {
@@ -28,10 +28,10 @@ class OutputTranslation {
       (jundaFreq, tzaiFreq, unicodeLen, lastHexValue)
     })
     // Convert the set to a list and sort using the defined ordering
-    chineseStrGraphemes.toList.sorted(ordering)
+    chineseStrGraphemes.toSet.toList.sorted(ordering)
   }
 
-  def generateTzaiGraphemeOrder(chineseStrGraphemes: Set[Grapheme]): List[Grapheme] = {
+  def generateTzaiGraphemeOrder(chineseStrGraphemes: List[Grapheme]): List[Grapheme] = {
     // Define an ordering based on the required sorting criteria
     val ordering: Ordering[Grapheme] = Ordering.by(grapheme => {
       def extractHexValue(hexString: String): Int = {
@@ -46,7 +46,7 @@ class OutputTranslation {
       (tzaiFreq, jundaFreq, unicodeLen, lastHexValue)
     })
     // Convert the set to a list and sort using the defined ordering
-    chineseStrGraphemes.toList.sorted(ordering)
+    chineseStrGraphemes.toSet.toList.sorted(ordering)
   }
   
   def conwayToOutputEntry(conwayallch: Set[StaticFileCharInfoWithLetterConway], 

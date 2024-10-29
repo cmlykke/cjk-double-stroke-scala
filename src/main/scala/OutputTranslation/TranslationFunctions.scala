@@ -34,7 +34,7 @@ object TranslationFunctions {
       val mutableSet = mutable.Set[String]()
       graphemes.length match {
         case 1 => TranslationFunctions3.generateReadyCodeForOne(unambigous, graphemes)
-        case 2 => TranslationFunctions3.generateReadyCodeForTwo(unambigous)
+        case 2 => TranslationFunctions3.generateReadyCodeForTwoCedict(ced, unambigous)
         case 3 => TranslationFunctions3.generateReadyCodeForThree(unambigous)
         case 4 => TranslationFunctions3.generateReadyCodeForFour(unambigous)
         case 5 => TranslationFunctions3.generateReadyCodeForFive(unambigous)

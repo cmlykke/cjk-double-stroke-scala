@@ -1,6 +1,8 @@
 package OutputTranslation.TranslationHelpers
 
-import UtilityClasses.{ConwayUnambigous, Grapheme}
+import ElementGenerator.{ElementAdjustedCodes, ElementList, ElementType}
+import UtilityClasses.{CedictEntry, ConwayUnambigous, Grapheme, InputSizes, StaticFileCharInfoWithLetterConway}
+import UtilityClasses.InputSizes.*
 
 import scala.collection.mutable
 
@@ -51,6 +53,45 @@ object TranslationFunctions3 {
 
     return finalRes union finalRes2
   }
+/*
+  def getStaticForGraph(graph: Grapheme, elementTypes: Set[ElementType], inputSize: InputSizes): Set[StaticFileCharInfoWithLetterConway] = {
+    val teststart: Set[StaticFileCharInfoWithLetterConway] = 
+      ElementAdjustedCodes.generateElementAdjustedCodes(Set(graph))
+    return Set()
+  }*/
+  
+/*
+  def generateCedictLetters(ced: CedictEntry, elementTypes: Set[ElementType], 
+                            inputSize: InputSizes): List[Set[StaticFileCharInfoWithLetterConway]] = {
+    var res: List[Set[StaticFileCharInfoWithLetterConway]] = List[Set[StaticFileCharInfoWithLetterConway]]()
+    val charOne: Set[StaticFileCharInfoWithLetterConway] = getStaticForGraph(ced.chineseStrGraphemes(0), elementTypes, inputSize)
+    val charTwo: Set[StaticFileCharInfoWithLetterConway] = getStaticForGraph(ced.chineseStrGraphemes(1), elementTypes, inputSize)
+    //val teststart = ElementAdjustedCodes.generateElementAdjustedCodes()
+    val opt = ced.cedict.head.maybeInfoVar
+    return res
+  }*/
+  
+  def generateReadyCodeForTwoCedict(ced: CedictEntry, unambigous: List[Set[ConwayUnambigous]]): Set[String] = {
+    val allGraphemes: List[Grapheme] = ced.chineseStrGraphemes
+    //val charOne: Set[StaticFileCharInfoWithLetterConway] =
+    //  ElementAdjustedCodes.generateElementAdjustedCodes(Set(allGraphemes(0)))
+    //val charTwo: Set[StaticFileCharInfoWithLetterConway] =
+    //  ElementAdjustedCodes.generateElementAdjustedCodes(Set(ced.chineseStrGraphemes(1)))  
+    //val firstChar_firstLast: List[Set[StaticFileCharInfoWithLetterConway]] = 
+    //  generateCedictLetters(ced, ElementList.elementTypes, Two_one)
+
+    val combinations: List[List[ConwayUnambigous]] = generateCombinations(unambigous)
+    var res: mutable.Set[String] = mutable.Set[String]()
+    for (conLi <- combinations) {
+      val part1: String = getFirstAndLast(conLi(0))
+      val part2: String = getFirstSecondAndLast(conLi(1))
+      res.add(part1 + part2)
+    }
+    val finalRes = setToLength(res.toSet, 5)
+    val finalRes2: Set[String] = finalRes.map(x => x.take(3)).toSet
+
+    return finalRes union finalRes2
+  }
 
   def generateReadyCodeForThree(unambigous: List[Set[ConwayUnambigous]]): Set[String] = {
     val combinations: List[List[ConwayUnambigous]] = generateCombinations(unambigous)
@@ -65,6 +106,18 @@ object TranslationFunctions3 {
     return finalRes
   }
 
+  def generateReadyCodeForThreeCedict(ced: CedictEntry, unambigous: List[Set[ConwayUnambigous]]): Set[String] = {
+    val combinations: List[List[ConwayUnambigous]] = generateCombinations(unambigous)
+    var res: mutable.Set[String] = mutable.Set[String]()
+    for (conLi <- combinations) {
+      val part1: String = getFirst(conLi(0))
+      val part2: String = getFirstAndLast(conLi(1))
+      val part3: String = getFirstAndLast(conLi(2))
+      res.add(part1 + part2 + part3)
+    }
+    val finalRes = padStrings(res.toSet, 5)
+    return finalRes
+  }
 
   def generateReadyCodeForFour(unambigous: List[Set[ConwayUnambigous]]): Set[String] = {
     val combinations: List[List[ConwayUnambigous]] = generateCombinations(unambigous)
@@ -81,6 +134,20 @@ object TranslationFunctions3 {
   }
 
 
+  def generateReadyCodeForFourCedict(ced: CedictEntry, unambigous: List[Set[ConwayUnambigous]]): Set[String] = {
+    val combinations: List[List[ConwayUnambigous]] = generateCombinations(unambigous)
+    var res: mutable.Set[String] = mutable.Set[String]()
+    for (conLi <- combinations) {
+      val part1: String = getFirst(conLi(0))
+      val part2: String = getFirst(conLi(1))
+      val part3: String = getFirst(conLi(2))
+      val part4: String = getFirstAndLast(conLi(3))
+      res.add(part1 + part2 + part3 + part4)
+    }
+    val finalRes = padStrings(res.toSet, 5)
+    return finalRes
+  }
+
   def generateReadyCodeForFive(unambigous: List[Set[ConwayUnambigous]]): Set[String] = {
     val combinations: List[List[ConwayUnambigous]] = generateCombinations(unambigous)
     var res: mutable.Set[String] = mutable.Set[String]()
@@ -96,7 +163,38 @@ object TranslationFunctions3 {
     return finalRes
   }
 
+  def generateReadyCodeForFiveCedict(ced: CedictEntry, unambigous: List[Set[ConwayUnambigous]]): Set[String] = {
+    val combinations: List[List[ConwayUnambigous]] = generateCombinations(unambigous)
+    var res: mutable.Set[String] = mutable.Set[String]()
+    for (conLi <- combinations) {
+      val part1: String = getFirst(conLi(0))
+      val part2: String = getFirst(conLi(1))
+      val part3: String = getFirst(conLi(2))
+      val part4: String = getFirst(conLi(3))
+      val part5: String = getFirst(conLi(4))
+      res.add(part1 + part2 + part3 + part4 + part5)
+    }
+    val finalRes = padStrings(res.toSet, 5)
+    return finalRes
+  }
+
   def generateReadyCodeOverSix(unambigous: List[Set[ConwayUnambigous]]): Set[String] = {
+    val combinations: List[List[ConwayUnambigous]] = generateCombinations(unambigous)
+    var res: mutable.Set[String] = mutable.Set[String]()
+    for (conLi <- combinations) {
+      val part1: String = getFirst(conLi(0))
+      val part2: String = getFirst(conLi(1))
+      val part3: String = getFirst(conLi(2))
+      val part4: String = getFirst(conLi(3))
+      val part5: String = getFirst(conLi(4))
+      //val part6: String = getFirst(conLi(5))
+      res.add(part1 + part2 + part3 + part4 + part5) //+ part6)
+    }
+    val finalRes = padStrings(res.toSet, 5)
+    return finalRes
+  }
+
+  def generateReadyCodeOverSixCedict(ced: CedictEntry, unambigous: List[Set[ConwayUnambigous]]): Set[String] = {
     val combinations: List[List[ConwayUnambigous]] = generateCombinations(unambigous)
     var res: mutable.Set[String] = mutable.Set[String]()
     for (conLi <- combinations) {
@@ -175,6 +273,36 @@ object TranslationFunctions3 {
         paddedStr
       }
     }
+  }
+
+  def generateUnambigousForTwo(ced: CedictEntry, inp: List[Set[ConwayUnambigous]]): List[Set[ConwayUnambigous]] = {
+    var res: List[Set[ConwayUnambigous]] = List[Set[ConwayUnambigous]]()
+
+    return inp
+  }
+
+  def generateUnambigousForThree(ced: CedictEntry, inp: List[Set[ConwayUnambigous]]): List[Set[ConwayUnambigous]] = {
+    var res: List[Set[ConwayUnambigous]] = List[Set[ConwayUnambigous]]()
+
+    return inp
+  }
+
+  def generateUnambigousForFour(ced: CedictEntry, inp: List[Set[ConwayUnambigous]]): List[Set[ConwayUnambigous]] = {
+    var res: List[Set[ConwayUnambigous]] = List[Set[ConwayUnambigous]]()
+
+    return inp
+  }
+
+  def generateUnambigousForFive(ced: CedictEntry, inp: List[Set[ConwayUnambigous]]): List[Set[ConwayUnambigous]] = {
+    var res: List[Set[ConwayUnambigous]] = List[Set[ConwayUnambigous]]()
+
+    return inp
+  }
+
+  def generateUnambigousForSix(ced: CedictEntry, inp: List[Set[ConwayUnambigous]]): List[Set[ConwayUnambigous]] = {
+    var res: List[Set[ConwayUnambigous]] = List[Set[ConwayUnambigous]]()
+
+    return inp
   }
 
 }
