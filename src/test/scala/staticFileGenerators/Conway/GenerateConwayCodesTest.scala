@@ -54,7 +54,7 @@ class GenerateConwayCodesTest  extends AnyFlatSpec with Matchers{
     val mapper = new GenerateConwayCodes()
     val raw5 = "(1|4)111251(122|1212|2112)1\\2112"
     val res5 = mapper.expandAlternatives(raw5)
-    res5.size shouldEqual 27
+    res5.size shouldEqual 18
   }
 
   "The expand backslash function" should "test that expansion is correct" in {

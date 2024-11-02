@@ -39,6 +39,13 @@ class ConwayToOutputTest extends AnyFlatSpec with Matchers {
     val testres1 = ConwayToOutput.rawConwayToOutputCodes(Grapheme.splitIntoGraphemes("譁").map(x => Grapheme(x)).toList)
 
     testres1 shouldBe Set("ijnj", "ijjj", "injj", "hhxhbj", "hhxhnj", "hhxjhj","thxhbj", "thxhnj", "thxjhj")
+
+    val testres2 = ConwayToOutput.rawConwayToOutputCodes(Grapheme.splitIntoGraphemes("臒").map(x => Grapheme(x)).toList)
+
+    testres2 shouldBe Set(
+      "ptns", "ptjs", "ptnjus", "ptjvcs", "ptjjus", "ptjnus",
+      "phns", "phjs", "phnjus", "phjvcs", "phjjus", "phjnus" )
+
   }
 
   it should "test two character words" in {
