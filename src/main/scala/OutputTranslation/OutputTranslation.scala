@@ -53,7 +53,8 @@ class OutputTranslation {
                           translationFn: TranslationFunction): Set[OutputEntry] = {
     val res: mutable.Set[OutputEntry] = mutable.Set[OutputEntry]()
     for (conEntry <- conwayallch) {
-      val outputCodes: Set[String] = translationFn(List(conEntry.letterConway), conEntry.grapheme.char)
+      //val outputCodes: Set[String] = translationFn(List(conEntry.letterConway), conEntry.grapheme.char)
+      val outputCodes: Set[String] =  ConwayToOutput.rawConwayToOutputCodes(List(conEntry.grapheme))
       val entry: OutputEntry = new OutputEntry(
         conEntry.grapheme.char,
         "",
@@ -77,7 +78,8 @@ class OutputTranslation {
       }
       val jundaReverseOrder: List[Grapheme] = generateJundaGraphemeOrder(ceEntry.chineseStrGraphemes).reverse
       val tzaiReverseOrder: List[Grapheme] = generateTzaiGraphemeOrder(ceEntry.chineseStrGraphemes).reverse
-      val outputCodes: Set[String] = translationFn(ceEntry, ceEntry.unambigous, ceEntry.chineseStr)
+      //val outputCodes: Set[String] = translationFn(ceEntry, ceEntry.unambigous, ceEntry.chineseStr)
+      val outputCodes: Set[String] =  ConwayToOutput.rawConwayToOutputCodes(ceEntry.chineseStrGraphemes)
       val entry: OutputEntry = new OutputEntry(
         ceEntry.chineseStr,
         ceEntry.meaning,

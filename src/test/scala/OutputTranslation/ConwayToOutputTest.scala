@@ -35,6 +35,12 @@ class ConwayToOutputTest extends AnyFlatSpec with Matchers {
 
   }
 
+  it should "test chars and words that cause errors" in {
+    val testres1 = ConwayToOutput.rawConwayToOutputCodes(Grapheme.splitIntoGraphemes("譁").map(x => Grapheme(x)).toList)
+
+    testres1 shouldBe Set("ijnj", "ijjj", "injj", "hhxhbj", "hhxhnj", "hhxjhj","thxhbj", "thxhnj", "thxjhj")
+  }
+
   it should "test two character words" in {
 
     val testres1 = ConwayToOutput.rawConwayToOutputCodes(Grapheme.splitIntoGraphemes("你好").map(x => Grapheme(x)).toList)

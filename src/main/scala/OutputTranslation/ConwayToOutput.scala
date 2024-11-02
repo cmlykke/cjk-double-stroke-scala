@@ -2,6 +2,7 @@ package OutputTranslation
 
 import ElementGenerator.{ElementAdjustedCodesNrTwo, ElementList, ElementTranslateToAlphabet, ElementType}
 import UtilityClasses.{Cluster, Conway, ExtractsFromCedictCodes, Grapheme, StaticFileCharInfo, StaticFileCharInfoWithLetterConway}
+import staticFileGenerators.Conway.GenerateConwayCodes
 import staticFileGenerators.JundaFrequency.JundaData
 import staticFileGenerators.StaticFileGeneratorFacade
 import staticFileGenerators.TzaiFrequency.TzaiData
@@ -11,6 +12,9 @@ import scala.collection.mutable
 object ConwayToOutput {
 
   def rawConwayToOutputCodes(charOrWord: List[Grapheme]): Set[String] = {
+    if (charOrWord.length == 1 && charOrWord.head.char == "譁") {
+      val test = ""
+    }
     try{
       val mutableSet = mutable.Set[String]()
       charOrWord.length match {
@@ -61,14 +65,14 @@ object ConwayToOutput {
   private def generateCodesForSingleChars(charOrWord: List[Grapheme]): Set[String] = {
     val jundaNum: Option[JundaData] = charOrWord.head.junda
     val tzaiNum: Option[TzaiData] = charOrWord.head.tzai
-    
+
     val lessthanFour = generateCodeWithExtract_noZFillup(charOrWord, List(ExtractsFromCedictCodes.FirstSecondThirdLast), true)
     val fourCodesWithz: Set[String] = generateCodeWithExtract(
       charOrWord, List(ExtractsFromCedictCodes.FirstSecondThirdLast), true, 4)
     val sixcodesWithZ: Set[String] = generateCodeWithExtract(
       charOrWord, List(ExtractsFromCedictCodes.FirstToFifthAndLast), false, 6)
-    
-    if ((jundaNum.isDefined && jundaNum.get.ordinal <= 5000) || 
+
+    if ((jundaNum.isDefined && jundaNum.get.ordinal <= 5000) ||
         (tzaiNum.isDefined && tzaiNum.get.ordinal <= 5000)) {
       return fourCodesWithz union sixcodesWithZ union lessthanFour
     } else {
@@ -129,24 +133,29 @@ object ConwayToOutput {
       case e: Exception => return Set("z")
 
     val elements = ElementList.elementTypes
-    if (charOnly.char == "人") {
+    if (charOnly.char == "譁") {
       val test = ""
     }
     var allRawStrokeCodes: String = charInfoSet.get.conwayColl.rawConway.rawConway
+    //before finding any elements, it is nessasary to control for any precence of slashes in the raw conway
+    val generateConwayInstanc = new GenerateConwayCodes()
+    val parenmap: Map[String, String] = generateConwayInstanc.generateParenMap(allRawStrokeCodes)
+    val slashexpanded: String = generateConwayInstanc.expandSlashCodes(allRawStrokeCodes, parenmap)
+
     var rawIds: List[Cluster] = charInfoSet.get.ids
     if (withElem) {
-      val elem: (Option[String], String) = getElemFromraw(charOnly.char,  allRawStrokeCodes, rawIds, elements)
+      val elem: (Option[String], String) = getElemFromraw(charOnly.char,  slashexpanded, rawIds, elements)
       if (elem._1.isDefined) {
-        val rolledOutCodes: Set[String] = Conway.generateConway.expandAlternatives(elem._2)
+        val rolledOutCodes: Set[String] = generateConwayInstanc.expandAlt(elem._2)//Conway.generateConway.expandAlternatives(elem._2)
         val resWithElem: Set[String] = generateAllLetters(charOnly, elem._1.get, rolledOutCodes, extractRule)
         return resWithElem
       } else {
-        val rolledOutCodes: Set[String] = Conway.generateConway.expandAlternatives(allRawStrokeCodes)
+        val rolledOutCodes: Set[String] = Conway.generateConway.expandAlternatives(slashexpanded)
         val resWithElem: Set[String] = generateAllLetters(charOnly, "", rolledOutCodes, extractRule)
         return resWithElem
       }
     }
-    val rolledOutCodes: Set[String] = Conway.generateConway.expandAlternatives(allRawStrokeCodes)
+    val rolledOutCodes: Set[String] = Conway.generateConway.expandAlternatives(slashexpanded)
     val resWithElem: Set[String] = generateAllLetters(charOnly, "", rolledOutCodes, extractRule)
     return resWithElem
   }
