@@ -26,7 +26,7 @@ class CharacterCount extends AnyFlatSpec with Matchers {
       .filter(z => Grapheme.isGrapheme(z)).toSet
     val singleTzai = outTStr
       .filter(z => Grapheme.isGrapheme(z)).toSet
-
+    //It contains 29.482 different single characters, and 179.767 multi-character words
     singleJunda.size shouldBe 29482
     singleTzai.size shouldBe 29482
   }
@@ -38,7 +38,7 @@ class CharacterCount extends AnyFlatSpec with Matchers {
       .filter(z => Grapheme.splitIntoGraphemes(z).size > 1).toSet
     val singleTzai = outTStr
       .filter(z => Grapheme.splitIntoGraphemes(z).size > 1).toSet
-
+    //It contains 29.482 different single characters, and 179.767 multi-character words
     singleJunda.size shouldBe 179767
     singleTzai.size shouldBe 179767
   }
