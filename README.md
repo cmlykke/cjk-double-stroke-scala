@@ -7,14 +7,15 @@ author: - 劉可力 / 刘可力 c m l y k k e - h o t m a i l - c o m
 description:
 Release: 1.1 - 2024-10-26
 First published 2024-10-16
-劉碼 / 刘码 Liuma is a shape-based input method for typing chinese that you can memorize in a few minutes.
-It contains 29.482 different single characters, and 179.767 multi-character words 
-(counting traditional and simplified separately).
+劉碼 / 刘码 Liuma is a shape-based input system that you can memorize in a few minutes.
+It contains 29.482 different single characters, and 179.767 multi-character words
+(counting traditional and simplified words separately).
 You can write any of the 5.000 most common characters without having to scroll,
-using a maximum of 4 keystrokes per character (plus selection using the number keys).
-It comes in two versions:
-劉碼繁 Liumafan for writing traditional characters, and
-刘码简 Liumajian for writing simplified characters.
+using only 4 letters per character (plus selection using the number keys).
+It comes in to versions:
+劉碼繁 liumafan where traditional characters are prioritized, and
+刘码简 liumajian where simplified characters are prioritized.
+Read more at https://github.com/Weiqifan1/rime-liuma/blob/main/README.md
 
 This project is written in Scala-3 and generates .yaml files to be used with the 
 RIME input method engine: 

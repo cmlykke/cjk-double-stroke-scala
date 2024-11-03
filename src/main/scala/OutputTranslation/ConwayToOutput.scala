@@ -65,6 +65,7 @@ object ConwayToOutput {
   private def generateCodesForSingleChars(charOrWord: List[Grapheme]): Set[String] = {
     val jundaNum: Option[JundaData] = charOrWord.head.junda
     val tzaiNum: Option[TzaiData] = charOrWord.head.tzai
+    val elemSet: Set[String] = ElementList.elementSet
 
     val lessthanFour = generateCodeWithExtract_noZFillup(charOrWord, List(ExtractsFromCedictCodes.FirstSecondThirdLast), true)
     val fourCodesWithz: Set[String] = generateCodeWithExtract(
@@ -73,7 +74,8 @@ object ConwayToOutput {
       charOrWord, List(ExtractsFromCedictCodes.FirstToFifthAndLast), false, 6)
 
     if ((jundaNum.isDefined && jundaNum.get.ordinal <= 5000) ||
-        (tzaiNum.isDefined && tzaiNum.get.ordinal <= 5000)) {
+        (tzaiNum.isDefined && tzaiNum.get.ordinal <= 5000) ||
+        (elemSet.contains(charOrWord.head.char))) {
       return fourCodesWithz union sixcodesWithZ union lessthanFour
     } else {
       return fourCodesWithz union sixcodesWithZ

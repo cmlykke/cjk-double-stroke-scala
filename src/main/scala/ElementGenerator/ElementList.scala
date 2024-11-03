@@ -82,6 +82,8 @@ object ElementList {
 
     // Add more elements as needed
   )
+  
+  val elementSet: Set[String] = elementTypes.map(x => x.rawString).toSet
 
   // 251214122151234
   //  虫
