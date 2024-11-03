@@ -73,9 +73,17 @@ object ConwayToOutput {
     val sixcodesWithZ: Set[String] = generateCodeWithExtract(
       charOrWord, List(ExtractsFromCedictCodes.FirstToFifthAndLast), false, 6)
 
-    if ((jundaNum.isDefined && jundaNum.get.ordinal <= 5000) ||
-        (tzaiNum.isDefined && tzaiNum.get.ordinal <= 5000) ||
-        (elemSet.contains(charOrWord.head.char))) {
+    if (elemSet.contains(charOrWord.head.char)) {
+      val elem: List[ElementType] = ElementList.elementTypes.filter(x => x.rawString == charOrWord.head.char).toList
+      if (elem.length != 1) {
+        throw new Exception("element not found")
+      }
+      val letterToWrite = elem.head.elementKeyLetter
+      val chinese = charOrWord.head.char
+      val translatedletter = translatePrelimLettersAndStrokes(List(letterToWrite))
+      return fourCodesWithz union sixcodesWithZ union Set(translatedletter)
+    } else if ((jundaNum.isDefined && jundaNum.get.ordinal <= 5000) ||
+               (tzaiNum.isDefined && tzaiNum.get.ordinal <= 5000)) {
       return fourCodesWithz union sixcodesWithZ union lessthanFour
     } else {
       return fourCodesWithz union sixcodesWithZ

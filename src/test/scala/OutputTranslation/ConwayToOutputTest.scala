@@ -1,10 +1,182 @@
 package OutputTranslation
 
-import UtilityClasses.Grapheme
+import ElementGenerator.ElementList
+import UtilityClasses.{Grapheme, OutputEntry}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
 class ConwayToOutputTest extends AnyFlatSpec with Matchers {
+
+
+  it should "test all elements" in {
+    val conwaySet: Set[OutputEntry] = OutputSorting.conFull
+    val elemSet: Set[String] = ElementList.elementSet
+    val elementSet: Set[OutputEntry] = conwaySet.filter(x => elemSet.contains(x.chineseStr))
+    var testres: String = ""
+
+    testres += oToT(elementSet.filter(x => x.chineseStr == "木").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "⽊").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "足").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "⻊").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "⾜").head)
+
+    testres += oToT(elementSet.filter(x => x.chineseStr == "竹").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "⺮").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "虫").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "⾍").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "手").head)
+
+    testres += oToT(elementSet.filter(x => x.chineseStr == "⼿").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "扌").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "⺘").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "目").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "言").head)
+    
+    testres += oToT(elementSet.filter(x => x.chineseStr == "訁").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "⾔").head)
+    testres +=  oToT(elementSet.filter(x => x.chineseStr == "糸").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "糹").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "⺯").head)
+    
+    testres += oToT(elementSet.filter(x => x.chineseStr == "⽷").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "金").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "⾦").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "門").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "⾨").head)
+    
+    testres += oToT(elementSet.filter(x => x.chineseStr == "馬").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "⾺").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "食").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "飠").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "⾷").head)
+    
+    testres += oToT(elementSet.filter(x => x.chineseStr == "⻝").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "⻞").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "⻟").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "車").head)
+    testres += oToT(elementSet.filter(x => x.chineseStr == "⾞").head)
+
+    allStringsOccur(elemSet, testres) shouldBe true
+    
+    testres.replaceAll("\\s", "") shouldBe 
+    """(木,List(26408),Set(dzzz, jozzzz, d))
+      |(⽊,List(12106),Set(dzzz, jozzzz, d))
+      |(足,List(36275),HashSet(j, xjjhzz, xjjh, xjmz, xjmzzz))
+      |(⻊,List(11978),Set(xjjh, xjjhzz, j))
+      |(⾜,List(12188),Set(jzzz, xjmzzz, xjjhzz, j))
+      |(竹,List(31481),Set(fzzz, yelzzz, f))
+      |(⺮,List(11950),Set(fzzz, yelzzz, f))
+      |(虫,List(34411),Set(szzz, xjlzzz, s))
+      |(⾍,List(12173),Set(szzz, xjlzzz, s))
+      |(手,List(25163),Set(lzzz, yjzzzz, l))
+      |(⼿,List(12095),Set(lzzz, yjzzzz, l))
+      |(扌,List(25164),Set(lzzz, jhzzzz, l))
+      |(⺘,List(11928),Set(lzzz, jhzzzz, l))
+      |(目,List(30446),Set(kzzz, xhhzzz, k))
+      |(言,List(35328),Set(izzz, thxhzz, hhxhzz, i))
+      |(訁,List(35329),Set(izzz, thxhzz, hhxhzz, i))
+      |(⾔,List(12180),Set(izzz, thxhzz, hhxhzz, i))
+      |(糸,List(31992),HashSet(awwz, u, aroz, awwzzz, arozzz))
+      |(糹,List(31993),Set(uzzz, awwzzz, arozzz, u))
+      |(⺯,List(11951),Set(uzzz, awwzzz, arozzz, u))
+      |(⽷,List(12151),Set(uzzz, awwzzz, arozzz, u))
+      |(金,List(37329),Set(rzzz, ohcyzz, r))
+      |(⾦,List(12198),Set(rzzz, ohcyzz, r))
+      |(門,List(38272),Set(pzzz, xhxhzz, p))
+      |(⾨,List(12200),Set(pzzz, xhxhzz, p))
+      |(馬,List(39340),Set(wzzz, jhxwwz, nhxwwz, w))
+      |(⾺,List(12218),Set(wzzz, jhxwwz, nhxwwz, w))
+      |(食,List(39135),HashSet(oqhs, oqhnhz, omhh, omhs, oqhh, oqhszz, omhszz, omhnhz, o))
+      |(飠,List(39136),HashSet(ozzz, oqhnhz, oqhszz, omhszz, omhnhz, o))
+      |(⾷,List(12215),HashSet(ozzz, oqhnhz, oqhszz, omhszz, omhnhz, o))
+      |(⻝,List(11997),HashSet(oqhs, oqhnhz, omhh, omhs, oqhh, oqhszz, omhszz, omhnhz, o))
+      |(⻞,List(11998),HashSet(ozzz, oqhnhz, oqhszz, omhszz, omhnhz, o))
+      |(⻟,List(11999),HashSet(ozzz, oqhnhz, oqhszz, omhszz, omhnhz, o))
+      |(車,List(36554),Set(ezzz, jghnzz, e))
+      |(⾞,List(12190),Set(ezzz, jghnzz, e))""".stripMargin.replaceAll("\\s", "")
+    
+  }
+
+  private def oToT(input: OutputEntry): String = {
+    val res: (String, List[String], Set[String]) = (input.chineseStr, input.chineseStr.toList.map(_.toInt.toString), input.codes)
+    return res.toString() + "\n"
+  }
+
+  private def allStringsOccur(strSet: Set[String], str: String): Boolean = {
+    for (eachElem <- strSet) {
+      val isGraph = Grapheme.isGrapheme(eachElem)
+      val doesoccur = str.contains(eachElem)
+      if (!doesoccur && isGraph) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /*
+  new ElementType("1234", new Cluster("木"), "a", "木"),
+    new ElementType("1234", new Cluster("⽊"), "a", "⽊"),
+    //overlap point: Junda 2919梗  Tzai
+    new ElementType("251(215|2121)", new Cluster("⿱口止"), "b", "⿱口止"),
+    new ElementType("251(215|2121)", new Cluster("足"), "b", "足"),// 足
+    new ElementType("2512121", new Cluster("⻊"), "b", "⻊"),
+    new ElementType("251(215|2121)", new Cluster("⾜"), "b", "⾜"),
+    //overlap point: Junda 2977趴  Tzai
+    new ElementType("314314", new Cluster("⿰⿱𠂊亅⿱𠂊亅"), "c", "⿰⿱𠂊亅⿱𠂊亅"),
+    new ElementType("314314", new Cluster("竹"), "c", "竹"), //'竹'
+    new ElementType("314314", new Cluster("⺮"), "c", "⺮"), //'⺮' 11950
+    //overlap point: Junda 3785筏  Tzai
+    new ElementType("251214", new Cluster("虫"), "d", "虫"),
+    new ElementType("251214", new Cluster("⾍"), "d", "⾍"),
+    //overlap point: Junda 3918蜈  Tzai
+    new ElementType("3112", new Cluster("手"), "e", "手"),
+    new ElementType("3112", new Cluster("⼿"), "e", "⼿"),
+    new ElementType("121", new Cluster("扌"), "e", "扌"),
+    new ElementType("121", new Cluster("⺘"), "e", "⺘"),
+    //overlap point: Junda 4299摞  Tzai
+    new ElementType("25111", new Cluster("目"), "f", "目"),
+    //overlap point: Junda 4742嗪 -- 5846瞋  Tzai --目  25111(12251111|13251111|15251115|35251115|53251115)34
+
+    //new ElementType("251", new Cluster("口"), "g"),
+    //嗉 5351 -- 題 5105
+    //new ElementType("122111", new Cluster("耳"), "h"),
+    //聩 5209 -- 122111251212534  耳
+    //next highest overlap: 糇 junda 5898
+
+    new ElementType("(1|4)111251", new Cluster("言"), "k", "言"),
+    new ElementType("(1|4)111251", new Cluster("訁"), "k", "訁"),
+    new ElementType("(1|4)111251", new Cluster("⾔"), "k", "⾔"),
+    //overlap point: Junda   tzai 誠  894
+    new ElementType("(554234|554444)", new Cluster("⿱⿰②丶③"), "l", "⿱⿰②丶③"),
+    new ElementType("(554234|554444)", new Cluster("糸"), "l", "糸"),
+    new ElementType("(554234|554444)", new Cluster("糹"), "l", "糹"),
+    new ElementType("(554234|554444)", new Cluster("⺯"), "l", "⺯"),
+    new ElementType("(554234|554444)", new Cluster("⽷"), "l", "⽷"),
+    //overlap point: Junda   tzai  縱 1448  (554234|554444)33234342134   ⿱⿰②丶③
+    new ElementType("34112431", new Cluster("⿱人⿻⿱一⿱十一丷"), "m", "⿱人⿻⿱一⿱十一丷"),
+    new ElementType("34112431", new Cluster("金"), "m", "金"),
+    new ElementType("34112431", new Cluster("⾦"), "m", "⾦"),
+    //overlap point: Junda   tzai 錶 2473  // ⿱人⿻⿱一⿱十一丷   3411243111213534
+    new ElementType("25112511", new Cluster("⿰𠁣𠃛"), "n", "⿰𠁣𠃛"),
+    new ElementType("25112511", new Cluster("門"), "n", "門"),
+    new ElementType("25112511", new Cluster("⾨"), "n", "⾨"),
+    //overlap point: Junda   tzai tzai 曙 3429 -- 閂 5040 //⿰𠁣𠃛  251125111
+    new ElementType("(12|21)11254444", new Cluster("⿹⑥灬"), "o", "⿹⑥灬"),
+    new ElementType("(12|21)11254444", new Cluster("馬"), "o", "馬"),
+    new ElementType("(12|21)11254444", new Cluster("⾺"), "o", "⾺"),
+    //overlap point: Junda   tzai  驤 4204 (12|21)1125444441251251112213534  ⿹⑥灬
+
+    new ElementType("34(1|4)(51154|511211)", new Cluster("⿱人⿱丶⑤"), "p", "⿱人⿱丶⑤"),
+    new ElementType("34(1|4)(51154|511211)", new Cluster("食"), "p", "食"),
+    new ElementType("34(1|4)(51154|511211)", new Cluster("飠"), "p", "飠"),
+    new ElementType("34(1|4)(51154|511211)", new Cluster("⾷"), "p", "⾷"),
+    new ElementType("34(1|4)(51154|511211)", new Cluster("⻝"), "p", "⻝"),
+    new ElementType("34(1|4)(51154|511211)", new Cluster("⻞"), "p", "⻞"),
+    new ElementType("34(1|4)(51154|511211)", new Cluster("⻟"), "p", "⻟"),
+    //overlap point: Junda   tzai 餞 4285  34(1|4)(51154|511211)(1534|1543)\3
+    new ElementType("1251112", new Cluster("車"), "q", "車"),
+    new ElementType("1251112", new Cluster("⾞"), "q", "⾞"),
+  */
 
 
   it should "test single characters " in {

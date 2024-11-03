@@ -69,7 +69,7 @@ class OutputTranslation {
     res.toSet
   } 
   
-  def cedictToOutputEntry(cedictEntries: Set[CedictEntry], 
+  def cedictToOutputEntry(cedictEntries: Set[CedictEntry],
                           translationFn: TranslationFunctionCedict): Set[OutputEntry] = {
     val res: mutable.Set[OutputEntry] = mutable.Set[OutputEntry]()
     for (ceEntry <- cedictEntries) {
