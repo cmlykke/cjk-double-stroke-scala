@@ -5,7 +5,7 @@ code repository: https://github.com/Weiqifan1/cjk-double-stroke-scala
 
 author: - 劉可力 / 刘可力 c m l y k k e - h o t m a i l - c o m
 description:
-Release: 1.1 - 2024-10-26
+Version: 1.2 - 2024-11-04
 First published 2024-10-16
 劉碼 / 刘码 Liuma is a shape-based input system that you can memorize in a few minutes.
 It contains 29.512 different single characters, and 179.799 multi-character words
