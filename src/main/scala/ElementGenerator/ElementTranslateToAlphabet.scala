@@ -1,6 +1,5 @@
 package ElementGenerator
 
-import OutputTranslation.TranslationFunctions
 import UtilityClasses.{ConwayUnambigous, Grapheme, StaticFileCharInfoWithLetterConway}
 
 import scala.collection.mutable

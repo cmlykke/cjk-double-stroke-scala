@@ -49,11 +49,9 @@ class OutputTranslation {
     chineseStrGraphemes.toSet.toList.sorted(ordering)
   }
   
-  def conwayToOutputEntry(conwayallch: Set[StaticFileCharInfoWithLetterConway], 
-                          translationFn: TranslationFunction): Set[OutputEntry] = {
+  def conwayToOutputEntry(conwayallch: Set[StaticFileCharInfoWithLetterConway]): Set[OutputEntry] = {
     val res: mutable.Set[OutputEntry] = mutable.Set[OutputEntry]()
     for (conEntry <- conwayallch) {
-      //val outputCodes: Set[String] = translationFn(List(conEntry.letterConway), conEntry.grapheme.char)
       val outputCodes: Set[String] =  ConwayToOutput.rawConwayToOutputCodes(List(conEntry.grapheme))
       val entry: OutputEntry = new OutputEntry(
         conEntry.grapheme.char,
@@ -66,11 +64,12 @@ class OutputTranslation {
       )
       res.add(entry)
     }
+    //val test = res.filter(x => x.chineseStr == "糸").toSet;
+
     res.toSet
   } 
   
-  def cedictToOutputEntry(cedictEntries: Set[CedictEntry],
-                          translationFn: TranslationFunctionCedict): Set[OutputEntry] = {
+  def cedictToOutputEntry(cedictEntries: Set[CedictEntry]): Set[OutputEntry] = {
     val res: mutable.Set[OutputEntry] = mutable.Set[OutputEntry]()
     for (ceEntry <- cedictEntries) {
       if (ceEntry.chineseStr == "仫") {
@@ -78,7 +77,6 @@ class OutputTranslation {
       }
       val jundaReverseOrder: List[Grapheme] = generateJundaGraphemeOrder(ceEntry.chineseStrGraphemes).reverse
       val tzaiReverseOrder: List[Grapheme] = generateTzaiGraphemeOrder(ceEntry.chineseStrGraphemes).reverse
-      //val outputCodes: Set[String] = translationFn(ceEntry, ceEntry.unambigous, ceEntry.chineseStr)
       val outputCodes: Set[String] =  ConwayToOutput.rawConwayToOutputCodes(ceEntry.chineseStrGraphemes)
       val entry: OutputEntry = new OutputEntry(
         ceEntry.chineseStr,
@@ -167,8 +165,8 @@ object OutputTranslation {
   val outClass = new OutputTranslation()
   val cedict: Set[CedictEntry] = GenerateCedictMap.cedictCompleteSet
   val conwayallch: Set[StaticFileCharInfoWithLetterConway] = ElementTranslateToAlphabet.generateTranslatedAllChars()
-  val outputCedict: Set[OutputEntry] = outClass.cedictToOutputEntry(cedict, TranslationFunctions.translateVersionCedict)
-  val outputConway: Set[OutputEntry] = outClass.conwayToOutputEntry(conwayallch, TranslationFunctions.translateVersionOne)
+  val outputCedict: Set[OutputEntry] = outClass.cedictToOutputEntry(cedict)
+  val outputConway: Set[OutputEntry] = outClass.conwayToOutputEntry(conwayallch)
   
   val jundaSingelOut: Set[OutputEntry] = outClass.getJundaSingle3000(outputCedict)
   val jundaMultiOut: Set[OutputEntry] = outClass.getJundaMulti3000(outputCedict)

@@ -1,16 +1,81 @@
 package OutputTranslation
 
-import UtilityClasses.{OutputEntry, OutputEntryFrequency}
+import UtilityClasses.{Grapheme, OutputEntry, OutputEntryFrequency}
 import UtilityClasses.OutputEntryFrequency.Junda
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
-
-import scala.collection.SortedMap
+import staticFileGenerators.JundaFrequency.GenerateJundaMap
+import staticFileGenerators.TzaiFrequency.GenerateTzaiMap
 
 class OutputOverlapTest extends AnyFlatSpec with Matchers {
 
 
-  it should "check junda Single" in {
+  it should "check the frequency of Junda 4-code characters above the first 9" in {
+    val jundaFour = OutputOverlapObjects.singleJundaAboveNineFourCode //BLCUJundaAboveNineThreeCode
+
+    val mapper = new GenerateJundaMap()
+    val jundaMap = mapper.getJundaMap()
+
+    val setOfChars: Set[String] = jundaFour
+      .map(eachTupple => Grapheme.splitIntoGraphemes(eachTupple._3)
+        .filter(graph => jundaMap.contains(graph))).flatten.toSet
+    val frequencies: Double = setOfChars.filter(anyChar => jundaMap.contains(anyChar))
+      .map(jundaChar => jundaMap.get(jundaChar).get)
+      .map(jundaObj => jundaObj.frequency).sum
+
+    val times100000 = frequencies * 100000
+
+    val expected = 8.53E-6
+    val tolerance = 0.01E-6
+    frequencies should be(expected +- tolerance)
+
+    setOfChars.size shouldBe 246
+  }
+
+  it should "check the frequency of Tzai 4-code characters above the first 9" in {
+    val tzaiFour = OutputOverlapObjects.singleTzaiAboveNineFourCode //BLCUJundaAboveNineThreeCode
+
+    val mapper = new GenerateTzaiMap()
+    val tzaiMap = mapper.getTzaiMap()
+
+    val setOfChars: Set[String] = tzaiFour
+      .map(eachTupple => Grapheme.splitIntoGraphemes(eachTupple._3)
+        .filter(graph => tzaiMap.contains(graph))).flatten.toSet
+    val frequencies: Double = setOfChars.filter(anyChar => tzaiMap.contains(anyChar))
+      .map(jundaChar => tzaiMap.get(jundaChar).get)
+      .map(jundaObj => jundaObj.frequency).sum
+
+    val times200000 = frequencies * 200000
+
+    val expected = 4.16E-6
+    val tolerance = 0.01E-6
+    frequencies should be(expected +- tolerance)
+
+    setOfChars.size shouldBe 416
+  }
+
+  it should "check the frequency of Tzai 6-code characters above the first 9" in {
+    val tzaiSix = OutputOverlapObjects.singleTzaiAboveNineSixCode //BLCUJundaAboveNineThreeCode
+
+    val mapper = new GenerateTzaiMap()
+    val tzaiMap = mapper.getTzaiMap()
+
+    val setOfChars: Set[String] = tzaiSix
+      .map(eachTupple => Grapheme.splitIntoGraphemes(eachTupple._3)
+        .filter(graph => tzaiMap.contains(graph))).flatten.toSet
+    val frequencies: Double = setOfChars.filter(anyChar => tzaiMap.contains(anyChar))
+      .map(jundaChar => tzaiMap.get(jundaChar).get)
+      .map(jundaObj => jundaObj.frequency).sum
+
+    val times400000 = frequencies * 400000
+
+    val expected = 2.54E-6
+    val tolerance = 0.01E-6
+    frequencies should be(expected +- tolerance)
+    setOfChars.size shouldBe 125
+  }
+
+  it should "verify the junda characters beyond nine - single characters" in {
     val jundaFour = OutputOverlapObjects.singleJundaAboveNineFourCode //BLCUJundaAboveNineThreeCode
     val jundaSix = OutputOverlapObjects.singleJundaAboveNineSixCode
 
@@ -72,7 +137,7 @@ gzzzzz 2147483647 ： 0, ， 0, 𡿨 0, 〻 0, 、 0, ⺄ 0, ⺃ 0, ⺂ 0""".rep
     val test22 = ""
   }
 
-  it should "check tzai Single" in {
+  it should "verify the tzai characters beyond nine - single characters" in {
     val tzaiFour = OutputOverlapObjects.singleTzaiAboveNineFourCode
     val tzaiSix = OutputOverlapObjects.singleTzaiAboveNineSixCode
 

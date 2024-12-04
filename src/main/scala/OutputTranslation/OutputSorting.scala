@@ -140,6 +140,7 @@ object OutputSorting {
   //yveo 449 称 449, 颓 2996, 頺 8820, 稧 8851, 秼 9416, 龝 9710, 稴 9748, 頽 2147483647, 棃 2147483647, 穕 2147483647
   
   val test = mapFullTzai.get("yveo")
+  val test2 = mapFullTzai.get("aroz")
   val tes2 = ""
 }
 
