@@ -1,11 +1,15 @@
 package OutputTranslation
 
+import ElementGenerator.ElementList
 import UtilityClasses.{Grapheme, OutputEntry, OutputEntryFrequency}
 import UtilityClasses.OutputEntryFrequency.Junda
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 import staticFileGenerators.JundaFrequency.GenerateJundaMap
 import staticFileGenerators.TzaiFrequency.GenerateTzaiMap
+
+import scala.collection.immutable.SortedMap
+import scala.collection.mutable.ListBuffer
 
 class OutputOverlapTest extends AnyFlatSpec with Matchers {
 
@@ -47,11 +51,11 @@ class OutputOverlapTest extends AnyFlatSpec with Matchers {
 
     val times200000 = frequencies * 200000
 
-    val expected = 4.16E-6
-    val tolerance = 0.01E-6
+    val expected = 4.31E-6
+    val tolerance = 0.001E-6
     frequencies should be(expected +- tolerance)
 
-    setOfChars.size shouldBe 416
+    setOfChars.size shouldBe 419
   }
 
   it should "check the frequency of Tzai 6-code characters above the first 9" in {
@@ -132,7 +136,7 @@ pxjlwn 9675 鯖 9675, 鮭 9848, 鯉 0, 鱸 0, 鱹 0, 鱕 0, 鯥 0, 鯭 0, 鱃 0,
 pxjlws 9925 鮘 9925, 鰱 0, 魷 0, 鱁 0, 魬 0, 魼 0, 魡 0, 鯪 0, 鰒 0, 鯫 0
 gzzzzz 2147483647 ： 0, ， 0, 𡿨 0, 〻 0, 、 0, ⺄ 0, ⺃ 0, ⺂ 0""".replaceAll("\\s", "")
 
-    jundaFour.length shouldBe 464
+    jundaFour.length shouldBe 465
     jundaSix.length shouldBe 102
     val test22 = ""
   }
@@ -178,10 +182,10 @@ xjgo 5724 嘳 5724, 囅 8325, 辴 8725, 哫 8887, 爨 9314, 戙 10087, 嚗 10482
 xhjo 5811 暪 5811, 杲 6045, 嗉 6229, 昺 6787, 曚 6866, 暵 7865, 晸 8142, 嚽 9257, 暕 10909, 褁 12078
 wjgo 5821 漯 5821, 灦 6175, 淏 6807, 湜 6969, 澖 6992, 浿 7744, 淟 8463, 渨 8974, 潩 9689, 溳 10262
 wjgh 6234 澠 6234, 淐 7300, 灗 7670, 湒 8124, 駏 9105, 泪 0, 濐 0, 㶄 0, 㵎 0, 㴘 0
+ozzz 6347 乂 6347, 〤 0, 𠆢 0, 㐅 0
 jjjh 6434 莤 6434, 蓍 6845, 蘁 7032, 葙 7333, 荁 8917, 蘛 9244, 芏 9339, 躤 12759, 苷 0, 蓸 0
 pxjo 6470 鯕 6470, 鰷 6649, 鱌 6651, 鱳 6887, 鯀 7234, 鰬 7425, 鮢 7917, 鮇 8654, 鮡 8682, 魰 9111
-djgo 6856 嬠 6856, 梀 9445, 娖 10745, 姎 11347, 嬇 11619, 婰 11995, 棫 12050, 孍 12752, 娱 0, 娲 0
-jjxo 6869 藈 6869, 虆 7042, 菋 8514, 蔂 8612, 躉 8819, 葨 9016, 蹎 9816, 薎 11137, 蔝 11638, 蕺 12296""".replaceAll("\\s", "")
+djgo 6856 嬠 6856, 梀 9445, 娖 10745, 姎 11347, 嬇 11619, 婰 11995, 棫 12050, 孍 12752, 娱 0, 娲 0""".replaceAll("\\s", "")
 
     secondTest.replaceAll("\\s", "") shouldBe
       """
@@ -196,7 +200,7 @@ pxjlwg 9823 鮦 9823, 鱎 10600, 魡 11006, 鮥 11152, 鯦 11217, 鮐 11696, 鰝
 jhxwwj 10557 騲 10557, 驔 10591, 馯 11563, 駍 11653, 驌 12751, 騈 0, 騨 0, 馸 0, 䮺 0, 䮨 0
 nhxwwj 10557 騲 10557, 驔 10591, 馯 11563, 駍 11653, 驌 12751, 騈 0, 騨 0, 馸 0, 䮺 0, 䮨 0""".replaceAll("\\s", "")
 
-    tzaiFour.length shouldBe 464
+    tzaiFour.length shouldBe 465
     tzaiSix.length shouldBe 102
     val test22 = ""
   }

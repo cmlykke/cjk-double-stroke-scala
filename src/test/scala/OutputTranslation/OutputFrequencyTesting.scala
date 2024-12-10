@@ -37,14 +37,14 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
 
     val finalRes = strResult.replaceAll("\\s", "")
     finalRes shouldBe """
-                        |1.772 jundaUnchanged._1
-                        |2.078 jundaUnchanged._2
-                        |1.933 jundaTopChanged._1
-                        |1.918 jundaTopChanged._2
-                        |1.729 tzaiUnchanged._1
-                        |2.345 tzaiUnchanged._2
-                        |2.008 tzaiTopChanged._1
-                        |2.066 tzaiTopChanged._2""".stripMargin.replaceAll("\\s", "")
+                        |1.772jundaUnchanged._1
+                        |2.084jundaUnchanged._2
+                        |1.934jundaTopChanged._1
+                        |1.922jundaTopChanged._2
+                        |1.730tzaiUnchanged._1
+                        |2.353tzaiUnchanged._2
+                        |2.009tzaiTopChanged._1
+                        |2.074tzaiTopChanged._2""".stripMargin.replaceAll("\\s", "")
   }
 
   it should "check the number of uses of left vs right hand - single characters" in {
@@ -94,30 +94,29 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
 
     val finalRes = strResult.replaceAll("\\s", "")
     finalRes shouldBe """
-                        |6.042 jundaUnchanged._1
-                        |7.637 jundaUnchanged._2
-                        |9.893 jundaUnchangedLeftSelection._1
-                        |6.630 jundaTopChanged._1
-                        |7.049 jundaTopChanged._2
-                        |10.48 jundaTopChangedLeftSelection._1
-                        |7.561 jundaMiddleChanged._1
-                        |6.118 jundaMiddleChanged._2
-                        |11.41 jundaMiddleChangedWithSelection._1
-                        |6.091 jundaButtomChanged._1
-                        |7.589 jundaButtomChanged._2
-                        |7.609 jundaMiddleAndButtonChanged._1
-                        |6.070 jundaMiddleAndButtonChanged._2
-                        |6.779 tzaiUnchanged._1
-                        |9.237 tzaiUnchanged._2
-                        |7.668 tzaiTopChanged._1
-                        |8.348 tzaiTopChanged._2
-                        |9.128 tzaiMiddleChanged._1
-                        |6.888 tzaiMiddleChanged._2
-                        |6.549 tzaiButtomChanged._1
-                        |9.467 tzaiButtomChanged._2
-                        |8.898 tzaiMiddleAndButtonChanged._1
-                        |7.118 tzaiMiddleAndButtonChanged._2
-                        |""".stripMargin.replaceAll("\\s", "")
+                        |6.046jundaUnchanged._1
+                        |7.649jundaUnchanged._2
+                        |9.902jundaUnchangedLeftSelection._1
+                        |6.637jundaTopChanged._1
+                        |7.058jundaTopChanged._2
+                        |10.49jundaTopChangedLeftSelection._1
+                        |7.573jundaMiddleChanged._1
+                        |6.122jundaMiddleChanged._2
+                        |11.43jundaMiddleChangedWithSelection._1
+                        |6.092jundaButtomChanged._1
+                        |7.603jundaButtomChanged._2
+                        |7.619jundaMiddleAndButtonChanged._1
+                        |6.076jundaMiddleAndButtonChanged._2
+                        |6.788tzaiUnchanged._1
+                        |9.257tzaiUnchanged._2
+                        |7.679tzaiTopChanged._1
+                        |8.367tzaiTopChanged._2
+                        |9.150tzaiMiddleChanged._1
+                        |6.895tzaiMiddleChanged._2
+                        |6.556tzaiButtomChanged._1
+                        |9.490tzaiButtomChanged._2
+                        |8.918tzaiMiddleAndButtonChanged._1
+                        |7.128tzaiMiddleAndButtonChanged._2""".stripMargin.replaceAll("\\s", "")
   }
 
 
@@ -160,27 +159,26 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
 
     val finalRes = strResult.replaceAll("\\s", "")
     finalRes shouldBe """
-                        |48.28 jundaUnchanged._1
-                        |62.03 jundaUnchanged._2
-                        |54.77 jundaTopChanged._1
-                        |55.54 jundaTopChanged._2
-                        |59.82 jundaMiddleChanged._1
-                        |50.49 jundaMiddleChanged._2
-                        |48.58 jundaButtomChanged._1
-                        |61.73 jundaButtomChanged._2
-                        |60.12 jundaMiddleAndButtonChanged._1
-                        |50.19 jundaMiddleAndButtonChanged._2
-                        |41.47 tzaiUnchanged._1
-                        |62.02 tzaiUnchanged._2
-                        |52.38 tzaiTopChanged._1
-                        |51.12 tzaiTopChanged._2
-                        |54.61 tzaiMiddleChanged._1
-                        |48.89 tzaiMiddleChanged._2
-                        |41.88 tzaiButtomChanged._1
-                        |61.62 tzaiButtomChanged._2
-                        |55.01 tzaiMiddleAndButtonChanged._1
-                        |48.49 tzaiMiddleAndButtonChanged._2
-                        |""".stripMargin.replaceAll("\\s", "")
+                        |48.28jundaUnchanged._1
+                        |62.03jundaUnchanged._2
+                        |54.77jundaTopChanged._1
+                        |55.54jundaTopChanged._2
+                        |59.82jundaMiddleChanged._1
+                        |50.49jundaMiddleChanged._2
+                        |48.58jundaButtomChanged._1
+                        |61.73jundaButtomChanged._2
+                        |60.12jundaMiddleAndButtonChanged._1
+                        |50.19jundaMiddleAndButtonChanged._2
+                        |41.47tzaiUnchanged._1
+                        |62.02tzaiUnchanged._2
+                        |52.38tzaiTopChanged._1
+                        |51.12tzaiTopChanged._2
+                        |54.61tzaiMiddleChanged._1
+                        |48.89tzaiMiddleChanged._2
+                        |41.88tzaiButtomChanged._1
+                        |61.62tzaiButtomChanged._2
+                        |55.01tzaiMiddleAndButtonChanged._1
+                        |48.49tzaiMiddleAndButtonChanged._2""".stripMargin.replaceAll("\\s", "")
   }
 
   it should "check the number of shifts for single characters" in {
@@ -210,17 +208,16 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
     
     val finalStr = strRes.replaceAll("\\s", "")
     finalStr shouldBe """
-                        |8.178 jundaUnchanged
-                        |8.357 jundaTopChanged
-                        |7.657 jundaMiddleChanged
-                        |7.959 jundaButtomChanged
-                        |8.370 jundaMiddleAndButtonChanged
-                        |8.667 tzaiUnchanged
-                        |8.878 tzaiTopChanged
-                        |7.854 tzaiMiddleChanged
-                        |7.866 tzaiButtomChanged
-                        |8.885 tzaiMiddleAndButtonChanged
-                        |""".stripMargin.replaceAll("\\s", "")
+                        |8.187jundaUnchanged
+                        |8.368jundaTopChanged
+                        |7.666jundaMiddleChanged
+                        |7.965jundaButtomChanged
+                        |8.383jundaMiddleAndButtonChanged
+                        |8.682tzaiUnchanged
+                        |8.894tzaiTopChanged
+                        |7.868tzaiMiddleChanged
+                        |7.878tzaiButtomChanged
+                        |8.905tzaiMiddleAndButtonChanged""".stripMargin.replaceAll("\\s", "")
   }
 
 

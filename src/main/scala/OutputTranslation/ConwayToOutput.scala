@@ -67,6 +67,8 @@ object ConwayToOutput {
     val tzaiNum: Option[TzaiData] = charOrWord.head.tzai
     val elemSet: Set[String] = ElementList.elementSet
 
+    val ignoreElements: Set[String] = generateCodeWithExtract(
+      charOrWord, List(ExtractsFromCedictCodes.FirstSecondThirdLast), false, 4)
     val lessthanFour = generateCodeWithExtract_noZFillup(charOrWord, List(ExtractsFromCedictCodes.FirstSecondThirdLast), true)
     val fourCodesWithz: Set[String] = generateCodeWithExtract(
       charOrWord, List(ExtractsFromCedictCodes.FirstSecondThirdLast), true, 4)
@@ -81,7 +83,8 @@ object ConwayToOutput {
       val letterToWrite = elem.head.elementKeyLetter
       val chinese = charOrWord.head.char
       val translatedletter = translatePrelimLettersAndStrokes(List(letterToWrite))
-      return fourCodesWithz union sixcodesWithZ union Set(translatedletter)
+      return ignoreElements union Set(translatedletter + "zzz") union fourCodesWithz union sixcodesWithZ union Set(translatedletter)
+      //return fourCodesWithz union sixcodesWithZ union Set(translatedletter)
     } else if ((jundaNum.isDefined && jundaNum.get.ordinal <= 5000) ||
                (tzaiNum.isDefined && tzaiNum.get.ordinal <= 5000)) {
       return fourCodesWithz union sixcodesWithZ union lessthanFour
