@@ -1,0 +1,600 @@
+1 我 wǒ I, me
+2 我們 wǒmen we, us (pl.)
+3 你 nǐ you
+4 他 tā he, him
+5 她 tā she, her Demonstrative Pron.
+6 這 (這兒) zhè ( zhèr) this (here)
+7 那 (那) nà (nàr) that (there) Interrogative Pron.
+8 哪 nǎ which
+9 哪裡 nǎr where
+10 誰 shéi who
+11 什麼 shénme what, why
+12 多少 duōshǎo how many, how much
+13 幾 jǐ a few, how many
+14 怎麼 zěnme how
+15 怎麼樣 zěnmeyàng how about Numberal
+16 一 yī one
+17 二 èr two
+18 三 sān three
+19 四 sì four
+20 五 wǔ five
+21 六 liù six
+22 七 qī seven
+23 八 bā eight
+24 九 jiǔ nine
+25 十 shí ten Quantifier
+26 個 gè (for normal objects)
+27 歲 suì (for age)
+28 本 běn (for books)
+29 些 xiē some
+30 塊 kuài piece, chunk Adverb
+31 不 bù no
+32 沒 méi no
+33 很 hěn quite, very
+34 太 tài too
+35 都 dōu all
+36 一點兒 yīdiǎnr a little bit Conjunction
+37 和 hé and Preposition
+38 在 zài in, at Auxiliary
+39 的 de
+40 了 le
+41 嗎 ma
+42 呢 ne Interjection
+43 餵 wèi hello Noun
+44 家 jiā home
+45 學校 xuéxiào school
+46 飯店 fàndiàn restaurant
+47 商店 shāngdiàn store
+48 醫院 yīyuàn hospital
+49 中國 Zhōngguò China
+50 北京 Běijīng Beijing
+51	上	shàng	up
+52	下	xià	down
+53	前面	qiánmiàn	front
+54	後面	hòumiàn	behind
+55	裏	lǐmiàn	inside
+56	今天	jīntiān	today
+57	明天	míngtiān	tomorrow
+58	昨天	zuótiān	yesterday
+59	上午	shàngwǔ	morning
+60	中午	zhōngwǔ	noon
+61	下午	xiàwǔ	afternoon
+62	年	nián	year
+63	月	yuè	month
+64	號	hào	number/date
+65	星期	xīngqī	week
+66	點	diǎn	o’clock
+67	分鐘	fēnzhōng	minute
+68	現在	xiànzài	now
+69	時候	shíhou	time
+70	爸爸	bàba	father
+71	媽媽	māma	mother
+72	兒子	érzi	son
+73	女兒	nǚér	daughter
+74	老師	lǎoshī	teacher
+75	學生	xuéshēng	student
+76	同學	tóngxué	classmate
+77	朋友	péngyǒu	friend
+78	醫生	yīshēng	doctor
+79	先生	xiānsheng	sir
+80	小姐	xiǎojiě	Miss
+81	衣服	yīfu	cloth
+82	水	shuǐ	water
+83	菜	cài	dish
+84	米飯	mǐfàn	rice
+85	水果	shuǐguǒ	fruit
+86	蘋果	píngguǒ	apple
+87	茶	chá	tea
+88	杯子	bēizi	cup
+89	錢	qián	money
+90	飛機	fēijī	airplane
+91	出租車	chūzūchē	taxi
+92	電視	diànshì	television
+93	電腦	diànnǎo	computer
+94	電影	diànyǐng	movie
+95	天氣	tiānqì	weather
+96	貓	māo	cat
+97	狗	gǒu	dog
+98	東西	dōngxi	thing
+99	人	rén	person
+100	名字	míngzi	name
+101	書	shū	book
+102	漢語	hànyǔ	mandarin Chinese
+103	字	zì	character
+104	桌子	zhuōzi	desk
+105	椅子	yǐzi	chair Verb
+106	謝謝	xièxie	thank
+107	不客氣	búkèqì	you are welcome
+108	再見	zàijiàn	good-bye
+109	請	qǐng	please
+110	對不起	duìbùqǐ	sorry
+111	沒關係	méiguānxì	It doesn’t matter
+112	是	shì	be (am, is, are)
+113	有	yǒu	have
+114	看	kàn	look
+115	聽	tīng	listen
+116	說	shuō	speak
+117	讀	dú	read
+118	寫	xiě	write
+119	看見	kànjiàn	see
+120	叫	jiào	call
+121	來	lái	come
+122	回	huí	return
+123	去	qù	go
+124	喫	chī	eat
+125	喝	hē	drink
+126	睡覺	shuìjiào	sleep
+127	打電話	dǎdiànhuà	make phone call
+128	做	zuò	do
+129	買	mǎi	buy
+130	開	kāi	open
+131	坐	zuò	sit
+132	住	zhù	live
+133	學習	xuéxí	study
+134	工作	gōngzuò	work
+135	下雨	xiàyǔ	rain
+136	愛	ài	love
+137	喜歡	xǐhuān	love, like
+138	想	xiǎng	want
+139	認識	rènshi	know
+140	會	huì	can
+141	能	néng	can, be able to Adjective
+142	好	hǎo	good
+143	大	dà	big
+144	小	xiǎo	small
+145	多	duō	many, much
+146	少	shǎo	few, little
+147	冷	lěng	cold
+148	熱	rè	hot
+149	高興	gāoxìng	happy
+150	漂亮	piàoliang	beautiful
+1	您	nín	you
+2	它	tā	it
+3	大家	dàjiā	everyone
+4	每	měi	every, each
+5	爲什麼	wèishénme	why
+6	零	líng	zero
+7	兩	liǎng	two
+8	百	bǎi	hundred
+9	千	qiān	thousand
+10	第一	dìyī	first
+11	次	cì	times
+12	件	jiàn	piece
+13	別	bié	do not
+14	非常	fēicháng	very
+15	也	yě	also
+16	還	hái	still
+17	最	zuì	the most
+18	真	zhēn	really
+19	正在	zhèngzài	be being
+20	已經	yǐjīng	already
+21	一起	yìqǐ	together
+22	再	zài	again
+23	就	jiǜ	at once
+24	因爲……所以……	yīnwèi…suǒyǐ…	because…so…
+25	雖然……但是……	suīrán…dànshì…	although… but…
+26	從	cóng	from
+27	比	bǐ	comparing to
+28	往	wǎng	toward, to
+29	離	lí	indicate the distance between two objects
+30	得	de
+31	着	zhe
+32	過	guò
+33	吧	ba
+34	機場	jīchǎng	airport
+35	教室	jiàoshì	classroom
+36	房間	fángjiān	room
+37	路	lù	road
+38	左邊	zuǒbiān	left
+39	右邊	yòubiān	right
+40	外	wài	outside
+41	旁邊	pángbiān	side
+42	一下	yīxià	in a short while
+43	早上	zǎoshàng	morning
+44	晚上	wǎnshàng	night
+45	小時	xiǎoshí	hour
+46	時間	shíjiān	time
+47	去年	qùnián	last year
+48	日	rì	date
+49	生日	shēngrì	birthday
+50	哥哥	gēge	older brother
+51	姐姐	jiějie	older sister
+52	弟弟	dìdi	younger brother
+53	妹妹	mèimei	younger sister
+54	丈夫	zhàngfu	husband
+55	妻子	qīzi	wife
+56	孩子	háizi	child
+57	男人	nánrén	man
+58	女人	nǚrén	woman
+59	服務員	fúwùyuán	waiter
+60	魚	yú	fish
+61	羊肉	yángròu	mutton
+62	牛奶	niúnǎi	milk
+63	雞蛋	jīdàn	egg
+64	西瓜	xīguā	watermelon
+65	咖啡	kāfēi	coffee
+66	雪	xuě	snow
+67	藥	yào	medicine
+68	手機	shǒujī	cellphone
+69	手錶	shǒubiǎo	watch
+70	眼睛	yǎnjīng	eye
+71	身體	shēntǐ	body
+72	公共汽車	gōnggòngqìchē	bus
+73	報紙	bàozhǐ	newspaper
+74	門	mén	door
+75	題	tí	topic, item
+76	課	kè	lesson
+77	姓	xìng	surname
+78	問題	wèntí	question
+79	事情	shìqing	matter
+80	考試	kǎoshì	exam
+81	票	piào	ticket
+82	意思	yìsi	meaning
+83	顏色	yánsè	color
+84	鉛筆	qiánbǐ	pencil
+85	麪條	miàntiáo	noodle
+86	火車站	huǒchēzhàn	train station
+87	公司	gōngsī	company
+88	賓館	bīngguǎn	hotel
+89	說話	shuōhuà	talk
+90	賣	mài	sell
+91	問	wèn	ask
+92	走	zǒu	walk
+93	進	jìn	enter
+94	出	chū	come
+95	跑步	pǎobù	run
+96	到	dào	arrive
+97	穿	chuān	wear
+98	洗	xǐ	wash
+99	給	gěi	give
+100	找	zhǎo	find
+101	懂	dǒng	understand
+102	笑	xiào	smile
+103	告訴	gàosù	tell
+104	準備	zhǔnbèi	prepare
+105	開始	kāishǐ	begin
+106	介紹	jièshào	introduce
+107	幫助	bāngzhù	help
+108	玩	wán	play
+109	送	sòng	present
+110	等	děng	wait
+111	讓	ràng	let
+112	起牀	qǐchuáng	get up
+113	唱歌	chànggē	sing
+114	跳舞	tiàowǔ	dance
+115	旅遊	lǚyóu	travel
+116	上班	shàngbān	be on duty
+117	生病	shēngbìng	get ill, get sick
+118	休息	xiūxi	rest
+119	運動	yùndòng	exercise
+120	游泳	yóuyǒng	swim
+121	踢足球	tīzúqiú	play footbal
+122	打籃球	dǎlánqiú	play basketball
+123	完	wán	finish
+124	覺得	juédé	think
+125	知道	zhīdao	know
+126	希望	xīwàng	hope
+127	可以	kěyǐ	can
+128	要	yào	want
+129	可能	kěnéng	may
+130	高	gāo	tall
+131	紅	hóng	red
+132	白	bái	white
+133	黑	hēi	black
+134	忙	máng	busy
+135	快	kuài	fast
+136	慢	màn	slow
+137	遠	yuǎn	far
+138	近	jìn	close
+139	好喫	hǎochī	delicious
+140	累	lèi	tired
+141	長	cháng	long
+142	新	xīn	new
+143	貴	guì	expensive
+144	便宜	piányi	cheap
+145	晴	qíng	fine
+146	陰	yīn	cloudy
+147	錯	cuò	wrong
+148	快樂	kuàilè	happy
+149	對	duì	to
+150	對	duì	right
+1	阿姨	āyí	aunt
+2	啊	a	ah
+3	矮	ǎi	short
+4	愛好	àihào	hobby
+5	安靜	ānjìng	Be quiet
+6	把	bǎ	hold
+7	班	bān	class
+8	搬	bān	move
+9	半	bàn	half
+10	辦法	bànfǎ	Way
+11	辦公室	bàngōngshì	Office
+12	幫忙	bāngmáng	Help
+13	包	bāo	package
+14	飽	bǎo	full
+15	北方	běifāng	north
+16	被	bèi	cover
+17	鼻子	bízi	nose
+18	比較	bǐjiào	compare
+19	比賽	bǐsài	Match
+20	筆記本	bǐjìběn	notebook
+21	必須	bìxū	Must
+22	變化	biànhuà	change
+23	別人	biéren	Others
+24	冰箱	bīngxiāng	Refrigerator
+25	菜單	càidān	menu
+26	參加	cānjiā	participate in
+27	草	cǎo	grass
+28	層	céng	layer
+29	差	chà	bad
+30	超市	chāoshì	Supermarket
+31	襯衫	chènshān	shirt
+32	成績	chéngjì	achievement
+33	城市	chéngshì	City
+34	遲到	chídào	Late
+35	除了	chúle	except, besides
+36	船	chuán	ship
+37	春	chūn	spring
+38	詞典	cídiǎn	Dictionaries
+39	聰明	cōngming	clever
+40	打掃	dǎsǎo	Clean
+41	打算	dǎsuàn	Plan
+42	帶	dài	belt
+43	擔心	dānxīn	Worry
+44	蛋糕	dàngāo	Cake
+45	當然	dāngrán	Of course
+46	地	de
+47	燈	dēng	lamp
+48	地方	dìfang	local
+49	地鐵	dìtiě	metro
+50	地圖	dìtú	Map
+51	電梯	diàntī	Elevator.
+52	電子郵件	diànzǐyóujiàn	E-mail
+53	東	dōng	east
+54	冬	dōng	winter
+55	動物	dòngwù	Animal
+56	短	duǎn	short
+57	段	duàn	paragraph
+58	鍛鍊	duànliàn	Physical exercise
+59	多麼	duōme	such
+60	餓	è	hungry
+61	不但……而且……	búdàn…érqiě…	not only…but also…
+62	耳朵	ěrduo	Ears
+63	發	fā	send out
+64	發燒	fāshāo	Have a fever
+65	發現	fāxiàn	find, discover
+66	方便	fāngbiàn	convenient
+67	放	fàng	discharge
+68	放心	fàngxīn	Don’t worry
+69	分	fēn	minute
+70	附近	fùjìn	nearby
+71	複習	fùxí	Review
+72	乾淨	gānjìng	clean
+73	感興趣	gǎnxìngqù	be intretested in
+74	感冒	gǎnmào	get a cold
+75	剛纔	gāngcái	just
+76	個子	gèzi	height
+77	跟	gēn	with
+78	根據	gēnjù	according to
+79	更	gèng	more
+80	公斤	gōngjīn	Kg.
+81	公園	gōngyuán	Park
+82	故事	gùshi	Story
+83	颳風	guāfēng	Windy
+84	關	guān	shut
+85	關係	guānxì	relationship
+86	關心	guānxīn	Care for
+87	關於	guānyú	about
+88	國家	guójiā	Country
+89	過去	guòqù	Past times
+90	過（動詞）	guò	pass
+91	還是	háishì	still
+92	害怕	hàipà	Fear
+93	黑板	hēibǎn	blackboard
+94	後來	hòulái	later
+95	護照	hùzhào	passport
+96	花（動詞）	huā	spend
+97	花（名詞）	huā	flower
+98	畫	huà	painting
+99	壞	huài	bad
+100	歡迎	huānyíng	Welcome
+101	還（動詞）	huán	Return
+102	環境	huánjìng	Environment
+103	換	huàn	change
+104	黃河	huánghé	Yellow River
+105	回答	huídá	Answer
+106	會議	huìyì	Meeting
+107	或者	huòzhě	perhaps
+108	幾乎	jīhū	almost
+109	機會	jīhuì	Opportunity
+110	極	jí	extremely
+111	記得	jìde	remember
+112	季節	jìjié	Season
+113	檢查	jiǎnchá	inspect
+114	簡單	jiǎndān	simple
+115	健康	jiànkāng	Healthy
+116	見面	jiànmiàn	meet
+117	講	jiǎng	speak
+118	教	jiāo	teach
+119	角	jiǎo	horn
+120	腳	jiǎo	foot
+121	接	jiē	pick,get
+122	街道	jiēdào	Street
+123	結婚	jiéhūn	marry
+124	結束	jiéshù	End
+125	節目	jiémù	program
+126	節日	jiérì	festival
+127	解決	jiějué	Solve
+128	借	jiè	borrow
+129	經常	jīngcháng	Often
+130	經過	jīngguò	After, through
+131	經理	jīnglǐ	manager
+132	久	jiǔ	long
+133	舊	jiù	old,used
+134	句子	jùzi	sentence
+135	決定	juédìng	Decision
+136	渴	kě	thirsty
+137	可愛	kě’ài	Lovely
+138	刻	kè	moment
+139	客人	kèrén	Guest
+140	空調	kōngtiáo	Air conditioner
+141	口	kǒu	mouth
+142	哭	kū	cry
+143	褲子	kùzi	trousers
+144	筷子	kuàizi	chopsticks
+145	藍	lán	blue
+146	老	lǎo	old
+147	離開	líkāi	leave
+148	禮物	lǐwù	gift
+149	歷史	lìshǐ	History
+150	臉	liǎn	face
+151	聊天	liáotiān	chat
+152	練習	liànxí	Practice
+153	輛	liàng	Car
+154	瞭解	liǎojiě	understand
+155	鄰居	línjū	neighbor
+156	留學	liúxué	Overseas Study
+157	樓	lóu	floor
+158	綠	lǜ	green
+159	馬	mǎ	Horse
+160	馬上	mǎshàng	Right off
+161	滿意	mǎnyì	Satisfied
+162	帽子	màozi	Hat
+163	米	mǐ	rice
+164	麪包	miànbāo	Bread
+165	明白	míngbai	clear
+166	拿	ná	take
+167	奶奶	nǎinai	grandma
+168	南	nán	south
+169	難	nán	difficult
+170	難過	nánguò	sad
+171	年級	niánjí	grade
+172	年輕	niánqīng	Young
+173	鳥	niǎo	bird
+174	努力	nǔlì	Strive
+175	爬山	páshān	Mountain climbing
+176	盤子	pánzi	plate
+177	胖	pàng	fat
+178	啤酒	píjiǔ	Beer
+179	皮鞋	píxié	leather shoes
+180	瓶子	píngzi	bottle
+181	其實	qíshí	actually
+182	其他	qítā	Other
+183	騎	qí	ride
+184	奇怪	qíguài	strange
+185	起來	qǐlái	get up
+186	起飛	qǐfēi	take off
+187	清楚	qīngchu	clear
+188	請假	qǐngjià	ask for leave
+189	秋	qiū	autumn
+190	裙子	qúnzi	skirt
+191	然後	ránhòu	Then
+192	熱情	rèqíng	Enthusiasm
+193	認爲	rènwéi	think
+194	認真	rènzhēn	earnest
+195	容易	róngyì	easily
+196	如果	rúguǒ	If
+197	傘	sǎn	umbrella
+198	上網	shàngwǎng	Surf the Internet
+199	生氣	shēngqì	get angry
+200	聲音	shēngyīn	voice
+201 試 shì try
+202 世界 shìjiè world
+203 瘦 shòu thin
+204 舒服 shūfu comfortable
+205 叔叔 shūshu uncle
+206 樹 shù tree
+207 數學 shùxué Mathematics
+208 刷牙 shuāyá Brush one’s teeth
+209 雙 shuāng double, pair
+210 水平 shuǐpíng level
+211 司機 sījī Driver
+212 太陽 tàiyáng sun
+213 特別 tèbié Especially
+214 疼 téng hurt
+215 提高 tígāo increase
+216 體育 tǐyù Sports
+217 甜 tián sweet
+218 條 tiáo strip
+219 同事 tóngshì Colleague
+220 同意 tóngyì Agree
+221 頭髮 tóufa Hair
+222 突然 tūrán suddenly
+223 圖書館 túshūguǎn Library
+224 腿 tuǐ leg
+225 完成 wánchéng complete
+226 碗 wǎn bowl
+227 萬 wàn ten thousand
+228 忘記 wàngjì forget
+229 為 wèi for
+230 為了 wèile in order to
+231 位 wèi position
+232 文化 wénhuà Culture
+233 西 xī west
+234 習慣 xíguàn Habit
+235 洗手間 xǐshǒujiān Restroom
+236 洗澡 xǐzǎo Take a shower
+237 夏 xià summer
+238 先 xiān first
+239 香蕉 xiāngjiāo Banana
+240 相信 xiāngxìn believe
+241 向 xiàng towards
+242 像 xiàng image
+243 小心 xiǎoxīn watch out
+244 校長 xiàozhǎng Principal
+245 新聞 xīnwén news
+246 新鮮 xīnxiān fresh
+247 信用卡 xìnyòngkǎ Credit card
+248 行李箱 xínglixiāng Trunk
+249 熊貓 xióngmāo Panda
+250 需要 xūyào Need
+251 選擇 xuǎnzé Choice
+252 要求 yāoqiú Requirement
+253 爺爺 yéye grandpa
+254 一定 yídìng Certain
+255 一共 yígòng Altogether
+256 一會兒 yíhuìr a while
+257 一樣 yíyàng equally
+258 以前 yǐqián before
+259 一般 yìbān commonly
+260 一邊 yìbiān One side
+261 一直 yìzhí always
+262 音樂 yīnyuè Music
+263 銀行 yínháng Bank
+264 飲料 yǐnliào Drinks
+265 應該 yīnggāi Should
+266 影響 yǐngxiǎng Influence
+267 用 yòng use
+268 遊戲 yóuxì Game
+269 有名 yǒumíng Famous
+270 又 yòu again
+271 遇到 yùdào encounter
+272 元 yuán element; yuan
+273 願意 yuànyì Be willing
+274 月亮 yuèliang Moon
+275 越 yuè the more
+276 站 zhàn station
+277 張 zhāng Zhang (surname)
+278 長（動詞） zhǎng grow
+279 着急 zháojí Worry
+280 照顧 zhàogù look after
+281 照片 zhàopiàn Photo
+282 照相機 zhàoxiàngjī Camera
+283 只（量詞） zhī (measure word)
+284 只（副詞） zhǐ only
+285 只有……才…… zhǐyǒu…cái… only if
+286 中文 zhōngwén Chinese
+287 中間 zhōngjiān Middle
+288 終於 zhōngyú finally
+289 種 zhǒng species
+290 重要 zhòngyào important
+291 周末 zhōumò Weekend
+292 主要 zhǔyào main
+293 注意 zhùyì Be careful
+294 自己 zìjǐ Own, self
+295 自行車 zìxíngchē Bicycle
+296 總是 zǒngshì always
+297 嘴 zuǐ mouth
+298 最後 zuìhòu Last
+299 最近 zuìjìn lately
+300 作業 zuòyè homework

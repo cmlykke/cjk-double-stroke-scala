@@ -5,10 +5,38 @@ import UtilityClasses.{ConwayColl, Grapheme, OutputEntry}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 import staticFileGenerators.Conway.{GenerateConwayCodes, ReadConwayData}
-
+import scala.io.Source
 import scala.collection.{SortedMap, mutable}
 
 class GenerateHeisigMapTest extends AnyFlatSpec with Matchers{
+/*
+  "test Heisig simp - HSK 3" should "get the numbers in heisig" in {
+    val asciiRegex = "^[\\x00-\\x7F]*$".r
+    val testheisigTrad: Map[Grapheme, Int] = GenerateHeisigMap.heisigTraditional
+    val liens = readLinesFromFile("src/test/scala/staticFileGenerators/HeisigMap/hsktrad.txt")
+    val liens1 = readLinesFromFile("src/test/scala/staticFileGenerators/HeisigMap/hsk.txt")
+    liens ++ liens1
+
+    val grapgSet = liens.map(x => Grapheme.splitIntoGraphemes(x)).flatten.map(y => Grapheme(y)).toSet
+    val heisigNumbers = grapgSet
+      .flatMap(testheisigTrad.get)
+      .toSeq
+      .sorted.mkString(",")
+
+
+
+    //val noset = grapgSet.filter(x => !testheisigTrad.contains(x)).map(y => y.char).filterNot(s => asciiRegex.matches(s)).toSet
+
+    val test = ""
+  }
+*/
+
+  def readLinesFromFile(filePath: String): List[String] =
+    try
+      val lines = Source.fromFile(filePath).getLines().toList
+      lines
+    finally
+      Source.fromFile(filePath).close()
 
   "test Heisig simp" should "be withig the first nine simplified" in {
     val testheisigSimp: Map[Grapheme, Int] = GenerateHeisigMap.heisigSimplified

@@ -16,6 +16,7 @@ object GenerateHeisigMap {
   val nestedList: List[List[String]] = getChineseLines(heisigFilePath)
   val heisigSimplified: Map[Grapheme, Int] = createMap(1, 4, nestedList)
   val heisigTraditional: Map[Grapheme, Int] = createMap(0, 3, nestedList)
+  val test = "string"
 
   def getChineseLines(path: String): List[List[String]] = {
     val bufferedSource = Source.fromFile(path)
@@ -27,14 +28,16 @@ object GenerateHeisigMap {
   }
 
   def createMap(numIndex: Int, charIndex: Int, nestedList: List[List[String]]): Map[Grapheme, Int] = {
+    var ordinal: Int = 1;
     var tempres: mutable.Map[Grapheme, Int] = mutable.Map[Grapheme, Int]()
     for (each <- nestedList) {
       if (each.length > numIndex && each.length > charIndex) {
         val strChar: String = each(charIndex)
         val strNum: String = each(numIndex)
         if (canBeParsedAsInt(strNum) && strChar.length == 1) {
-          tempres.put(Grapheme(strChar), numIndex.toInt)
+          tempres.put(Grapheme(strChar), ordinal)
         }
+        ordinal = ordinal + 1;
       }
     }
     return tempres.toMap
