@@ -3,7 +3,7 @@
 
 ---
 name: liumafan
-version: "1.3"
+version: "1.4"
 sort: original
 columns:
   - code
