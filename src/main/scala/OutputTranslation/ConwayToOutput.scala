@@ -12,7 +12,7 @@ import scala.collection.mutable
 object ConwayToOutput {
 
   def rawConwayToOutputCodes(charOrWord: List[Grapheme]): Set[String] = {
-    if (charOrWord.length == 1 && charOrWord.head.char == "譁") {
+    if (charOrWord.size == 1 && charOrWord(0).char == "乪") {
       val test = ""
     }
     try{
@@ -146,7 +146,7 @@ object ConwayToOutput {
       case e: Exception => return Set("z")
 
     val elements = ElementList.elementTypes
-    if (charOnly.char == "譁") {
+    if (charOnly.char == "乪") {
       val test = ""
     }
     var allRawStrokeCodes: String = charInfoSet.get.conwayColl.rawConway.rawConway
@@ -242,7 +242,7 @@ object ConwayToOutput {
     var tuppleList: List[(Option[String], String)] = List()
     for (elem <- elements) {
       val conwayStart: Boolean = rawConway.startsWith(elem.elementVersions)
-      val idsStart: Boolean = idsStartWithElem(idsWithShapes, elem.elementCodes)
+      val idsStart: Boolean = idsStartWithElem(elem, charorWord, idsWithShapes, elem.elementCodes)
       if (conwayStart && idsStart) {
         val remainingStrokes: String = rawConway.substring(elem.elementVersions.length, rawConway.length)
         val elemLetter: String = elem.elementKeyLetter
@@ -258,10 +258,10 @@ object ConwayToOutput {
     }
   }
 
-  private def idsStartWithElem(clusters: List[Cluster], cluster: Cluster): Boolean = {
+  private def idsStartWithElem(elem: ElementType, charorWord: String, clusters: List[Cluster], cluster: Cluster): Boolean = {
     var foundClusterMatch: Boolean = false
     for (eachCluster <- clusters) {
-      val currentClusterMatch: Boolean = idsStartWithCluster(eachCluster, cluster)
+      val currentClusterMatch: Boolean = ElementHandling.idsStartWithCluster(charorWord, eachCluster, cluster)
       if (currentClusterMatch) {
         foundClusterMatch = true;
       }
@@ -269,49 +269,7 @@ object ConwayToOutput {
     return foundClusterMatch;
   }
 
-  private def idsStartWithCluster(
-                                   eachCharIdsCluster: Cluster,
-                                   elementCluster: Cluster
-                                 ): Boolean = {
-    var CharClusterGraphemes: List[Grapheme] =
-      eachCharIdsCluster.graphemes
-    var elementClusterGraphemes: List[Grapheme] =
-      elementCluster.graphemes
 
-    def doesSublistExistWithShapeCondition(
-                                            list1: List[Grapheme],
-                                            list2: List[Grapheme]
-                                          ): Boolean = {
-      if (list2.isEmpty) {
-        return true // An empty list is considered a sublist of any list
-      }
-      if (list1.isEmpty) {
-        return false // A non-empty list2 cannot be a sublist of an empty list1
-      }
-
-      val sublistLength = list2.length
-
-      for (i <- list1.indices) {
-        // Check if there's enough room for list2 to be a sublist of list1 starting at i
-        if (i + sublistLength <= list1.length) {
-          val sublistCandidate = list1.slice(i, i + sublistLength)
-          if (sublistCandidate == list2) {
-            // list2 matches this position in list1, now check the preceding elements
-            val precedingElements = list1.slice(0, i)
-            val allPrecedingShapes = precedingElements.forall(_.isShape)
-            if (allPrecedingShapes) {
-              return true
-            }
-          }
-        }
-      }
-      false
-    }
-
-    // Use the helper function to check for the sublist condition
-    doesSublistExistWithShapeCondition(CharClusterGraphemes, elementClusterGraphemes)
-  }
-  
   private def mergeNestedList(listOfSets: List[Set[String]]): Set[String] = {
     def helper(remaining: List[Set[String]], current: Set[String]): Set[String] = {
       remaining match {

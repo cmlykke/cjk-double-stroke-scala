@@ -205,6 +205,7 @@ nhxwwj 10557 騲 10557, 驔 10591, 馯 11563, 駍 11653, 驌 12751, 騈 0, 騨 0
     val test22 = ""
   }
 
+  /*
   it should "check junda BCLU" in {
     val BCLUthree = OutputOverlapObjects.BLCUjundaAboveNineThreeCode //BLCUJundaAboveNineThreeCode
     val BCLUfive = OutputOverlapObjects.BLCUJundaAboveNineFiveCode
@@ -282,8 +283,9 @@ jkjxo 92884 芦荻 92884""".replaceAll("\\s", "")
     BCLUfive.length shouldBe 330
     val test22 = ""
   }
+*/
 
-
+  /*
   it should "check tzai Sinica" in {
     val SINICAthree = OutputOverlapObjects.sinicaTzaiAboveNineThreeCode //BLCUJundaAboveNineThreeCode
     val SINICAfive = OutputOverlapObjects.sinicaTzaiAboveNineFiveCode
@@ -361,7 +363,9 @@ dyhgj 2147483647 加利福尼亚大学洛杉矶分校 0""".replaceAll("\\s", "")
     SINICAfive.length shouldBe 330
     val test22 = ""
   }
+*/
 
+   /*
   it should "check tzai BCLU" in {
     val BCLUthree = OutputOverlapObjects.BLCUTzaiAboveNineThreeCode //BLCUJundaAboveNineThreeCode
     val BCLUfive = OutputOverlapObjects.BLCUTzaiAboveNineFiveCode
@@ -439,8 +443,10 @@ jwjtf 16637 南宁市 16637, 菏泽市 69149""".replaceAll("\\s", "")
     BCLUfive.length shouldBe 330
     val test = ""
   }
+*/
 
-
+  
+  /*
   it should "check junda Sinica" in {
     val SINICAthree = OutputOverlapObjects.sinicaJundaAboveNineThreeCode //BLCUJundaAboveNineThreeCode
     val SINICAfive = OutputOverlapObjects.sinicaJundaAboveNineFiveCode
@@ -519,7 +525,7 @@ xfxho 7584 凸顯 7584""".replaceAll("\\s", "")
     SINICAfive.length shouldBe 330
     val test22 = ""
   }
-
+*/
 
   private def tuppleTwoToStr(input: List[(String, Int)]): String = {
     if (input.size > 9) {

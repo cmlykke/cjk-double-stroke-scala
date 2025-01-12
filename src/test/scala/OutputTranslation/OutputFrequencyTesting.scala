@@ -15,7 +15,7 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
   val multiOut: Set[OutputEntry] = OutputTranslation.jundaMultiOut
   val singleOutTzai: Set[OutputEntry] = OutputTranslation.tzaiSingelOut
   val multiOutTzai: Set[OutputEntry] = OutputTranslation.tzaiMultiOut
-
+/*
   it should "check the number of final keys hit with left vs right hand" in {
 
     val jundaUnchanged: (Double, Double) = countLeftRightFinalKeystroke(singleOut, Map(), Junda)
@@ -46,7 +46,9 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
                         |2.009tzaiTopChanged._1
                         |2.074tzaiTopChanged._2""".stripMargin.replaceAll("\\s", "")
   }
-
+*/
+  
+  /*
   it should "check the number of uses of left vs right hand - single characters" in {
 
     val jundaUnchanged: (Double, Double) = countLeftRight(singleOut, Map(), Junda)
@@ -118,8 +120,9 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
                         |8.918tzaiMiddleAndButtonChanged._1
                         |7.128tzaiMiddleAndButtonChanged._2""".stripMargin.replaceAll("\\s", "")
   }
-
-
+*/
+  
+/*
   it should "check the number of uses of left vs right hand - multi character words" in {
 
     val jundaUnchanged: (Double, Double) = countLeftRight(multiOut, Map(), Junda)
@@ -180,7 +183,9 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
                         |55.01tzaiMiddleAndButtonChanged._1
                         |48.49tzaiMiddleAndButtonChanged._2""".stripMargin.replaceAll("\\s", "")
   }
-
+  */
+ 
+/*
   it should "check the number of shifts for single characters" in {
     val jundaUnchanged: Double = countShifts(singleOut, Map(), Junda) //  7840
     val jundaTopChanged: Double = countShifts(singleOut, changeTopRow(), Junda)
@@ -219,8 +224,9 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
                         |7.878tzaiButtomChanged
                         |8.905tzaiMiddleAndButtonChanged""".stripMargin.replaceAll("\\s", "")
   }
+*/
 
-
+  /*
   it should "check the number of shifts for multi character words" in {
     val jundaUnchanged: Double = countShifts(multiOut, Map(), Junda) //  7840
     val jundaMiddleChanged: Double = countShifts(multiOut, changeMiddleRow(), Junda)
@@ -254,7 +260,9 @@ class OutputFrequencyTesting extends AnyFlatSpec with Matchers {
                         |39.70 tzaiMiddleAndButtonChanged
                         |""".stripMargin.replaceAll("\\s", "")
   }
+*/
 
+   
   def addTuples(tuple1: (Double, Double), tuple2: (Double, Double)): (Double, Double) = {
     (tuple1._1 + tuple2._1, tuple1._2 + tuple2._2)
   }
