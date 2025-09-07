@@ -10,13 +10,15 @@ import scala.io.Source
 
 class GenerateCedictMap {
   
-  def generateCedictList(): Set[CedictEntry] = {
+  def generateCedictList(): (Set[CedictEntry], Set[CedictEntry], Set[CedictEntry]) = {
     val idsFilePath = "src/main/scala/staticFileGenerators/staticFiles/cedict_ts.u8" // replace with your actual file path
     val radicalSupplement = "src/main/scala/staticFileGenerators/staticFiles/radicals1.txt"
 
     val allch: Set[StaticFileCharInfoWithLetterConway] = ElementTranslateToAlphabet.generateTranslatedAllChars() //generateTranslatedAllChars   ElementTranslateToAlphabet
     val trans2: Map[Grapheme, StaticFileCharInfoWithLetterConway] = ElementTranslateToAlphabet.createMapFromSet(allch)
 
+    val simpBuffer: ListBuffer[CedictEntry] = ListBuffer()
+    val tradBuffer: ListBuffer[CedictEntry] = ListBuffer()
     val res: ListBuffer[CedictEntry] = ListBuffer()
     val failed: ListBuffer[CedictEntry] = ListBuffer()
 
@@ -31,11 +33,13 @@ class GenerateCedictMap {
         val tradEntry = new CedictEntry(words(0), CharSystem.Tzai, trans2,meaning,pronounciation, tradSimp)
         val simpEntry = new CedictEntry(words(1), CharSystem.Junda, trans2,meaning,pronounciation, tradSimp)
         if (!tradEntry.unambigous.isEmpty  && tradEntry.chineseStr != "□") {
+          tradBuffer.append(tradEntry)
           res.append(tradEntry)
         } else {
           failed.append(tradEntry)
         }
         if (!simpEntry.unambigous.isEmpty  && simpEntry.chineseStr != "□") {
+          simpBuffer.append(simpEntry)
           res.append(simpEntry)
         } else {
           failed.append(simpEntry)
@@ -44,23 +48,7 @@ class GenerateCedictMap {
     }
     bufferedSource.close()
 
-    val bufferedSourceRadicals = Source.fromFile(radicalSupplement)
-    val linesRadicals: String = bufferedSourceRadicals.mkString("")
-    val graphemesFromRad: Set[Grapheme] = Grapheme.splitIntoGraphemes(linesRadicals).map(x => Grapheme(x)).toSet
-    //val filteredRads: Set[Grapheme] = graphemesFromRad.filter(x => !trans2.contains(x)).toSet
-    val uniqueRad: Set[Grapheme] = graphemesFromRad.filter(x => !trans2.contains(x)).toSet
-    val stringRads: Set[String] = uniqueRad.map(x => x.char).toSet
-
-    val failedGraphs: Set[Grapheme] = failed.map(x => x.chineseStrGraphemes).flatten.toSet
-    val uniqueFailed: Set[Grapheme] = failedGraphs.filter(x => !trans2.contains(x)).toSet
-    val failedStr: Set[String] = uniqueFailed.map(x => x.char)
-
-    val readyToWrote: ListBuffer[String] = new ListBuffer[String]()
-    readyToWrote.addAll(stringRads)
-    //readyToWrote.addAll(failedStr)
-
-    val filePath = "src/main/scala/staticFileGenerators/Conway/failed.txt"
-    return res.toSet
+    return (res.toSet, tradBuffer.toSet, simpBuffer.toSet)
   }
 
   private def writeSetToFile(set: List[String], filePath: String): Unit = {
@@ -108,6 +96,9 @@ class GenerateCedictMap {
 
 object GenerateCedictMap {
   private val generate = new GenerateCedictMap()
-  val cedictCompleteSet: Set[CedictEntry] = generate.generateCedictList()
+  val cedictTupple = generate.generateCedictList()
+  val cedictSimpSet = cedictTupple._3
+  val cedictTradSet = cedictTupple._2
+  val cedictCompleteSet: Set[CedictEntry] = cedictTupple._2 ++ cedictTupple._3
   val cedictMap: Map[String, CedictEntry] = generate.generateMap(cedictCompleteSet)
 }
