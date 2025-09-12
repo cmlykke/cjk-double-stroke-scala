@@ -24,6 +24,8 @@ class GenerateCedictMap {
 
     val bufferedSource = Source.fromFile(idsFilePath)
     val lines = bufferedSource.getLines
+    val unevenElems: ListBuffer[CedictEntry] = ListBuffer()
+    var tradAdded = false
     for (eachline <- lines) {
       if (!eachline.startsWith("#")) {
         val words: Array[String] = eachline.split("\\s+")
@@ -35,14 +37,21 @@ class GenerateCedictMap {
         if (!tradEntry.unambigous.isEmpty  && tradEntry.chineseStr != "□") {
           tradBuffer.append(tradEntry)
           res.append(tradEntry)
+          tradAdded = true
         } else {
           failed.append(tradEntry)
         }
         if (!simpEntry.unambigous.isEmpty  && simpEntry.chineseStr != "□") {
           simpBuffer.append(simpEntry)
           res.append(simpEntry)
+          if (!tradAdded) {
+            unevenElems.append(tradEntry)
+          }
         } else {
           failed.append(simpEntry)
+          if (tradAdded) {
+            unevenElems.append(simpEntry)
+          }
         }
       }
     }

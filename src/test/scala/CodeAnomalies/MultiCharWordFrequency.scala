@@ -1,13 +1,16 @@
 package CodeAnomalies
 
 import GenerateOutput.{GenerateOutputStrings, ReadConfigFiles}
+import OutputTranslation.OutputSorting
 import UtilityClasses.OutputEntry
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 import staticFileGenerators.cedictMap.GenerateCedictMap
 
+import scala.collection.immutable.SortedMap
 import scala.util.{Failure, Success}
 import scala.math.Ordering.Implicits.*
+import scala.jdk.StreamConverters.*
 
 class MultiCharWordFrequency extends AnyFlatSpec with Matchers {
 
@@ -16,6 +19,21 @@ class MultiCharWordFrequency extends AnyFlatSpec with Matchers {
   val cedictTupple = generatecedict.generateCedictList()
   val simpCedictSet: Set[String] = cedictTupple._3.view.map(_.chineseStr).toSet
   val linemapSimp: Map[String, List[OutputEntry]] = GenerateOutputStrings.mapFullJunda
+  val conwayMap: Set[OutputEntry] = OutputSorting.conFull
+
+  private def convertCedictCodeMapToStrMap(): Map[String, (OutputEntry, List[String])] = {
+    linemapSimp.view
+      .map { case (key, value) =>
+        (key, value.filter(x => simpCedictSet.contains(x.chineseStr) && !x.chineseStr.forall(_.toInt <= 127)))
+      }
+      .flatMap { case (key, entries) => entries.map(entry => (entry, key)) }
+      .toList
+      .groupBy(_._1.chineseStr)
+      .map { case (chineseStr, tuples) =>
+        (chineseStr, (tuples.head._1, tuples.map(_._2).sorted))
+      }
+      .toMap
+  }
 
   private def getBeyondNineSimplifiedCode(codelength: Int): Map[String, (OutputEntry, List[String])] = {
     linemapSimp.view
@@ -68,86 +86,96 @@ class MultiCharWordFrequency extends AnyFlatSpec with Matchers {
     }
   }
 
+  it should "10058 entries in conway are missing from cedict" in {
+
+
+
+    val nonhan = OutputSorting.allNonHan
+    val hansimp = OutputSorting.allSimplified
+    val hantrad = OutputSorting.allTraditional
+
+    nonhan.size shouldBe 80
+    hantrad.size shouldBe 133369
+    hansimp.size shouldBe 119546
+    
+    val codedTzai: Set[String] = OutputSorting.mapFullTzai.values.flatten.map(x => x.chineseStr).toSet
+    val codedjunda: Set[String] = OutputSorting.mapFullJunda.values.flatten.map(x => x.chineseStr).toSet
+    
+    val missingJunda: Set[String] = codedjunda.filter(x => !hansimp.contains(x) && !hantrad.contains(x))
+    val missingTzai: Set[String] = codedTzai.filter(x => !hansimp.contains(x) && !hantrad.contains(x))
+    
+    missingJunda.size == 10058
+    missingTzai.size == 10058
+
+    //all conway should be in trad and simp
+    val conwayStr: Set[String] = OutputSorting.conwaySet.map(x => x.char).toSet
+    val combinedSimpAndTrad: Set[String] = hansimp ++ hantrad
+    val conwayMissingFromCombined: Set[String] = conwayStr.filter(x => !combinedSimpAndTrad.contains(x))
+
+    conwayMissingFromCombined.size shouldBe 0
+  }
+  
+  
   it should "test output junda file" in {
+    /// **************************************** new code
 
-    val resultMapFiveCodeWords: Map[String, (OutputEntry, List[String])] = getBeyondNineSimplifiedCode(5)
-    val sortedTupleListFiveCodeWords: List[(String, OutputEntry, List[String])] = getSimplifiedTuple(resultMapFiveCodeWords)
-    val fiveCodeWordsStringList: List[String] = stringFromTuple(sortedTupleListFiveCodeWords)
-    fiveCodeWordsStringList.length shouldBe 257
-
-    val threeLetterSimplifiedWithinNine: Map[String, (OutputEntry, List[String])] = getWithinNineSimplifiedCode(3).filter {
-      case (_, eachval) => {
-        eachval._1.chineseStr.codePoints().count() > 1
-      }
+    val beyondNineFiveCode: Map[String, (OutputEntry, List[String])] = getBeyondNineSimplifiedCode(5)
+    val beyondNineFiveCode_twoChar: Map[String, (OutputEntry, List[String])] = beyondNineFiveCode.filter {
+      case (key, _) => key.codePoints().count() == 2
     }
-    //show strings with threeLetterWithinNine
-    val threeLetterWithin_1: List[(String, OutputEntry, List[String])] = getSimplifiedTuple(threeLetterSimplifiedWithinNine)
+    val tupple_one: List[(String, OutputEntry, List[String])] = getSimplifiedTuple(beyondNineFiveCode_twoChar)
 
-    //********** 35759 words that does show up among the first nine when written with three codes
-    val threeLetterSimplifiedWithinNineList: List[String] = stringFromTuple(threeLetterWithin_1)
-    threeLetterSimplifiedWithinNineList.size shouldBe 35759
-
-
-    val fiveLetterSimplifiedWithinNine: Map[String, (OutputEntry, List[String])] = getWithinNineSimplifiedCode(5).filter {
-      case (_, eachval) => {
-        eachval._1.chineseStr.codePoints().count() > 2
-      }
+    val beyondNineFiveCode_MoreThanTwoChar: Map[String, (OutputEntry, List[String])] = beyondNineFiveCode.filter {
+      case (key, _) => key.codePoints().count() > 2
     }
-    val fiveLetterWithin_1: List[(String, OutputEntry, List[String])] = getSimplifiedTuple(fiveLetterSimplifiedWithinNine)
-    //*********** words with more than two characters that always show up
-    val fiveLetterSimplifiedWithinNineList: List[String] = stringFromTuple(fiveLetterWithin_1)
-    fiveLetterSimplifiedWithinNineList.size shouldBe 48807
+    val tupple_two: List[(String, OutputEntry, List[String])] = getSimplifiedTuple(beyondNineFiveCode_MoreThanTwoChar)
 
-    //look at each key in resultMapFiveCodeWords, and remove the entries that are in threeLetterSimplifiedWithinNine
-    val removedMissingFiveCodesThatExistsInThreeCodes: Map[String, (OutputEntry, List[String])] =
-      resultMapFiveCodeWords.filter { case (key, value) =>
-        threeLetterSimplifiedWithinNine.get(key).forall { case (_, threeLetterCodes) =>
-          !value._2.map(_.take(3)).forall(threeLetterCodes.toSet.contains)
-        }
-      }
-
-    val keptFiveCodesMatchingThreeCodes: Map[String, (OutputEntry, List[String])] =
-      resultMapFiveCodeWords.filter { case (key, value) =>
-        threeLetterSimplifiedWithinNine.get(key).exists { case (_, threeLetterCodes) =>
-          value._2.map(_.take(3)).forall(threeLetterCodes.toSet.contains)
-        }
-      }
-    resultMapFiveCodeWords.size shouldBe 257
-    removedMissingFiveCodesThatExistsInThreeCodes.size + keptFiveCodesMatchingThreeCodes.size shouldBe 257
-    val wordslostinFiveCodes: List[(String, OutputEntry, List[String])] = getSimplifiedTuple(keptFiveCodesMatchingThreeCodes)
-
-    //********* 7 two-character words that doesnt show up among the 9,
-    //when written with 3 letters, but does show up when written with 5
-    val wordslostinFiveCodesList: List[String] = stringFromTuple(wordslostinFiveCodes)
-    wordslostinFiveCodesList.size shouldBe 7
-
-
-    val missingThreeAndFive : List[(String, OutputEntry, List[String])] = getSimplifiedTuple(removedMissingFiveCodesThatExistsInThreeCodes)
-    val missingThreeAndFiveTwoCharacter: List[(String, OutputEntry, List[String])] = missingThreeAndFive.filter {
-      case (item) => item._1.codePoints().count() == 2
+    val beyondNineThreeCode: Map[String, (OutputEntry, List[String])] = getBeyondNineSimplifiedCode(3)
+    val beyondNineThreeCode_twoChar: Map[String, (OutputEntry, List[String])] = beyondNineThreeCode.filter {
+      case (key, _) => key.codePoints().count() == 2
     }
-    val missingThreeAndFiveThreePlusCharacter: List[(String, OutputEntry, List[String])] = missingThreeAndFive.filter {
-      case (item) => item._1.codePoints().count() > 2
+    val tupple_three: List[(String, OutputEntry, List[String])] = getSimplifiedTuple(beyondNineThreeCode_twoChar)
+
+    val withinNineFiveCode: Map[String, (OutputEntry, List[String])] = getWithinNineSimplifiedCode(5)
+    val withinNineFiveCode_twoChar: Map[String, (OutputEntry, List[String])] = withinNineFiveCode.filter {
+      case (key, _) => key.codePoints().count() == 2
     }
+    val tupple_four: List[(String, OutputEntry, List[String])] = getSimplifiedTuple(withinNineFiveCode_twoChar)
 
-    //******** words that are always missing, that have two characters
-    val missingThreeAndFiveTwoCharacterList: List[String] = stringFromTuple(missingThreeAndFiveTwoCharacter)
-    missingThreeAndFiveTwoCharacterList.size shouldBe 179
+    val withinNineFiveCode_MoreThanTwoChar: Map[String, (OutputEntry, List[String])] = withinNineFiveCode.filter {
+      case (key, _) => key.codePoints().count() > 2
+    }
+    val tupple_five: List[(String, OutputEntry, List[String])] = getSimplifiedTuple(withinNineFiveCode_MoreThanTwoChar)
 
-    //******** words that are always missing, that have more than two characters
-    val missingThreeAndFiveThreePlusCharacterList: List[String] = stringFromTuple(missingThreeAndFiveThreePlusCharacter)
-    missingThreeAndFiveThreePlusCharacterList.size shouldBe 71
+    val withinNineThreeCode: Map[String, (OutputEntry, List[String])] = getWithinNineSimplifiedCode(3)
+    val withinNineThreeCode_twoChar: Map[String, (OutputEntry, List[String])] = withinNineThreeCode.filter {
+      case (key, _) => key.codePoints().count() == 2
+    }
+    val tupple_six: List[(String, OutputEntry, List[String])] = getSimplifiedTuple(withinNineThreeCode_twoChar)
 
-    //************** words that are always missing, from both three-codes and five-codes
-    val simpWordsMissingFromThreeAndFiveCodes: List[String] = stringFromTuple(missingThreeAndFive)
-    simpWordsMissingFromThreeAndFiveCodes.size shouldBe 250
 
-    val resultMapThreeCodeWords: Map[String, (OutputEntry, List[String])] = getBeyondNineSimplifiedCode(3)
-    val sortedTupleListThreeCodeWords: List[(String, OutputEntry, List[String])] = getSimplifiedTuple(resultMapThreeCodeWords)
-    val threeCodeWordsStringList: List[String] = stringFromTuple(sortedTupleListThreeCodeWords)
-    threeCodeWordsStringList.length shouldBe 27758
+    val withinNineThreeCode_twoChar_string: List[String] = stringFromTuple(tupple_six)
+    val beyondNineThreeCode_twoChar_string: List[String] = stringFromTuple(tupple_three)
+
+    val withinNineFiveCode_twoChar_string: List[String] = stringFromTuple(tupple_four)
+    val beyondNineFiveCode_twoChar_string: List[String] = stringFromTuple(tupple_one)
+
+    val withinNineFiveCode_MoreThanTwoChar_string: List[String] = stringFromTuple(tupple_five)
+    val beyondNineFiveCode_MoreThanTwoChar_string: List[String] = stringFromTuple(tupple_two)
+
+    withinNineThreeCode_twoChar_string.size shouldBe 35759
+    beyondNineThreeCode_twoChar_string.size shouldBe 27747
+
+    withinNineFiveCode_twoChar_string.size shouldBe 59059
+    beyondNineFiveCode_twoChar_string.size shouldBe 186
+
+    withinNineFiveCode_MoreThanTwoChar_string.size shouldBe 48807
+    beyondNineFiveCode_MoreThanTwoChar_string.size shouldBe 71
+
+    //val allSimp: Map[String, List[OutputEntry]] = getAllSimplified()
 
     val test = ""
+
   }
 
 }

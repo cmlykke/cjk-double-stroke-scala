@@ -1,7 +1,7 @@
 package OutputTranslation
 
 import ElementGenerator.{ElementList, ElementType}
-import UtilityClasses.CharSystem.{Junda, Tzai}
+import UtilityClasses.CharSystem.{Junda, Tzai, NotHanChar}
 import UtilityClasses.{CedictEntry, CharSystem, Grapheme, OutputEntry}
 import staticFileGenerators.Conway.GenerateConwayCodes
 import staticFileGenerators.SpecialCharacters.ReadSpecialCharacters
@@ -11,9 +11,15 @@ import scala.math.Ordering.Implicits.*
 import scala.jdk.StreamConverters.*
 import UtilityClasses.{CharSystem, OutputEntry}
 import OutputEntryOrdering.*
+import staticFileGenerators.JundaFrequency.GenerateJundaMap
+import staticFileGenerators.TzaiFrequency.GenerateTzaiMap
 
 import scala.collection.immutable.SortedMap
 import scala.collection.mutable
+import staticFileGenerators.JundaFrequency.JundaData
+import staticFileGenerators.TzaiFrequency.TzaiData
+
+import scala.collection.mutable.HashMap
 
 class OutputSorting {
 
@@ -123,22 +129,91 @@ class OutputSorting {
     }
   }
 
+  //val simpNotFoundInTrad:  HashMap[String, JundaData] = jundaFreqMap.filter(x => !allTraditional.contains(x._1))
+  def generateSystemSet(jundaFreqMap: HashMap[String, JundaData],
+                        cedictSimp: Set[CedictEntry],
+                        tzaiFreqMap: HashMap[String, TzaiData] ,
+                        cedictTrad: Set[CedictEntry],
+                        conwaySet: Set[Grapheme] ,
+                        charSystem: CharSystem): Set[String] = {
+    val testTrad: Set[String] = createStringOfAllWordsAndCharacters(cedictTrad)
+    val allTraditional: Set[String] = testTrad ++ tzaiFreqMap.map(x => x._1).toSet
+
+    val testSimp: Set[String] = createStringOfAllWordsAndCharacters(cedictSimp)
+    val simpFreq: Set[String] = jundaFreqMap.map(x => x._1).toSet
+    val simpFreqMinusTrad: Set[String] = simpFreq.filter(x => !allTraditional.contains(x))
+    val allSimplified: Set[String] = testSimp ++ simpFreqMinusTrad
+
+    //val missingFromBoth: Set[String] = simpFreq.filter(x => !allSimplified.contains(x) && !allTraditional.contains(x))
+
+    val conwayStrSet: Set[String] = conwaySet.map(x => x.char)
+
+    val traditionalNonHan: Set[String] = allTraditional.filter(x => x.codePoints()
+      .mapToObj(cp => new String(Character.toChars(cp))).allMatch(c => !conwayStrSet.contains(c)))
+
+    val simplifiedNonHan: Set[String] = allSimplified.filter(x => x.codePoints()
+      .mapToObj(cp => new String(Character.toChars(cp))).allMatch(c => !conwayStrSet.contains(c)))
+
+    val allTraditional_noOnlyAscii: Set[String] = allTraditional.filter(x => !traditionalNonHan.contains(x))
+    val allSimplified_noOnlyAscii: Set[String] = allSimplified.filter(x => !simplifiedNonHan.contains(x))
+
+    //add characters from conway that are not in cedict, junda or tzai
+    val conwayStr: Set[String] = OutputSorting.conwaySet.map(x => x.char).toSet
+    val combinedSimpAndTrad: Set[String] = allTraditional_noOnlyAscii ++ allSimplified_noOnlyAscii
+    val conwayMissingFromCombined: Set[String] = conwayStr.filter(x => !combinedSimpAndTrad.contains(x))
+
+
+    if (CharSystem.Tzai == charSystem) {
+      return allTraditional_noOnlyAscii ++ conwayMissingFromCombined
+    }
+    if (CharSystem.Junda == charSystem) {
+      return allSimplified_noOnlyAscii
+    }
+    if (CharSystem.NotHanChar == charSystem) {
+      return traditionalNonHan ++ simplifiedNonHan
+    }
+
+    throw Exception("charSystem not found")
+  }
+
+  private def createStringOfAllWordsAndCharacters(cedict: Set[CedictEntry]): Set[String] = {
+    val basicset: Set[String] = cedict.view.map(_.chineseStr).toSet
+    val singles: Set[String] = basicset.flatMap(_.codePoints().mapToObj(cp => new String(Character.toChars(cp))).toScala(Seq)).toSet
+    return basicset ++ singles
+  }
+
+
 }
+
 
 object OutputSorting {
   val outClass = new OutputTranslation()
   val outSorting = new OutputSorting()
+  
+  // Compute Junda lazily to break init cycles with Grapheme/other singletons
+  lazy val jundaMap: HashMap[String, JundaData] = GenerateJundaMap.mapJundaData
+  // Compute Tzai lazily to break init cycles with Grapheme/other singletons
+  lazy val tzaiMap: HashMap[String, TzaiData] = GenerateTzaiMap.mapTzaiData
+
+  val conwaySet: Set[Grapheme] = GenerateConwayCodes.conwaySet
   val elements: Set[String] = outSorting.getStringsFromElements(ElementList.elementTypes)
   val cedictSet: Set[CedictEntry] = GenerateCedictMap.cedictCompleteSet
+  val sortingCedictSimpSet: Set[CedictEntry] = GenerateCedictMap.cedictSimpSet
+  val sortingCedictTradSet: Set[CedictEntry] = GenerateCedictMap.cedictTradSet
   val cedictSetOut: Set[OutputEntry] = OutputTranslation.outputCedict
   val conFull: Set[OutputEntry] = OutputTranslation.outputConway //OutputTranslation.conwayOutFull
   val specialChars: List[OutputEntry] = ReadSpecialCharacters.allCharacterOutput
+  val allSimplified: Set[String] = outSorting.generateSystemSet(jundaMap, sortingCedictSimpSet, tzaiMap, sortingCedictTradSet, conwaySet, Junda)
+  val allTraditional: Set[String] = outSorting.generateSystemSet(jundaMap, sortingCedictSimpSet, tzaiMap, sortingCedictTradSet, conwaySet, Tzai)
+  val allNonHan: Set[String] = outSorting.generateSystemSet(jundaMap, sortingCedictSimpSet, tzaiMap, sortingCedictTradSet, conwaySet, NotHanChar)
+
+  //val allTraditional: Set[String] =
   val mapFullJunda: SortedMap[String, List[OutputEntry]] = outSorting.mapFromOutput(
     List(conFull.toList, cedictSetOut.toList), Junda)
   val mapFullTzai: SortedMap[String, List[OutputEntry]] = outSorting.mapFromOutput(
     List(conFull.toList, cedictSetOut.toList), Tzai)
   //yveo 449 称 449, 颓 2996, 頺 8820, 稧 8851, 秼 9416, 龝 9710, 稴 9748, 頽 2147483647, 棃 2147483647, 穕 2147483647
-  
+
   val test = mapFullTzai.get("yveo")
   val test2 = mapFullTzai.get("aroz")
   val tes2 = ""
