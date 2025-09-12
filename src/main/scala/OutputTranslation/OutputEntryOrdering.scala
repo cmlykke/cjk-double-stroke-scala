@@ -36,12 +36,12 @@ object OutputEntryOrdering {
       }
 
       //order:
+      // >2 comes first, then 2, then 1
+      if (compareStrSize != 0) { return compareStrSize }
       // elements come first
       if (compareElementsResults != 0) {return compareElementsResults}
       // single characters under 5000 of the chrSystem
       if (compareSmallSingleResult != 0) {return compareSmallSingleResult}
-      // >2 comes first, then 2, then 1
-      if (compareStrSize != 0) { return compareStrSize }
       //charSystem before non-charSystem
       if (compareAnySingleResult != 0) {return compareAnySingleResult}
       // words frequency sorting
@@ -77,15 +77,10 @@ object OutputEntryOrdering {
   }
 
   private def compareSize(x: List[String], y: List[String]): Int = {
-    // length > 2 comes before length 2.
-    if (x.length > 2 && y.length <= 2) {
+    // length > 1 comes before length 1.
+    if (x.length > 1 && y.length == 1) {
       return -1
-    } else if (y.length > 2 && x.length <= 2) {
-      return 1
-    // length 2 comes before length 1  
-    } else if (x.length == 2 && y.length == 1) {
-      return -1
-    } else if (y.length == 2 && x.length == 1) {
+    } else if (y.length > 1 && x.length == 1) {
       return 1
     } else {
       return 0

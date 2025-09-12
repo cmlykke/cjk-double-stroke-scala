@@ -163,14 +163,14 @@ class MultiCharWordFrequency extends AnyFlatSpec with Matchers {
     val withinNineFiveCode_MoreThanTwoChar_string: List[String] = stringFromTuple(tupple_five)
     val beyondNineFiveCode_MoreThanTwoChar_string: List[String] = stringFromTuple(tupple_two)
 
-    withinNineThreeCode_twoChar_string.size shouldBe 35759
-    beyondNineThreeCode_twoChar_string.size shouldBe 27747
+    withinNineThreeCode_twoChar_string.size shouldBe 35928
+    beyondNineThreeCode_twoChar_string.size shouldBe 27561
 
-    withinNineFiveCode_twoChar_string.size shouldBe 59059
-    beyondNineFiveCode_twoChar_string.size shouldBe 186
+    withinNineFiveCode_twoChar_string.size shouldBe 59076
+    beyondNineFiveCode_twoChar_string.size shouldBe 134
 
-    withinNineFiveCode_MoreThanTwoChar_string.size shouldBe 48807
-    beyondNineFiveCode_MoreThanTwoChar_string.size shouldBe 71
+    withinNineFiveCode_MoreThanTwoChar_string.size shouldBe 48805
+    beyondNineFiveCode_MoreThanTwoChar_string.size shouldBe 78
 
     //val allSimp: Map[String, List[OutputEntry]] = getAllSimplified()
 

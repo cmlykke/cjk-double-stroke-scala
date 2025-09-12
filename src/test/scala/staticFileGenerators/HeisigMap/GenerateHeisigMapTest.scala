@@ -45,7 +45,8 @@ class GenerateHeisigMapTest extends AnyFlatSpec with Matchers{
     var tempres: mutable.Set[OutputEntry] = mutable.Set[OutputEntry]()
     for (each <- heisigJundaAboveNine) {
       for (output <- each._2) {
-        if (Grapheme.isGrapheme(output.chineseStr) && testheisigSimp.contains(Grapheme(output.chineseStr))) {
+        if (each._1.length != 3 && Grapheme.isGrapheme(output.chineseStr)
+          && testheisigSimp.contains(Grapheme(output.chineseStr))) {
           tempres.add(output)
         }
       }
@@ -61,7 +62,7 @@ class GenerateHeisigMapTest extends AnyFlatSpec with Matchers{
     var tempres: mutable.Set[(String, OutputEntry)] = mutable.Set[(String, OutputEntry)]()
     for (each <- heisigTzaiAboveNine) {
       for (output <- each._2) {
-        if (Grapheme.isGrapheme(output.chineseStr) && testheisigTrad.contains(Grapheme(output.chineseStr))) {
+        if (each._1.length != 3 && Grapheme.isGrapheme(output.chineseStr) && testheisigTrad.contains(Grapheme(output.chineseStr))) {
           tempres.add((each._1, output))
         }
       }
