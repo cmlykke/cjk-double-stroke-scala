@@ -1,15 +1,19 @@
-package OutputTranslation
+package Sorting
 
 import OutputTranslation.*
 import UtilityClasses.CharSystem.{Junda, Tzai}
 import UtilityClasses.{CedictEntry, CharSystem, Grapheme, OutputEntry}
-
-import scala.math.Ordered.orderingToOrdered
 import staticFileGenerators.Academiasinica.{GenerateSinicaMap, SinicaData}
 import staticFileGenerators.BLCUmap.{BLCUData, GenerateBLCUmap}
 import staticFileGenerators.JundaFrequency.JundaData
 
+
+import scala.math.Ordered.orderingToOrdered
+
 object OutputEntryOrdering {
+
+  val simplifiedCedict: Set[String] = OutputSorting.sortingCedictSimpSet.map(x => x.chineseStr)
+  val traditionalCedict: Set[String] = OutputSorting.sortingCedictTradSet.map(x => x.chineseStr)
 
   def sortSetOfOutput(input: Set[OutputEntry], primaryCharSystem: CharSystem): List[OutputEntry] = {
     input.toList.sorted(entryOrdering(primaryCharSystem))
@@ -26,6 +30,7 @@ object OutputEntryOrdering {
       }
       val compareElementsResults: Int = compareElements(x, y, OutputSorting.elements)
       val compareSmallSingleResult: Int = compareSmallSingle(x, y, xGraphemes, yGraphemes, primaryCharSystem)
+      val compareCedictResult: Int = compareCedict(x, y, simplifiedCedict, traditionalCedict, primaryCharSystem)
       val compareStrSize: Int = compareSize(xGraphemes, yGraphemes)
       val compareAnySingleResult: Int = compareJundaAndTzaiSingle(x, y, xGraphemes, yGraphemes, primaryCharSystem)
       val compareSinicaResult: Int = compareSinica(x.sinicaOptionSD, y.sinicaOptionSD, xGraphemes, yGraphemes, x, y)
@@ -42,6 +47,8 @@ object OutputEntryOrdering {
       if (compareElementsResults != 0) {return compareElementsResults}
       // single characters under 5000 of the chrSystem
       if (compareSmallSingleResult != 0) {return compareSmallSingleResult}
+      //cedict before non-cedict
+      if (compareCedictResult != 0) {return compareCedictResult}
       //charSystem before non-charSystem
       if (compareAnySingleResult != 0) {return compareAnySingleResult}
       // words frequency sorting
@@ -105,6 +112,34 @@ object OutputEntryOrdering {
     } catch {
       case e: Exception => throw new Exception(e)
     }
+  }
+
+  private def compareCedict(x: OutputEntry, y: OutputEntry, 
+                            simplifiedCedict: Set[String], traditionalCedict: Set[String], 
+                            primaryCharSystem: CharSystem): Int = {
+    val xInSimp: Boolean = simplifiedCedict.contains(x.chineseStr)
+    val yInSimp: Boolean = simplifiedCedict.contains(x.chineseStr)
+    val xInTrad: Boolean = traditionalCedict.contains(x.chineseStr)
+    val yInTrad: Boolean = traditionalCedict.contains(x.chineseStr)
+    
+    if (primaryCharSystem == CharSystem.Junda) {
+      if (xInSimp && !yInSimp) {
+        -1
+      } else if (!xInSimp && yInSimp) {
+        1
+      } else {
+        0
+      }
+    } else if (primaryCharSystem == CharSystem.Tzai) {
+      if (xInTrad && !yInTrad) {
+        -1
+      } else if (!xInTrad && yInTrad) {
+        1
+      } else {
+        0
+      }
+    }
+    0
   }
 
   private def compareSmallSingle(x: OutputEntry, y: OutputEntry,

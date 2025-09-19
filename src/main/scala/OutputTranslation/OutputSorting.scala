@@ -1,7 +1,8 @@
 package OutputTranslation
 
 import ElementGenerator.{ElementList, ElementType}
-import UtilityClasses.CharSystem.{Junda, Tzai, NotHanChar}
+import Sorting.OutputEntryOrdering
+import UtilityClasses.CharSystem.{Junda, NotHanChar, Tzai}
 import UtilityClasses.{CedictEntry, CharSystem, Grapheme, OutputEntry}
 import staticFileGenerators.Conway.GenerateConwayCodes
 import staticFileGenerators.SpecialCharacters.ReadSpecialCharacters
@@ -10,7 +11,7 @@ import staticFileGenerators.cedictMap.GenerateCedictMap
 import scala.math.Ordering.Implicits.*
 import scala.jdk.StreamConverters.*
 import UtilityClasses.{CharSystem, OutputEntry}
-import OutputEntryOrdering.*
+import Sorting.OutputEntryOrdering.*
 import staticFileGenerators.JundaFrequency.GenerateJundaMap
 import staticFileGenerators.TzaiFrequency.GenerateTzaiMap
 
