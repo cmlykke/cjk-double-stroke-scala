@@ -87,6 +87,23 @@ class MultiCharWordFrequency extends AnyFlatSpec with Matchers {
     }
   }
 
+  it should "test the total number of single characters and words" in {
+    val jundaRaw = OutputSorting.mapFullJunda
+    val tzaiRaw = OutputSorting.mapFullTzai
+
+    val allStrings: Set[String] = jundaRaw.values.flatten
+      .map(outputEntry => outputEntry.chineseStr)
+      .filter(text => text.codePoints().toScala(List).exists(_ >= 0x2E80)).toSet
+    
+    val singles: List[String] = allStrings.filter(text => text.codePoints().toArray.length == 1).toList.sorted
+    val words: List[String] = allStrings.filter(text => text.codePoints().toArray.length > 1).toList.sorted
+
+    singles.size shouldBe 28312
+    words.size shouldBe 179752
+    
+    jundaRaw.size shouldBe tzaiRaw.size
+  }
+  
   it should "10058 entries in conway are missing from cedict" in {
     val nonhan = OutputSorting.allNonHan
     val hansimp: Set[String] = OutputSorting.allSimplified

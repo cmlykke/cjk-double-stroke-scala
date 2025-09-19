@@ -41,14 +41,14 @@ object OutputEntryOrdering {
       }
 
       //order:
-      // >2 comes first, then 2, then 1
+      // >1 comes first, then 1
       if (compareStrSize != 0) { return compareStrSize }
-      // elements come first
-      if (compareElementsResults != 0) {return compareElementsResults}
       // single characters under 5000 of the chrSystem
       if (compareSmallSingleResult != 0) {return compareSmallSingleResult}
       //cedict before non-cedict
       if (compareCedictResult != 0) {return compareCedictResult}
+      // elements before non - elements
+      if (compareElementsResults != 0) {return compareElementsResults}
       //charSystem before non-charSystem
       if (compareAnySingleResult != 0) {return compareAnySingleResult}
       // words frequency sorting
