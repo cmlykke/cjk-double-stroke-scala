@@ -8,7 +8,7 @@ import scala.collection.mutable.HashMap
 import scala.io.Source
 
 object AreadConwayData {
-
+  
   def mapConwayData(): HashMap[Agrapheme, AconwayColl] = {
     val basicConway = GenerateConwayCodes.conwayFilePath
     val bufferedSource = Source.fromFile(basicConway)
