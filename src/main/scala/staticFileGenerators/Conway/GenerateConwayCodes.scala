@@ -24,6 +24,7 @@ class GenerateConwayCodes {
     return res;
   }
   
+  
   def expandAlternatives(str: String): Set[String] = {
     val parenmap: Map[String, String] = generateParenMap(str)
     val slashexpanded: String = expandSlashCodes(str, parenmap)
@@ -74,6 +75,7 @@ class GenerateConwayCodes {
     result
   }
 
+  
   def generateParenMap(input: String): Map[String, String] = {
     val pattern = "\\((.*?)\\)".r
     val basicmap = pattern.findAllIn(input).matchData.zipWithIndex.map {
