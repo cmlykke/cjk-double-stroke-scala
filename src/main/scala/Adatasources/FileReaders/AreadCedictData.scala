@@ -18,7 +18,9 @@ object AreadCedictData {
     val bufferedSource = Source.fromFile(idsFilePath)
     val lines: List[String] = bufferedSource.getLines.toList
     bufferedSource.close()
+
+    val data: Set[String] = AreadConwayData.conwaySetFunc()
     
-    AcedictColl(lines)
+    AcedictColl(lines, data)
   }
 }

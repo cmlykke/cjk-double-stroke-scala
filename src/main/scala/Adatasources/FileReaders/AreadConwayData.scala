@@ -9,6 +9,11 @@ import scala.io.Source
 
 object AreadConwayData {
 
+  def conwaySetFunc(): Set[String] = {
+    val conwayMap: HashMap[Agrapheme, AconwayColl] = mapConwayData()
+    conwayMap.values.map(x => x.char.char).toSet
+  }
+  
   def mapConwayData(): HashMap[Agrapheme, AconwayColl] = {
     val basicConway = GenerateConwayCodes.conwayFilePath
     val bufferedSource = Source.fromFile(basicConway)
