@@ -59,9 +59,4 @@ class Aconwaytest extends AnyFlatSpec with Matchers {  // Renamed to match class
 
     data.size shouldBe 28301
   }
-  /*
-  it should "test that all cedict characters exists in conway" {
-    
-  }
-  */
 }

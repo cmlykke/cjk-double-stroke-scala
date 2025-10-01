@@ -27,5 +27,11 @@ object Agrapheme {
     input
   }
 
+  def splitIntoGraphemes(input: String): List[String] = {
+    val graphemeRegex = "\\X".r
+    val res = graphemeRegex.findAllIn(input).toList
+    return res
+  }
+
 }
 

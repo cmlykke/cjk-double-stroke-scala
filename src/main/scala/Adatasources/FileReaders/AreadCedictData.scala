@@ -11,11 +11,10 @@ import scala.io.Source
 object AreadCedictData {
 
   def listCedictData(): AcedictColl = {
-
-    val idsFilePath = "src/main/scala/staticFileGenerators/staticFiles/cedict_ts.u8" // replace with your actual file path
+    val cedictFilePath = "src/main/scala/staticFileGenerators/staticFiles/cedict_ts.u8" // replace with your actual file path
     val radicalSupplement = "src/main/scala/staticFileGenerators/staticFiles/radicals1.txt"
 
-    val bufferedSource = Source.fromFile(idsFilePath)
+    val bufferedSource = Source.fromFile(cedictFilePath)
     val lines: List[String] = bufferedSource.getLines.toList
     bufferedSource.close()
 
