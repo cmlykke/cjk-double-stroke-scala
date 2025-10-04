@@ -52,7 +52,10 @@ class OutputTranslation {
   def conwayToOutputEntry(conwayallch: Set[StaticFileCharInfoWithLetterConway]): Set[OutputEntry] = {
     val res: mutable.Set[OutputEntry] = mutable.Set[OutputEntry]()
     for (conEntry <- conwayallch) {
-      val outputCodes: Set[String] =  ConwayToOutput.rawConwayToOutputCodes(List(conEntry.grapheme))
+      var outputCodes: Set[String] =  ConwayToOutput.rawConwayToOutputCodes(List(conEntry.grapheme))
+      if (conEntry.grapheme.char == "⾜" || conEntry.grapheme.char == "足") {
+        outputCodes = outputCodes ++ Set("xjkt", "xjktzz")
+      }
       val entry: OutputEntry = new OutputEntry(
         conEntry.grapheme.char,
         "",

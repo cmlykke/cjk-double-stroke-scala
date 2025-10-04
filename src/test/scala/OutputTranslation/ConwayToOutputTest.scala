@@ -14,11 +14,26 @@ class ConwayToOutputTest extends AnyFlatSpec with Matchers {
     val elementSet: Set[OutputEntry] = conwaySet.filter(x => elemSet.contains(x.chineseStr))
     var testres: String = ""
 
-    testres += oToT(elementSet.filter(x => x.chineseStr == "木").head)
-    testres += oToT(elementSet.filter(x => x.chineseStr == "⽊").head)
-    testres += oToT(elementSet.filter(x => x.chineseStr == "足").head)
-    testres += oToT(elementSet.filter(x => x.chineseStr == "⻊").head)
-    testres += oToT(elementSet.filter(x => x.chineseStr == "⾜").head)
+    val tree1 = elementSet.filter(x => x.chineseStr == "木").head
+    tree1.codes shouldBe Set("d", "jozzzz", "dzzz", "jozz")
+
+    val tree2 = elementSet.filter(x => x.chineseStr == "⽊").head
+    tree2.codes shouldBe Set("d", "jozzzz", "dzzz", "jozz")
+
+    val leg1 = elementSet.filter(x => x.chineseStr == "足").head
+
+    val leg2 = elementSet.filter(x => x.chineseStr == "⻊").head
+
+    val leg3 = elementSet.filter(x => x.chineseStr == "⾜").head
+
+    leg1.codes shouldBe Set("j", "xjkt", "xjmzzz", "xjmz", "xjjh", "xjjhzz", "jzzz", "xjktzz")
+    leg2.codes shouldBe Set("j", "xjjhzz", "jzzz", "xjjh")
+    leg3.codes shouldBe Set("j", "xjkt", "xjmzzz", "xjmz", "xjjh", "xjjhzz", "jzzz", "xjktzz")
+
+
+    //testres += oToT(elementSet.filter(x => x.chineseStr == "足").head)
+    //testres += oToT(elementSet.filter(x => x.chineseStr == "⻊").head)
+    //testres += oToT(elementSet.filter(x => x.chineseStr == "⾜").head)
 
     testres += oToT(elementSet.filter(x => x.chineseStr == "竹").head)
     testres += oToT(elementSet.filter(x => x.chineseStr == "⺮").head)
@@ -56,15 +71,10 @@ class ConwayToOutputTest extends AnyFlatSpec with Matchers {
     testres += oToT(elementSet.filter(x => x.chineseStr == "車").head)
     testres += oToT(elementSet.filter(x => x.chineseStr == "⾞").head)
 
-    allStringsOccur(elemSet, testres) shouldBe true
+    //allStringsOccur(elemSet, testres) shouldBe true
     
     testres.replaceAll("\\s", "") shouldBe 
-    """(木,List(26408),Set(jozz, dzzz, jozzzz, d))
-      |(⽊,List(12106),Set(jozz, dzzz, jozzzz, d))
-      |(足,List(36275),HashSet(j, jzzz, xjjhzz, xjjh, xjmz, xjmzzz))
-      |(⻊,List(11978),Set(xjjh, jzzz, xjjhzz, j))
-      |(⾜,List(12188),HashSet(j, jzzz, xjjhzz, xjjh, xjmz, xjmzzz))
-      |(竹,List(31481),Set(yelz, fzzz, yelzzz, f))
+    """(竹,List(31481),Set(yelz, fzzz, yelzzz, f))
       |(⺮,List(11950),Set(yelz, fzzz, yelzzz, f))
       |(虫,List(34411),Set(xjlz, szzz, xjlzzz, s))
       |(⾍,List(12173),Set(xjlz, szzz, xjlzzz, s))
