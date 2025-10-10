@@ -1,5 +1,7 @@
 package Atypes
 
+import Adatasources.FileReaders.AidsData
+
 import scala.collection.immutable.HashMap
 
 case class AidsRecur(rawEntry: Agrapheme, rawIdsMap: HashMap[Agrapheme, String]) {
@@ -20,7 +22,14 @@ object AidsRecur {
   val elementTypes: Set[Aelementstype] = Aelements.elementTypes
   val idsToStrokeMap:  Map[String, Set[String]] = Aelements.idsToStrokeMap
 
-  def findElementmatch(input: AidsRecur): Option[String] = {
+  def findElementmatch(input: Agrapheme, idsmap: HashMap[Agrapheme, String]): Option[String] = {
+    val localrecur: AidsRecur = AidsRecur(input, idsmap)
+    val res = findElementmatchHelper(localrecur)
+    return res
+  }
+  
+  
+  def findElementmatchHelper(input: AidsRecur): Option[String] = {
     idsToStrokeMap.get(input.grapheme.char) match {
       case Some(_) => Some(input.grapheme.char)
       case None =>
@@ -30,7 +39,7 @@ object AidsRecur {
             input.recurNested
               .filterNot(recur => shapes.contains(recur.grapheme))
               .headOption
-              .flatMap(findElementmatch)
+              .flatMap(findElementmatchHelper)
         }
     }
   }

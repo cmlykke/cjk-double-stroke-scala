@@ -3,18 +3,19 @@ package Adatasources.FileReaders
 import Atypes.{Aconway, AconwayColl, Agrapheme}
 import UtilityClasses.{ConwayColl, Grapheme}
 import staticFileGenerators.Conway.GenerateConwayCodes
+import scala.collection.mutable
+import scala.collection.immutable
 
-import scala.collection.mutable.HashMap
 import scala.io.Source
 
 object AreadConwayData {
 
   def conwaySetFunc(): Set[String] = {
-    val conwayMap: HashMap[Agrapheme, AconwayColl] = mapConwayData()
+    val conwayMap: immutable.HashMap[Agrapheme, AconwayColl] = mapConwayData()
     conwayMap.values.map(x => x.char.char).toSet
   }
   
-  def mapConwayData(): HashMap[Agrapheme, AconwayColl] = {
+  def mapConwayData(): immutable.HashMap[Agrapheme, AconwayColl] = {
     val basicConway = GenerateConwayCodes.conwayFilePath
     val bufferedSource = Source.fromFile(basicConway)
     val lines = bufferedSource.getLines
@@ -23,7 +24,7 @@ object AreadConwayData {
     val bufferedSourceCustom = Source.fromFile(customConway)
     val linesCustom = bufferedSourceCustom.getLines
 
-    var resultMap = new HashMap[Agrapheme, AconwayColl]()
+    var resultMap =  mutable.HashMap[Agrapheme, AconwayColl]()
 
     for (line <- lines) {
       //val processedLine = if (line.startsWith("\ufeff")) line.substring(1) else line
@@ -61,6 +62,6 @@ object AreadConwayData {
     bufferedSource.close()
     bufferedSourceCustom.close()
 
-    resultMap
+    immutable.HashMap.from(resultMap)
   }
 }

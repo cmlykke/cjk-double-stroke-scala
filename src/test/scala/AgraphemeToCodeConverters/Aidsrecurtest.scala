@@ -14,7 +14,7 @@ class Aidsrecurtest extends AnyFlatSpec with Matchers {
 
   def testElementMatch(input: String, expected: Option[String], idsdataInput: HashMap[Agrapheme, String]): Unit = {
     val recurtree = AidsRecur(Agrapheme(input), idsdataInput)
-    val elemtree = AidsRecur.findElementmatch(recurtree)
+    val elemtree = AidsRecur.findElementmatchHelper(recurtree)
     elemtree shouldBe expected
     if (expected.isDefined) {
       idsToStrokeMap.contains(expected.get) shouldBe true
@@ -40,7 +40,7 @@ class Aidsrecurtest extends AnyFlatSpec with Matchers {
   it should "test that idsrecur finds the correct first elements" in {
     // test non element
     val recur1: AidsRecur = AidsRecur(Agrapheme("七"), idsdata)
-    val elem1: Option[String] = AidsRecur.findElementmatch(recur1)
+    val elem1: Option[String] = AidsRecur.findElementmatchHelper(recur1)
     elem1 shouldBe None
 
     //虫

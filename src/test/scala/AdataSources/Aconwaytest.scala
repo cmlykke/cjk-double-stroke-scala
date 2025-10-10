@@ -5,8 +5,8 @@ import Atypes.{Aconway, AconwayColl, Agrapheme}
 import UtilityClasses.{ConwayColl, Grapheme, OutputEntry}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
-import scala.collection.mutable.HashMap
-
+import scala.collection.mutable
+import scala.collection.immutable
 
 class Aconwaytest extends AnyFlatSpec with Matchers {  // Renamed to match class; "Spec" suffix is common.
 
@@ -49,7 +49,7 @@ class Aconwaytest extends AnyFlatSpec with Matchers {  // Renamed to match class
   }
 
   it should "validate real Conway data from reader" in {
-    val data: HashMap[Agrapheme, AconwayColl] = AreadConwayData.mapConwayData()
+    val data: immutable.HashMap[Agrapheme, AconwayColl] = AreadConwayData.mapConwayData()
 
     val invalidEntries = data.filter { case (_, coll) =>
       coll.rawConway.rawConway.exists(c => !allowedChars.contains(c))  // Assuming AconwayColl has rawConway: ConwayNotation.

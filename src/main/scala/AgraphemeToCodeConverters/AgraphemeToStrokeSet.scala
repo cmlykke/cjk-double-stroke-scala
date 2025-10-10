@@ -3,7 +3,7 @@ package AgraphemeToCodeConverters
 import Adatasources.FileReaders.AreadConwayData
 import Atypes.{Aconway, AconwayColl, Agrapheme}
 
-import scala.collection.mutable.HashMap
+import scala.collection.immutable.HashMap
 
 object AgraphemeToStrokeSet {
 
