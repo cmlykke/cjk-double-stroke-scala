@@ -87,6 +87,40 @@ class MultiCharWordFrequency extends AnyFlatSpec with Matchers {
     }
   }
 
+  it should "test that pgh (vt) codes will yield words in the correct order" in {
+    //NOTE: the data needs to be investigated. 周末 does not apear by itself in the BCLU dataset!!!
+    val pgh = linemapSimp.get("pgh")
+
+    val pgh_formed: List[String] = pgh.get.map(x => x.chineseStr + " " + x.BCLUord + " " + x.meaning)
+
+    val pgh_compare_raw: String =
+      """周一 4031 Monday
+        |周三 5693 Wednesday
+        |周二 5859 Tuesday
+        |周刊 7604 weekly publication/weekly
+        |名次 12453 position in a ranking of names/place/rank
+        |乌云 19348 black cloud
+        |周瑜 19755 Zhou Yu (175-210), famous general of the southern Wu kingdom and victor of the battle of Redcliff/in Romance of the Three Kingdoms 三國演義|三国演义[San1 guo2 Yan3 yi4], absolutely no match for Zhuge Liang 諸葛亮|诸葛亮[Zhu1 ge3 Liang4]
+        |周天 26824 Sunday
+        |句式 31217 sentence pattern/sentence structure/syntax
+        |句型 36753 sentence pattern (in grammar)
+        |周璇 41775 Zhou Xuan (1918-1957), Chinese singer and film actress
+        |胎动 47816 fetal movement
+        |周礼 56029 the Rites of Zhou (in Confucianism)
+        |乌青 63459 bluish black/bruise; bruising (CL:塊|块[kuai4])
+        |名表 2147483647 famous watch (i.e. expensive brand of wristwatch)
+        |名素 2147483647 variant of 名宿[ming2 su4]
+        |周末 2147483647 weekend
+        |鸟击 2147483647 bird strike (aviation)
+        |周禮 2147483647 the Rites of Zhou (in Confucianism)
+        |問責 2147483647 to hold accountable; to blame; to censure; to apportion blame
+        |刍 40839 to mow or cut grass/hay/straw/fodder""".stripMargin.trim
+
+    val pgh_compare: List[String] = pgh_compare_raw.split("\\R").toList
+
+    pgh_formed shouldBe pgh_compare
+  }
+
   it should "test the total number of single characters and words" in {
     val jundaRaw = OutputSorting.mapFullJunda
     val tzaiRaw = OutputSorting.mapFullTzai
