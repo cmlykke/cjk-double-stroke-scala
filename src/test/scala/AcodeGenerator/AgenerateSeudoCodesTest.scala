@@ -29,6 +29,17 @@ class AgenerateSeudoCodesTest extends AnyFlatSpec with Matchers {
     seudo1 shouldBe setone ++ settwo
   }
 
+  val singleElemInp = Set(
+    (List("言", ""), 4),
+    (List("1111251"), 6),
+    (List("4111251"),6))
+
+  val seudo2: Set[List[String]] = AgenerateSeudoCodes.convertElemAndRemainderToSeudo(singleElemInp)
+  val output2 = Set(
+    List("言", "z", "z", "z"), 
+    List("11", "11", "25", "1", "z", "z"), 
+    List("41", "11", "25", "1", "z", "z"))
+  seudo2 shouldBe output2
 }
 
 
