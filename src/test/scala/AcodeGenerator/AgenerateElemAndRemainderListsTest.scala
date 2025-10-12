@@ -1,6 +1,6 @@
 package AcodeGenerator
 
-import AcodeGenerators.AgenerateSeudoLetters
+import AcodeGenerators.AgenerateElemAndRemainderLists
 import Adatasources.FileReaders.{AidsData, AreadConwayData}
 import Adatasources.ManualData.Aelements
 import AgraphemeToCodeConverters.AgraphemeToStrokeSet
@@ -12,7 +12,7 @@ import scala.collection.mutable
 import scala.collection.immutable
 import scala.collection.immutable
 
-class AgenerateSeudoLettersTest extends AnyFlatSpec with Matchers {
+class AgenerateElemAndRemainderListsTest extends AnyFlatSpec with Matchers {
 
   val conwaymap = AreadConwayData.mapConwayData()
   val idsmap = AidsData.idsDataRaw()
@@ -20,9 +20,15 @@ class AgenerateSeudoLettersTest extends AnyFlatSpec with Matchers {
 
   it should "test that seudo letters can be generated from chars" in {
 
-    val res2 = AgenerateSeudoLetters.getsplitcodesfromchar(Agrapheme("誠"), conwaymap, idsmap, idsToStrokeMap)
-    res2.shouldEqual(Set(List("言", "135543"), List("言", "135534")))
-
+    val res2 = AgenerateElemAndRemainderLists.getsplitcodesfromchar(Agrapheme("誠"), conwaymap, idsmap, idsToStrokeMap)
+    res2.shouldEqual(
+      Set((List("言", "135543"),4),
+          (List("言", "135534"),4),
+          (List("4111251135543"),6),
+          (List("4111251135534"),6),
+          (List("1111251135543"),6),
+          (List("1111251135534"),6),
+      ))
   }
 
 }

@@ -8,22 +8,21 @@ import Atypes.{AconwayColl, Aelementstype, Agrapheme, AidsRecur}
 import scala.collection.immutable.HashMap
 import scala.collection.mutable
 
-class AgenerateSeudoLetters {
-
-}
-
-object AgenerateSeudoLetters {
+object AgenerateElemAndRemainderLists {
   def getsplitcodesfromchar(graph: Agrapheme,
                             conwaymap: HashMap[Agrapheme, AconwayColl],
                             idsmap: HashMap[Agrapheme, String],
-                            idsToStrokeMap: Map[String, Aelementstype]): Set[List[String]] = {
+                            idsToStrokeMap: Map[String, Aelementstype]): Set[(List[String], Int)] = {
     val getConwayFromMap: AconwayColl = conwaymap(graph)
     val rawConway: String = getConwayFromMap.rawConway.rawConway
+    val unrollFull: Set[String] = AgraphemeToStrokeSet.expandAlt(rawConway)
+    val unrollFullSet: Set[(List[String], Int)] = unrollFull.map(x => (List(x), 6)) 
+    
     val elemsfound = AidsRecur.findElementmatch(graph, idsmap, idsToStrokeMap)
     val elemremovedfromcode: (List[String], String)= getRemovedCode(rawConway, elemsfound, idsToStrokeMap)
     val unrollRemainder: Set[String] = AgraphemeToStrokeSet.expandAlt(elemremovedfromcode._2)
-    val res: Set[List[String]] = unrollRemainder.map(x => elemremovedfromcode._1.appended(x))
-    return res
+    val res: Set[(List[String], Int)] = unrollRemainder.map(x => (elemremovedfromcode._1.appended(x), 4))
+    return res ++ unrollFullSet
   }
 
   def getRemovedCode(rawConway: String,
