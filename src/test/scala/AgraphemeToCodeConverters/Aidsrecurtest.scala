@@ -1,7 +1,8 @@
 package AgraphemeToCodeConverters
 
 import Adatasources.FileReaders.AidsData
-import Atypes.{Aelements, Aelementstype, Agrapheme, AidsRecur}
+import Adatasources.ManualData.Aelements
+import Atypes.{Aelementstype, Agrapheme, AidsRecur}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 

@@ -1,8 +1,9 @@
 package AcodeGenerators
 
 import Adatasources.FileReaders.AidsData
+import Adatasources.ManualData.Aelements
 import AgraphemeToCodeConverters.AgraphemeToStrokeSet
-import Atypes.{AconwayColl, Aelements, Aelementstype, Agrapheme, AidsRecur}
+import Atypes.{AconwayColl, Aelementstype, Agrapheme, AidsRecur}
 
 import scala.collection.immutable.HashMap
 import scala.collection.mutable

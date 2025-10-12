@@ -11,9 +11,6 @@ import scala.collection.mutable.HashMap
 
 class ElementAdjustedCodes {
 
-  // Generates element adjusted codes for a given character system
-  
-
   // Generates the overlap map for a given character system
   def generateOverlapMap(charSystem: CharSystem, decorated: Set[StaticFileCharInfoWithLetterConway]):
     Map[ConwayUnambigous, Set[StaticFileCharInfoWithLetterConway]] = {

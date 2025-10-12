@@ -2,8 +2,9 @@ package AcodeGenerator
 
 import AcodeGenerators.AgenerateSeudoLetters
 import Adatasources.FileReaders.{AidsData, AreadConwayData}
+import Adatasources.ManualData.Aelements
 import AgraphemeToCodeConverters.AgraphemeToStrokeSet
-import Atypes.{AconwayColl, Aelements, Aelementstype, Agrapheme}
+import Atypes.{AconwayColl, Aelementstype, Agrapheme}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
