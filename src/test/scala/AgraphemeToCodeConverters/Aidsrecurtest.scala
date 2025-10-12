@@ -1,7 +1,7 @@
 package AgraphemeToCodeConverters
 
 import Adatasources.FileReaders.AidsData
-import Atypes.{Aelements, Agrapheme, AidsRecur}
+import Atypes.{Aelements, Aelementstype, Agrapheme, AidsRecur}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
@@ -10,11 +10,11 @@ import scala.collection.immutable.HashMap
 class Aidsrecurtest extends AnyFlatSpec with Matchers {
 
   val idsdata: HashMap[Agrapheme, String]  = AidsData.idsDataRaw()
-  val idsToStrokeMap:  Map[String, Set[String]] = Aelements.idsToStrokeMap
+  val idsToStrokeMap:  Map[String, Aelementstype] = Aelements.idsToStrokeMap
 
   def testElementMatch(input: String, expected: Option[String], idsdataInput: HashMap[Agrapheme, String]): Unit = {
     val recurtree = AidsRecur(Agrapheme(input), idsdataInput)
-    val elemtree = AidsRecur.findElementmatchHelper(recurtree)
+    val elemtree = AidsRecur.findElementmatchHelper(recurtree, idsToStrokeMap)
     elemtree shouldBe expected
     if (expected.isDefined) {
       idsToStrokeMap.contains(expected.get) shouldBe true
@@ -40,7 +40,7 @@ class Aidsrecurtest extends AnyFlatSpec with Matchers {
   it should "test that idsrecur finds the correct first elements" in {
     // test non element
     val recur1: AidsRecur = AidsRecur(Agrapheme("七"), idsdata)
-    val elem1: Option[String] = AidsRecur.findElementmatchHelper(recur1)
+    val elem1: Option[String] = AidsRecur.findElementmatchHelper(recur1, idsToStrokeMap)
     elem1 shouldBe None
 
     //虫

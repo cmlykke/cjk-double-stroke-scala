@@ -19,17 +19,16 @@ object AidsRecur {
   val widthtrippleshape: Set[Agrapheme] = "⿲".map(x => Agrapheme(x.toString)).toSet
   val widthtrippleelems: Set[Agrapheme] = "言訁⾔".map(x => Agrapheme(x.toString)).toSet
 
-  val elementTypes: Set[Aelementstype] = Aelements.elementTypes
-  val idsToStrokeMap:  Map[String, Set[String]] = Aelements.idsToStrokeMap
-
-  def findElementmatch(input: Agrapheme, idsmap: HashMap[Agrapheme, String]): Option[String] = {
+  def findElementmatch(input: Agrapheme,
+                       idsmap: HashMap[Agrapheme, String],
+                       idsToStrokeMap: Map[String, Aelementstype]): Option[String] = {
     val localrecur: AidsRecur = AidsRecur(input, idsmap)
-    val res = findElementmatchHelper(localrecur)
+    val res = findElementmatchHelper(localrecur, idsToStrokeMap)
     return res
   }
-  
-  
-  def findElementmatchHelper(input: AidsRecur): Option[String] = {
+
+
+  def findElementmatchHelper(input: AidsRecur, idsToStrokeMap: Map[String, Aelementstype]): Option[String] = {
     idsToStrokeMap.get(input.grapheme.char) match {
       case Some(_) => Some(input.grapheme.char)
       case None =>
@@ -39,7 +38,7 @@ object AidsRecur {
             input.recurNested
               .filterNot(recur => shapes.contains(recur.grapheme))
               .headOption
-              .flatMap(findElementmatchHelper)
+              .flatMap(recur => findElementmatchHelper(recur, idsToStrokeMap))
         }
     }
   }

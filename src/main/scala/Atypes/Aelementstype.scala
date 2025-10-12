@@ -1,8 +1,9 @@
 package Atypes
 
-class Aelementstype (listOfStrokes: Set[String], ListOfIds: Set[String]) {
+class Aelementstype (listOfStrokes: Set[String], ListOfIds: String, uni: String) {
 
   val strokes: Set[String] = listOfStrokes
-  val ids: Set[String] = ListOfIds
+  val ids: String = ListOfIds
+  val unifiedElemet: String = uni
 
 }
