@@ -22,13 +22,22 @@ class AgenerateElemAndRemainderListsTest extends AnyFlatSpec with Matchers {
 
     val res2 = AgenerateElemAndRemainderLists.getsplitcodesfromchar(Agrapheme("誠"), conwaymap, idsmap, idsToStrokeMap)
     res2.shouldEqual(
-      Set((List("言", "135543"),4),
-          (List("言", "135534"),4),
-          (List("4111251135543"),6),
-          (List("4111251135534"),6),
-          (List("1111251135543"),6),
-          (List("1111251135534"),6),
+      Set((List("言", "135543"), 4),
+        (List("言", "135534"), 4),
+        (List("4111251135543"), 6),
+        (List("4111251135534"), 6),
+        (List("1111251135543"), 6),
+        (List("1111251135534"), 6),
       ))
+  }
+
+  it should "test that seudo letters can be generated from element" in {
+    val res3 = AgenerateElemAndRemainderLists.getsplitcodesfromchar(Agrapheme("言"), conwaymap, idsmap, idsToStrokeMap)
+    res3.shouldEqual(
+      Set(
+        (List("言", ""), 4),
+        (List("1111251"), 6),
+        (List("4111251"),6)))
   }
 
 }

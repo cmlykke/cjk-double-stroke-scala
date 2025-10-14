@@ -1,19 +1,62 @@
 package AcodeGenerators
 
+import Adatasources.ManualData.AcodelengthRules
+import Atypes.{AsortingCriteria, SortingCodes}
+
 object AgenerateSeudoCodes {
 
-  def convertElemAndRemainderToSeudo(input: Set[(List[String],Int)]): Set[List[String]] = {
-    val res = input.map(x => splitCodeList(x))
-    return res
+  val fil: String = AcodelengthRules.fil
+
+  def convertElemAndRemainderToSeudo(input: Set[(List[String],Int)]):
+                                    Set[(List[String], AsortingCriteria)] = {
+    val fourAndSixCodes: Set[(List[String], AsortingCriteria)] = input.map(x => splitCodeList(x))
+    val noFillCodes: Set[(List[String], AsortingCriteria)] = generateNoFillFromFourCode(fourAndSixCodes)
+    return fourAndSixCodes ++ noFillCodes
+  }
+  
+  private def generateNoFillFromFourCode(input: Set[(List[String], AsortingCriteria)]):
+                                   Set[(List[String], AsortingCriteria)] = {
+    input.filter(x => x._2 == SortingCodes.FourCode).map(x => removeZFillFromFourCode(x._1)).toSet
   }
 
-  def splitCodeList(inp: (List[String],Int)): List[String] = {
+  private def removeZFillFromFourCode(codelist: List[String]): (List[String], AsortingCriteria) = {
+    if (codelist.size == 0) {
+      throw new RuntimeException("removeZFill should not result in a zero length code list")
+    }
+    if (codelist.last != fil) {
+      if (codelist.length == 1) {
+        return (codelist, SortingCodes.OneCode)
+      }
+      if (codelist.length == 2) {
+        return (codelist, SortingCodes.TwoCode)
+      }
+      if (codelist.length == 3) {
+        return (codelist, SortingCodes.ThreeCode)
+      }
+      if (codelist.length == 4) {
+        return (codelist, SortingCodes.FourCode)
+      }
+      throw new RuntimeException("unexpected code length for removeing fill characters")
+    }
+    return removeZFillFromFourCode(codelist.init)
+  }
+
+  private def splitCodeList(inp: (List[String],Int)): (List[String], AsortingCriteria) = {
     splitCodeListHelper(List(), inp._1, inp._2)
   }
 
-  private def splitCodeListHelper(reslist: List[String], inp: List[String], size: Int): List[String] = {
+  private def splitCodeListHelper(reslist: List[String],
+                                  inp: List[String], size: Int): (List[String], AsortingCriteria) = {
     //result length is achieved and and the function should terminate
-    if (reslist.length == size) { return reslist }
+    if (reslist.length == size) {
+      if (size == 4) {
+        return (reslist, SortingCodes.FourCode)
+      } else if (size == 6) {
+        return (reslist, SortingCodes.SixCode)
+      } else {
+        throw RuntimeException("Unhandled size argument: " + size )
+      }
+    }
     //length is not achieved but there is no more source data
     if (inp.isEmpty || inp.head.size == 0) {
       //fill up with z
