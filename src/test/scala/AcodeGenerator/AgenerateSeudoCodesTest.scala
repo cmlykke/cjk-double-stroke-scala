@@ -13,68 +13,68 @@ class AgenerateSeudoCodesTest extends AnyFlatSpec with Matchers {
 
   it should "test that multi word helper can generate code - characters with many codes" in {
     val input1 = (List("言", "135543"), PossibleWordCodes.FirstCode)
-    val seudo1: (List[String], PossibleWordCodes) = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input1) //reslist: List[String], inp: List[String]
-    seudo1 shouldBe (List("言"), PossibleWordCodes.FirstCode)
+    val seudo1: List[String] = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input1) //reslist: List[String], inp: List[String]
+    seudo1 shouldBe List("言")
 
     val input1b = (List("言", "135543"), PossibleWordCodes.FirstLastCode)
-    val seudo1b: (List[String], PossibleWordCodes) = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input1b) //reslist: List[String], inp: List[String]
-    seudo1b shouldBe(List("言", "43"), PossibleWordCodes.FirstLastCode)
+    val seudo1b: List[String] = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input1b) //reslist: List[String], inp: List[String]
+    seudo1b shouldBe List("言", "43")
 
     val input1c = (List("言", "135543"), PossibleWordCodes.FirstSecondLastCode)
-    val seudo1c: (List[String], PossibleWordCodes) = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input1c) //reslist: List[String], inp: List[String]
-    seudo1c shouldBe(List("言", "13", "43"), PossibleWordCodes.FirstSecondLastCode)
+    val seudo1c: List[String] = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input1c) //reslist: List[String], inp: List[String]
+    seudo1c shouldBe List("言", "13", "43")
 
     val input2a = (List("4111252"), PossibleWordCodes.FirstCode)
-    val seudo2a: (List[String], PossibleWordCodes) = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input2a) //reslist: List[String], inp: List[String]
-    seudo2a shouldBe(List("41"), PossibleWordCodes.FirstCode)
+    val seudo2a: List[String] = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input2a) //reslist: List[String], inp: List[String]
+    seudo2a shouldBe List("41")
 
     val input2b = (List("4111252"), PossibleWordCodes.FirstLastCode)
-    val seudo2b: (List[String], PossibleWordCodes) = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input2b) //reslist: List[String], inp: List[String]
-    seudo2b shouldBe(List("41", "52"), PossibleWordCodes.FirstLastCode)
+    val seudo2b: List[String] = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input2b) //reslist: List[String], inp: List[String]
+    seudo2b shouldBe List("41", "52")
 
     val input2c = (List("4111252"), PossibleWordCodes.FirstSecondLastCode)
-    val seudo2c: (List[String], PossibleWordCodes) = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input2c) //reslist: List[String], inp: List[String]
-    seudo2c shouldBe(List("41", "11", "52"), PossibleWordCodes.FirstSecondLastCode)
+    val seudo2c: List[String] = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input2c) //reslist: List[String], inp: List[String]
+    seudo2c shouldBe List("41", "11", "52")
 
   }
 
 
   it should "test that multi word helper can generate code - characters with few codes" in {
     val input1 = (List("言", ""), PossibleWordCodes.FirstCode)
-    val seudo1: (List[String], PossibleWordCodes) = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input1) //reslist: List[String], inp: List[String]
-    seudo1 shouldBe (List("言"), PossibleWordCodes.FirstCode)
+    val seudo1: List[String] = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input1) //reslist: List[String], inp: List[String]
+    seudo1 shouldBe List("言")
 
-    val input1b = (List("言", ""), PossibleWordCodes.FirstLastCode)
-    val seudo1b: (List[String], PossibleWordCodes) = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input1b) //reslist: List[String], inp: List[String]
-    seudo1b shouldBe(List("言"), PossibleWordCodes.FirstLastCode)
+    val input1b = (List("言", ""), PossibleWordCodes.FirstCode)
+    val seudo1b: List[String] = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input1b) //reslist: List[String], inp: List[String]
+    seudo1b shouldBe List("言")
 
     val input1c = (List("言", ""), PossibleWordCodes.FirstSecondLastCode)
-    val seudo1c: (List[String], PossibleWordCodes) = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input1c) //reslist: List[String], inp: List[String]
-    seudo1c shouldBe(List("言"), PossibleWordCodes.FirstSecondLastCode)
+    val seudo1c: List[String] = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input1c) //reslist: List[String], inp: List[String]
+    seudo1c shouldBe List("言")
 
     val input2a = (List("4"), PossibleWordCodes.FirstCode)
-    val seudo2a: (List[String], PossibleWordCodes) = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input2a) //reslist: List[String], inp: List[String]
-    seudo2a shouldBe(List("4"), PossibleWordCodes.FirstCode)
+    val seudo2a: List[String] = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input2a) //reslist: List[String], inp: List[String]
+    seudo2a shouldBe List("4")
 
     val input2b = (List("4"), PossibleWordCodes.FirstLastCode)
-    val seudo2b: (List[String], PossibleWordCodes) = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input2b) //reslist: List[String], inp: List[String]
-    seudo2b shouldBe(List("4"), PossibleWordCodes.FirstLastCode)
+    val seudo2b: List[String] = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input2b) //reslist: List[String], inp: List[String]
+    seudo2b shouldBe List("4")
 
     val input2c = (List("4"), PossibleWordCodes.FirstSecondLastCode)
-    val seudo2c: (List[String], PossibleWordCodes) = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input2c) //reslist: List[String], inp: List[String]
-    seudo2c shouldBe(List("4"), PossibleWordCodes.FirstSecondLastCode)
+    val seudo2c: List[String] = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input2c) //reslist: List[String], inp: List[String]
+    seudo2c shouldBe List("4")
 
     val input3a = (List("413"), PossibleWordCodes.FirstCode)
-    val seudo3a: (List[String], PossibleWordCodes) = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input3a) //reslist: List[String], inp: List[String]
-    seudo3a shouldBe(List("41"), PossibleWordCodes.FirstCode)
+    val seudo3a: List[String] = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input3a) //reslist: List[String], inp: List[String]
+    seudo3a shouldBe List("41")
 
     val input3b = (List("413"), PossibleWordCodes.FirstLastCode)
-    val seudo3b: (List[String], PossibleWordCodes) = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input3b) //reslist: List[String], inp: List[String]
-    seudo3b shouldBe(List("41", "3"), PossibleWordCodes.FirstLastCode)
+    val seudo3b: List[String] = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input3b) //reslist: List[String], inp: List[String]
+    seudo3b shouldBe List("41", "3")
 
     val input3c = (List("413"), PossibleWordCodes.FirstSecondLastCode)
-    val seudo3c: (List[String], PossibleWordCodes) = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input3c) //reslist: List[String], inp: List[String]
-    seudo3c shouldBe(List("41", "3"), PossibleWordCodes.FirstSecondLastCode)
+    val seudo3c: List[String] = AgenerateSeudoCodes.splitCodeListHelperMultiChar(List(), input3c) //reslist: List[String], inp: List[String]
+    seudo3c shouldBe List("41", "3")
 
   }
 

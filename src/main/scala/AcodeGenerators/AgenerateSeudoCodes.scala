@@ -15,18 +15,25 @@ object AgenerateSeudoCodes {
     return fourAndSixCodes ++ noFillCodes
   }
 
+
+
+  def splitCodeListMultiChar(inp: List[String], multiCharType: PossibleWordCodes): List[String] = {
+    val res = splitCodeListHelperMultiChar(List(), (inp, multiCharType))
+    return res
+  }
+
   def splitCodeListHelperMultiChar(reslist: List[String],
-                                   inp: (List[String], PossibleWordCodes)): (List[String], PossibleWordCodes) = {
+                                   inp: (List[String], PossibleWordCodes)): List[String] = {
     if (inp._2 == FirstCode) {
-      return (firstCode(List(), inp._1), FirstCode)
+      return firstCode(List(), inp._1)
     }
     if (inp._2 == FirstLastCode) {
-      return (firstLastCode(List(), inp._1), FirstLastCode)
+      return firstLastCode(List(), inp._1)
     }
     if (inp._2 == FirstSecondLastCode) {
-      return (firstSecondLastCode(List(), inp._1), FirstSecondLastCode)
+      return firstSecondLastCode(List(), inp._1)
     }
-    return (List(), inp._2)
+    throw new RuntimeException("unhandled possibleWordCode")
   }
 
   private def generateNoFillFromFourCode(input: Set[(List[String], AsortingCriteria)]):
