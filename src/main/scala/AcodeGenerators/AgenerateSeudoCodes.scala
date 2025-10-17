@@ -15,8 +15,6 @@ object AgenerateSeudoCodes {
     return fourAndSixCodes ++ noFillCodes
   }
 
-
-
   def splitCodeListMultiChar(inp: List[String], multiCharType: PossibleWordCodes): List[String] = {
     val res = splitCodeListHelperMultiChar(List(), (inp, multiCharType))
     return res
