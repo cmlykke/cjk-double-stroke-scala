@@ -13,20 +13,18 @@ class AgenerateFinalSeudoCodesTest extends AnyFlatSpec with Matchers {
   val idsmap = AidsData.idsDataRaw()
   val idsToStrokeMap: Map[String, Aelementstype] = Aelements.idsToStrokeMap
 
-
   it should "test that seudo code can be geerated from two characters" in {
 
     val res2: Set[List[String]] =
-      AgenerateFinalSeudoCodes.seudo5codesFromFullWords(
+      AgenerateFinalSeudoCodes.seudoFullWordFivecodesFromCharFourCodes(
         List(Agrapheme("摳"), Agrapheme("腳")), conwaymap, idsmap, idsToStrokeMap)
     res2.shouldEqual(
       Set(List("手","15", "35", "11", "52"), List("手","15", "35", "41", "52")))
   }
 
   it should "test that seudo code can be geerated from six characters" in {
-    //
     val res2: Set[List[String]] =
-      AgenerateFinalSeudoCodes.seudo5codesFromFullWords(
+      AgenerateFinalSeudoCodes.seudoFullWordFivecodesFromCharFourCodes(
         List(
           Agrapheme("中"),
           Agrapheme("华"),
@@ -42,11 +40,16 @@ class AgenerateFinalSeudoCodesTest extends AnyFlatSpec with Matchers {
 
   it should "test that seudo code can be geerated from single characters" in {
 
-    val res2:  Set[(List[String], AsortingCriteria)] =
-      AgenerateFinalSeudoCodes.seudoCodesFromSingleChar(Agrapheme("誠"), conwaymap, idsmap, idsToStrokeMap)
-    res2.shouldEqual(
+    val resFour:  Set[(List[String], AsortingCriteria)] =
+      AgenerateFinalSeudoCodes.seudoFourCodesFromSingleChar(Agrapheme("誠"), conwaymap, idsmap, idsToStrokeMap)
+    resFour.shouldEqual(
       Set((List("言", "13", "55", "43"), SortingCodes.FourCode),
-        (List("言", "13", "55", "34"), SortingCodes.FourCode),
+        (List("言", "13", "55", "34"), SortingCodes.FourCode
+      )))
+    val resSix: Set[(List[String], AsortingCriteria)] =
+      AgenerateFinalSeudoCodes.seudoSixCodesFromSingleChar(Agrapheme("誠"), conwaymap, idsmap, idsToStrokeMap)
+    resSix.shouldEqual(
+      Set(
         (List("41", "11", "25", "11", "35", "43"), SortingCodes.SixCode),
         (List("41", "11", "25", "11", "35", "34"), SortingCodes.SixCode),
         (List("11", "11", "25", "11", "35", "43"), SortingCodes.SixCode),

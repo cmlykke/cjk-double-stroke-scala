@@ -20,10 +20,14 @@ class AgenerateElemAndRemainderListsTest extends AnyFlatSpec with Matchers {
 
   it should "test that seudo letters can be generated from chars" in {
 
-    val res2 = AgenerateElemAndRemainderLists.getsplitcodesfromchar(Agrapheme("誠"), conwaymap, idsmap, idsToStrokeMap)
-    res2.shouldEqual(
+    val resFour = AgenerateElemAndRemainderLists.getsplitFourCodesfromchar(Agrapheme("誠"), conwaymap, idsmap, idsToStrokeMap)
+    resFour.shouldEqual(
       Set((List("言", "135543"), 4),
-        (List("言", "135534"), 4),
+        (List("言", "135534"), 4)
+      ))
+    val resSix = AgenerateElemAndRemainderLists.getsplitSixCodesfromchar(Agrapheme("誠"), conwaymap, idsmap, idsToStrokeMap)
+    resSix.shouldEqual(
+      Set(
         (List("4111251135543"), 6),
         (List("4111251135534"), 6),
         (List("1111251135543"), 6),
@@ -32,12 +36,15 @@ class AgenerateElemAndRemainderListsTest extends AnyFlatSpec with Matchers {
   }
 
   it should "test that seudo letters can be generated from element" in {
-    val res3 = AgenerateElemAndRemainderLists.getsplitcodesfromchar(Agrapheme("言"), conwaymap, idsmap, idsToStrokeMap)
-    res3.shouldEqual(
+    val resFour = AgenerateElemAndRemainderLists.getsplitFourCodesfromchar(Agrapheme("言"), conwaymap, idsmap, idsToStrokeMap)
+    resFour.shouldEqual(
       Set(
-        (List("言", ""), 4),
+        (List("言", ""), 4)))
+    val resSix = AgenerateElemAndRemainderLists.getsplitSixCodesfromchar(Agrapheme("言"), conwaymap, idsmap, idsToStrokeMap)
+    resSix.shouldEqual(
+      Set(
         (List("1111251"), 6),
-        (List("4111251"),6)))
+        (List("4111251"), 6)))
   }
 
 }

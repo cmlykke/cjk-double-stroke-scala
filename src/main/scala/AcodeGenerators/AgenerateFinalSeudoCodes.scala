@@ -7,21 +7,19 @@ import scala.collection.immutable.HashMap
 
 object AgenerateFinalSeudoCodes {
 
-  def seudo5codesFromFullWords(graph: List[Agrapheme],
-                              conwaymap: HashMap[Agrapheme, AconwayColl],
-                              idsmap: HashMap[Agrapheme, String],
-                              idsToStrokeMap: Map[String, Aelementstype]): Set[List[String]] = {
-    val alCodesFromChars: List[Set[(List[String], AsortingCriteria)]] =
-      graph.map(x => seudoCodesFromSingleChar(x, conwaymap, idsmap, idsToStrokeMap))
-    val getCombinations: Set[List[String]] = fiveCodeCombinations(alCodesFromChars)
+  def seudoFullWordFivecodesFromCharFourCodes(graph: List[Agrapheme],
+                                              conwaymap: HashMap[Agrapheme, AconwayColl],
+                                              idsmap: HashMap[Agrapheme, String],
+                                              idsToStrokeMap: Map[String, Aelementstype]): Set[List[String]] = {
+    val FourCodesFromChars: List[Set[(List[String], AsortingCriteria)]] =
+      graph.map(x => seudoFourCodesFromSingleChar(x, conwaymap, idsmap, idsToStrokeMap))
+    val getCombinations: Set[List[String]] = fiveCodeCombinations(FourCodesFromChars)
     return getCombinations
   }
 
   def fiveCodeCombinations(input: List[Set[(List[String], AsortingCriteria)]]): Set[List[String]] = {
-    val fourcodesOnly: List[Set[(List[String], AsortingCriteria)]] = input.map(characterSet => characterSet
-      .filter(codeTuple => codeTuple._2 == FourCode))
     val fourcodesNoSorting: List[Set[List[String]]] =
-      fourcodesOnly.map(charCodeSet => charCodeSet.map(codeTupple => codeTupple._1))
+      input.map(charCodeSet => charCodeSet.map(codeTupple => codeTupple._1))
     val sudoCodeToPermutasionSet: Set[List[String]] = generatePermutations(fourcodesNoSorting)
     return sudoCodeToPermutasionSet
   }
@@ -87,12 +85,12 @@ object AgenerateFinalSeudoCodes {
       } yield prefix ++ suffix
   }
 
-  def seudoCodesFromSingleChar(graph: Agrapheme,
+  def seudoFourCodesFromSingleChar(graph: Agrapheme,
                                conwaymap: HashMap[Agrapheme, AconwayColl],
                                idsmap: HashMap[Agrapheme, String],
                                idsToStrokeMap: Map[String, Aelementstype]):
                                Set[(List[String], AsortingCriteria)] = {
-    val splitcodes: Set[(List[String], Int)] = AgenerateElemAndRemainderLists.getsplitcodesfromchar(
+    val splitcodes: Set[(List[String], Int)] = AgenerateElemAndRemainderLists.getsplitFourCodesfromchar(
       graph,
       conwaymap,
       idsmap,
@@ -103,4 +101,19 @@ object AgenerateFinalSeudoCodes {
     return seudocodes
   }
 
+  def seudoSixCodesFromSingleChar(graph: Agrapheme,
+                                   conwaymap: HashMap[Agrapheme, AconwayColl],
+                                   idsmap: HashMap[Agrapheme, String],
+                                   idsToStrokeMap: Map[String, Aelementstype]):
+  Set[(List[String], AsortingCriteria)] = {
+    val splitcodes: Set[(List[String], Int)] = AgenerateElemAndRemainderLists.getsplitSixCodesfromchar(
+      graph,
+      conwaymap,
+      idsmap,
+      idsToStrokeMap
+    )
+    val seudocodes: Set[(List[String], AsortingCriteria)] =
+      AgenerateSeudoCodes.convertElemAndRemainderToSeudoSingleChar(splitcodes)
+    return seudocodes
+  }
 }
