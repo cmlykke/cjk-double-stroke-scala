@@ -4,9 +4,11 @@ import Atypes.Aelementstype
 
 object AcodelengthRules {
 
-  val fil: String = "z"
+  val fill: String = "z"
   
   val elementTypes: Map[String, String] = Map(
+    //fill
+    fill -> fill,
     //elements
     "虫" -> "s",
     "木" -> "d",

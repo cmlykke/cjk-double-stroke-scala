@@ -9,7 +9,7 @@ import org.scalatest.matchers.should.Matchers
 class AgenerateSeudoCodesTest extends AnyFlatSpec with Matchers {
 
   val codeMap: Map[String, String] = AcodelengthRules.elementTypes
-  val fil: String = AcodelengthRules.fil
+  val localFill: String = AcodelengthRules.fill
 
   it should "test that multi word helper can generate code - characters with many codes" in {
     val input1 = (List("言", "135543"), PossibleWordCodes.FirstCode)
@@ -90,7 +90,7 @@ class AgenerateSeudoCodesTest extends AnyFlatSpec with Matchers {
       (List("1111251135543"),6),
       (List("1111251135534"),6),
     )
-    val seudo1: Set[(List[String], AsortingCriteria)] = AgenerateSeudoCodes.convertElemAndRemainderToSeudoSingleChar(input1)
+    val seudo1: Set[(List[String], AsortingCriteria)] = AgenerateSeudoCodes.convertElemAndRemainderToSeudoFourCode(input1)
     val setone = Set(
       (List("言","13","55","43"), SortingCodes.FourCode),
       (List("言","13","55","34"), SortingCodes.FourCode))
@@ -111,12 +111,11 @@ class AgenerateSeudoCodesTest extends AnyFlatSpec with Matchers {
       (List("4111251"),6))
   
     val seudo2: Set[(List[String], AsortingCriteria)] =
-      AgenerateSeudoCodes.convertElemAndRemainderToSeudoSingleChar(singleElemInp)
+      AgenerateSeudoCodes.convertElemAndRemainderToSeudoFourCode(singleElemInp)
     val output2 = Set(
-      (List("言"), SortingCodes.OneCode),
-      (List("言", fil, fil, fil), SortingCodes.FourCode),
-      (List("11", "11", "25", "1", fil, fil), SortingCodes.SixCode),
-      (List("41", "11", "25", "1", fil, fil), SortingCodes.SixCode))
+      (List("言", localFill, localFill, localFill), SortingCodes.FourCode),
+      (List("11", "11", "25", "1", localFill, localFill), SortingCodes.SixCode),
+      (List("41", "11", "25", "1", localFill, localFill), SortingCodes.SixCode))
     seudo2 shouldBe output2
   }
 }

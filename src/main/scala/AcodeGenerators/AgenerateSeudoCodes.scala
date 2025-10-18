@@ -6,13 +6,12 @@ import Atypes.{AsortingCriteria, PossibleWordCodes, SortingCodes}
 
 object AgenerateSeudoCodes {
 
-  val fil: String = AcodelengthRules.fil
+  val localFill: String = AcodelengthRules.fill
 
-  def convertElemAndRemainderToSeudoSingleChar(input: Set[(List[String],Int)]):
+  def convertElemAndRemainderToSeudoFourCode(input: Set[(List[String],Int)]):
   Set[(List[String], AsortingCriteria)] = {
     val fourAndSixCodes: Set[(List[String], AsortingCriteria)] = input.map(x => splitCodeListSingleChar(x))
-    val noFillCodes: Set[(List[String], AsortingCriteria)] = generateNoFillFromFourCode(fourAndSixCodes)
-    return fourAndSixCodes ++ noFillCodes
+    return fourAndSixCodes
   }
 
   def splitCodeListMultiChar(inp: List[String], multiCharType: PossibleWordCodes): List[String] = {
@@ -43,7 +42,7 @@ object AgenerateSeudoCodes {
     if (codelist.size == 0) {
       throw new RuntimeException("removeZFill should not result in a zero length code list")
     }
-    if (codelist.last != fil) {
+    if (codelist.last != localFill) {
       if (codelist.length == 1) {
         return (codelist, SortingCodes.OneCode)
       }

@@ -1,7 +1,8 @@
 package AcodeGenerators
 
-import Atypes.SortingCodes.FourCode
-import Atypes.{AconwayColl, Aelementstype, Agrapheme, AsortingCriteria, PossibleWordCodes}
+import Adatasources.ManualData.AcodelengthRules
+import Atypes.SortingCodes.{FiveCode, FourCode}
+import Atypes.{AconwayColl, Aelementstype, Agrapheme, AsortingCriteria, PossibleWordCodes, SortingCodes}
 
 import scala.collection.immutable.HashMap
 
@@ -19,9 +20,45 @@ object AgenerateFinalSeudoCodes {
       idsToStrokeMap
     )
     val seudocodes: Set[(List[String], AsortingCriteria)] =
-      AgenerateSeudoCodes.convertElemAndRemainderToSeudoSingleChar(splitcodes)
+      AgenerateSeudoCodes.convertElemAndRemainderToSeudoFourCode(splitcodes)
     return seudocodes
   }
+  
+  def getNoFillCodesFromFourCode(input: Set[(List[String], AsortingCriteria)]): 
+                                  Set[(List[String], AsortingCriteria)] = {
+    val res = input.map(x => getNoFill(x))
+    return res
+  }
+  
+  def getNoFill(input: (List[String], AsortingCriteria)): (List[String], AsortingCriteria) = {
+    if (input._2 != SortingCodes.FourCode) {
+      throw new RuntimeException("no wills codes can only be generated from Four codes")
+    }
+    val result = getNoFillHelper(input)
+    return result
+  }
+  
+  private def getNoFillHelper(input: (List[String], AsortingCriteria)): (List[String], AsortingCriteria) = {
+    if (input._1.length == 0) {
+      throw new RuntimeException("no code can be of length 0")
+    }
+    if (input._1.last != AcodelengthRules.fill) {
+      if (input._1.length == 1) {
+        return (input._1, SortingCodes.OneCode)
+      } else if (input._1.length == 2) {
+        return (input._1, SortingCodes.TwoCode)
+      } else if (input._1.length == 3) {
+        return (input._1, SortingCodes.ThreeCode)
+      } else if (input._1.length == 4) {
+        return input
+      } else {
+        throw new RuntimeException("No Fill codeLength length cant be greater than FourCode")
+      }
+    }
+    return getNoFillHelper((input._1.init, input._2))
+  }
+  
+  
 
   def seudoSixCodesFromSingleChar(graph: Agrapheme,
                                   conwaymap: HashMap[Agrapheme, AconwayColl],
@@ -35,18 +72,19 @@ object AgenerateFinalSeudoCodes {
       idsToStrokeMap
     )
     val seudocodes: Set[(List[String], AsortingCriteria)] =
-      AgenerateSeudoCodes.convertElemAndRemainderToSeudoSingleChar(splitcodes)
+      AgenerateSeudoCodes.convertElemAndRemainderToSeudoFourCode(splitcodes)
     return seudocodes
   }
 
   def seudoFullWordFivecodesFromCharFourCodes(graph: List[Agrapheme],
                                               conwaymap: HashMap[Agrapheme, AconwayColl],
                                               idsmap: HashMap[Agrapheme, String],
-                                              idsToStrokeMap: Map[String, Aelementstype]): Set[List[String]] = {
+                                              idsToStrokeMap: Map[String, Aelementstype]): Set[(List[String], AsortingCriteria)]  = {
     val FourCodesFromChars: List[Set[(List[String], AsortingCriteria)]] =
       graph.map(x => seudoFourCodesFromSingleChar(x, conwaymap, idsmap, idsToStrokeMap))
     val getCombinations: Set[List[String]] = fiveCodeCombinations(FourCodesFromChars)
-    return getCombinations
+    val addSorting: Set[(List[String], AsortingCriteria)] = getCombinations.map(x => (x, FiveCode))
+    return addSorting
   }
 
   private def fiveCodeCombinations(input: List[Set[(List[String], AsortingCriteria)]]): Set[List[String]] = {

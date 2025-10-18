@@ -3,6 +3,7 @@ package AcodeGenerator
 import AcodeGenerators.{AgenerateElemAndRemainderLists, AgenerateFinalSeudoCodes}
 import Adatasources.FileReaders.{AidsData, AreadConwayData}
 import Adatasources.ManualData.Aelements
+import Atypes.SortingCodes.FiveCode
 import Atypes.{Aelementstype, Agrapheme, AsortingCriteria, SortingCodes}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
@@ -15,15 +16,15 @@ class AgenerateFinalSeudoCodesTest extends AnyFlatSpec with Matchers {
 
   it should "test that seudo code can be geerated from two characters" in {
 
-    val res2: Set[List[String]] =
+    val res2: Set[(List[String],AsortingCriteria)] =
       AgenerateFinalSeudoCodes.seudoFullWordFivecodesFromCharFourCodes(
         List(Agrapheme("摳"), Agrapheme("腳")), conwaymap, idsmap, idsToStrokeMap)
     res2.shouldEqual(
-      Set(List("手","15", "35", "11", "52"), List("手","15", "35", "41", "52")))
+      Set((List("手","15", "35", "11", "52"), FiveCode), (List("手","15", "35", "41", "52"), FiveCode)))
   }
 
   it should "test that seudo code can be geerated from six characters" in {
-    val res2: Set[List[String]] =
+    val res2: Set[(List[String], AsortingCriteria)] =
       AgenerateFinalSeudoCodes.seudoFullWordFivecodesFromCharFourCodes(
         List(
           Agrapheme("中"),
@@ -35,7 +36,7 @@ class AgenerateFinalSeudoCodesTest extends AnyFlatSpec with Matchers {
           Agrapheme("国")
         ), conwaymap, idsmap, idsToStrokeMap)
     res2.shouldEqual(
-      Set(List("25", "32", "34", "51", "12")))
+      Set((List("25", "32", "34", "51", "12"), FiveCode)))
   }
 
   it should "test that seudo code can be geerated from single characters" in {
