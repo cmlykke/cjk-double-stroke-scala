@@ -6,6 +6,15 @@ import scala.collection.immutable.HashMap
 
 object AgenerateTranslation {
 
+  def translationsOfSetOfStrings(hanStrings: Set[String],  
+                                 conwaymap: HashMap[Agrapheme, AconwayColl],
+                                 idsmap: HashMap[Agrapheme, String],
+                                 idsToStrokeMap: Map[String, Aelementstype],
+                                 translationMap: Map[String, String]): Set[Set[(String, AsortingCriteria)]] = {
+    val res = hanStrings.map(x => getTranslationFromChineseString(x, conwaymap, idsmap, idsToStrokeMap, translationMap))
+    return res
+  }
+
   def getTranslationFromChineseString(graph: String,
                                       conwaymap: HashMap[Agrapheme, AconwayColl],
                                       idsmap: HashMap[Agrapheme, String],

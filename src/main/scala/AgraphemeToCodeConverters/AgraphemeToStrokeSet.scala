@@ -45,6 +45,72 @@ object AgraphemeToStrokeSet {
     result
   }
 
+
+  def unrollBackSlash(input: String): String = {
+    if (input.contains("\\")) {
+      val test = ""
+
+    }
+    val test2 = unrollBackSlashHelper(List(""), input, ' ', input)
+    return test2
+  }
+  
+  private def unrollBackSlashHelper(tempres: List[String],  input: String, criticalChar: Char, original: String): String = {
+    val test = ""
+    if (tempres.mkString("").length == original.length) {
+      return handleCompleteCharacterList(tempres, original)
+    }
+    if (criticalChar == '\\' && !input.head.isDigit) {
+      throw new RuntimeException("Backslash has to be followed by a number")
+    }
+    if (criticalChar == '\\') {
+      val lastListItemPlusChange: String = tempres.last + input.head.toString
+      val exceptLast: List[String] = tempres.dropRight(1)
+      val newTempres: List[String] = exceptLast ++ List(lastListItemPlusChange) ++ List("")
+      val newInput = input.drop(1)
+      return unrollBackSlashHelper(newTempres, newInput, ' ', original)
+    }
+    if (input.head == '(' || input.head == '\\') {
+      val newTempres: List[String] = tempres ++ List(input.head.toString)
+      val newInput = input.drop(1)
+      return unrollBackSlashHelper(newTempres, newInput, input.head, original)
+    }
+    if (input.head == ')') {
+      val lastListItemPlusChange: String = tempres.last + ')'.toString
+      val exceptLast: List[String] = tempres.dropRight(1)
+      val newTempres: List[String] = exceptLast ++ List(lastListItemPlusChange)
+      val newInput = input.drop(1)
+      return unrollBackSlashHelper(newTempres, newInput, ' ', original)
+    }
+    val lastListItemPlusChange: String = tempres.last + input.head
+    val exceptLast: List[String] = tempres.dropRight(1)
+    val newTempres: List[String] = exceptLast ++ List(lastListItemPlusChange)
+    val newInput = input.drop(1)
+    return unrollBackSlashHelper(newTempres, newInput, ' ', original)
+  }
+
+  private def handleCompleteCharacterList(tempres: List[String], origianl: String): String = {
+    val parens: List[String] = tempres.filter(x => x.startsWith("("))
+    var res: List[String] = List()
+    for (item: String <- tempres) {
+      if (item.startsWith("\\")) {
+        var lookupInt: Int = 0
+        var lookupResult: String = ""
+        try {
+          lookupInt = item.last.toString.toInt
+          lookupResult = parens(lookupInt-1)
+        } catch {
+          case e: RuntimeException =>
+            throw new RuntimeException("conway parens lookup has to be possible")
+        }
+        res = res.appended(lookupResult)
+      } else {
+        res = res.appended(item)
+      }
+    }
+    return res.mkString("")
+  }
+
   def expandAlt(str: String): Set[String] = {
     val pattern = "\\(([^)]*)\\)".r
 

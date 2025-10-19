@@ -17,4 +17,16 @@ class AgraphemeToListOfCodes extends AnyFlatSpec with Matchers {
     codeTest2 shouldEqual Set("1111251", "4111251")
 
   }
+
+  it should "test that unrollBackslash wors" in {
+    val test: String = AgraphemeToStrokeSet.unrollBackSlash("54(2511|3511|3541)(15|35|53)\\2")
+    test shouldBe "54(2511|3511|3541)(15|35|53)(15|35|53)"
+
+    val test2: String = AgraphemeToStrokeSet.unrollBackSlash("(122|1212|2112)1\\1112")
+    test2 shouldBe "(122|1212|2112)1(122|1212|2112)1112"
+
+    //(3511|3544)\1
+    val test3: String = AgraphemeToStrokeSet.unrollBackSlash("(3511|3544)\\1")
+    test3 shouldBe "(3511|3544)(3511|3544)"
+  }
 }
