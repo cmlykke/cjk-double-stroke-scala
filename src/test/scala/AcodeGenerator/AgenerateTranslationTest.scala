@@ -17,7 +17,7 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
 
   val coll: AcedictColl = AreadCedictData.listCedictData()
 
-/*
+
   it should "test that all characters can be read and translated" in {
 
     val sinplifiedCharsAndWords: Set[AcedictEntry] = coll.simplifiedWords ++ coll.simplifiedAllHanItems
@@ -37,9 +37,9 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
     notFoundInCedict.size shouldBe 13696
     
   }
-  */
 
-  /*
+
+
   it should "generateCodesForAllCharacters" in {
     val sinplifiedCharsAndWords: Set[AcedictEntry] = coll.simplifiedWords ++ coll.simplifiedAllHanItems
     val traditionalCharsAndWords: Set[AcedictEntry]  = coll.traditionalWords ++ coll.traditionalAllHanItems
@@ -54,7 +54,7 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
   
     val test = ""
   }
-  */
+
   
   it should "test that single char can be translated" in {
 

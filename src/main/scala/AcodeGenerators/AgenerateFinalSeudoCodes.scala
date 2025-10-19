@@ -13,6 +13,9 @@ object AgenerateFinalSeudoCodes {
                                    idsmap: HashMap[Agrapheme, String],
                                    idsToStrokeMap: Map[String, Aelementstype]):
   Set[(List[String], AsortingCriteria)] = {
+    if (!conwaymap.contains(graph)) {
+      return Set((List(AcodelengthRules.fill), SortingCodes.OneCode))
+    }
     val splitcodes: Set[(List[String], Int)] = AgenerateElemAndRemainderLists.getsplitFourCodesfromchar(
       graph,
       conwaymap,
@@ -65,6 +68,9 @@ object AgenerateFinalSeudoCodes {
                                   idsmap: HashMap[Agrapheme, String],
                                   idsToStrokeMap: Map[String, Aelementstype]):
   Set[(List[String], AsortingCriteria)] = {
+    if (!conwaymap.contains(graph)) {
+      return Set((List(AcodelengthRules.fill), SortingCodes.OneCode))
+    }
     val splitcodes: Set[(List[String], Int)] = AgenerateElemAndRemainderLists.getsplitSixCodesfromchar(
       graph,
       conwaymap,
