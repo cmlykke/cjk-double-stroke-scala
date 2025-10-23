@@ -2,6 +2,7 @@ package AcodeGenerator
 
 import AcodeGenerators.AgenerateSeudoCodes
 import Adatasources.ManualData.AcodelengthRules
+import Atypes.PossibleWordCodes.{FirstFirstFirstFirstFirstLastCode, FirstFirstFirstLastCode}
 import Atypes.{AsortingCriteria, PossibleWordCodes, SortingCodes}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
@@ -82,25 +83,34 @@ class AgenerateSeudoCodesTest extends AnyFlatSpec with Matchers {
 
 
   it should "test that seudo letters can be generated from chars" in {
-    val input1 = Set(
+    val input1fourCodes = Set(
       (List("言", "135543"),4),
-      (List("言", "135534"),4),
+      (List("言", "135534"),4)
+    )
+    val input1SixCodes = Set(
       (List("4111251135543"),6),
       (List("4111251135534"),6),
       (List("1111251135543"),6),
-      (List("1111251135534"),6),
+      (List("1111251135534"),6)
     )
-    val seudo1: Set[(List[String], AsortingCriteria)] = AgenerateSeudoCodes.convertElemAndRemainderToSeudoFourCode(input1)
-    val setone = Set(
-      (List("言","13","55","43"), SortingCodes.FourCode),
-      (List("言","13","55","34"), SortingCodes.FourCode))
-    val settwo = Set(
-      (List("41","11","25","11","35","43"), SortingCodes.SixCode), //4111251135543
-      (List("41","11","25","11","35","34"), SortingCodes.SixCode), //4111251135534
-      (List("11","11","25","11","35","43"), SortingCodes.SixCode), //1111251135543
-      (List("11","11","25","11","35","34"), SortingCodes.SixCode)) //1111251135534
 
-    seudo1 shouldBe setone ++ settwo
+    val seudo1FourCodes: Set[(List[String], AsortingCriteria)] =
+      input1fourCodes.map(x => AgenerateSeudoCodes.splitCodeListSingleChar(x, FirstFirstFirstLastCode))
+    val seudo1SixCodes: Set[(List[String], AsortingCriteria)] =
+      input1SixCodes.map(x => AgenerateSeudoCodes.splitCodeListSingleChar(x, FirstFirstFirstFirstFirstLastCode)    )
+
+    val setone = Set(
+      (List("言","13","55","43"), PossibleWordCodes.FirstFirstFirstLastCode),
+      (List("言","13","55","34"), PossibleWordCodes.FirstFirstFirstLastCode))
+    seudo1FourCodes shouldBe setone
+
+    val settwo = Set(
+      (List("41","11","25","11","35","43"), PossibleWordCodes.FirstFirstFirstFirstFirstLastCode), //4111251135543
+      (List("41","11","25","11","35","34"), PossibleWordCodes.FirstFirstFirstFirstFirstLastCode), //4111251135534
+      (List("11","11","25","11","35","43"), PossibleWordCodes.FirstFirstFirstFirstFirstLastCode), //1111251135543
+      (List("11","11","25","11","35","34"), PossibleWordCodes.FirstFirstFirstFirstFirstLastCode)) //1111251135534
+
+    seudo1SixCodes shouldBe settwo
   }
 
 
@@ -109,14 +119,22 @@ class AgenerateSeudoCodesTest extends AnyFlatSpec with Matchers {
       (List("言", ""), 4),
       (List("1111251"), 6),
       (List("4111251"),6))
-  
-    val seudo2: Set[(List[String], AsortingCriteria)] =
-      AgenerateSeudoCodes.convertElemAndRemainderToSeudoFourCode(singleElemInp)
+
+    val seudo2Four: Set[(List[String], AsortingCriteria)] =
+      singleElemInp.map(x => AgenerateSeudoCodes.splitCodeListSingleChar(x, FirstFirstFirstLastCode))
     val output2 = Set(
-      (List("言", localFill, localFill, localFill), SortingCodes.FourCode),
-      (List("11", "11", "25", "1", localFill, localFill), SortingCodes.SixCode),
-      (List("41", "11", "25", "1", localFill, localFill), SortingCodes.SixCode))
-    seudo2 shouldBe output2
+      (List("言", localFill, localFill, localFill), FirstFirstFirstLastCode),
+      (List("11", "11", "25", "1"), FirstFirstFirstLastCode),
+      (List("41", "11", "25", "1"), FirstFirstFirstLastCode))
+    seudo2Four shouldBe output2
+
+    val seudo2Six: Set[(List[String], AsortingCriteria)] =
+      singleElemInp.map(x => AgenerateSeudoCodes.splitCodeListSingleChar(x, FirstFirstFirstFirstFirstLastCode))
+    val output2Six = Set(
+      (List("言", localFill, localFill, localFill, localFill, localFill), FirstFirstFirstFirstFirstLastCode),
+      (List("11", "11", "25", "1", localFill, localFill), FirstFirstFirstFirstFirstLastCode),
+      (List("41", "11", "25", "1", localFill, localFill), FirstFirstFirstFirstFirstLastCode))
+    seudo2Six shouldBe output2Six
   }
 }
 

@@ -15,9 +15,20 @@ object AgenerateElemAndRemainderLists {
                             idsmap: HashMap[Agrapheme, String],
                             idsToStrokeMap: Map[String, Aelementstype]): Set[(List[String], Int)] = {
     val getConwayFromMap: AconwayColl = conwaymap(graph)
-    val rawConway: String = getConwayFromMap.rawConway.rawConway
+    val rawConway: List[String] = getConwayFromMap.rawConway.rawConway
+    val allSplitResults: List[Set[(List[String], Int)]] = 
+      rawConway.map(x => getsplitFourCodesfromcharMultipleConway(graph, x, idsmap, idsToStrokeMap))
+    val result: Set[(List[String], Int)] = allSplitResults.flatten.toSet
+    return result
+  }
+  
+  private def getsplitFourCodesfromcharMultipleConway(
+                    graph: Agrapheme,
+                    rawConway: String,
+                    idsmap: HashMap[Agrapheme, String],
+                    idsToStrokeMap: Map[String, Aelementstype]): Set[(List[String], Int)] = {
     val backslashCleaned: String = AgraphemeToStrokeSet.unrollBackSlash(rawConway)
-    
+
     val elemsfound = AidsRecur.findElementmatch(graph, idsmap, idsToStrokeMap)
     val elemremovedfromcode: (List[String], String) = getRemovedCode(backslashCleaned, elemsfound, idsToStrokeMap)
     val unrollRemainder: Set[String] = AgraphemeToStrokeSet.expandAlt(elemremovedfromcode._2)
@@ -30,7 +41,16 @@ object AgenerateElemAndRemainderLists {
                                 idsmap: HashMap[Agrapheme, String],
                                 idsToStrokeMap: Map[String, Aelementstype]): Set[(List[String], Int)] = {
     val getConwayFromMap: AconwayColl = conwaymap(graph)
-    val rawConway: String = getConwayFromMap.rawConway.rawConway
+    val rawConway: List[String] = getConwayFromMap.rawConway.rawConway
+    val allSplitResults: List[Set[(List[String], Int)]] = rawConway.map(x => getsplitSixCodesfromcharMultipleConway(graph, x, idsmap, idsToStrokeMap))
+    val result: Set[(List[String], Int)] = allSplitResults.flatten.toSet
+    return result
+  }
+
+  private def getsplitSixCodesfromcharMultipleConway(graph: Agrapheme,
+                                                     rawConway: String,
+                                                     idsmap: HashMap[Agrapheme, String],
+                                                     idsToStrokeMap: Map[String, Aelementstype]): Set[(List[String], Int)] = {
     val backslashCleaned: String = AgraphemeToStrokeSet.unrollBackSlash(rawConway)
     val unrollFull: Set[String] = AgraphemeToStrokeSet.expandAlt(backslashCleaned)
     val unrollFullSet: Set[(List[String], Int)] = unrollFull.map(x => (List(x), 6))
@@ -60,7 +80,6 @@ object AgenerateElemAndRemainderLists {
     } catch {
       case _: Exception => ""
     }
-    //val shortestSubstring: String = matchinginitial.minBy(_.length)
     return (List(matchstrokeset.get.unifiedElemet), shortestSubstring)
   }
 }

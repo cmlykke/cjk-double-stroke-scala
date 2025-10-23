@@ -10,7 +10,13 @@ object AgraphemeToStrokeSet {
   def generateStrokeSet(str: Agrapheme): Set[String] = {
     val conwaymap: HashMap[Agrapheme, AconwayColl] = AreadConwayData.mapConwayData()
     val getConwayFromMap: AconwayColl = conwaymap(str)
-    val rawStrokes: String = getConwayFromMap.rawConway.rawConway
+    val rawStrokes: List[String] = getConwayFromMap.rawConway.rawConway
+    val allMultiple: List[Set[String]] = rawStrokes.map(x => generateStrokeSetMultipleConway(str, x))
+    val result: Set[String] = allMultiple.flatten.toSet
+    return result
+  }
+  
+  private def generateStrokeSetMultipleConway(str: Agrapheme, rawStrokes: String): Set[String] = {
     val parenmap: Map[String, String] = generateParenMap(rawStrokes)
     val slashexpanded: String = expandSlashCodes(rawStrokes, parenmap)
     val res: Set[String] = expandAlt(slashexpanded)

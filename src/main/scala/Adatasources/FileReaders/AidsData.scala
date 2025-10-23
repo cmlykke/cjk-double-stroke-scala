@@ -26,16 +26,21 @@ object AidsData {
   def idsDataRaw(): HashMap[Agrapheme, String] = {
     val idsFilePath = "src/main/scala/staticFileGenerators/staticFiles/ids.txt"
     val manualIdsFilePath = "src/main/scala/staticFileGenerators/staticFiles/manualidsIDS.txt"
+    val orderedMissing = "src/main/scala/staticFileGenerators/IdsMap/orderedMissingIds.txt"
 
     val bufferedSource = Source.fromFile(idsFilePath)
     val officiallines: List[String] = bufferedSource.getLines.toList
     bufferedSource.close()
 
+    val bufferedSourceOrdered = Source.fromFile(orderedMissing)
+    val orderedMissingList: List[String] = bufferedSourceOrdered.getLines.toList
+    bufferedSourceOrdered.close()
+
     val bufferedSourcemanualIdsFilePath = Source.fromFile(manualIdsFilePath)
     val manuallines: List[String] = bufferedSourcemanualIdsFilePath.getLines.toList
     bufferedSourcemanualIdsFilePath.close()
 
-    val data: HashMap[Agrapheme, String] = AidsData.createIdsMap(officiallines ++ manuallines)
+    val data: HashMap[Agrapheme, String] = AidsData.createIdsMap(officiallines ++ orderedMissingList ++ manuallines)
     data
   }
 
@@ -48,6 +53,9 @@ object AidsData {
         val unicodehex = splitLine(0)
         val grapheme = splitLine(1)
         val firstrecur = splitLine(2)
+        if (grapheme == "") {
+          val test = ""
+        }
         resultMap.put(Agrapheme(grapheme), firstrecur)
       }
     }

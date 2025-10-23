@@ -16,7 +16,7 @@ class Aidstest extends AnyFlatSpec with Matchers {
 
     test1.grapheme.char shouldBe "㸂"
 
-    idsData.size shouldBe 88953
+    idsData.size shouldBe 89086
   }
 
 }

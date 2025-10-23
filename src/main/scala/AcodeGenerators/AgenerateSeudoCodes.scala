@@ -8,12 +8,6 @@ object AgenerateSeudoCodes {
 
   val localFill: String = AcodelengthRules.fill
 
-  def convertElemAndRemainderToSeudoFourCode(input: Set[(List[String],Int)]):
-  Set[(List[String], AsortingCriteria)] = {
-    val fourAndSixCodes: Set[(List[String], AsortingCriteria)] = input.map(x => splitCodeListSingleChar(x))
-    return fourAndSixCodes
-  }
-
   def splitCodeListMultiChar(inp: List[String], multiCharType: PossibleWordCodes): List[String] = {
     val res = splitCodeListHelperMultiChar(List(), (inp, multiCharType))
     return res
@@ -60,8 +54,9 @@ object AgenerateSeudoCodes {
     return removeZFillFromFourCode(codelist.init)
   }
 
-  private def splitCodeListSingleChar(inp: (List[String],Int)): (List[String], AsortingCriteria) = {
-    splitCodeListHelperSingleChar(List(), inp._1, inp._2)
+  def splitCodeListSingleChar(inp: (List[String],Int),
+                                      codeStructure: PossibleWordCodes): (List[String], AsortingCriteria) = {
+    splitCodeListHelperSingleChar(List(), inp._1, codeStructure)
   }
 
   private def firstSecondLastCode(reslist: List[String],
@@ -132,43 +127,42 @@ object AgenerateSeudoCodes {
   }
 
   private def splitCodeListHelperSingleChar(reslist: List[String],
-                                  inp: List[String], size: Int): (List[String], AsortingCriteria) = {
+                                            inp: List[String],
+                                            codeStructure: PossibleWordCodes): (List[String], AsortingCriteria) = {
     //result length is achieved and and the function should terminate
-    if (reslist.length == size) {
-      if (size == 4) {
-        return (reslist, SortingCodes.FourCode)
-      } else if (size == 6) {
-        return (reslist, SortingCodes.SixCode)
-      } else {
-        throw RuntimeException("Unhandled size argument: " + size )
-      }
+    if (reslist.length == codeStructure.code) {
+      return (reslist, codeStructure)
     }
+
     //length is not achieved but there is no more source data
     if (inp.isEmpty || inp.head.size == 0) {
       //fill up with z
-      val zFillUpList = ("z"*(size - reslist.size)).split("").toList
-      return splitCodeListHelperSingleChar(reslist ++ zFillUpList, List(), size)
+      val zFillUpList = ("z"*(codeStructure.code - reslist.size)).split("").toList
+      return splitCodeListHelperSingleChar(reslist ++ zFillUpList, List(),codeStructure: PossibleWordCodes)
     }
 
     //one element missing from res and one or two characters left
-    val reslistMissingOne = reslist.size == size - 1
+    val reslistMissingOne = reslist.size == codeStructure.code - 1
     if (reslistMissingOne && inp.head.size < 3) {
-      return splitCodeListHelperSingleChar(reslist ++ List(inp.head), inp.drop(1), size)
+      return splitCodeListHelperSingleChar(reslist ++ List(inp.head), inp.drop(1),codeStructure: PossibleWordCodes)
     }
     //one element missing from res and more than two character left
-    if (reslistMissingOne && inp.head.size > 2) {
-      return splitCodeListHelperSingleChar(reslist ++ List(inp.head.takeRight(2)), inp.drop(1), size)
+    if (reslistMissingOne && inp.head.size > 2 && !(codeStructure == PossibleWordCodes.FirstCode)) {
+      return splitCodeListHelperSingleChar(reslist ++ List(inp.head.takeRight(2)), inp.drop(1),codeStructure: PossibleWordCodes)
+    }
+    if (reslistMissingOne && inp.head.size > 2 && (codeStructure == PossibleWordCodes.FirstCode)) {
+      return splitCodeListHelperSingleChar(reslist ++ List(inp.head.take(2)), inp.drop(1),codeStructure: PossibleWordCodes)
     }
     
     //input source data length is greater than 1,
     //meaning there are element that must be handled
     if (inp.size > 1) {
-      return splitCodeListHelperSingleChar(reslist ++ List(inp.head), inp.drop(1), size)
+      return splitCodeListHelperSingleChar(reslist ++ List(inp.head), inp.drop(1),codeStructure: PossibleWordCodes)
     }
     
     //more than one element missing and 1 or 2 characters left
     if (inp.head.size < 3) {
-      return splitCodeListHelperSingleChar(reslist ++ List(inp.head), inp.drop(1), size)
+      return splitCodeListHelperSingleChar(reslist ++ List(inp.head), inp.drop(1),codeStructure: PossibleWordCodes)
     }
     
     //base case: more than one element missing from result, 
@@ -176,7 +170,7 @@ object AgenerateSeudoCodes {
     if (inp.head.size > 2) {
       val headOfString = inp.head.take(2)
       val remain = inp.head.drop(2)
-      return splitCodeListHelperSingleChar(reslist ++ List(headOfString), List(remain), size)
+      return splitCodeListHelperSingleChar(reslist ++ List(headOfString), List(remain),codeStructure: PossibleWordCodes)
     }
     throw RuntimeException("Unknow termination of " + "splitCodeListHelper")
   }

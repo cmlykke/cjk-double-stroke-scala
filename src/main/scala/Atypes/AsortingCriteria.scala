@@ -19,17 +19,6 @@ enum PossibleWordCodes(override val code: Int) extends AsortingCriteria {
   case FirstCode extends PossibleWordCodes(1)
   case FirstLastCode  extends PossibleWordCodes(2)
   case FirstSecondLastCode extends PossibleWordCodes(3)
+  case FirstFirstFirstLastCode extends PossibleWordCodes(4)
+  case FirstFirstFirstFirstFirstLastCode extends PossibleWordCodes(6)
 }
-
-/*
-enum AsortingCriteria(val code: Int) {
-  case OneCode   extends AsortingCriteria(1)
-  case TwoCode   extends AsortingCriteria(2)
-  case ThreeCode extends AsortingCriteria(4)
-  case ThreeCodeFullWord extends AsortingCriteria(4)
-  case FourCode  extends AsortingCriteria(3)
-  case FiveCode  extends AsortingCriteria(6)
-  case SixCode   extends AsortingCriteria(5)
-}
-
-*/

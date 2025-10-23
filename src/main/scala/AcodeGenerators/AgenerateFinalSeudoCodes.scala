@@ -1,6 +1,8 @@
 package AcodeGenerators
 
 import Adatasources.ManualData.AcodelengthRules
+import AgraphemeToCodeConverters.AgraphemeToStrokeSet
+import Atypes.PossibleWordCodes.{FirstCode, FirstLastCode, FirstSecondLastCode}
 import Atypes.SortingCodes.{FiveCode, FourCode}
 import Atypes.{AconwayColl, Aelementstype, Agrapheme, AsortingCriteria, PossibleWordCodes, SortingCodes}
 
@@ -11,39 +13,41 @@ object AgenerateFinalSeudoCodes {
   def seudoFourCodesFromSingleChar(graph: Agrapheme,
                                    conwaymap: HashMap[Agrapheme, AconwayColl],
                                    idsmap: HashMap[Agrapheme, String],
-                                   idsToStrokeMap: Map[String, Aelementstype]):
+                                   idsToStrokeMap: Map[String, Aelementstype],
+                                   codeStructure: PossibleWordCodes):
   Set[(List[String], AsortingCriteria)] = {
+    var splitcodes: Set[(List[String], Int)] = Set()
     if (!conwaymap.contains(graph)) {
       return Set((List(AcodelengthRules.fill), SortingCodes.OneCode))
+    } else if (!idsmap.contains(graph)) {
+      return Set((List(AcodelengthRules.fill), SortingCodes.OneCode))
+    } else {
+      splitcodes = AgenerateElemAndRemainderLists.getsplitFourCodesfromchar(
+        graph,
+        conwaymap,
+        idsmap,
+        idsToStrokeMap
+      )  
     }
-    val splitcodes: Set[(List[String], Int)] = AgenerateElemAndRemainderLists.getsplitFourCodesfromchar(
-      graph,
-      conwaymap,
-      idsmap,
-      idsToStrokeMap
-    )
+    
     val seudocodes: Set[(List[String], AsortingCriteria)] =
-      AgenerateSeudoCodes.convertElemAndRemainderToSeudoFourCode(splitcodes)
+      splitcodes.map(x => AgenerateSeudoCodes.splitCodeListSingleChar(x, codeStructure))
     return seudocodes
   }
   
-  def getNoFillCodesFromFourCode(input: Set[(List[String], AsortingCriteria)]): 
+  def getNoFillCodesFromFourCode(input: Set[(List[String], AsortingCriteria)]):
                                   Set[(List[String], AsortingCriteria)] = {
-    val res = input.map(x => getNoFill(x))
+    val res = input.map(x => getNoFillHelper(x))
     return res
   }
-  
-  def getNoFill(input: (List[String], AsortingCriteria)): (List[String], AsortingCriteria) = {
-    if (input._2 != SortingCodes.FourCode) {
-      throw new RuntimeException("no wills codes can only be generated from Four codes")
-    }
-    val result = getNoFillHelper(input)
-    return result
-  }
+
   
   private def getNoFillHelper(input: (List[String], AsortingCriteria)): (List[String], AsortingCriteria) = {
     if (input._1.length == 0) {
       throw new RuntimeException("no code can be of length 0")
+    }
+    if (input._1.head == AcodelengthRules.fill) {
+      return input
     }
     if (input._1.last != AcodelengthRules.fill) {
       if (input._1.length == 1) {
@@ -68,7 +72,7 @@ object AgenerateFinalSeudoCodes {
                                   idsmap: HashMap[Agrapheme, String],
                                   idsToStrokeMap: Map[String, Aelementstype]):
   Set[(List[String], AsortingCriteria)] = {
-    if (!conwaymap.contains(graph)) {
+    if (!conwaymap.contains(graph) || !idsmap.contains(graph)) {
       return Set((List(AcodelengthRules.fill), SortingCodes.OneCode))
     }
     val splitcodes: Set[(List[String], Int)] = AgenerateElemAndRemainderLists.getsplitSixCodesfromchar(
@@ -78,7 +82,7 @@ object AgenerateFinalSeudoCodes {
       idsToStrokeMap
     )
     val seudocodes: Set[(List[String], AsortingCriteria)] =
-      AgenerateSeudoCodes.convertElemAndRemainderToSeudoFourCode(splitcodes)
+      splitcodes.map(x => AgenerateSeudoCodes.splitCodeListSingleChar(x, PossibleWordCodes.FirstFirstFirstFirstFirstLastCode))
     return seudocodes
   }
 
@@ -86,78 +90,80 @@ object AgenerateFinalSeudoCodes {
                                               conwaymap: HashMap[Agrapheme, AconwayColl],
                                               idsmap: HashMap[Agrapheme, String],
                                               idsToStrokeMap: Map[String, Aelementstype]): Set[(List[String], AsortingCriteria)]  = {
+    val structureList: List[PossibleWordCodes] = codeStructureHandler(graph.length)
     val FourCodesFromChars: List[Set[(List[String], AsortingCriteria)]] =
-      graph.map(x => seudoFourCodesFromSingleChar(x, conwaymap, idsmap, idsToStrokeMap))
-    val getCombinations: Set[List[String]] = fiveCodeCombinations(FourCodesFromChars)
-    val addSorting: Set[(List[String], AsortingCriteria)] = getCombinations.map(x => (x, FiveCode))
-    return addSorting
+      graph.zip(structureList).map(x => seudoFourCodesFromSingleChar(x._1, conwaymap, idsmap, idsToStrokeMap, x._2))
+    val moveFillCodesToTheEnd: List[Set[(List[String], AsortingCriteria)]] = FourCodesFromChars.map(x => moveFillCodesToEnd(x))
+    val getCombinations: Set[List[String]] = fiveCodeCombinations(moveFillCodesToTheEnd, 5)
+    val addSorting: Set[(List[String], AsortingCriteria)] = getCombinations
+      .map(x => (x ++ List.fill(5 - x.length)(AcodelengthRules.fill), FiveCode))
+    return addSorting//addSorting
   }
 
-  private def fiveCodeCombinations(input: List[Set[(List[String], AsortingCriteria)]]): Set[List[String]] = {
-    val fourcodesNoSorting: List[Set[List[String]]] =
-      input.map(charCodeSet => charCodeSet.map(codeTupple => codeTupple._1))
-    val sudoCodeToPermutasionSet: Set[List[String]] = generatePermutations(fourcodesNoSorting)
-    return sudoCodeToPermutasionSet
+  private def moveFillCodesToEnd(addSorting: Set[(List[String], AsortingCriteria)]): Set[(List[String], AsortingCriteria)] = {
+    val moved: Set[(List[String], AsortingCriteria)] = addSorting.map(x => moveFillCodesToEndHelper(List(), x, x)).toSet
+    return moved
   }
 
-  private def generatePermutations(input: List[Set[List[String]]]): Set[List[String]] = {
-    if (input.size == 2) {
-      return permutationsFromTwoChars(input)
-    } else if (input.size == 3) {
-      return permutationsFromThreeChars(input)
-    } else if (input.size == 4) {
-      return permutationsFromFourChars(input)
-    } else if (input.size > 4) {
-      return permutationsFromFiveOrMoreChars(input)
+  private def moveFillCodesToEndHelper(newList: List[String],
+                                       input: (List[String], AsortingCriteria),
+                                       original: (List[String], AsortingCriteria)): (List[String], AsortingCriteria) = {
+    val newCharsContentIsComplete = newList == original._1.filter(x => !(x == AcodelengthRules.fill))
+    if (original._1.length == 1 && original._1.head == AcodelengthRules.fill) {
+      return original
+    } else if (newCharsContentIsComplete) {
+      val targetLength = original._1.length
+      val updated: List[String] = newList
+      return (updated, original._2)
+    } else if (input._1.length > 0 && input._1.head == AcodelengthRules.fill){
+      return moveFillCodesToEndHelper(newList, (input._1.tail , input._2), original)
+    } else if (input._1.length > 0 && !(input._1.head == AcodelengthRules.fill)) {
+      return moveFillCodesToEndHelper(newList :+ input._1.head, (input._1.tail , input._2), original)
+    } else {
+      throw new RuntimeException("unexpected state in moveFillCodesToEndHelper")
+    }
+  }
+
+
+  private def codeStructureHandler(input: Int): List[PossibleWordCodes] = {
+    if (input == 2) {
+      return List(FirstLastCode, FirstSecondLastCode)
+    } else if (input == 3) {
+      return List(FirstCode, FirstLastCode, FirstLastCode)
+    } else if (input == 4) {
+      return List(FirstCode, FirstCode, FirstCode, FirstLastCode)
+    } else if (input > 4) {
+      return List(FirstCode, FirstCode, FirstCode, FirstCode, FirstCode)
     }
     throw new RuntimeException("permutations of multiple chars is not supposed to take aruments of less than 2")
   }
 
-  private def permutationsFromTwoChars(input: List[Set[List[String]]]): Set[List[String]] = {
-    val smallCodesFirst: Set[List[String]] = input(0).map(codeList =>
-      AgenerateSeudoCodes.splitCodeListMultiChar(codeList, PossibleWordCodes.FirstLastCode))
-    val smallCodesSecond: Set[List[String]] = input(1).map(codeList =>
-      AgenerateSeudoCodes.splitCodeListMultiChar(codeList, PossibleWordCodes.FirstSecondLastCode))
-    val result = cartesianConcat(List(smallCodesFirst, smallCodesSecond))
-    return result
+
+  private def fiveCodeCombinations(input: List[Set[(List[String], AsortingCriteria)]], targetLength: Int): Set[List[String]] = {
+    val fourcodesNoSorting: List[Set[List[String]]] =
+      input.map(charCodeSet => charCodeSet.map(codeTupple => codeTupple._1))
+    val sudoCodeToPermutasionSet: Set[List[String]] = generatePermutations(fourcodesNoSorting, targetLength)
+    return sudoCodeToPermutasionSet
   }
 
-  private def permutationsFromThreeChars(input: List[Set[List[String]]]): Set[List[String]] = {
-    val charOne: Set[List[String]] = input(0).map(codeList =>
-      AgenerateSeudoCodes.splitCodeListMultiChar(codeList, PossibleWordCodes.FirstCode))
-    val charTwo: Set[List[String]] = input(1).map(codeList =>
-      AgenerateSeudoCodes.splitCodeListMultiChar(codeList, PossibleWordCodes.FirstLastCode))
-    val charThree: Set[List[String]] = input(2).map(codeList =>
-      AgenerateSeudoCodes.splitCodeListMultiChar(codeList, PossibleWordCodes.FirstLastCode))
-    val result = cartesianConcat(List(charOne, charTwo, charThree))
-    return result
+  private def generatePermutations(input: List[Set[List[String]]], targetLength: Int): Set[List[String]] = {
+    var resultNested: Set[List[String]] = generatePermutationsHelper(Set(), input, input)
+    val fillUp: Set[List[String]] = resultNested.map(x => x ++ List.fill(targetLength - x.length)(AcodelengthRules.fill))
+    return resultNested
   }
 
-  private def permutationsFromFourChars(input: List[Set[List[String]]]): Set[List[String]] = {
-    val charOne: Set[List[String]] = input(0).map(codeList =>
-      AgenerateSeudoCodes.splitCodeListMultiChar(codeList, PossibleWordCodes.FirstCode))
-    val charTwo: Set[List[String]] = input(1).map(codeList =>
-      AgenerateSeudoCodes.splitCodeListMultiChar(codeList, PossibleWordCodes.FirstCode))
-    val charThree: Set[List[String]] = input(2).map(codeList =>
-      AgenerateSeudoCodes.splitCodeListMultiChar(codeList, PossibleWordCodes.FirstCode))
-    val charFour: Set[List[String]] = input(3).map(codeList =>
-      AgenerateSeudoCodes.splitCodeListMultiChar(codeList, PossibleWordCodes.FirstLastCode))
-    val result = cartesianConcat(List(charOne, charTwo, charThree, charFour))
-    return result
-  }
-
-  private def permutationsFromFiveOrMoreChars(input: List[Set[List[String]]]): Set[List[String]] = {
-    val firstFiveChars: List[Set[List[String]]] = input.take(5).map(eachCharSet => eachCharSet.map(codeList =>
-      AgenerateSeudoCodes.splitCodeListMultiChar(codeList, PossibleWordCodes.FirstCode)))
-    val result = cartesianConcat(firstFiveChars)
-    return result
-  }
-
-  private def cartesianConcat(lists: List[Set[List[String]]]): Set[List[String]] =
-    lists.foldLeft(Set(List())) { (acc, list) =>
-      for {
-        prefix <- acc
-        suffix <- list
-      } yield prefix ++ suffix
+  private def generatePermutationsHelper(result: Set[List[String]],
+                                         input: List[Set[List[String]]],
+                                         original: List[Set[List[String]]]): Set[List[String]] = {
+    if (input.size == 0) {
+      return result
+    }
+    if (result.size == 0) {
+      generatePermutationsHelper(input.head, input.tail, original)
+    }
+    else {
+      val updatedList: Set[List[String]] = input.head.map(x => result.map(y => y ++ x)).flatten
+      generatePermutationsHelper(updatedList, input.tail, original)
+    }
   }
 }

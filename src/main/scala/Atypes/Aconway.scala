@@ -13,7 +13,7 @@ import scala.io.Source
  * @param input A list expected to contain exactly one valid Conway string.
  */
 case class Aconway(input: List[String]) {
-  val rawConway: String = Aconway.verifyInput(input)
+  val rawConway: List[String] = Aconway.verifyInput(input)
 }
 
 object Aconway {
@@ -27,26 +27,18 @@ object Aconway {
    * @return The validated Conway string.
    * @throws IllegalArgumentException if validation fails.
    */
-  def verifyInput(input: List[String]): String = {
-    val conwayString = ensureSingleItem(input)
-    validateCharacters(conwayString)
+  def verifyInput(input: List[String]): List[String] = {
+    val conwayString = ensureNonZero(input)
+    return conwayString
   }
 
-  private def validateCharacters(input: String): String = {
-    if (input.isEmpty || !input.forall(allowedChars.contains)) {  // Combined checks; used forall for positive intent (all chars allowed).
+
+  private def ensureNonZero(input: List[String]): List[String] = {
+    if (input.length == 0) {
       throw new IllegalArgumentException(
-        s"Input string must be non-empty and contain only allowed characters: ${allowedChars.mkString(", ")} (got: '$input')"
+        s"Input list must contain more than zero (got: ${input.length} items: ${input.mkString(", ")})"
       )
     }
     input
-  }
-
-  private def ensureSingleItem(input: List[String]): String = {
-    if (input.length != 1) {
-      throw new IllegalArgumentException(
-        s"Input list must contain exactly one string (got: ${input.length} items: ${input.mkString(", ")})"
-      )
-    }
-    input.head
   }
 }

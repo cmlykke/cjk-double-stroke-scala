@@ -169,7 +169,7 @@ class GenerateConwayCodes {
 object GenerateConwayCodes {
   // compute the idsMap and nestedIdsMap here
   val conwayFilePath = "src/main/scala/staticFileGenerators/staticFiles/codepoint-character-sequence.txt"
-  val cedictCharsMissingFromConway = "src/main/scala/staticFileGenerators/Conway/failed.txt"
+  val cedictCharsMissingFromConway = "src/main/scala/staticFileGenerators/staticFiles/manualIdsConwayCodes.txt"
   val orderedMissingConway = "src/main/scala/staticFileGenerators/Conway/orderedMissingConway.txt"
   
   val conwayMap: HashMap[Grapheme, ConwayColl] = new GenerateConwayCodes().generateAllConway()
