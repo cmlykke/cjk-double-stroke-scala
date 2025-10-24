@@ -29,7 +29,7 @@ object AgenerateElemAndRemainderLists {
                     idsToStrokeMap: Map[String, Aelementstype]): Set[(List[String], Int)] = {
     val backslashCleaned: String = AgraphemeToStrokeSet.unrollBackSlash(rawConway)
 
-    val elemsfound = AidsRecur.findElementmatch(graph, idsmap, idsToStrokeMap)
+    val elemsfound = AidsRecur.findElementmatch(graph, idsmap, idsToStrokeMap, backslashCleaned)
     val elemremovedfromcode: (List[String], String) = getRemovedCode(backslashCleaned, elemsfound, idsToStrokeMap)
     val unrollRemainder: Set[String] = AgraphemeToStrokeSet.expandAlt(elemremovedfromcode._2)
     val res: Set[(List[String], Int)] = unrollRemainder.map(x => (elemremovedfromcode._1.appended(x), 4))

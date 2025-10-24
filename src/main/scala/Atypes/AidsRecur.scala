@@ -22,14 +22,22 @@ object AidsRecur {
 
   def findElementmatch(input: Agrapheme,
                        idsmap: HashMap[Agrapheme, String],
-                       idsToStrokeMap: Map[String, Aelementstype]): Option[String] = {
+                       idsToStrokeMap: Map[String, Aelementstype],
+                       backslashCleaned: String): Option[String] = {
     val localrecur: AidsRecur = AidsRecur(input, idsmap)
-    val res = findElementmatchHelper(localrecur, idsToStrokeMap)
+    val res = findElementmatchHelper(input, localrecur, idsToStrokeMap, backslashCleaned)
     return res
   }
 
 
-  def findElementmatchHelper(input: AidsRecur, idsToStrokeMap: Map[String, Aelementstype]): Option[String] = {
+  def findElementmatchHelper(graph: Agrapheme,
+                             input: AidsRecur,
+                             idsToStrokeMap: Map[String, Aelementstype],
+                             backslashCleaned: String): Option[String] = {
+    if (graph.char == "鬱") {
+      val test = ""
+    }
+
     idsToStrokeMap.get(input.grapheme.char) match {
       case Some(_) => Some(input.grapheme.char)
       case None =>
@@ -39,7 +47,7 @@ object AidsRecur {
             input.recurNested
               .filterNot(recur => shapes.contains(recur.grapheme))
               .headOption
-              .flatMap(recur => findElementmatchHelper(recur, idsToStrokeMap))
+              .flatMap(recur => findElementmatchHelper(graph, recur, idsToStrokeMap, backslashCleaned))
         }
     }
   }

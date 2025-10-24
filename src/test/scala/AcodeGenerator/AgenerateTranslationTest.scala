@@ -56,58 +56,6 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
     val NewNotInOld: Set[(String, String)] = allNewCodes_unsortedStrings.diff(oldCodes_unsortedStrings)
     val OldNotInNew: Set[(String, String)] = oldCodes_unsortedStrings.diff(allNewCodes_unsortedStrings)
 
-    //tests for old and new:
-
-    val a1 = oldCodes_unsortedStrings.filter(x => x._1 == "箭头").map(x => x._2).toSet
-    val a2 =  allNewCodes_unsortedStrings.filter(x => x._1 == "箭头").map(x => x._2).toSet
-    val a1doublecheck = oldCodes.get("fbw")
-    a1 shouldBe a2
-
-    val b1 = oldCodes_unsortedStrings.filter(x => x._1 == "外東北").map(x => x._2).toSet
-    val b2 = allNewCodes_unsortedStrings.filter(x => x._1 == "外東北").map(x => x._2).toSet
-    b1 shouldBe b2
-
-    val c1 = oldCodes_unsortedStrings.filter(x => x._1 == "木蘭").map(x => x._2).toSet
-    val c2 = allNewCodes_unsortedStrings.filter(x => x._1 == "木蘭").map(x => x._2).toSet
-    c1 shouldBe c2
-    //old: dnjoz djjoz djboz djb dnj djj
-    //new: dzjjo dznjo dzjbo dzn dzj
-
-    //L照
-    val d1 = oldCodes_unsortedStrings.filter(x => x._1 == "L照").map(x => x._2).toSet
-    val d2 = allNewCodes_unsortedStrings.filter(x => x._1 == "L照").map(x => x._2).toSet
-    d1 shouldBe d2
-
-    /*
-    //new is correct
-    val e1 = oldCodes_unsortedStrings.filter(x => x._1 == "手足亲情").map(x => x._2).toSet
-    val e2 = allNewCodes_unsortedStrings.filter(x => x._1 == "手足亲情").map(x => x._2).toSet
-    val e3 =  allNewCodes_unsortedStrings.filter(x => x._1 == "情").map(x => x._2).toSet
-    e1 shouldBe e2
-
-    val f1 = oldCodes_unsortedStrings.filter(x => x._1 == "連詞").map(x => x._2).toSet
-    val f2 = allNewCodes_unsortedStrings.filter(x => x._1 == "連詞").map(x => x._2).toSet
-    f1 shouldBe f2
-        
-    val h1 = oldCodes_unsortedStrings.filter(x => x._1 == "血鬱").map(x => x._2).toSet
-    val h2 = allNewCodes_unsortedStrings.filter(x => x._1 == "血鬱").map(x => x._2).toSet
-    h1 shouldBe h2
-*/
-    
-    //越獄
-    val g1 = oldCodes_unsortedStrings.filter(x => x._1 == "越獄").map(x => x._2).toSet
-    val g2 = allNewCodes_unsortedStrings.filter(x => x._1 == "越獄").map(x => x._2).toSet
-    g1 shouldBe g2
-
-
-    // 母子  alfhz
-    val h1 = oldCodes_unsortedStrings.filter(x => x._1 == "母子").map(x => x._2).toSet
-    val h2 = allNewCodes_unsortedStrings.filter(x => x._1 == "母子").map(x => x._2).toSet
-    val testh1 = Set("alf", "atfhz", "atf", "alfhz")
-    val testh2 = Set("alf", "atfhz", "atf", "alfhz")//Set("alf", "alfhz", "anfhz", "ajf", "anf", "ajfhz")
-    h1 shouldBe testh1
-    h2 shouldBe testh2
-
     val test = ""
   }
 
@@ -201,6 +149,62 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
     val conwaytest1 = conwaymap.get(Agrapheme("北"))
     //211(15|35|53)
     test2 shouldBe("外東北", Set(("pjond", FiveCode), ("pjonp", FiveCode), ("pjonm", FiveCode)))
+
+    val testC1 = AgenerateTranslation.getTranslationFromChineseString(
+      "箭头", conwaymap, idsmap, idsToStrokeMap, basicTranslation
+    )
+    testC1._2.map(x => x._1).toSet shouldBe Set("fbwkt", "fbw")
+
+    val testD1 = AgenerateTranslation.getTranslationFromChineseString(
+      "外東北", conwaymap, idsmap, idsToStrokeMap, basicTranslation
+    )
+    testD1._2.map(x => x._1).toSet shouldBe Set("pjond", "pjonp", "pjonm")
+
+    val testE1 = AgenerateTranslation.getTranslationFromChineseString(
+      "木蘭", conwaymap, idsmap, idsToStrokeMap, basicTranslation
+    )
+    testE1._2.map(x => x._1).toSet shouldBe Set("dnjoz", "djjoz", "djboz", "djb", "dnj", "djj")
+
+    val testF1 = AgenerateTranslation.getTranslationFromChineseString(
+      "L照", conwaymap, idsmap, idsToStrokeMap, basicTranslation
+    )
+    testF1._2.map(x => x._1).toSet shouldBe Set("zxhwz", "zxh")
+
+    val testG1 = AgenerateTranslation.getTranslationFromChineseString(
+      "越獄", conwaymap, idsmap, idsToStrokeMap, basicTranslation
+    )
+    testG1._2.map(x => x._1).toSet shouldBe Set("jepow", "jep","jed", "jepyw","jop", "jedyw","jopyw", "jodyw","jopow", "jedow","jod", "jodow")
+
+    val testH1 = AgenerateTranslation.getTranslationFromChineseString(
+      "母子", conwaymap, idsmap, idsToStrokeMap, basicTranslation
+    )
+    testH1._2.map(x => x._1).toSet shouldBe Set("alf", "atfhz", "atf", "alfhz")
+
+    val testI1 = AgenerateTranslation.getTranslationFromChineseString(
+      "手足亲情", conwaymap, idsmap, idsToStrokeMap, basicTranslation
+    )
+    testI1._2.map(x => x._1).toSet shouldBe Set("ljtcn", "ljtch", "ljtrn", "ljtwn", "ljtrh", "ljtwh")
+
+    val testJ1 = AgenerateTranslation.getTranslationFromChineseString(
+      "連詞", conwaymap, idsmap, idsToStrokeMap, basicTranslation
+    )
+    testJ1._2.map(x => x._1).toSet shouldBe Set("esi", "esigg")
+
+    val testK1 = AgenerateTranslation.getTranslationFromChineseString(
+      "血鬱", conwaymap, idsmap, idsToStrokeMap, basicTranslation
+    )
+    testK1._2.map(x => x._1).toSet shouldBe Set("uny", "unyji")
+
+    val testL1 = AgenerateTranslation.getTranslationFromChineseString(
+      "手足亲情", conwaymap, idsmap, idsToStrokeMap, basicTranslation
+    )
+    testL1._2.map(x => x._1).toSet shouldBe Set("ljtcn", "ljtch", "ljtrn", "ljtwn", "ljtrh", "ljtwh")
+
+    val testM1 = AgenerateTranslation.getTranslationFromChineseString(
+      "連詞", conwaymap, idsmap, idsToStrokeMap, basicTranslation
+    )
+    testM1._2.map(x => x._1).toSet shouldBe Set("esi", "esigg")
+    
 
   }
 
