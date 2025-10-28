@@ -8,21 +8,6 @@ import scala.io.Source
 
 object AidsData {
 
-  def idsData(): HashMap[Agrapheme, AidsRecur] = {
-    val raw: HashMap[Agrapheme, String] = idsDataRaw()
-    val result: HashMap[Agrapheme, AidsRecur] = generateRecurMap(raw)
-    result
-  }
-
-  def generateRecurMap(input: HashMap[Agrapheme, String]):  HashMap[Agrapheme, AidsRecur] = {
-    var resultMap = new mutable.HashMap[Agrapheme, AidsRecur]()
-
-    for ((mykey, _) <- input) {
-      resultMap.put(mykey, AidsRecur(mykey, input))
-    }
-    immutable.HashMap.from(resultMap)
-  }
-
   def idsDataRaw(): HashMap[Agrapheme, String] = {
     val idsFilePath = "src/main/scala/staticFileGenerators/staticFiles/ids.txt"
     val manualIdsFilePath = "src/main/scala/staticFileGenerators/staticFiles/manualidsIDS.txt"

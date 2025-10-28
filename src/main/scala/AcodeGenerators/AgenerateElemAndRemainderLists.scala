@@ -14,10 +14,15 @@ object AgenerateElemAndRemainderLists {
                             conwaymap: HashMap[Agrapheme, AconwayColl],
                             idsmap: HashMap[Agrapheme, String],
                             idsToStrokeMap: Map[String, Aelementstype]): Set[(List[String], Int)] = {
+    val originalConway: Option[AconwayColl] = conwaymap.get(graph)
+    if (originalConway.isEmpty) {
+      throw new RuntimeException("AidsRecur conway not found")
+    }
+    val localrecur: AidsRecur = AidsRecur(graph, idsmap, conwaymap, originalConway.get.rawConway.rawConway)
     val getConwayFromMap: AconwayColl = conwaymap(graph)
     val rawConway: List[String] = getConwayFromMap.rawConway.rawConway
     val allSplitResults: List[Set[(List[String], Int)]] = 
-      rawConway.map(x => getsplitFourCodesfromcharMultipleConway(graph, x, idsmap, idsToStrokeMap))
+      rawConway.map(x => getsplitFourCodesfromcharMultipleConway(graph, x, idsmap, idsToStrokeMap, localrecur))
     val result: Set[(List[String], Int)] = allSplitResults.flatten.toSet
     return result
   }
@@ -26,10 +31,10 @@ object AgenerateElemAndRemainderLists {
                     graph: Agrapheme,
                     rawConway: String,
                     idsmap: HashMap[Agrapheme, String],
-                    idsToStrokeMap: Map[String, Aelementstype]): Set[(List[String], Int)] = {
+                    idsToStrokeMap: Map[String, Aelementstype],
+                    localrecur: AidsRecur): Set[(List[String], Int)] = {
     val backslashCleaned: String = AgraphemeToStrokeSet.unrollBackSlash(rawConway)
-
-    val elemsfound = AidsRecur.findElementmatch(graph, idsmap, idsToStrokeMap, backslashCleaned)
+    val elemsfound = AidsRecur.findElementmatch(graph, idsmap, idsToStrokeMap, backslashCleaned, localrecur)
     val elemremovedfromcode: (List[String], String) = getRemovedCode(backslashCleaned, elemsfound, idsToStrokeMap)
     val unrollRemainder: Set[String] = AgraphemeToStrokeSet.expandAlt(elemremovedfromcode._2)
     val res: Set[(List[String], Int)] = unrollRemainder.map(x => (elemremovedfromcode._1.appended(x), 4))

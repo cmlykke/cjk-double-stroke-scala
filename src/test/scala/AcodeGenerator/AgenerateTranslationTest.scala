@@ -134,6 +134,64 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
       ("nnef", PossibleWordCodes.FirstFirstFirstLastCode),
       ("nnejof", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode)))
 
+
+    val test5 = AgenerateTranslation.getTranslationFromChineseString(
+      "彎", conwaymap, idsmap, idsToStrokeMap, basicTranslation
+    )
+    test5 shouldBe("彎", Set(
+      ("iarm", PossibleWordCodes.FirstFirstFirstLastCode),
+      ("iawm", PossibleWordCodes.FirstFirstFirstLastCode),
+      ("hhxmsm", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode),
+      ("thxmsm", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode)))
+
+    val test5a = AgenerateTranslation.getTranslationFromChineseString(
+      "鬱", conwaymap, idsmap, idsToStrokeMap, basicTranslation
+    )
+    test5a shouldBe("鬱", Set(
+      ("yjfi", PossibleWordCodes.FirstFirstFirstLastCode),
+      ("yjfjoi", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode)))
+
+
+    val test6 = AgenerateTranslation.getTranslationFromChineseString(
+      "术", conwaymap, idsmap, idsToStrokeMap, basicTranslation
+    )
+    test6 shouldBe("术", Set(
+      ("dtzz", PossibleWordCodes.FirstFirstFirstLastCode),
+      ("dt", SortingCodes.TwoCode),
+      ("jotzzz", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode)))
+
+
+    val test7 = AgenerateTranslation.getTranslationFromChineseString(
+      "遤", conwaymap, idsmap, idsToStrokeMap, basicTranslation
+    )
+    test7 shouldBe("遤", Set(
+      ("wws", SortingCodes.ThreeCode),
+      ("wqt", SortingCodes.ThreeCode),
+      ("wqs", SortingCodes.ThreeCode),
+      ("wwsz", PossibleWordCodes.FirstFirstFirstLastCode),
+      ("wqtz", PossibleWordCodes.FirstFirstFirstLastCode),
+      ("wqsz", PossibleWordCodes.FirstFirstFirstLastCode),
+      ("nhxwws", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode),
+      ("jhxwws", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode),
+      ))
+
+
+    val test8 = AgenerateTranslation.getTranslationFromChineseString(
+      "七", conwaymap, idsmap, idsToStrokeMap, basicTranslation
+    )
+    test8 shouldBe("七", Set(
+      ("m", SortingCodes.OneCode),
+      ("mzzz", PossibleWordCodes.FirstFirstFirstLastCode),
+      ("mzzzzz", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode)))
+
+    val test9 = AgenerateTranslation.getTranslationFromChineseString(
+      "虫", conwaymap, idsmap, idsToStrokeMap, basicTranslation
+    )
+    test9 shouldBe("虫", Set(
+      ("s", SortingCodes.OneCode),
+      ("szzz", PossibleWordCodes.FirstFirstFirstLastCode),
+      ("xjlzzz", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode)))
+
   }
 
   it should "test that a word can be translated" in {
