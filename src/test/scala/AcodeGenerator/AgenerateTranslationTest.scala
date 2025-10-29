@@ -22,17 +22,21 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
       text, AsingletonsForTests.conwaymap, AsingletonsForTests.idsmap, AsingletonsForTests.idsToStrokeMap, AsingletonsForTests.basicTranslation
     )
   }
-  
+
   it should "generateCodesForAllCharacters" in {
-    
+
     //new codes
     val allCodes: Set[(String, Set[(String, AsortingCriteria)])] =
       AgenerateTranslation.translationsOfSetOfStrings(
         AsingletonsForTests.chineseTextitems, AsingletonsForTests.conwaymap, AsingletonsForTests.idsmap, AsingletonsForTests.idsToStrokeMap, AsingletonsForTests.basicTranslation)
 
+    allCodes.size shouldBe 208156
+
     val allNewCodes_unsortedStrings: Set[(String, String)] = allCodes.map { x =>
       x._2.map { y => (x._1, y._1) }
     }.flatten.toSet
+
+    allNewCodes_unsortedStrings.size shouldBe 537209
 
     val oldCodes: SortedMap[String, List[OutputEntry]] = GenerateOutputStrings.mapFullJunda
     val oldCodes_unsortedStrings: Set[(String, String)] =
@@ -44,6 +48,7 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
     
     val NewNotInOld: Set[(String, String)] = allNewCodes_unsortedStrings.diff(oldCodes_unsortedStrings)
     val OldNotInNew: Set[(String, String)] = oldCodes_unsortedStrings.diff(allNewCodes_unsortedStrings)
+
 
     val test = ""
   }
