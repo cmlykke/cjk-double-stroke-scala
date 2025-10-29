@@ -24,24 +24,11 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
   }
   
   it should "generateCodesForAllCharacters" in {
-    val sinplifiedCharsAndWords: Set[AcedictEntry] = AsingletonsForTests.cedict.simplifiedWords ++ AsingletonsForTests.cedict.simplifiedAllHanItems
-    val traditionalCharsAndWords: Set[AcedictEntry] = AsingletonsForTests.cedict.traditionalWords ++ AsingletonsForTests.cedict.traditionalAllHanItems
-
-    val total: Set[String] = sinplifiedCharsAndWords.map(x => x.rawEntry) ++ traditionalCharsAndWords.map(x => x.rawEntry)
-    val conwayStrings: Set[String] = AsingletonsForTests.conwaymap.map(x => x._1.char).toSet
-
-    val allChineseStr: Set[String] = total ++ conwayStrings
-
-    val allToSingle: Set[String] = allChineseStr.map(x => wordToSingle(x)).flatten
-
-    val notFoundConway: List[String] = allToSingle.filter(x => !AsingletonsForTests.conwaymap.contains(Agrapheme(x))).toList.sorted
-    val notFoundIds: List[String] = allToSingle.filter(x => !AsingletonsForTests.idsmap.contains(Agrapheme(x))).toList.sorted
-
-
+    
     //new codes
     val allCodes: Set[(String, Set[(String, AsortingCriteria)])] =
       AgenerateTranslation.translationsOfSetOfStrings(
-        allChineseStr, AsingletonsForTests.conwaymap, AsingletonsForTests.idsmap, AsingletonsForTests.idsToStrokeMap, AsingletonsForTests.basicTranslation)
+        AsingletonsForTests.chineseTextitems, AsingletonsForTests.conwaymap, AsingletonsForTests.idsmap, AsingletonsForTests.idsToStrokeMap, AsingletonsForTests.basicTranslation)
 
     val allNewCodes_unsortedStrings: Set[(String, String)] = allCodes.map { x =>
       x._2.map { y => (x._1, y._1) }
@@ -59,16 +46,6 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
     val OldNotInNew: Set[(String, String)] = oldCodes_unsortedStrings.diff(allNewCodes_unsortedStrings)
 
     val test = ""
-  }
-
-
-  private def wordToSingle(input: String): Set[String] = {
-    input
-      .codePoints()
-      .mapToObj(cp => new String(Character.toChars(cp)))
-      .collect(java.util.stream.Collectors.toSet())
-      .asScala
-      .toSet
   }
 
 
