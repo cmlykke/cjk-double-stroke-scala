@@ -27,33 +27,6 @@ object AgenerateSeudoCodes {
     throw new RuntimeException("unhandled possibleWordCode")
   }
 
-  private def generateNoFillFromFourCode(input: Set[(List[String], AsortingCriteria)]):
-                                   Set[(List[String], AsortingCriteria)] = {
-    input.filter(x => x._2 == SortingCodes.FourCode).map(x => removeZFillFromFourCode(x._1)).toSet
-  }
-
-  private def removeZFillFromFourCode(codelist: List[String]): (List[String], AsortingCriteria) = {
-    if (codelist.size == 0) {
-      throw new RuntimeException("removeZFill should not result in a zero length code list")
-    }
-    if (codelist.last != localFill) {
-      if (codelist.length == 1) {
-        return (codelist, SortingCodes.OneCode)
-      }
-      if (codelist.length == 2) {
-        return (codelist, SortingCodes.TwoCode)
-      }
-      if (codelist.length == 3) {
-        return (codelist, SortingCodes.ThreeCode)
-      }
-      if (codelist.length == 4) {
-        return (codelist, SortingCodes.FourCode)
-      }
-      throw new RuntimeException("unexpected code length for removeing fill characters")
-    }
-    return removeZFillFromFourCode(codelist.init)
-  }
-
   def splitCodeListSingleChar(inp: (List[String],Int),
                                       codeStructure: PossibleWordCodes): (List[String], AsortingCriteria) = {
     splitCodeListHelperSingleChar(List(), inp._1, codeStructure)

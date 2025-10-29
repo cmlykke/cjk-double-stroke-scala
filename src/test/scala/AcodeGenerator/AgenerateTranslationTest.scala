@@ -3,12 +3,13 @@ package AcodeGenerator
 import AcodeGenerators.AgenerateTranslation
 import Adatasources.FileReaders.{AidsData, AreadCedictData, AreadConwayData}
 import Adatasources.ManualData.{AcodelengthRules, Aelements}
-import Atypes.SortingCodes.{FiveCode, FourCode, SixCode, ThreeCode, TwoCode}
+import Atypes.SortingCodes.{FiveCode, FourCode, SixCode, ThreeCodeSingleChar, ThreeCodeTwoCharWord, TwoCode}
 import Atypes.{AcedictColl, AcedictEntry, Aelementstype, Agrapheme, AsortingCriteria, PossibleWordCodes, SortingCodes}
 import GenerateOutput.GenerateOutputStrings
 import UtilityClasses.OutputEntry
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
+
 import scala.collection.immutable.SortedMap
 import scala.jdk.CollectionConverters.*
 
@@ -165,9 +166,9 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
       "遤", conwaymap, idsmap, idsToStrokeMap, basicTranslation
     )
     test7 shouldBe("遤", Set(
-      ("wws", SortingCodes.ThreeCode),
-      ("wqt", SortingCodes.ThreeCode),
-      ("wqs", SortingCodes.ThreeCode),
+      ("wws", SortingCodes.ThreeCodeSingleChar),
+      ("wqt", SortingCodes.ThreeCodeSingleChar),
+      ("wqs", SortingCodes.ThreeCodeSingleChar),
       ("wwsz", PossibleWordCodes.FirstFirstFirstLastCode),
       ("wqtz", PossibleWordCodes.FirstFirstFirstLastCode),
       ("wqsz", PossibleWordCodes.FirstFirstFirstLastCode),
@@ -199,7 +200,7 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
     val test1 = AgenerateTranslation.getTranslationFromChineseString(
       "摳腳", conwaymap, idsmap, idsToStrokeMap, basicTranslation
     )
-    test1 shouldBe ("摳腳" , Set(("lmphf", FiveCode), ("lmptf", FiveCode), ("lmp", ThreeCode)))
+    test1 shouldBe ("摳腳" , Set(("lmphf", FiveCode), ("lmptf", FiveCode), ("lmp", ThreeCodeTwoCharWord)))
     
     val test2 = AgenerateTranslation.getTranslationFromChineseString(
       "外東北", conwaymap, idsmap, idsToStrokeMap, basicTranslation

@@ -55,7 +55,7 @@ object AgenerateFinalSeudoCodes {
       } else if (input._1.length == 2) {
         return (input._1, SortingCodes.TwoCode)
       } else if (input._1.length == 3) {
-        return (input._1, SortingCodes.ThreeCode)
+        return (input._1, SortingCodes.ThreeCodeSingleChar)
       } else if (input._1.length == 4) {
         return input
       } else {

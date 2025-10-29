@@ -41,7 +41,7 @@ object AgenerateTranslation {
       val fiveCodes = AgenerateFinalSeudoCodes.seudoFullWordFivecodesFromCharFourCodes(
         splitStr, conwaymap, idsmap, idsToStrokeMap)
       finalres = translate(fiveCodes, translationMap, graph)
-      val threeCodes = finalres.map(x => (x._1.toCharArray.toList.map(_.toString).take(3).mkString(""), SortingCodes.ThreeCode))
+      val threeCodes = finalres.map(x => (x._1.toCharArray.toList.map(_.toString).take(3).mkString(""), SortingCodes.ThreeCodeTwoCharWord))
       finalres = finalres ++ threeCodes
     }
     return (graph, finalres)
