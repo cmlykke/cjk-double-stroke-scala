@@ -21,3 +21,4 @@ enum PossibleWordCodes(override val code: Int) extends AsortingCriteria {
   case FirstFirstFirstLastCode extends PossibleWordCodes(4)
   case FirstFirstFirstFirstFirstLastCode extends PossibleWordCodes(6)
 }
+

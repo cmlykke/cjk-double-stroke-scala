@@ -97,12 +97,12 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
       "誠", conwaymap, idsmap, idsToStrokeMap, basicTranslation
     )
     test1 shouldBe ("誠", Set(
-      ("ikao", PossibleWordCodes.FirstFirstFirstLastCode),
-      ("ikae", PossibleWordCodes.FirstFirstFirstLastCode),
-      ("hhxhpo", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode),
-      ("hhxhpe", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode),
-      ("thxhpo", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode),
-      ("thxhpe", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode)))
+      ("ikao", SortingCodes.FourCode),
+      ("ikae", SortingCodes.FourCode),
+      ("hhxhpo", SortingCodes.SixCode),
+      ("hhxhpe", SortingCodes.SixCode),
+      ("thxhpo", SortingCodes.SixCode),
+      ("thxhpe", SortingCodes.SixCode)))
 
     // hhxhpe  ikao  hhxhpo  thxhpo  ikae  thxhpe
 
@@ -111,8 +111,8 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
     )
     test2 shouldBe ("子",Set(
       ("fh", TwoCode),
-      ("fhzz", PossibleWordCodes.FirstFirstFirstLastCode),
-      ("fhzzzz", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode)))
+      ("fhzz", SortingCodes.FourCode),
+      ("fhzzzz", SortingCodes.SixCode)))
     
     //⺒
     val test3 = AgenerateTranslation.getTranslationFromChineseString(
@@ -120,8 +120,8 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
     )
     test3 shouldBe("⺒", Set(
       ("gg", TwoCode),
-      ("ggzz", PossibleWordCodes.FirstFirstFirstLastCode),
-      ("ggzzzz", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode)))
+      ("ggzz", SortingCodes.FourCode),
+      ("ggzzzz", SortingCodes.SixCode)))
 
     
     //⻭ and other characters exists as conway and ids codes, but cant be found
@@ -132,34 +132,34 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
       "⻭", conwaymap, idsmap, idsToStrokeMap, basicTranslation
     )
     test4 shouldBe("⻭", Set(
-      ("nnef", PossibleWordCodes.FirstFirstFirstLastCode),
-      ("nnejof", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode)))
+      ("nnef", SortingCodes.FourCode),
+      ("nnejof", SortingCodes.SixCode)))
 
 
     val test5 = AgenerateTranslation.getTranslationFromChineseString(
       "彎", conwaymap, idsmap, idsToStrokeMap, basicTranslation
     )
     test5 shouldBe("彎", Set(
-      ("iarm", PossibleWordCodes.FirstFirstFirstLastCode),
-      ("iawm", PossibleWordCodes.FirstFirstFirstLastCode),
-      ("hhxmsm", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode),
-      ("thxmsm", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode)))
+      ("iarm", SortingCodes.FourCode),
+      ("iawm", SortingCodes.FourCode),
+      ("hhxmsm", SortingCodes.SixCode),
+      ("thxmsm", SortingCodes.SixCode)))
 
     val test5a = AgenerateTranslation.getTranslationFromChineseString(
       "鬱", conwaymap, idsmap, idsToStrokeMap, basicTranslation
     )
     test5a shouldBe("鬱", Set(
-      ("yjfi", PossibleWordCodes.FirstFirstFirstLastCode),
-      ("yjfjoi", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode)))
+      ("yjfi", SortingCodes.FourCode),
+      ("yjfjoi", SortingCodes.SixCode)))
 
 
     val test6 = AgenerateTranslation.getTranslationFromChineseString(
       "术", conwaymap, idsmap, idsToStrokeMap, basicTranslation
     )
     test6 shouldBe("术", Set(
-      ("dtzz", PossibleWordCodes.FirstFirstFirstLastCode),
+      ("dtzz", SortingCodes.FourCode),
       ("dt", SortingCodes.TwoCode),
-      ("jotzzz", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode)))
+      ("jotzzz", SortingCodes.SixCode)))
 
 
     val test7 = AgenerateTranslation.getTranslationFromChineseString(
@@ -169,11 +169,11 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
       ("wws", SortingCodes.ThreeCodeSingleChar),
       ("wqt", SortingCodes.ThreeCodeSingleChar),
       ("wqs", SortingCodes.ThreeCodeSingleChar),
-      ("wwsz", PossibleWordCodes.FirstFirstFirstLastCode),
-      ("wqtz", PossibleWordCodes.FirstFirstFirstLastCode),
-      ("wqsz", PossibleWordCodes.FirstFirstFirstLastCode),
-      ("nhxwws", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode),
-      ("jhxwws", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode),
+      ("wwsz", SortingCodes.FourCode),
+      ("wqtz", SortingCodes.FourCode),
+      ("wqsz", SortingCodes.FourCode),
+      ("nhxwws", SortingCodes.SixCode),
+      ("jhxwws", SortingCodes.SixCode),
       ))
 
 
@@ -182,16 +182,16 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
     )
     test8 shouldBe("七", Set(
       ("m", SortingCodes.OneCode),
-      ("mzzz", PossibleWordCodes.FirstFirstFirstLastCode),
-      ("mzzzzz", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode)))
+      ("mzzz", SortingCodes.FourCode),
+      ("mzzzzz", SortingCodes.SixCode)))
 
     val test9 = AgenerateTranslation.getTranslationFromChineseString(
       "虫", conwaymap, idsmap, idsToStrokeMap, basicTranslation
     )
     test9 shouldBe("虫", Set(
       ("s", SortingCodes.OneCode),
-      ("szzz", PossibleWordCodes.FirstFirstFirstLastCode),
-      ("xjlzzz", PossibleWordCodes.FirstFirstFirstFirstFirstLastCode)))
+      ("szzz", SortingCodes.FourCode),
+      ("xjlzzz", SortingCodes.SixCode)))
 
   }
 

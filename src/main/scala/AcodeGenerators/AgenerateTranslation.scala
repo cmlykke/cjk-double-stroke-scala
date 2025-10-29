@@ -1,7 +1,8 @@
 package AcodeGenerators
 
 import Atypes.PossibleWordCodes.FirstFirstFirstLastCode
-import Atypes.{AconwayColl, Aelementstype, Agrapheme, AsortingCriteria, SortingCodes}
+import Atypes.SortingCodes.{FourCode, OneCode, SixCode}
+import Atypes.{AconwayColl, Aelementstype, Agrapheme, AsortingCriteria, PossibleWordCodes, SortingCodes}
 
 import scala.collection.immutable.HashMap
 
@@ -44,7 +45,33 @@ object AgenerateTranslation {
       val threeCodes = finalres.map(x => (x._1.toCharArray.toList.map(_.toString).take(3).mkString(""), SortingCodes.ThreeCodeTwoCharWord))
       finalres = finalres ++ threeCodes
     }
-    return (graph, finalres)
+
+    val replacePatternWithSorting = finalres.map(x => replaceStrokePatternWithSorting(x))
+    return (graph, replacePatternWithSorting)
+  }
+
+  private def replaceStrokePatternWithSorting(input: (String, AsortingCriteria)): (String, AsortingCriteria) = {
+    var newSortingCode: AsortingCriteria = OneCode
+    if (isSortingCode(input._2)) {
+      newSortingCode = input._2
+    } else if (input._2 == PossibleWordCodes.FirstFirstFirstLastCode) {
+      newSortingCode = FourCode
+    } else if (input._2 == PossibleWordCodes.FirstFirstFirstFirstFirstLastCode) {
+      newSortingCode = SixCode
+    } else {
+      throw new RuntimeException("only PossibleWordCodes of length four and six should be found")
+    }
+    return (input._1, newSortingCode)
+  }
+
+  def isSortingCode(criteria: AsortingCriteria): Boolean = criteria match {
+    case _: SortingCodes => true
+    case _ => false
+  }
+
+  def isPossibleWordCode(criteria: AsortingCriteria): Boolean = criteria match {
+    case _: PossibleWordCodes => true
+    case _ => false
   }
 
   private def translate(input: Set[(List[String], AsortingCriteria)],
