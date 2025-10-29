@@ -1,6 +1,7 @@
 package AdataSources
 
 import Adatasources.FileReaders.{AreadCedictData, AreadConwayData}
+import Asingletons.AsingletonsForTests
 import Atypes.{AcedictColl, AcedictEntry, Aconway, Agrapheme}
 import UtilityClasses.Grapheme
 import org.scalatest.flatspec.AnyFlatSpec
@@ -24,23 +25,21 @@ class Acedicttest extends AnyFlatSpec with Matchers {
   it should "test that cedict contains the expected number of items, " +
     "and only few and irrelevant characters are not found in conway" in {
 
-    val coll: AcedictColl = AreadCedictData.listCedictData()
-    val conway = AreadConwayData.mapConwayData()
-    val birdInInMap: Boolean = conway.contains(Agrapheme("䳭"))
+    val birdInInMap: Boolean = AsingletonsForTests.conwaymap.contains(Agrapheme("䳭"))
 
-    coll.simplifiedWords.size shouldBe 119027
-    coll.traditionalWords.size shouldBe 120175
+    AsingletonsForTests.cedict.simplifiedWords.size shouldBe 119027
+    AsingletonsForTests.cedict.traditionalWords.size shouldBe 120175
 
-    val allSimpStrings: Set[String] = coll.simplifiedWords.map(x => x.rawEntry).toSet
-    val allTradStrings: Set[String] = coll.traditionalWords.map(x => x.rawEntry).toSet
+    val allSimpStrings: Set[String] = AsingletonsForTests.cedict.simplifiedWords.map(x => x.rawEntry).toSet
+    val allTradStrings: Set[String] = AsingletonsForTests.cedict.traditionalWords.map(x => x.rawEntry).toSet
 
     allSimpStrings.size shouldBe 119027
     allTradStrings.size shouldBe 120175
 
-    coll.simplifiedAllHanItems.size shouldBe 11012
-    coll.traditionalAllHanItems.size shouldBe 11926
+    AsingletonsForTests.cedict.simplifiedAllHanItems.size shouldBe 11012
+    AsingletonsForTests.cedict.traditionalAllHanItems.size shouldBe 11926
 
-    val firstTen: String = coll.simplifiedAllHanItems
+    val firstTen: String = AsingletonsForTests.cedict.simplifiedAllHanItems
       .map(entry => entry.rawEntry.codePointAt(0))
       .toList.sorted.take(10)
       .map(codepoint => codepoint + "_" + Character.toString(codepoint))
@@ -48,7 +47,7 @@ class Acedicttest extends AnyFlatSpec with Matchers {
 
     val conwaySet: Set[String] = AreadConwayData.conwaySetFunc()
     val birsIsInSet: Boolean = conwaySet.contains("䳭")
-    val nonConwa: String = coll.allHanCharacters
+    val nonConwa: String = AsingletonsForTests.cedict.allHanCharacters
       .filter(entry => !conwaySet.contains(entry.rawEntry))
       .map(entry => entry.rawEntry.codePointAt(0)).toList.sorted
       .map(codepoint => codepoint + "_" + Character.toString(codepoint))
@@ -57,7 +56,7 @@ class Acedicttest extends AnyFlatSpec with Matchers {
       .mkString(" ")
 
 
-    val nonConwaTest: String = coll.allHanCharacters
+    val nonConwaTest: String = AsingletonsForTests.cedict.allHanCharacters
       .filter(entry => !conwaySet.contains(entry.rawEntry))
       .map(entry => entry.rawEntry.codePointAt(0)).toList.sorted
       .map(codepoint => codepoint + "_" + Character.toString(codepoint))

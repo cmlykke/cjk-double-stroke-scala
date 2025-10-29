@@ -10,9 +10,6 @@ import scala.io.Source
 object AjundaData {
   val jundaFilePath = "src/main/scala/staticFileGenerators/staticFiles/Junda2005.txt" // replace with your actual file path
 
-  val mapJundaData = generateMapJundaData()
-
-
   def generateMapJundaData(): immutable.HashMap[String, Int] = {
 
     val bufferedSource = Source.fromFile(jundaFilePath)

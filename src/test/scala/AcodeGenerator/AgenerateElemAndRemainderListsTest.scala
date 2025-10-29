@@ -4,6 +4,7 @@ import AcodeGenerators.AgenerateElemAndRemainderLists
 import Adatasources.FileReaders.{AidsData, AreadConwayData}
 import Adatasources.ManualData.Aelements
 import AgraphemeToCodeConverters.AgraphemeToStrokeSet
+import Asingletons.AsingletonsForTests
 import Atypes.{AconwayColl, Aelementstype, Agrapheme}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
@@ -14,18 +15,16 @@ import scala.collection.immutable
 
 class AgenerateElemAndRemainderListsTest extends AnyFlatSpec with Matchers {
 
-  val conwaymap = AreadConwayData.mapConwayData()
-  val idsmap = AidsData.idsDataRaw()
-  val idsToStrokeMap: Map[String, Aelementstype] = Aelements.idsToStrokeMap
-
   it should "test that seudo letters can be generated from chars" in {
 
-    val resFour = AgenerateElemAndRemainderLists.getsplitFourCodesfromchar(Agrapheme("誠"), conwaymap, idsmap, idsToStrokeMap)
+    val resFour = AgenerateElemAndRemainderLists.getsplitFourCodesfromchar(
+      Agrapheme("誠"), AsingletonsForTests.conwaymap, AsingletonsForTests.idsmap, AsingletonsForTests.idsToStrokeMap)
     resFour.shouldEqual(
       Set((List("言", "135543"), 4),
         (List("言", "135534"), 4)
       ))
-    val resSix = AgenerateElemAndRemainderLists.getsplitSixCodesfromchar(Agrapheme("誠"), conwaymap, idsmap, idsToStrokeMap)
+    val resSix = AgenerateElemAndRemainderLists.getsplitSixCodesfromchar(
+      Agrapheme("誠"),AsingletonsForTests.conwaymap, AsingletonsForTests.idsmap, AsingletonsForTests.idsToStrokeMap)
     resSix.shouldEqual(
       Set(
         (List("4111251135543"), 6),
@@ -36,11 +35,13 @@ class AgenerateElemAndRemainderListsTest extends AnyFlatSpec with Matchers {
   }
 
   it should "test that seudo letters can be generated from element" in {
-    val resFour = AgenerateElemAndRemainderLists.getsplitFourCodesfromchar(Agrapheme("言"), conwaymap, idsmap, idsToStrokeMap)
+    val resFour = AgenerateElemAndRemainderLists.getsplitFourCodesfromchar(
+      Agrapheme("言"),AsingletonsForTests.conwaymap, AsingletonsForTests.idsmap, AsingletonsForTests.idsToStrokeMap)
     resFour.shouldEqual(
       Set(
         (List("言", ""), 4)))
-    val resSix = AgenerateElemAndRemainderLists.getsplitSixCodesfromchar(Agrapheme("言"), conwaymap, idsmap, idsToStrokeMap)
+    val resSix = AgenerateElemAndRemainderLists.getsplitSixCodesfromchar(
+      Agrapheme("言"),AsingletonsForTests.conwaymap, AsingletonsForTests.idsmap, AsingletonsForTests.idsToStrokeMap)
     resSix.shouldEqual(
       Set(
         (List("1111251"), 6),

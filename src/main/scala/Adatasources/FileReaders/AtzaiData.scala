@@ -11,8 +11,6 @@ object AtzaiData {
 
   val tzaiFilePath = "src/main/scala/staticFileGenerators/staticFiles/Tzai2006.txt"
 
-  val mapJundaData = generateMapTzaiData()
-
   def generateMapTzaiData(): immutable.HashMap[String, Int] = {
 
 

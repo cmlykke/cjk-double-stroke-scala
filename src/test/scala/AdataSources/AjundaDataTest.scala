@@ -1,37 +1,36 @@
 package AdataSources
 
 import Adatasources.FileReaders.AjundaData
+import Asingletons.AsingletonsForTests
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
-import org.scalatest.matchers.should.Matchers._
-
+import org.scalatest.matchers.should.Matchers.*
 
 import scala.collection.immutable
 
 class AjundaDataTest extends AnyFlatSpec with Matchers {
 
-  val junda: immutable.HashMap[String, Int] = AjundaData.generateMapJundaData()
   val tolerance = 0.000001
 
   it should "test that junda works" in {
     val test = ""
 
-    val test1 = junda.get("的").get
+    val test1 = AsingletonsForTests.junda.get("的").get
     test1 shouldBe 9933
 
-    val test2 = junda.get("一").get
+    val test2 = AsingletonsForTests.junda.get("一").get
     test2 shouldBe 9932
 
-    val test3 = junda.get("是").get
+    val test3 = AsingletonsForTests.junda.get("是").get
     test3 shouldBe 9931
 
-    val test4 = junda.get("鱓").get
+    val test4 = AsingletonsForTests.junda.get("鱓").get
     test4 shouldBe 3
 
-    val test5 = junda.get("鲖").get
+    val test5 = AsingletonsForTests.junda.get("鲖").get
     test5 shouldBe 2
 
-    val test6 = junda.get("鴒").get
+    val test6 = AsingletonsForTests.junda.get("鴒").get
     test6 shouldBe 1
 
     val test10 = ""

@@ -2,15 +2,13 @@ package AcodeGenerator
 
 import AcodeGenerators.AgenerateSeudoCodes
 import Adatasources.ManualData.AcodelengthRules
+import Asingletons.AsingletonsForTests
 import Atypes.PossibleWordCodes.{FirstFirstFirstFirstFirstLastCode, FirstFirstFirstLastCode}
 import Atypes.{AsortingCriteria, PossibleWordCodes, SortingCodes}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
 class AgenerateSeudoCodesTest extends AnyFlatSpec with Matchers {
-
-  val codeMap: Map[String, String] = AcodelengthRules.elementTypes
-  val localFill: String = AcodelengthRules.fill
 
   it should "test that multi word helper can generate code - characters with many codes" in {
     val input1 = (List("言", "135543"), PossibleWordCodes.FirstCode)
@@ -123,7 +121,7 @@ class AgenerateSeudoCodesTest extends AnyFlatSpec with Matchers {
     val seudo2Four: Set[(List[String], AsortingCriteria)] =
       singleElemInp.map(x => AgenerateSeudoCodes.splitCodeListSingleChar(x, FirstFirstFirstLastCode))
     val output2 = Set(
-      (List("言", localFill, localFill, localFill), FirstFirstFirstLastCode),
+      (List("言", AsingletonsForTests.fillCharacter, AsingletonsForTests.fillCharacter, AsingletonsForTests.fillCharacter), FirstFirstFirstLastCode),
       (List("11", "11", "25", "1"), FirstFirstFirstLastCode),
       (List("41", "11", "25", "1"), FirstFirstFirstLastCode))
     seudo2Four shouldBe output2
@@ -131,9 +129,9 @@ class AgenerateSeudoCodesTest extends AnyFlatSpec with Matchers {
     val seudo2Six: Set[(List[String], AsortingCriteria)] =
       singleElemInp.map(x => AgenerateSeudoCodes.splitCodeListSingleChar(x, FirstFirstFirstFirstFirstLastCode))
     val output2Six = Set(
-      (List("言", localFill, localFill, localFill, localFill, localFill), FirstFirstFirstFirstFirstLastCode),
-      (List("11", "11", "25", "1", localFill, localFill), FirstFirstFirstFirstFirstLastCode),
-      (List("41", "11", "25", "1", localFill, localFill), FirstFirstFirstFirstFirstLastCode))
+      (List("言", AsingletonsForTests.fillCharacter, AsingletonsForTests.fillCharacter, AsingletonsForTests.fillCharacter, AsingletonsForTests.fillCharacter, AsingletonsForTests.fillCharacter), FirstFirstFirstFirstFirstLastCode),
+      (List("11", "11", "25", "1", AsingletonsForTests.fillCharacter, AsingletonsForTests.fillCharacter), FirstFirstFirstFirstFirstLastCode),
+      (List("41", "11", "25", "1", AsingletonsForTests.fillCharacter, AsingletonsForTests.fillCharacter), FirstFirstFirstFirstFirstLastCode))
     seudo2Six shouldBe output2Six
   }
 }
