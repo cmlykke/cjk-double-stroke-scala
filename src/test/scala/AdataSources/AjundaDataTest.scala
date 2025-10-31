@@ -16,22 +16,22 @@ class AjundaDataTest extends AnyFlatSpec with Matchers {
     val test = ""
 
     val test1 = AsingletonsForTests.junda.get("的").get
-    test1 shouldBe 9933
+    test1 shouldBe 1
 
     val test2 = AsingletonsForTests.junda.get("一").get
-    test2 shouldBe 9932
+    test2 shouldBe 2
 
     val test3 = AsingletonsForTests.junda.get("是").get
-    test3 shouldBe 9931
+    test3 shouldBe 3
 
     val test4 = AsingletonsForTests.junda.get("鱓").get
-    test4 shouldBe 3
+    test4 shouldBe 9931
 
     val test5 = AsingletonsForTests.junda.get("鲖").get
-    test5 shouldBe 2
+    test5 shouldBe 9932
 
     val test6 = AsingletonsForTests.junda.get("鴒").get
-    test6 shouldBe 1
+    test6 shouldBe 9933
 
     val test10 = ""
   }

@@ -17,11 +17,11 @@ object AjundaData {
 
     val resultMap = new mutable.HashMap[String, Int]()
 
-    var linenum = 0
+    var linenum = 1
     for (line <- lines) {
       val processedLine = if (line.startsWith("\ufeff")) line.substring(1) else line
       val Array(field1, field2, field3, field4, _*) = processedLine.split("\t")
-      resultMap.put(field2, (lines.size - linenum))//valInteger.valueOf(field3))
+      resultMap.put(field2, linenum)//valInteger.valueOf(field3))
       linenum += 1
     }
 

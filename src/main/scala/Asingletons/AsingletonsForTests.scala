@@ -48,7 +48,7 @@ object AsingletonsForTests {
     return allTotal
   }
   
-  private def wordToSingle(input: String): Set[String] = {
+  def wordToSingle(input: String): Set[String] = {
     input
       .codePoints()
       .mapToObj(cp => new String(Character.toChars(cp)))

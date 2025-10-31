@@ -19,11 +19,11 @@ object AtzaiData {
 
     val resultMap = new mutable.HashMap[String, Int]()
 
-    var linenum = 0
+    var linenum = 1
     for (line <- lines) {
       val processedLine = if (line.startsWith("\ufeff")) line.substring(1) else line
       val Array(field1, field2, _*) = processedLine.split(" ")
-      resultMap.put(field1, (lines.size - linenum)) //valInteger.valueOf(field3))
+      resultMap.put(field1, linenum) //valInteger.valueOf(field3))
       linenum += 1
     }
 
