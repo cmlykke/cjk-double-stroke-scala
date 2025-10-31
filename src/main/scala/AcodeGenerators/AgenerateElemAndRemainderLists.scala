@@ -35,7 +35,7 @@ object AgenerateElemAndRemainderLists {
                     localrecur: AidsRecur): Set[(List[String], Int)] = {
     val backslashCleaned: String = AgraphemeToStrokeSet.unrollBackSlash(rawConway)
     val elemsfound = AidsRecur.findElementmatch(graph, idsmap, idsToStrokeMap, backslashCleaned, localrecur)
-    val elemremovedfromcode: (List[String], String) = getRemovedCode(backslashCleaned, elemsfound, idsToStrokeMap)
+    val elemremovedfromcode: (List[String], String) = getRemovedCode(backslashCleaned, elemsfound, idsToStrokeMap, graph)
     val unrollRemainder: Set[String] = AgraphemeToStrokeSet.expandAlt(elemremovedfromcode._2)
     val res: Set[(List[String], Int)] = unrollRemainder.map(x => (elemremovedfromcode._1.appended(x), 4))
     return res
@@ -65,7 +65,8 @@ object AgenerateElemAndRemainderLists {
 
   def getRemovedCode(rawConway: String,
                      elemOpt: Option[String],
-                     idsToStrokeMap: Map[String, Aelementstype]): (List[String], String) = {
+                     idsToStrokeMap: Map[String, Aelementstype],
+                     graph: Agrapheme): (List[String], String) = {
     if (!elemOpt.isDefined) {
       return (List(), rawConway)
     }
@@ -74,18 +75,80 @@ object AgenerateElemAndRemainderLists {
     if (!matchstrokeset.isDefined) {
       throw new RuntimeException(elemOpt.toString ++ " not found in stroke map")
     }
-    for strokeinit: String <- matchstrokeset.get.strokes do {
-      if (rawConway.startsWith(strokeinit)) {
-        val endofstr = rawConway.slice(strokeinit.length, rawConway.length)
-        matchinginitial += endofstr
-      }
+
+    //find the remainder of conway codes
+    val eachRemainder: String = removeElemPartFromCharConway(rawConway, matchstrokeset.get.strokes, graph, elemOpt)
+    if (eachRemainder != rawConway && (eachRemainder.size < rawConway.size) ) {
+      matchinginitial += eachRemainder
+    } else {
+      throw new RuntimeException("despite elem found, remainderCantbeIdentified. Main char: "
+        + graph.char + " elem: " + elemOpt.get + " rawConway: " + rawConway + " elemconway: " + matchstrokeset.get.strokes.mkString("|"))
     }
+
     val shortestSubstring: String = try {
       matchinginitial.minBy(_.length)
     } catch {
       case _: Exception => ""
     }
     return (List(matchstrokeset.get.unifiedElemet), shortestSubstring)
+  }
+
+  def removeElemPartFromCharConway(rawConway: String,
+                                   elemConway: Set[String],
+                                   graph: Agrapheme,
+                                   elemOpt: Option[String]): String ={
+    if (elemOpt.isDefined && elemOpt.get == graph.char) {
+      return ""
+    }
+    val anyStringThatMatch: Set[String] = elemConway.filter(x => rawConway.startsWith(x))
+    if (anyStringThatMatch.size == 1) {
+      val endofstr = rawConway.slice(anyStringThatMatch.head.length, rawConway.length)
+      return endofstr
+    } else if (anyStringThatMatch.size > 1){
+      throw new RuntimeException("too many hits")
+    }
+    if (rawConway.startsWith("(")) {
+      val firstparen: Option[String] = extractBetweenFirstParens(rawConway)
+      if (firstparen.isEmpty) {
+        throw new RuntimeException("no paren found")
+      }
+      val parencontent: List[String] = firstparen.get.split("\\|").toList
+      val anyMatches = elemConway.filter(x => parencontent.contains(x))
+      if (anyMatches.size == 1) {
+        val removedParen = removeFirstParen(rawConway)
+        if (removedParen.isDefined){
+          return removedParen.get
+        }else {
+          throw new RuntimeException("paren not found")
+        }
+      } else if (anyMatches.size > 1) {
+        throw new RuntimeException("too many paren hits")
+      }else {
+        throw new RuntimeException("elem conway not found in paren")
+      }
+    }
+
+    throw new RuntimeException("unknown missing pattern")
+  }
+
+  def extractBetweenFirstParens(str: String): Option[String] = {
+    val start = str.indexOf('(')
+    if (start == -1) None
+    else {
+      val end = str.indexOf(')', start + 1)
+      if (end == -1) None
+      else Some(str.substring(start + 1, end))
+    }
+  }
+
+  def removeFirstParen(input: String): Option[String] = {
+    val start = input.indexOf(')')
+    if (start == -1) {
+      None
+    } else {
+      val result = Some(input.substring(start + 1))
+      return result
+    }
   }
 }
 

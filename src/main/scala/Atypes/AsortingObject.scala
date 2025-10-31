@@ -37,7 +37,7 @@ class AsortingObject(val cedictPrimary: List[Boolean],
     }
 
 
-    val c1 = Ordering.String.compare(this.lettercodeComparison, that.lettercodeComparison)
+    val c1 = AsortingObject.lettercodeComparison(this.lettercodeComparison, that.lettercodeComparison)
     if (c1 != 0) return math.signum(c1)
 
     if (this.hanchars.length == 1 && this.hanchars.head == "木") {
@@ -68,6 +68,21 @@ class AsortingObject(val cedictPrimary: List[Boolean],
 }
 
 object AsortingObject {
+
+  def lettercodeComparison(lettercodeThis: String, lettercodeThat: String): Int = {
+    val lenThis = lettercodeThis.length
+    val lenThat = lettercodeThat.length
+    if (lenThis < lenThat) {
+      return -1
+    }
+    else if (lenThis > lenThat) {
+      return 1
+    }
+    else {
+      val stringcomparison = lettercodeThis.compareTo(lettercodeThat)
+      return stringcomparison
+    }
+  }
 
   def charsetComparison(charset: List[Int]): List[Int] = {
     charset.sorted

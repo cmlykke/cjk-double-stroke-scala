@@ -155,7 +155,27 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
       ("s", SortingCodes.OneCode),
       ("szzz", SortingCodes.FourCode),
       ("xjlzzz", SortingCodes.SixCode)))
+    
+    //述
+    val test10 = getTranslationsFromText("述")
+    test10 shouldBe("述", Set(
+      ("dws",SortingCodes.ThreeCodeSingleChar),
+      ("dwat", SortingCodes.FourCode),
+      ("dwsz", SortingCodes.FourCode),
+      ("dwqt", SortingCodes.FourCode),
+      ("jpwszz", SortingCodes.SixCode),
+      ("jowszz", SortingCodes.SixCode),
+      ("jowatz", SortingCodes.SixCode),
+      ("jpwqtz", SortingCodes.SixCode),
+      ("jpwatz", SortingCodes.SixCode),
+      ("jowqtz", SortingCodes.SixCode)
+    ))
 
+    val test11 = getTranslationsFromText("飲")
+    test11 shouldBe("飲", Set(
+      ("s", SortingCodes.OneCode),
+      ("szzz", SortingCodes.FourCode),
+      ("xjlzzz", SortingCodes.SixCode)))
   }
 
   it should "test that a word can be translated" in {

@@ -55,6 +55,15 @@ class AtestSorting extends AnyFlatSpec with Matchers {
     val testcomp2 = test2a.compare(test2b)
     testcomp2 shouldBe 1
 
+    //short letter codes should come before longer codes earlier in the alphabet
+    val test3a: AsortingObject = AsortingObject(
+      List(true), List(true), List(-10), List(-10), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abcd")
+    val test3b: AsortingObject = AsortingObject(
+      List(true), List(true), List(-10), List(-10), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "bbb")
+
+    val testcomp3 = test3a.compare(test3b)
+    testcomp3 shouldBe 1
+
   }
 
   //priority 2 sorting
