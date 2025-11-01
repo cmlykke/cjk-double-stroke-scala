@@ -93,63 +93,96 @@ object AgenerateElemAndRemainderLists {
     return (List(matchstrokeset.get.unifiedElemet), shortestSubstring)
   }
 
-  def removeElemPartFromCharConway(rawConway: String,
+  private def removeElemPartFromCharConway(rawConway: String,
                                    elemConway: Set[String],
                                    graph: Agrapheme,
-                                   elemOpt: Option[String]): String ={
-    if (elemOpt.isDefined && elemOpt.get == graph.char) {
+                                   elemOpt: Option[String]): String = {
+    if ("誠" == graph.char) {
+      val test = ""
+    }
+    if (elemConway.size == 1 && elemConway.head == "") {
+      return rawConway
+    }
+    if (graph.char == elemOpt.get) {
       return ""
     }
-    val anyStringThatMatch: Set[String] = elemConway.filter(x => rawConway.startsWith(x))
-    if (anyStringThatMatch.size == 1) {
-      val endofstr = rawConway.slice(anyStringThatMatch.head.length, rawConway.length)
-      return endofstr
-    } else if (anyStringThatMatch.size > 1){
-      throw new RuntimeException("too many hits")
+    if (elemConway.size > 1) {
+      val longestMatch: (String, String) = ArollOutConway.returnMostLikelyMatch(
+        List(rawConway), elemConway.toList, graph, elemOpt)
+      return removeElemPartFromCharConway(longestMatch._1.tail, Set(longestMatch._2.tail), graph, elemOpt)
     }
-    if (rawConway.startsWith("(")) {
-      val firstparen: Option[String] = extractBetweenFirstParens(rawConway)
-      if (firstparen.isEmpty) {
-        throw new RuntimeException("no paren found")
-      }
-      val parencontent: List[String] = firstparen.get.split("\\|").toList
-      val anyMatches = elemConway.filter(x => parencontent.contains(x))
-      if (anyMatches.size == 1) {
-        val removedParen = removeFirstParen(rawConway)
-        if (removedParen.isDefined){
-          return removedParen.get
-        }else {
-          throw new RuntimeException("paren not found")
-        }
-      } else if (anyMatches.size > 1) {
-        throw new RuntimeException("too many paren hits")
-      }else {
-        throw new RuntimeException("elem conway not found in paren")
-      }
-    }
+    val mostLikelyMatch: (String, String) = ArollOutConway.returnMostLikelyMatch(
+      List(rawConway), elemConway.toList, graph, elemOpt)
 
+    //no paren
+    if (mostLikelyMatch._1.isEmpty || mostLikelyMatch._2.isEmpty) {
+      val test = ""
+    }
+    if ((mostLikelyMatch._1.head != '(') && (mostLikelyMatch._1.head == mostLikelyMatch._2.head)) {
+      return removeElemPartFromCharConway(mostLikelyMatch._1.tail, Set(mostLikelyMatch._2.tail), graph, elemOpt)
+    }
+    if (mostLikelyMatch._1.head == '(' && mostLikelyMatch._2.head == '(') { //*************
+      val doubleParen: (String, String) = bothMainAndElemConwayParen(mostLikelyMatch._1,mostLikelyMatch._2,graph, elemOpt)
+      return removeElemPartFromCharConway(doubleParen._1.tail, Set(doubleParen._2.tail), graph, elemOpt)
+    }
+    if (mostLikelyMatch._1.head == '(') {
+      val mainparen: (String, String) = mainConwayparen(mostLikelyMatch._1, mostLikelyMatch._2, graph, elemOpt)
+      return removeElemPartFromCharConway(mainparen._1.tail, Set(mainparen._2.tail), graph, elemOpt)
+    }
+    if (mostLikelyMatch._2.head == '(') {
+      val elemparen: (String, String) = elemConwayParen(mostLikelyMatch._1, mostLikelyMatch._2, graph, elemOpt)
+      return removeElemPartFromCharConway(elemparen._1.tail, Set(elemparen._2.tail), graph, elemOpt)
+    }
     throw new RuntimeException("unknown missing pattern")
   }
 
-  def extractBetweenFirstParens(str: String): Option[String] = {
-    val start = str.indexOf('(')
-    if (start == -1) None
-    else {
-      val end = str.indexOf(')', start + 1)
-      if (end == -1) None
-      else Some(str.substring(start + 1, end))
+  private def bothMainAndElemConwayParen(conwayInput: String,
+                                         elemInput: String,
+                                         graph: Agrapheme,
+                                         elemOpt: Option[String]): (String, String) = {
+    val mainConwayParen: Option[String] = ArollOutConway.extractBetweenFirstParens(conwayInput)
+    val elemConwayParen: Option[String] = ArollOutConway.extractBetweenFirstParens(elemInput)
+
+    val mainContentSplit: List[String] = mainConwayParen.get.split("\\|").toList
+    val elemContentSplit: List[String] = elemConwayParen.get.split("\\|").toList
+
+    val mainConwayRemoveParen: Option[String] = ArollOutConway.removeFirstParen(conwayInput)
+    val elemConwayRemoveParen: Option[String] = ArollOutConway.removeFirstParen(elemInput)
+
+    var allMainCambos: List[String] = mainContentSplit.map(x => x + mainConwayRemoveParen.get)
+    var allElemCambos: List[String] = elemContentSplit.map(x => x + elemConwayRemoveParen.get)
+
+    val longestMatch: (String, String) = ArollOutConway.returnMostLikelyMatch(allMainCambos,allElemCambos,graph,elemOpt)
+    if (longestMatch == ("", "")) {
+      val test2 = ""
     }
+    return longestMatch
   }
 
-  def removeFirstParen(input: String): Option[String] = {
-    val start = input.indexOf(')')
-    if (start == -1) {
-      None
-    } else {
-      val result = Some(input.substring(start + 1))
-      return result
+  private def mainConwayparen(conwayInput: String,
+                              elemInput: String,
+                              graph: Agrapheme,
+                              elemOpt: Option[String]): (String, String) = {
+    val firstParenMainConway: List[String] = ArollOutConway.rolloutFirstParen(conwayInput)
+    val longestCommonPrefix: (String, String) = ArollOutConway.returnMostLikelyMatch(firstParenMainConway, List(elemInput), graph: Agrapheme, elemOpt: Option[String])
+    if (longestCommonPrefix == ("", "")) {
+      val test2 = ""
     }
+    return longestCommonPrefix
   }
+
+  private def elemConwayParen(conwayInput: String,
+                              elemInput: String,
+                              graph: Agrapheme,
+                              elemOpt: Option[String]): (String, String) = {
+    val firstParenElemConway: List[String] = ArollOutConway.rolloutFirstParen(elemInput)
+    val longestCommonPrefix: (String, String) = ArollOutConway.returnMostLikelyMatch(List(conwayInput), firstParenElemConway, graph: Agrapheme, elemOpt: Option[String])
+    if (longestCommonPrefix == ("","")) {
+      val test2 = ""
+    }
+    return longestCommonPrefix
+  }
+
 }
 
 

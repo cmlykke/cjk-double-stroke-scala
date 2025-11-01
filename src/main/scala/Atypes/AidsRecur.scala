@@ -1,5 +1,6 @@
 package Atypes
 
+import AcodeGenerators.ArollOutConway
 import Adatasources.FileReaders.AidsData
 import AgraphemeToCodeConverters.AgraphemeToStrokeSet
 
@@ -28,8 +29,38 @@ object AidsRecur {
                        backslashCleaned: String,
                        localrecur: AidsRecur
                       ): Option[String] = {
+    if (graph.char == "誠") {
+      val test = ""
+    }
     val res = findElementmatchHelper(graph, localrecur, idsToStrokeMap, backslashCleaned)
-    return res
+    val verifiedMatch: Option[String] = verifyConwayMatch(graph, backslashCleaned, res,idsToStrokeMap)
+    if (verifiedMatch.isDefined) {
+      return res
+    }else {
+      return None
+    }
+  }
+
+  private def verifyConwayMatch(graph: Agrapheme,
+                                backslashCleaned: String,
+                                res: Option[String],
+                                idsToStrokeMap: Map[String, Aelementstype]): Option[String] = {
+    if (res.isEmpty) {
+      return None
+    }
+    val getStrokes = idsToStrokeMap.get(res.get)
+    if (getStrokes.isEmpty) {
+      return None
+    }
+    val rolloutMainConway: Set[String] = ArollOutConway.roolOutConway(backslashCleaned)
+    val elemCoway: Set[String] = getStrokes.get.strokes.map(x => ArollOutConway.roolOutConway(x)).flatten
+
+    val bestMatch = ArollOutConway.returnMostLikelyMatch(rolloutMainConway.toList,elemCoway.toList,graph,res)
+    if (bestMatch._1.startsWith(bestMatch._2)) {
+      return Option(bestMatch._2)
+    }else {
+      return None
+    }
   }
 
 

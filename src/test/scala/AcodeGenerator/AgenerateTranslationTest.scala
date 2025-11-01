@@ -36,7 +36,7 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
       x._2.map { y => (x._1, y._1) }
     }.flatten.toSet
 
-    allNewCodes_unsortedStrings.size shouldBe 537209
+    allNewCodes_unsortedStrings.size shouldBe 537299
 
     val oldCodes: SortedMap[String, List[OutputEntry]] = GenerateOutputStrings.mapFullJunda
     val oldCodes_unsortedStrings: Set[(String, String)] =
@@ -173,9 +173,11 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
 
     val test11 = getTranslationsFromText("飲")
     test11 shouldBe("飲", Set(
-      ("s", SortingCodes.OneCode),
-      ("szzz", SortingCodes.FourCode),
-      ("xjlzzz", SortingCodes.SixCode)))
+      ("opo", SortingCodes.ThreeCodeSingleChar),
+      ("opoz", SortingCodes.FourCode),
+      ("oqhspo", SortingCodes.SixCode),
+      ("omhspo", SortingCodes.SixCode)
+    ))
   }
 
   it should "test that a word can be translated" in {
