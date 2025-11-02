@@ -5,6 +5,7 @@ import Atypes.Agrapheme
 object ArollOutConway {
 
 
+
   def returnMostLikelyMatch(conwayInput: List[String],
                                     elemInput: List[String],
                                     graph: Agrapheme,
@@ -35,7 +36,46 @@ object ArollOutConway {
     }
     return currentmatchpair
   }
-  
+
+  def getRemainderFromMainAndElem(main: List[String],
+                                  elem: List[String]): Set[String] = {
+    val allZipped = main.flatMap(x => elem.map(y => (x, y)))
+    return allZipped.map(x => mainCadidateMatch(x._1, x._2)).flatten.toSet
+  }
+
+  private def mainCadidateMatch(main: String,
+                                     elem: String): Set[String] = {
+    return mainCandidated(main, elem, main, elem)
+  }
+
+  private def mainCandidated(main: String,
+                                               elem: String,
+                                               mainOrig: String,
+                                               elemOrig: String): Set[String] = {
+    if (elem.length == 0) {
+      return Set(main)
+    }
+    if (main.length == 0) {
+      return Set()
+    }
+    if (main.head != '(' && (main.head == elem.head)) {
+      return mainCandidated(main.tail, elem.tail, mainOrig, elemOrig)
+    }
+    if (main.head != '(' && elem.head != '(' && (main.head != elem.head)) {
+      return Set()
+    }
+    if (main.head == '(') {
+      val eachMainCandicate: List[String] = rolloutFirstParen(main)
+      return eachMainCandicate.map(x => mainCandidated(x, elem, mainOrig, elemOrig)).flatten.toSet
+    }
+    if (elem.head == '(') {
+      val eachElemCandicate: List[String] = rolloutFirstParen(elem)
+      return eachElemCandicate.map(x => mainCandidated(main, x, mainOrig, elemOrig)).flatten.toSet
+    }
+    return Set()
+  }
+
+
   def roolOutConway(input: String):  Set[String] = {
     val result =  roolOutConwayHelper(List(input))
     return result
