@@ -99,7 +99,7 @@ object ArollOutConway {
 
   def rolloutFirstParen(input: String): List[String] = {
     val parenContent: Option[String] = extractBetweenFirstParens(input)
-    val parencontentSplit: List[String] = parenContent.get.split("\\|").toList
+    val parencontentSplit: List[String] = parenContent.get.split("\\|", -1).toList
     val afterParen: Option[String] = removeFirstParen(input)
     val allCombi: List[String] = parencontentSplit.map(x => x + afterParen.get)
     return allCombi
@@ -129,4 +129,52 @@ object ArollOutConway {
       return result
     }
   }
+
+  def getTailCodeFromRawConway(rawConway: String): Set[String] = {
+    return getTailCodeFromRawConwayHelper(Set(),rawConway)
+  }
+
+
+  private def getTailCodeFromRawConwayHelper(currentConway: Set[String],
+                                             rawConway: String): Set[String] = {
+    val anyTwoStrokeItems: Int = currentConway.filter(x => x.length > 1).size
+    if (anyTwoStrokeItems > 0 || rawConway.isEmpty) {
+      return currentConway
+    }
+    if (rawConway.last != ')' && currentConway.size == 0){
+      return getTailCodeFromRawConwayHelper(Set(rawConway.last.toString), rawConway.init)
+    }
+    if (rawConway.last != ')' && currentConway.size == 1) {
+      return currentConway.map(x => rawConway.last + x)
+    }
+    if (rawConway.last == ')' ) {
+      val unrollFirst: Set[String] = roolOutConwayHelper(List(rawConway))
+      return unrollFirst.map(x => getTailCodeFromRawConwayHelper(currentConway, x)).flatten.toSet
+    }
+    throw new RuntimeException("unknown conway state from tail")
+  }
+
+  def getHeadCodeFromRawConway(rawConway: String): Set[String] = {
+    return getHeadCodeFromRawConwayHelper(Set(),rawConway)
+  }
+
+  private def getHeadCodeFromRawConwayHelper(currentConway: Set[String],
+                                             rawConway: String): Set[String] = {
+    val anyTwoStrokeItems: Int = currentConway.filter(x => x.length > 1).size
+    if (anyTwoStrokeItems > 0 || rawConway.isEmpty) {
+      return currentConway
+    }
+    if (rawConway.head != '(' && currentConway.size == 0){
+      return getHeadCodeFromRawConwayHelper(Set(rawConway.head.toString), rawConway.tail)
+    }
+    if (rawConway.head != '(' && currentConway.size == 1) {
+      return currentConway.map(x => x + rawConway.head)
+    }
+    if (rawConway.head == '(' ) {
+      val unrollFirst: List[String] = rolloutFirstParen(rawConway)
+      return unrollFirst.map(x => getHeadCodeFromRawConwayHelper(currentConway, x)).flatten.toSet
+    }
+    throw new RuntimeException("unknown conway state from head")
+  }
+
 }
