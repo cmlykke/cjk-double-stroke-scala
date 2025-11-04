@@ -59,44 +59,43 @@ class ArollOutConwayTest extends AnyFlatSpec with Matchers {
 
   it should "test ability to get head of raw conway" in {
 
-    val test1: Set[String] = ArollOutConway.getHeadCodeFromRawConway(
+    val test1: Set[(String, String)] = ArollOutConway.getHeadCodeFromRawConway(
       "24(1|35)4(454|4454|4554)")
-    test1 shouldBe Set("24")
+    test1 shouldBe Set(("24","(1|35)4(454|4454|4554)"))
 
-    val test2: Set[String] = ArollOutConway.getHeadCodeFromRawConway(
+    val test2: Set[(String, String)] = ArollOutConway.getHeadCodeFromRawConway(
       "(1|35)4(454|4454|4554)")
-    test2 shouldBe Set("14","35")
+    test2 shouldBe Set(("14", "(454|4454|4554)"),("35", "4(454|4454|4554)"))
 
-    val test3: Set[String] = ArollOutConway.getHeadCodeFromRawConway(
+    val test3: Set[(String, String)] = ArollOutConway.getHeadCodeFromRawConway(
       "4(1|35)4(454|4454|4554)")
-    test3 shouldBe Set("41","43")
+    test3 shouldBe Set(("41", "4(454|4454|4554)"),("43", "54(454|4454|4554)"))
 
-    val test4: Set[String] = ArollOutConway.getHeadCodeFromRawConway(
+    val test4: Set[(String, String)] = ArollOutConway.getHeadCodeFromRawConway(
       "(1|)4(53|4454|4554)")
-    test4 shouldBe Set("14","45", "44")
+    test4 shouldBe Set(("14", "(53|4454|4554)"),("45", "3"),("44", "454"),("44", "554"))
 
   }
 
   it should "test ability to get tail of raw conway" in {
 
-    val test1: Set[String] = ArollOutConway.getTailCodeFromRawConway(
+    val test1: Set[(String, String)] = ArollOutConway.getTailCodeFromRawConway(
       "(4554|4544|454)4(53|1)42")
-    test1 shouldBe Set("42")
+    test1 shouldBe Set(("42","(4554|4544|454)4(53|1)"))
 
-    val test2: Set[String] = ArollOutConway.getTailCodeFromRawConway(
+    val test2: Set[(String, String)] = ArollOutConway.getTailCodeFromRawConway(
       "(4554|4544|454)4(53|1)")
-    test2 shouldBe Set("41", "53")
+    test2 shouldBe Set(("41","4554"),("41","4544"),("41","454"),("53","45544"), ("53","45444"), ("53","4544"))
 
-    val test3: Set[String] = ArollOutConway.getTailCodeFromRawConway(
+    val test3: Set[(String, String)] = ArollOutConway.getTailCodeFromRawConway(
       "(4554|4544|454)4(53|1)4"
     )
-    //  "4(1|35)4(454|4454|4554)".reverse)
-    test3 shouldBe Set("14", "34")
+    test3 shouldBe Set(("14","45544"),("14","45444"),("14","4544"), ("34","455445"),("34","454445"),("34","45445"))
 
-    val test4: Set[String] = ArollOutConway.getTailCodeFromRawConway(
+    val test4: Set[(String, String)] = ArollOutConway.getTailCodeFromRawConway(
       "(4554|4544|35)4(1|)"
     )
-    test4 shouldBe Set("41", "54", "44")
+    test4 shouldBe Set(("41","35"),("41","4544"),("41","4554"), ("54","3"),("44","455"),("44","454"))
 
   }
 
