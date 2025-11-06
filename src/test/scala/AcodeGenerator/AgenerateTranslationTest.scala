@@ -1,6 +1,6 @@
 package AcodeGenerator
 
-import AcodeGenerators.AgenerateTranslation
+import AcodeGenerators.{AgenerateTranslation, AredoneTranslation}
 import Adatasources.FileReaders.{AidsData, AreadCedictData, AreadConwayData}
 import Adatasources.ManualData.{AcodelengthRules, Aelements}
 import Asingletons.AsingletonsForTests
@@ -21,6 +21,188 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
     return AgenerateTranslation.getTranslationFromChineseString(
       text, AsingletonsForTests.conwaymap, AsingletonsForTests.idsmap, AsingletonsForTests.idsToStrokeMap, AsingletonsForTests.basicTranslation
     )
+  }
+
+  private def getTranslationsFromTextRedone(text: String): (String, Set[(String, SortingCodes)]) = {
+    val result: (String, Set[(String, SortingCodes)]) = AredoneTranslation.getTranslationFromChineseString(
+      text, AsingletonsForTests.conwaymap, AsingletonsForTests.idsmap, AsingletonsForTests.idsToStrokeMap, AsingletonsForTests.basicTranslation
+    )
+    return result
+  }
+
+  it should "testRedoneTranslation" in {
+
+    val test1 = getTranslationsFromTextRedone("誠")
+    test1 shouldBe ("誠", Set(
+      ("ikao", SortingCodes.FourCode),
+      ("ikae", SortingCodes.FourCode),
+      ("hhxhpo", SortingCodes.SixCode),
+      ("hhxhpe", SortingCodes.SixCode),
+      ("thxhpo", SortingCodes.SixCode),
+      ("thxhpe", SortingCodes.SixCode)))
+
+    // hhxhpe  ikao  hhxhpo  thxhpo  ikae  thxhpe
+
+    val test2 = getTranslationsFromTextRedone("子")
+    test2 shouldBe ("子",Set(
+      ("fh", TwoCode),
+      ("fhzz", SortingCodes.FourCode),
+      ("fhzzzz", SortingCodes.SixCode)))
+
+    //⺒
+    val test3 = getTranslationsFromTextRedone("⺒")
+    test3 shouldBe("⺒", Set(
+      ("gg", TwoCode),
+      ("ggzz", SortingCodes.FourCode),
+      ("ggzzzz", SortingCodes.SixCode)))
+
+
+    //⻭ and other characters exists as conway and ids codes, but cant be found
+    //by the ids map object at runtime.
+    //U+2EED	⻭	212143123452
+    //U+2EED	⻭	⿱止⿶凵米
+    val test4 = getTranslationsFromTextRedone("⻭")
+    test4 shouldBe("⻭", Set(
+      ("nnef", SortingCodes.FourCode),
+      ("nnejof", SortingCodes.SixCode)))
+
+
+    val test5 = getTranslationsFromTextRedone("彎")
+    test5 shouldBe("彎", Set(
+      ("iarm", SortingCodes.FourCode),
+      ("iawm", SortingCodes.FourCode),
+      ("hhxmsm", SortingCodes.SixCode),
+      ("thxmsm", SortingCodes.SixCode)))
+
+    val test5a = getTranslationsFromTextRedone("鬱")
+    test5a shouldBe("鬱", Set(
+      ("yjfi", SortingCodes.FourCode),
+      ("yjfjoi", SortingCodes.SixCode)))
+
+
+    val test6 = getTranslationsFromTextRedone("术")
+    test6 shouldBe("术", Set(
+      ("dtzz", SortingCodes.FourCode),
+      ("dt", SortingCodes.TwoCode),
+      ("jotzzz", SortingCodes.SixCode)))
+
+
+    val test7 = getTranslationsFromTextRedone("遤")
+    test7 shouldBe("遤", Set(
+      ("wws", SortingCodes.ThreeCodeSingleChar),
+      ("wqt", SortingCodes.ThreeCodeSingleChar),
+      ("wqs", SortingCodes.ThreeCodeSingleChar),
+      ("wwsz", SortingCodes.FourCode),
+      ("wqtz", SortingCodes.FourCode),
+      ("wqsz", SortingCodes.FourCode),
+      ("nhxwws", SortingCodes.SixCode),
+      ("jhxwws", SortingCodes.SixCode),
+    ))
+
+
+    val test8 = getTranslationsFromTextRedone("七")
+    test8 shouldBe("七", Set(
+      ("m", SortingCodes.OneCode),
+      ("mzzz", SortingCodes.FourCode),
+      ("mzzzzz", SortingCodes.SixCode)))
+
+    val test9 = getTranslationsFromTextRedone("虫")
+    test9 shouldBe("虫", Set(
+      ("s", SortingCodes.OneCode),
+      ("szzz", SortingCodes.FourCode),
+      ("xjlzzz", SortingCodes.SixCode)))
+
+    //述
+    val test10 = getTranslationsFromTextRedone("述")
+    test10 shouldBe("述", Set(
+      ("dws",SortingCodes.ThreeCodeSingleChar),
+      ("dwat", SortingCodes.FourCode),
+      ("dwsz", SortingCodes.FourCode),
+      ("dwqt", SortingCodes.FourCode),
+      ("jpwszz", SortingCodes.SixCode),
+      ("jowszz", SortingCodes.SixCode),
+      ("jowatz", SortingCodes.SixCode),
+      ("jpwqtz", SortingCodes.SixCode),
+      ("jpwatz", SortingCodes.SixCode),
+      ("jowqtz", SortingCodes.SixCode)
+    ))
+
+    val test11 = getTranslationsFromTextRedone("飲")
+    test11 shouldBe("飲", Set(
+      ("opo", SortingCodes.ThreeCodeSingleChar),
+      ("opoz", SortingCodes.FourCode),
+      ("oqhspo", SortingCodes.SixCode),
+      ("omhspo", SortingCodes.SixCode)
+    ))
+
+    val test12 = getTranslationsFromTextRedone("竹")
+    test12 shouldBe("竹", Set(
+      ("f", SortingCodes.OneCode),
+      ("fzzz", SortingCodes.FourCode),
+      ("yvjzzz", SortingCodes.SixCode)
+    ))
+
+    val test13 = getTranslationsFromTextRedone("煛")
+    test13 shouldBe("煛", Set(
+      ("kxho", SortingCodes.FourCode),
+      ("xhjgho", SortingCodes.SixCode),
+      ("eoxhjh", SortingCodes.SixCode)
+    ))
+
+    //if ("𧾷" == graph.char) {
+    val test14 = getTranslationsFromTextRedone("𧾷")
+    test14 shouldBe("𧾷", Set(
+      ("j", SortingCodes.OneCode),
+      ("jzzz", SortingCodes.FourCode),
+      ("xjjhzz", SortingCodes.SixCode),
+      ("xjmzzz", SortingCodes.SixCode)
+    ))
+  }
+
+  it should "test that a word can be translated - redone" in {
+
+    val test1 = getTranslationsFromTextRedone("摳腳")
+    test1 shouldBe("摳腳", Set(("lmphf", FiveCode), ("lmptf", FiveCode), ("lmp", ThreeCodeTwoCharWord)))
+
+    val test2 = getTranslationsFromTextRedone("外東北")
+    val conwaytest1 = AsingletonsForTests.conwaymap.get(Agrapheme("北"))
+    //211(15|35|53)
+    test2 shouldBe("外東北", Set(("pjond", FiveCode), ("pjonp", FiveCode), ("pjonm", FiveCode)))
+
+    val testC1 = getTranslationsFromTextRedone("箭头")
+    testC1._2.map(x => x._1).toSet shouldBe Set("fbwkt", "fbw")
+
+    val testD1 = getTranslationsFromTextRedone("外東北")
+    testD1._2.map(x => x._1).toSet shouldBe Set("pjond", "pjonp", "pjonm")
+
+    val testE1 = getTranslationsFromTextRedone("木蘭")
+    testE1._2.map(x => x._1).toSet shouldBe Set("dnjoz", "djjoz", "djboz", "djb", "dnj", "djj")
+
+    val testF1 = getTranslationsFromTextRedone("L照")
+    testF1._2.map(x => x._1).toSet shouldBe Set("zxhwz", "zxh")
+
+    val testG1 = getTranslationsFromTextRedone("越獄")
+    testG1._2.map(x => x._1).toSet shouldBe Set("jepow", "jep", "jed", "jepyw", "jop", "jedyw", "jopyw", "jodyw", "jopow", "jedow", "jod", "jodow")
+
+    val testH1 = getTranslationsFromTextRedone("母子")
+    testH1._2.map(x => x._1).toSet shouldBe Set("alf", "atfhz", "atf", "alfhz")
+
+    val testI1 = getTranslationsFromTextRedone("手足亲情")
+    testI1._2.map(x => x._1).toSet shouldBe Set("ljtcn", "ljtch", "ljtrn", "ljtwn", "ljtrh", "ljtwh")
+
+    val testJ1 = getTranslationsFromTextRedone("連詞")
+    testJ1._2.map(x => x._1).toSet shouldBe Set("esi", "esigg")
+
+    val testK1 = getTranslationsFromTextRedone("血鬱")
+    testK1._2.map(x => x._1).toSet shouldBe Set("uny", "unyji")
+
+    val testL1 = getTranslationsFromTextRedone("手足亲情")
+    testL1._2.map(x => x._1).toSet shouldBe Set("ljtcn", "ljtch", "ljtrn", "ljtwn", "ljtrh", "ljtwh")
+
+    val testM1 = getTranslationsFromTextRedone("連詞")
+    testM1._2.map(x => x._1).toSet shouldBe Set("esi", "esigg")
+
+
   }
 
   it should "generateCodesForAllCharacters" in {

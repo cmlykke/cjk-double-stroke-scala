@@ -97,9 +97,6 @@ object AgenerateElemAndRemainderLists {
                                    elemConway: Set[String],
                                    graph: Agrapheme,
                                    elemOpt: Option[String]): String = {
-    if ("誠" == graph.char) {
-      val test = ""
-    }
     if (elemConway.size == 1 && elemConway.head == "") {
       return rawConway
     }

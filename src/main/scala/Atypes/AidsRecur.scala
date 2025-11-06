@@ -23,6 +23,38 @@ object AidsRecur {
   
   val widthtrippleshape: Set[Agrapheme] = "⿲".map(x => Agrapheme(x.toString)).toSet
 
+  def findElementRedune(graph: Agrapheme,
+                        idsmap: HashMap[Agrapheme, String],
+                        idsToStrokeMap: Map[String, Aelementstype],
+                        backslashCleaned: List[String],
+                        localrecur: AidsRecur
+                       ): Option[Aelementstype] = {
+
+    val elem: Option[Aelementstype] = findElementReduneHelper(localrecur,localrecur,idsToStrokeMap)
+    return elem
+  }
+
+  def findElementReduneHelper(currentBestGuess: AidsRecur,
+                         localrecurOriginal: AidsRecur,
+                         idsToStrokeMap: Map[String, Aelementstype]): Option[Aelementstype] = {
+    if (idsToStrokeMap.contains(currentBestGuess.grapheme.char)) {
+      return idsToStrokeMap.get(currentBestGuess.grapheme.char)
+    } else if (idsToStrokeMap.contains(currentBestGuess.rawids)) {
+      return idsToStrokeMap.get(currentBestGuess.rawids)
+    } else if (currentBestGuess.recurNested.isEmpty){
+      return None
+    }
+    val nonShapeElems: List[AidsRecur] = currentBestGuess.recurNested.collectFirst {
+      case x if !shapes.contains(x.grapheme) => x
+    }.toList
+      //localrecurOriginal.recurNested.filter(x => !shapes.contains(x.grapheme))
+    if (nonShapeElems.size == 0) {
+      return None
+    }else {
+      return findElementReduneHelper(nonShapeElems.head,localrecurOriginal,idsToStrokeMap)
+    }
+  }
+
   def findElementmatch(graph: Agrapheme,
                        idsmap: HashMap[Agrapheme, String],
                        idsToStrokeMap: Map[String, Aelementstype],
