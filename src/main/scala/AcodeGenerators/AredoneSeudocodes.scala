@@ -4,6 +4,7 @@ import AcodeGenerators.AgenerateFinalSeudoCodes.getNoFillHelper
 import AcodeGenerators.AgenerateSeudoCodes.splitCodeListHelperSingleChar
 import Adatasources.ManualData.AcodelengthRules
 import AgraphemeToCodeConverters.AgraphemeToStrokeSet
+import Asingletons.AsingletonsForTests
 import Atypes.{AconwayColl, Aelementstype, Agrapheme, AidsRecur, AsortingCriteria, PossibleWordCodes, SortingCodes}
 
 import scala.collection.immutable.HashMap
@@ -131,13 +132,10 @@ object AredoneSeudocodes {
                              idsmap: HashMap[Agrapheme, String],
                              idsToStrokeMap: Map[String, Aelementstype]):
   Set[List[String]] = {
-    if (graph.char == "竹") {
-      val test = ""
-    }
     var result: Set[List[String]] = Set()
     val originalConway: Option[AconwayColl] = conwaymap.get(graph)
     if (originalConway.isEmpty) {
-      throw new RuntimeException("AidsRecur conway not found")
+      return Set(List(AsingletonsForTests.fillCharacter))
     }
     val localrecur: AidsRecur = AidsRecur(graph, idsmap, conwaymap, originalConway.get.rawConway.rawConway)
     val backslashCleaned: List[String] = originalConway.get.rawConway.rawConway.map(x =>  AgraphemeToStrokeSet.unrollBackSlash(x))

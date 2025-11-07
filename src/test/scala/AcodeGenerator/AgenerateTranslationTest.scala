@@ -185,7 +185,7 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
     testG1._2.map(x => x._1).toSet shouldBe Set("jepow", "jep", "jed", "jepyw", "jop", "jedyw", "jopyw", "jodyw", "jopow", "jedow", "jod", "jodow")
 
     val testH1 = getTranslationsFromTextRedone("母子")
-    testH1._2.map(x => x._1).toSet shouldBe Set("alf", "atfhz", "atf", "alfhz")
+    testH1._2.map(x => x._1).toSet shouldBe Set("anf", "alf", "ajf", "alfhz", "anfhz", "ajfhz")
 
     val testI1 = getTranslationsFromTextRedone("手足亲情")
     testI1._2.map(x => x._1).toSet shouldBe Set("ljtcn", "ljtch", "ljtrn", "ljtwn", "ljtrh", "ljtwh")

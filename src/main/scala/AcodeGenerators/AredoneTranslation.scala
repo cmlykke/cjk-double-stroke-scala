@@ -4,6 +4,7 @@ import Adatasources.ManualData.AcodelengthRules
 import Asingletons.AsingletonsForTests
 import Atypes.{AconwayColl, Aelementstype, Agrapheme, AsortingCriteria, PossibleWordCodes, SortingCodes}
 
+import java.util.stream.Collectors
 import scala.collection.immutable.HashMap
 
 object AredoneTranslation {
@@ -15,7 +16,12 @@ object AredoneTranslation {
                                       idsToStrokeMap: Map[String, Aelementstype],
                                       translationMap: Map[String, String]): (String, Set[(String, SortingCodes)]) = {
     if (graph.codePoints().count() > 1) {
-      return ("",Set())
+      val codepointGraphemes: List[String] = graph.codePoints().toArray.map { cp =>
+          new String(Character.toChars(cp.toInt))
+        }.toList
+      val seudoCodes: Set[(List[String], AsortingCriteria)] = multiCharacterCodes(codepointGraphemes,conwaymap,idsmap,idsToStrokeMap,translationMap)
+      val result = translateSeudoCodes((graph, seudoCodes), translationMap)
+      return result
     } else if (graph.codePoints().count() ==  1) {
       val seudoCodes: (String, Set[(List[String], AsortingCriteria)]) = singleCharacterCodes(graph,conwaymap,idsmap,idsToStrokeMap,translationMap)
       val result = translateSeudoCodes(seudoCodes, translationMap)
@@ -60,6 +66,91 @@ object AredoneTranslation {
       throw new RuntimeException("unhandled exception")
     }
   }
+
+  private def multiCharacterCodes(codepointGraphemes: List[String],
+                                  conwaymap: HashMap[Agrapheme, AconwayColl],
+                                  idsmap: HashMap[Agrapheme, String],
+                                  idsToStrokeMap: Map[String, Aelementstype],
+                                  translationMap: Map[String, String]): Set[(List[String], AsortingCriteria)] = {
+    if (codepointGraphemes.length == 2) {
+      val firstCharacter: Set[(List[String], AsortingCriteria)] = getCodesFromSingleWithInitial(Agrapheme(codepointGraphemes(0)),conwaymap,idsmap,idsToStrokeMap,PossibleWordCodes.FirstLastCode)
+      val secondCharacter: Set[(List[String], AsortingCriteria)] = getCodesFromSingleWithInitial(Agrapheme(codepointGraphemes(1)), conwaymap, idsmap, idsToStrokeMap,PossibleWordCodes.FirstSecondLastCode)
+      val tempSeudo: List[Set[(List[String], AsortingCriteria)]] = List(firstCharacter, secondCharacter)
+      val merge: Set[(List[String], AsortingCriteria)] = mergeCharsFromMultiWithFill(tempSeudo)
+      val threeCodesToadd = generateThreeCharCodes(merge)
+      return merge ++ threeCodesToadd
+    } else if (codepointGraphemes.length == 3) {
+      val firstCharacter: Set[(List[String], AsortingCriteria)] = getCodesFromSingleWithInitial(Agrapheme(codepointGraphemes(0)), conwaymap, idsmap, idsToStrokeMap,PossibleWordCodes.FirstCode)
+      val secondCharacter: Set[(List[String], AsortingCriteria)] = getCodesFromSingleWithInitial(Agrapheme(codepointGraphemes(1)), conwaymap, idsmap, idsToStrokeMap,PossibleWordCodes.FirstLastCode)
+      val thirdCharacter: Set[(List[String], AsortingCriteria)] = getCodesFromSingleWithInitial(Agrapheme(codepointGraphemes(2)), conwaymap, idsmap, idsToStrokeMap,PossibleWordCodes.FirstLastCode)
+      val tempSeudo: List[Set[(List[String], AsortingCriteria)]] = List(firstCharacter, secondCharacter, thirdCharacter)
+      val merge = mergeCharsFromMultiWithFill(tempSeudo)
+      return merge
+    } else if (codepointGraphemes.length == 4) {
+      val firstCharacter: Set[(List[String], AsortingCriteria)] = getCodesFromSingleWithInitial(Agrapheme(codepointGraphemes(0)), conwaymap, idsmap, idsToStrokeMap, PossibleWordCodes.FirstCode)
+      val secondCharacter: Set[(List[String], AsortingCriteria)] = getCodesFromSingleWithInitial(Agrapheme(codepointGraphemes(1)), conwaymap, idsmap, idsToStrokeMap, PossibleWordCodes.FirstCode)
+      val thirdCharacter: Set[(List[String], AsortingCriteria)] = getCodesFromSingleWithInitial(Agrapheme(codepointGraphemes(2)), conwaymap, idsmap, idsToStrokeMap, PossibleWordCodes.FirstCode)
+      val forthCharacter: Set[(List[String], AsortingCriteria)] = getCodesFromSingleWithInitial(Agrapheme(codepointGraphemes(3)), conwaymap, idsmap, idsToStrokeMap, PossibleWordCodes.FirstLastCode)
+      val tempSeudo: List[Set[(List[String], AsortingCriteria)]] = List(firstCharacter, secondCharacter, thirdCharacter, forthCharacter)
+      val merge = mergeCharsFromMultiWithFill(tempSeudo)
+      return merge
+    } else if (codepointGraphemes.length > 4) {
+      val firstCharacter: Set[(List[String], AsortingCriteria)] = getCodesFromSingleWithInitial(Agrapheme(codepointGraphemes(0)), conwaymap, idsmap, idsToStrokeMap, PossibleWordCodes.FirstCode)
+      val secondCharacter: Set[(List[String], AsortingCriteria)] = getCodesFromSingleWithInitial(Agrapheme(codepointGraphemes(1)), conwaymap, idsmap, idsToStrokeMap, PossibleWordCodes.FirstCode)
+      val thirdCharacter: Set[(List[String], AsortingCriteria)] = getCodesFromSingleWithInitial(Agrapheme(codepointGraphemes(2)), conwaymap, idsmap, idsToStrokeMap, PossibleWordCodes.FirstCode)
+      val forthCharacter: Set[(List[String], AsortingCriteria)] = getCodesFromSingleWithInitial(Agrapheme(codepointGraphemes(3)), conwaymap, idsmap, idsToStrokeMap, PossibleWordCodes.FirstCode)
+      val fifthCharacter: Set[(List[String], AsortingCriteria)] = getCodesFromSingleWithInitial(Agrapheme(codepointGraphemes(4)), conwaymap, idsmap, idsToStrokeMap, PossibleWordCodes.FirstCode)
+      val tempSeudo: List[Set[(List[String], AsortingCriteria)]] = List(firstCharacter, secondCharacter, thirdCharacter, forthCharacter,fifthCharacter)
+      val merge = mergeCharsFromMultiWithFill(tempSeudo)
+      return merge
+    } else {
+      throw new RuntimeException("multi character length not handled")
+    }
+  }
+
+  private def generateThreeCharCodes(merged: Set[(List[String], AsortingCriteria)]):
+                                    Set[(List[String], AsortingCriteria)] = {
+    val results = merged.map(x => generateThreeCharCodesHelper(List(), x, x)).toSet
+    return results
+  }
+
+  private def generateThreeCharCodesHelper(output: List[String],
+                                           inputTupple: (List[String], AsortingCriteria),
+                                           inputTuppleOriginal: (List[String], AsortingCriteria)):
+                                          (List[String], AsortingCriteria) = {
+    if (inputTupple._1.isEmpty || output.size == 3) {
+      return (output, SortingCodes.ThreeCodeTwoCharWord)
+    }
+    return generateThreeCharCodesHelper(output ++ List(inputTupple._1.head), (inputTupple._1.tail, inputTupple._2), inputTuppleOriginal)
+  }
+
+  private def mergeCharsFromMultiWithFill(inputCodes: List[Set[(List[String], AsortingCriteria)]]):
+                                  Set[(List[String], AsortingCriteria)] = {
+    val removeRedundant: List[Set[List[String]]] = inputCodes.map(x => x.map(y => y._1))
+    val zippedResult: Set[List[String]] = mergeCharsFromMultiHelper(Set(), removeRedundant, removeRedundant)
+    var zippedFilled: Set[List[String]] = Set()
+    for (eachZipped <- zippedResult) {
+      val eachSize: Int = eachZipped.size
+      val fillCharList: List[String] = (AsingletonsForTests.fillCharacter * (5 - eachSize)).map(x => x.toString).toList
+      zippedFilled = zippedFilled ++ Set(eachZipped ++ fillCharList)
+    }
+    return zippedFilled.map(x => (x, SortingCodes.FiveCode))
+  }
+
+  private def mergeCharsFromMultiHelper(output: Set[List[String]],
+                                        removeRedundant: List[Set[List[String]]],
+                                        removeRedundantOriginal: List[Set[List[String]]]): Set[List[String]] = {
+    if (removeRedundant.isEmpty) {
+      return output
+    }
+    if (output.isEmpty) {
+      return mergeCharsFromMultiHelper(removeRedundant.head, removeRedundant.tail, removeRedundantOriginal)
+    }
+    val firstSet: Set[List[String]] = removeRedundant.head
+    val updatedOutput: Set[List[String]] = output.map(x => firstSet.map(y => x ++ y)).flatten
+    return mergeCharsFromMultiHelper(updatedOutput, removeRedundant.tail, removeRedundantOriginal)
+  }
+
 
   private def singleCharacterCodes( graph: String,
                                     conwaymap: HashMap[Agrapheme, AconwayColl],
