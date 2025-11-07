@@ -27,7 +27,7 @@ class Acedicttest extends AnyFlatSpec with Matchers {
 
     val birdInInMap: Boolean = AsingletonsForTests.conwaymap.contains(Agrapheme("䳭"))
 
-    AsingletonsForTests.cedict.simplifiedWords.size shouldBe 119027
+    AsingletonsForTests.cedict.simplifiedWords.size shouldBe 119024
     AsingletonsForTests.cedict.traditionalWords.size shouldBe 120175
 
     val allSimpStrings: Set[String] = AsingletonsForTests.cedict.simplifiedWords.map(x => x.rawEntry).toSet

@@ -17,36 +17,6 @@ import scala.jdk.CollectionConverters.*
 
 class AtestSortingOrderPriorities extends AnyFlatSpec with Matchers {
 
-  private def getTranslationsFromTextMultipleTextsRedone(text: Set[String]): Set[(String, Set[(String, SortingCodes)])] = {
-    val result: Set[(String, Set[(String, SortingCodes)])] = text.map(x =>
-      getTranslationsFromTextRedone(x))
-    return result
-  }
-
-  private def getTranslationsFromTextRedone(text: String): (String, Set[(String, SortingCodes)]) = {
-    val result: (String, Set[(String, SortingCodes)]) = AredoneTranslation.getTranslationFromChineseString(
-      text, AsingletonsForTests.conwaymap, AsingletonsForTests.idsmap, AsingletonsForTests.idsToStrokeMap, AsingletonsForTests.basicTranslation
-    )
-    return result
-  }
-  
-  it should "test sortingWorks" in {
-
-    val allCodes: Set[(String, Set[(String, SortingCodes)])] = getTranslationsFromTextMultipleTextsRedone(AsingletonsForTests.chineseTextitems)
-
-    val output: Map[String, Set[(String, String, SortingCodes)]] = AsortWordsAndCharacters.convertTranslatedTextToSortFormat(allCodes)
-
-    val sortCharacters: List[(String, String, AsortingObject)] =
-      AsortWordsAndCharacters.sortCodes(
-        output, 
-        AsingletonsForTests.cedict, 
-        AsingletonsForTests.junda, 
-        AsingletonsForTests.tzai,
-        AtextType.Simplified)
-
-    val test = ""
-  }
-
   //priority 1 sorting
   it should "test lettercode" in {
     //lettercode
