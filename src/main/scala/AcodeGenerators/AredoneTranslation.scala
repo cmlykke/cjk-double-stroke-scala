@@ -157,12 +157,18 @@ object AredoneTranslation {
                                     idsmap: HashMap[Agrapheme, String],
                                     idsToStrokeMap: Map[String, Aelementstype],
                                     translationMap: Map[String, String]): (String, Set[(List[String], AsortingCriteria)]) = {
+    if (graph == "倗") {
+      val test = ""
+    }
     val singleCodesWithInitial: Set[(List[String], AsortingCriteria)]   =
       getCodesFromSingleWithInitial(Agrapheme(graph),conwaymap,idsmap,idsToStrokeMap,PossibleWordCodes.FirstFirstFirstLastCode)
     val singleCodesWihoutInitial: Set[(List[String], AsortingCriteria)]   =
       getCodesFromSingleWithoutInitial(Agrapheme(graph), conwaymap, idsmap, idsToStrokeMap, PossibleWordCodes.FirstFirstFirstFirstFirstLastCode)
     val resultSeudoCodes: Set[(List[String], AsortingCriteria)] = (singleCodesWithInitial ++ singleCodesWihoutInitial)
 
+    if (graph == "倗") {
+      val test = ""
+    }
     return (graph, resultSeudoCodes)
   }
 

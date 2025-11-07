@@ -4,7 +4,7 @@ import Adatasources.FileReaders.AreadConwayData
 import Adatasources.ManualData.AtextType
 import AgraphemeToCodeConverters.AgraphemeToStrokeSet.generateStrokeSetMultipleConway
 import Asingletons.AsingletonsForTests
-import Atypes.{AcedictColl, AcedictEntry, AconwayColl, Agrapheme, AsortingCriteria, AsortingObject}
+import Atypes.{AcedictColl, AcedictEntry, AconwayColl, Agrapheme, AsortingCriteria, AsortingObject, SortingCodes}
 
 import scala.math.Ordered.orderingToOrdered
 import scala.collection.immutable
@@ -13,7 +13,7 @@ import scala.collection.immutable.HashMap
 object AsortWordsAndCharacters {
 
   def sortCodes(
-                 input: Map[String, Set[(String, String, AsortingCriteria)]],
+                 input: Map[String, Set[(String, String, SortingCodes)]],
                  cedict: AcedictColl,
                  junda: immutable.HashMap[String, Int],
                  tzai: immutable.HashMap[String, Int],
@@ -31,7 +31,7 @@ object AsortWordsAndCharacters {
     return sortedList
   }
 
-  private def sortSet(inputSet: Set[(String, String, AsortingCriteria)],
+  private def sortSet(inputSet: Set[(String, String, SortingCodes)],
                       cedict: AcedictColl,
                       junda: immutable.HashMap[String, Int],
                       tzai: immutable.HashMap[String, Int],
@@ -44,7 +44,7 @@ object AsortWordsAndCharacters {
     return spicedTupples
   }
 
-  private def handleEachTup(eachTup: (String, String, AsortingCriteria),
+  private def handleEachTup(eachTup: (String, String, SortingCodes),
                             cedict: AcedictColl,
                             junda: immutable.HashMap[String, Int],
                             tzai: immutable.HashMap[String, Int],
@@ -96,16 +96,16 @@ object AsortWordsAndCharacters {
   }
 
   def convertTranslatedTextToSortFormat(
-                                         translateddText: Set[(String, Set[(String, AsortingCriteria)])]):
-  Map[String, Set[(String, String, AsortingCriteria)]] = {
-    val triples: Set[(String, String, AsortingCriteria)] = translateddText.flatMap {
+                                         translateddText: Set[(String, Set[(String, SortingCodes)])]):
+  Map[String, Set[(String, String, SortingCodes)]] = {
+    val triples: Set[(String, String, SortingCodes)] = translateddText.flatMap {
       case (outerText, innerSet) =>
         innerSet.map {
           case (innerString, criteria) =>
             (outerText, innerString, criteria)
         }
     }
-    val toSetbasedOnCodes: Map[String, Set[(String, String, AsortingCriteria)]] = triples.groupBy(_._2)
+    val toSetbasedOnCodes: Map[String, Set[(String, String, SortingCodes)]] = triples.groupBy(_._2)
     return toSetbasedOnCodes
   }
 }

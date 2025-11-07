@@ -39,7 +39,8 @@ object AidsRecur {
                          idsToStrokeMap: Map[String, Aelementstype]): Option[Aelementstype] = {
     if (idsToStrokeMap.contains(currentBestGuess.grapheme.char)) {
       return idsToStrokeMap.get(currentBestGuess.grapheme.char)
-    } else if (idsToStrokeMap.contains(currentBestGuess.rawids)) {
+    //} else if (idsToStrokeMap.contains(currentBestGuess.rawids)) {//} && currentBestGuess.grapheme.char != "烏") {
+    } else if (idsToStrokeMap.contains(currentBestGuess.rawids) && currentBestGuess.grapheme.char != "烏") {
       return idsToStrokeMap.get(currentBestGuess.rawids)
     } else if (currentBestGuess.recurNested.isEmpty){
       return None
@@ -118,6 +119,9 @@ object AidsRecur {
             rawIdsMap: HashMap[Agrapheme, String],
             conwaymap: HashMap[Agrapheme, AconwayColl],
             originalConway: List[String]): List[AidsRecur] = {
+    if (input.char == "倗") {
+      val test = ""
+    }
     var res: List[AidsRecur] = List()
     val graphOption: Option[AconwayColl] = conwaymap.get(input)
     val backslashCleaned: Option[List[String]] = graphOption

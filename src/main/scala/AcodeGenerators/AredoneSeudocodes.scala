@@ -1,6 +1,5 @@
 package AcodeGenerators
 
-import AcodeGenerators.AgenerateFinalSeudoCodes.getNoFillHelper
 import AcodeGenerators.AgenerateSeudoCodes.splitCodeListHelperSingleChar
 import Adatasources.ManualData.AcodelengthRules
 import AgraphemeToCodeConverters.AgraphemeToStrokeSet
@@ -19,7 +18,8 @@ object AredoneSeudocodes {
     if (conwayRes.isEmpty) {
       return Set((List(), PossibleWordCodes.FirstFirstFirstFirstFirstLastCode))
     }
-    val res: Set[(List[String], AsortingCriteria)] = splitCodeListSingleChar(conwayRes.get.rawConway.rawConway, PossibleWordCodes.FirstFirstFirstFirstFirstLastCode)
+    val backslashCleaned: List[String] = conwayRes.get.rawConway.rawConway.map(x => AgraphemeToStrokeSet.unrollBackSlash(x))
+    val res: Set[(List[String], AsortingCriteria)] = splitCodeListSingleChar(graph, backslashCleaned, PossibleWordCodes.FirstFirstFirstFirstFirstLastCode)
     return res  
   }
   
@@ -34,25 +34,25 @@ object AredoneSeudocodes {
     for (eachPair <- elemAndRemainder) {
       var getSplitCodes: Set[(List[String], AsortingCriteria)] = Set()
       if (eachPair.size == 1) {
-        getSplitCodes = splitCodeListSingleChar(eachPair, codeStructure)
+        getSplitCodes = splitCodeListSingleChar(graph,eachPair, codeStructure)
       }else if (eachPair.size == 2 && PossibleWordCodes.FirstCode == codeStructure) {
          getSplitCodes = Set((List(eachPair.head),codeStructure))
       }else if (eachPair.size == 2 && PossibleWordCodes.FirstLastCode == codeStructure) {
-        val temp: Set[(List[String], AsortingCriteria)] = splitCodeListSingleChar(eachPair.tail, PossibleWordCodes.LastCode)
+        val temp: Set[(List[String], AsortingCriteria)] = splitCodeListSingleChar(graph,eachPair.tail, PossibleWordCodes.LastCode)
         if (!temp.isEmpty) {
           getSplitCodes = temp.map(x => (List(eachPair.head) ++ x._1, x._2)).toSet
         }else {
           getSplitCodes = Set((List(eachPair.head), codeStructureOriginal))
         }
       }else if (eachPair.size == 2 && PossibleWordCodes.FirstSecondLastCode == codeStructure) {
-        val temp: Set[(List[String], AsortingCriteria)] = splitCodeListSingleChar(eachPair.tail, PossibleWordCodes.FirstLastCode)
+        val temp: Set[(List[String], AsortingCriteria)] = splitCodeListSingleChar(graph,eachPair.tail, PossibleWordCodes.FirstLastCode)
         if (!temp.isEmpty) {
           getSplitCodes = temp.map(x => (List(eachPair.head) ++ x._1, x._2)).toSet
         } else {
           getSplitCodes = Set((List(eachPair.head), codeStructureOriginal))
         }
       }else if (eachPair.size == 2 && PossibleWordCodes.FirstFirstFirstLastCode == codeStructure) {
-        val temp : Set[(List[String], AsortingCriteria)] = splitCodeListSingleChar(eachPair.tail, PossibleWordCodes.FirstSecondLastCode)
+        val temp : Set[(List[String], AsortingCriteria)] = splitCodeListSingleChar(graph,eachPair.tail, PossibleWordCodes.FirstSecondLastCode)
         if (!temp.isEmpty) {
           getSplitCodes = temp.map(x => (List(eachPair.head) ++ x._1, x._2)).toSet
         } else {
@@ -66,8 +66,12 @@ object AredoneSeudocodes {
     return result.map(x => (x._1, codeStructureOriginal)).toSet
   }
 
-  def splitCodeListSingleChar(inp: List[String],
+  def splitCodeListSingleChar(graph: Agrapheme,
+                              inp: List[String],
                               codeStructure: PossibleWordCodes):  Set[(List[String], AsortingCriteria)]  = {
+    if (graph.char == "倗") {
+      val test = ""
+    }
     val helperResults: Set[List[String]] = inp.map(x => splitCodeListSingleCharHelperRedune(Set(), x, x, codeStructure)).flatten.toSet
     val result: Set[(List[String], AsortingCriteria)] = helperResults.map(x => (x, codeStructure)).toSet
     return result
@@ -132,11 +136,14 @@ object AredoneSeudocodes {
                              idsmap: HashMap[Agrapheme, String],
                              idsToStrokeMap: Map[String, Aelementstype]):
   Set[List[String]] = {
+    if (graph.char == "烏") {
+      val test = ""
+    }
     var result: Set[List[String]] = Set()
     val originalConway: Option[AconwayColl] = conwaymap.get(graph)
     if (originalConway.isEmpty) {
       return Set(List(AsingletonsForTests.fillCharacter))
-    }
+    } // 馬車金糸言食門
     val localrecur: AidsRecur = AidsRecur(graph, idsmap, conwaymap, originalConway.get.rawConway.rawConway)
     val backslashCleaned: List[String] = originalConway.get.rawConway.rawConway.map(x =>  AgraphemeToStrokeSet.unrollBackSlash(x))
     val elemsfound = AidsRecur.findElementRedune(graph, idsmap, idsToStrokeMap, backslashCleaned, localrecur)

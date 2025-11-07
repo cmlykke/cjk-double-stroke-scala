@@ -8,25 +8,6 @@ object AgenerateSeudoCodes {
 
   val localFill: String = AcodelengthRules.fill
 
-  def splitCodeListMultiChar(inp: List[String], multiCharType: PossibleWordCodes): List[String] = {
-    val res = splitCodeListHelperMultiChar(List(), (inp, multiCharType))
-    return res
-  }
-
-  def splitCodeListHelperMultiChar(reslist: List[String],
-                                   inp: (List[String], PossibleWordCodes)): List[String] = {
-    if (inp._2 == FirstCode) {
-      return firstCode(List(), inp._1)
-    }
-    if (inp._2 == FirstLastCode) {
-      return firstLastCode(List(), inp._1)
-    }
-    if (inp._2 == FirstSecondLastCode) {
-      return firstSecondLastCode(List(), inp._1)
-    }
-    throw new RuntimeException("unhandled possibleWordCode")
-  }
-
   def splitCodeListSingleChar(inp: (List[String],Int),
                                       codeStructure: PossibleWordCodes): (List[String], AsortingCriteria) = {
     splitCodeListHelperSingleChar(List(), inp._1, codeStructure)

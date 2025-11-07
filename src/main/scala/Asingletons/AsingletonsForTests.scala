@@ -7,7 +7,6 @@ import Atypes.{AcedictColl, AcedictEntry, AconwayColl, Aelementstype, Agrapheme}
 import scala.collection.immutable
 import scala.collection.immutable.HashMap
 
-import AcodeGenerators.AgenerateTranslation
 import Adatasources.FileReaders.{AidsData, AreadCedictData, AreadConwayData}
 import Adatasources.ManualData.{AcodelengthRules, Aelements}
 import Asingletons.AsingletonsForTests
