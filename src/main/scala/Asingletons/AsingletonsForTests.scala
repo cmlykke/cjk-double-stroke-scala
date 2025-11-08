@@ -1,13 +1,11 @@
 package Asingletons
 
-import Adatasources.FileReaders.{AidsData, AjundaData, AreadCedictData, AreadConwayData, AtzaiData}
+import Adatasources.FileReaders.{AblcuData, AidsData, AjundaData, AreadCedictData, AreadConwayData, AtzaiData}
 import Adatasources.ManualData.{AcodelengthRules, Aelements}
 import Atypes.{AcedictColl, AcedictEntry, AconwayColl, Aelementstype, Agrapheme}
 
 import scala.collection.immutable
 import scala.collection.immutable.HashMap
-
-import Adatasources.FileReaders.{AidsData, AreadCedictData, AreadConwayData}
 import Adatasources.ManualData.{AcodelengthRules, Aelements}
 import Asingletons.AsingletonsForTests
 import AsortingCodes.AsortWordsAndCharacters
@@ -28,6 +26,7 @@ object AsingletonsForTests {
   lazy val junda: immutable.HashMap[String, Int] = getJunda()
   lazy val tzai: immutable.HashMap[String, Int] = getTzai()
   lazy val chineseTextitems: Set[String] = getAllChineseTextItems()
+  lazy val blcuData: immutable.HashMap[String, Int] = AblcuData.generateMapBLCUData()
   
   val fillCharacter: String = AcodelengthRules.fill
   
