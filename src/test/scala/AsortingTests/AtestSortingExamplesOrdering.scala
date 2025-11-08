@@ -22,6 +22,16 @@ class AtestSortingExamplesOrdering extends AnyFlatSpec with Matchers {
 
     val kg_codes = sorted_sortCharactersSimplified.filter(x => x._2 == "kg")
 
-    val test = ""
+    val allOrdered = kg_codes.map(x => x._1 + ", " + x._2 + ", " + x._3.sortingString).mkString("-")
+
+    allOrdered shouldBe 
+      "万, kg, Cri:2.CedictPrim:1.00322,.CedictSec:1.04033,.万" +
+        "-兀, kg, Cri:2.CedictPrim:1.02859,.CedictSec:1.03743,.兀" +
+        "-尢, kg, Cri:2.CedictPrim:1.06516,.CedictSec:1.05865,.尢" +
+        "-ㄤ, kg, Cri:2.CedictPrim:1.99999,.CedictSec:1.99999,.ㄤ" +
+        "-兀, kg, Cri:2.CedictPrim:2.99999,.CedictSec:2.04782,.兀" +
+        "-⺎, kg, Cri:2.CedictPrim:2.99999,.CedictSec:2.99999,.⺎" +
+        "-⺐, kg, Cri:2.CedictPrim:2.99999,.CedictSec:2.99999,.⺐"
+
   }
 }

@@ -11,6 +11,7 @@ class AsortingObject(val cedictPrimary: List[Boolean],
                      val hanchars: List[String],
                      val lettercode: String) extends Ordered[AsortingObject] {
 
+
   val cedictPrimaryComparison: Boolean = AsortingObject.cedictComparison(cedictPrimary)
   val cedictSecondaryComparison: Boolean = AsortingObject.cedictComparison(cedictSecondary)
 
@@ -21,7 +22,16 @@ class AsortingObject(val cedictPrimary: List[Boolean],
   val hancharComparison: List[Int] = AsortingObject.hancharComparison(hanchars)
   val lettercodeComparison: String = lettercode
 
+
+  val sortingString: String = AsortingObject.generateSortingString(
+    hanchars,lettercode,
+    cedictPrimaryComparison,cedictSecondaryComparison,charsetPrimaryComparison,charsetSecondaryComparison,
+    sortingCriteriaComparison,hancharComparison,lettercodeComparison)
+
   def compare(that: AsortingObject): Int = {
+
+    return this.sortingString.compare(that.sortingString)
+
     // Helper for boolean fields where true < false (true first in ascending sort)
     if (this.hanchars.length == 1 && this.hanchars.head == "木") {
       val test = ""
@@ -68,6 +78,64 @@ class AsortingObject(val cedictPrimary: List[Boolean],
 }
 
 object AsortingObject {
+
+  def generateSortingString(
+    hanchars: List[String],
+    lettercode: String,
+    cedictPrimaryComparison: Boolean,
+    cedictSecondaryComparison: Boolean,
+    charsetPrimaryComparison: List[Int],
+    charsetSecondaryComparison: List[Int],
+    sortingCriteriaComparison: Int,
+    hancharComparison: List[Int],
+    lettercodeComparison: String): String = {
+
+    val characterList: String =  hanchars.mkString("")
+
+    if (sortingCriteriaComparison > 9) {
+      throw new RuntimeException("Sorting criteria is greater than 9")
+    }
+    var criteriaStr: String = "Cri:" + sortingCriteriaComparison.toString
+
+    var cedictPrim: String = "CedictPrim:2"
+    if (cedictPrimaryComparison == true) {
+      cedictPrim = "CedictPrim:1"
+    } else {
+      cedictPrim = "CedictPrim:2"
+    }
+
+    var cedictSec: String = "CedictSec:2"
+    if (cedictSecondaryComparison == true) {
+      cedictSec = "CedictSec:1"
+    } else {
+      cedictSec = "CedictSec:2"
+    }
+
+    var mergedCharsetPrim: String = ""
+    for (eachInt <- charsetPrimaryComparison) {
+      if (eachInt == Int.MaxValue) {
+        mergedCharsetPrim = mergedCharsetPrim + "99999" + ","
+      } else {
+        mergedCharsetPrim = mergedCharsetPrim + f"$eachInt%05d" + ","
+      }
+    }
+
+    var mergedCharsetSec: String = ""
+    for (eachInt <- charsetSecondaryComparison) {
+      if (eachInt == Int.MaxValue) {
+        mergedCharsetSec = mergedCharsetSec + "99999" + ","
+      } else {
+        mergedCharsetSec = mergedCharsetSec + f"$eachInt%05d" + ","
+      }
+    }
+
+
+    val outout = criteriaStr + "." +
+      cedictPrim + "." + mergedCharsetPrim + "." +
+      cedictSec + "." + mergedCharsetSec + "." + characterList
+
+    return outout
+  }
 
   def lettercodeComparison(lettercodeThis: String, lettercodeThat: String): Int = {
     val lenThis = lettercodeThis.length
