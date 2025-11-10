@@ -47,7 +47,7 @@ object AsortingObject {
       return wordFreqResult
     }
 
-    return AtextType.OtherHan  Character
+    return AtextType.OtherHanCharacter
   }
 
   private def getBooleanResult(simplified: Boolean, Traditional: Boolean): AtextType = {

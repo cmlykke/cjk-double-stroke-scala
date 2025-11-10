@@ -14,30 +14,36 @@ class AtestOutputStatistics extends AnyFlatSpec with Matchers {
 
   it should "test sorting two letters" in {
 
-    val simplifiedSingleHits_whenSortedForSimp: Set[String] = sorted_sortCharactersSimplified
+    val simplifiedSingleHits: Set[String] = sorted_sortCharactersSimplified
         .filter(y => y._3.graphemes.length == 1)
         .filter(x =>
-        (x._3.cedictType == AtextType.Simplified) || (x._3.cedictType == AtextType.BothSimplifiedAndTraditional))
-        .map(z => z._1).toSet
-
-    val simplifiedWordHits_whenSortedForSimp: Set[String] = sorted_sortCharactersSimplified
-      .filter(y => y._3.graphemes.length > 1)
-      .filter(x =>
-        (x._3.cedictType == AtextType.Simplified) || (x._3.cedictType == AtextType.BothSimplifiedAndTraditional))
+          !(x._3.cedictType == AtextType.Neither))
       .map(z => z._1).toSet
 
-    val simplifiedSingleHits_whenSortedForSimp: Set[String] = sorted_sortCharactersSimplified
+    val simplifiedWordHits: Set[String] = sorted_sortCharactersSimplified
+      .filter(y => y._3.graphemes.length > 1)
+      .filter(x =>
+        !(x._3.cedictType == AtextType.Neither))
+      .map(z => z._1).toSet
+
+    val traditionalSingleHits: Set[String] = sorted_sortCharactersTraditional
       .filter(y => y._3.graphemes.length == 1)
       .filter(x =>
-        (x._3.cedictType == AtextType.Simplified) || (x._3.cedictType == AtextType.BothSimplifiedAndTraditional))
+        !(x._3.cedictType == AtextType.Neither))
       .map(z => z._1).toSet
 
-    val simplifiedWordHits_whenSortedForSimp: Set[String] = sorted_sortCharactersSimplified
+    val traditionalWordHits: Set[String] = sorted_sortCharactersTraditional
       .filter(y => y._3.graphemes.length > 1)
       .filter(x =>
-        (x._3.cedictType == AtextType.Simplified) || (x._3.cedictType == AtextType.BothSimplifiedAndTraditional))
+        !(x._3.cedictType == AtextType.Neither))
       .map(z => z._1).toSet
 
+    simplifiedSingleHits.size shouldBe 28318
+    traditionalSingleHits.size shouldBe 28318
+
+    simplifiedWordHits.size shouldBe 179753
+    traditionalWordHits.size shouldBe 179753
+    
 
   }
 
