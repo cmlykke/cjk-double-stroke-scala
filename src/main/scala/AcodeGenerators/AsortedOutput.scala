@@ -23,6 +23,8 @@ object AsortedOutput {
       AsingletonsForTests.cedict,
       AsingletonsForTests.junda,
       AsingletonsForTests.tzai,
+      AsingletonsForTests.blcuData,
+      AsingletonsForTests.sinicaData,
       AtextType.Simplified)
 
   def getTranslationsFromTextRedone(text: String): (String, Set[(String, SortingCodes)]) = {

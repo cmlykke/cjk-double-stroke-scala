@@ -232,7 +232,7 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
       x._2.map { y => (x._1, y._1) }
     }.flatten.toSet
 
-    allNewCodes_unsortedStrings.size shouldBe 537573
+    allNewCodes_unsortedStrings.size shouldBe 537561
 
     val oldCodes: SortedMap[String, List[OutputEntry]] = GenerateOutputStrings.mapFullJunda
     val oldCodes_unsortedStrings: Set[(String, String)] =
@@ -265,7 +265,7 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
 
     val notFoundInCedict: Set[String] = conwayStrings.filter(x => !total.contains(x))
 
-    notFoundInConway shouldBe Set("ㄅ", "ˋ", "，", "ㄏ", "：", "·", "π")
+    notFoundInConway shouldBe Set("ˋ", "，", "ㄏ", "：", "、", "·", "π")
     notFoundInCedict.size shouldBe 13719
 
   }

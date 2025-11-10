@@ -18,13 +18,7 @@ class AblcuTest extends AnyFlatSpec with Matchers {
     blcuData.size shouldBe 1048570
 
     val test9056 = blcuData.filter(x => x._2 == 9056).toList
-    test9056 shouldBe List(("肖逸", 9056),("急腹症",9056),("不结盟运动",9056))
-
-    /*
-    急腹症	9056
-    肖逸	9056
-    不结盟运动	9056
-    */
+    test9056 shouldBe List(("缺失", 9056))
     
   }
 }

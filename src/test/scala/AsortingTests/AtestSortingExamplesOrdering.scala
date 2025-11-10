@@ -25,13 +25,13 @@ class AtestSortingExamplesOrdering extends AnyFlatSpec with Matchers {
     val allOrdered = kg_codes.map(x => x._1 + ", " + x._2 + ", " + x._3.sortingString).mkString("-")
 
     allOrdered shouldBe 
-      "万, kg, Cri:2.CedictPrim:1.00322,.CedictSec:1.04033,.万" +
-        "-兀, kg, Cri:2.CedictPrim:1.02859,.CedictSec:1.03743,.兀" +
-        "-尢, kg, Cri:2.CedictPrim:1.06516,.CedictSec:1.05865,.尢" +
-        "-ㄤ, kg, Cri:2.CedictPrim:1.99999,.CedictSec:1.99999,.ㄤ" +
-        "-兀, kg, Cri:2.CedictPrim:2.99999,.CedictSec:2.04782,.兀" +
-        "-⺎, kg, Cri:2.CedictPrim:2.99999,.CedictSec:2.99999,.⺎" +
-        "-⺐, kg, Cri:2.CedictPrim:2.99999,.CedictSec:2.99999,.⺐"
+      "万, kg, Cri:2.CedictPrim:1.00322,.Word:9999999,.CedictSec:1.04033,.Word:9999999,.万-" +
+        "兀, kg, Cri:2.CedictPrim:1.02859,.Word:0016338,.CedictSec:1.03743,.Word:9999999,.兀-" +
+        "尢, kg, Cri:2.CedictPrim:1.06516,.Word:0074614,.CedictSec:1.05865,.Word:9999999,.尢-" +
+        "ㄤ, kg, Cri:2.CedictPrim:1.99999,.Word:0186175,.CedictSec:1.99999,.Word:9999999,.ㄤ-" +
+        "兀, kg, Cri:2.CedictPrim:2.99999,.Word:0293231,.CedictSec:2.04782,.Word:9999999,.兀-" +
+        "⺎, kg, Cri:2.CedictPrim:2.99999,.Word:9999999,.CedictSec:2.99999,.Word:9999999,.⺎-" +
+        "⺐, kg, Cri:2.CedictPrim:2.99999,.Word:9999999,.CedictSec:2.99999,.Word:9999999,.⺐"
 
   }
 }

@@ -1,5 +1,6 @@
 package Atypes
 
+import scala.collection.immutable
 import scala.jdk.StreamConverters.*
 import scala.math.Ordering
 
@@ -7,6 +8,8 @@ class AsortingObject(val cedictPrimary: List[Boolean],
                      val cedictSecondary: List[Boolean],
                      val charsetPrimary: List[Int],
                      val charsetSecondary: List[Int],
+                     val bcluData: immutable.HashMap[String, Int],
+                     val sinicaData: immutable.HashMap[String, Int],
                      val sortingCriteria: AsortingCriteria,
                      val hanchars: List[String],
                      val lettercode: String) extends Ordered[AsortingObject] {
@@ -18,6 +21,9 @@ class AsortingObject(val cedictPrimary: List[Boolean],
   val charsetPrimaryComparison: List[Int] = AsortingObject.charsetComparison(charsetPrimary)
   val charsetSecondaryComparison: List[Int] = AsortingObject.charsetComparison(charsetSecondary)
 
+  val bcluAndSinicaPrimary: Int = AsortingObject.wordFreq(hanchars, bcluData)
+  val bcluAndSinicaSecondary: Int = AsortingObject.wordFreq(hanchars, sinicaData)
+
   val sortingCriteriaComparison: Int = sortingCriteria.code
   val hancharComparison: List[Int] = AsortingObject.hancharComparison(hanchars)
   val lettercodeComparison: String = lettercode
@@ -26,7 +32,10 @@ class AsortingObject(val cedictPrimary: List[Boolean],
   val sortingString: String = AsortingObject.generateSortingString(
     hanchars,lettercode,
     cedictPrimaryComparison,cedictSecondaryComparison,charsetPrimaryComparison,charsetSecondaryComparison,
+    bcluAndSinicaPrimary, bcluAndSinicaSecondary,
     sortingCriteriaComparison,hancharComparison,lettercodeComparison)
+
+  val test = ""
 
   def compare(that: AsortingObject): Int = {
 
@@ -86,6 +95,8 @@ object AsortingObject {
     cedictSecondaryComparison: Boolean,
     charsetPrimaryComparison: List[Int],
     charsetSecondaryComparison: List[Int],
+    bcluAndSinicaPrimary: Int,
+    bcluAndSinicaSecondary: Int,
     sortingCriteriaComparison: Int,
     hancharComparison: List[Int],
     lettercodeComparison: String): String = {
@@ -129,14 +140,31 @@ object AsortingObject {
       }
     }
 
+    var mergedbcluAndSinicaPrim: String = ""
+    
+      if (bcluAndSinicaPrimary == Int.MaxValue) {
+        mergedbcluAndSinicaPrim = mergedbcluAndSinicaPrim + "Word:" + "9999999" + ","
+      } else {
+        mergedbcluAndSinicaPrim = mergedbcluAndSinicaPrim + "Word:" + f"$bcluAndSinicaPrimary%07d" + ","
+      }
+    
+
+    var mergedbcluAndSinicaSec: String = ""
+    
+      if (bcluAndSinicaSecondary == Int.MaxValue) {
+        mergedbcluAndSinicaSec = mergedbcluAndSinicaSec + "Word:" + "9999999" + ","
+      } else {
+        mergedbcluAndSinicaSec = mergedbcluAndSinicaSec + "Word:" + f"$bcluAndSinicaSecondary%07d" + ","
+      }
+    
 
     val outout = criteriaStr + "." +
-      cedictPrim + "." + mergedCharsetPrim + "." +
-      cedictSec + "." + mergedCharsetSec + "." + characterList
+      cedictPrim + "." + mergedCharsetPrim + "." + mergedbcluAndSinicaPrim + "."
+      + cedictSec + "." + mergedCharsetSec + "." + mergedbcluAndSinicaSec + "." +  characterList
 
     return outout
   }
-
+//Cri:6.CedictPrim:1.00004,00088,00294,.Word:0000004,Word:0000088,Word:0000294,.CedictSec:2.00003,00148,99999,.Word:0000003,Word:0000148,Word:9999999,.不像样
   def lettercodeComparison(lettercodeThis: String, lettercodeThat: String): Int = {
     val lenThis = lettercodeThis.length
     val lenThat = lettercodeThat.length
@@ -151,6 +179,15 @@ object AsortingObject {
       return stringcomparison
     }
   }
+
+  def wordFreq(inputWord: List[String], freq: immutable.HashMap[String, Int]): Int = {
+    val getVal = freq.get(inputWord.mkString(""))
+    if (getVal.isEmpty) {
+      return Int.MaxValue
+    } else {
+      return getVal.get
+    }
+  } 
 
   def charsetComparison(charset: List[Int]): List[Int] = {
     charset.sorted

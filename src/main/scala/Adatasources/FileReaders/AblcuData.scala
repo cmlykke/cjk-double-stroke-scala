@@ -15,10 +15,12 @@ object AblcuData {
 
     val resultMap = new mutable.HashMap[String, Int]()
 
+    var countEach = 1
     for (line <- lines) {
       val processedLine = if (line.startsWith("\ufeff")) line.substring(1) else line
       val Array(field1, field2, _*) = processedLine.split("\t")
-      resultMap.put(field1, field2.toInt) //valInteger.valueOf(field3))
+      resultMap.put(field1, countEach) //valInteger.valueOf(field3))
+      countEach = countEach + 1 
     }
 
     bufferedSource.close()

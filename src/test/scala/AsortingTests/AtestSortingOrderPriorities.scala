@@ -11,7 +11,7 @@ import UtilityClasses.OutputEntry
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
-import scala.collection.immutable.SortedMap
+import scala.collection.immutable.{HashMap, SortedMap}
 import scala.jdk.CollectionConverters.*
 
 
@@ -21,27 +21,29 @@ class AtestSortingOrderPriorities extends AnyFlatSpec with Matchers {
   it should "test lettercode" in {
     //lettercode
     val test1a: AsortingObject = AsortingObject(
-      List(true), List(true), List(-10), List(-10), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abcd")
+      List(true), List(true), List(-10), List(-10), 
+      HashMap[String, Int](),HashMap[String, Int](), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abcd")
     val test1b: AsortingObject = AsortingObject(
-      List(true), List(true), List(-10), List(-10), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abce")
+      List(true), List(true), List(-10), List(-10), 
+      HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abce")
 
     val testcomp = test1a.compare(test1b)
     testcomp shouldBe -1
 
     //lettercode
     val test2a: AsortingObject = AsortingObject(
-      List(true), List(true), List(-10), List(-10), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abcd")
+      List(true), List(true), List(-10), List(-10), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abcd")
     val test2b: AsortingObject = AsortingObject(
-      List(true), List(true), List(-10), List(-10), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
+      List(true), List(true), List(-10), List(-10), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
 
     val testcomp2 = test2a.compare(test2b)
     testcomp2 shouldBe 1
 
     //short letter codes should come before longer codes earlier in the alphabet
     val test3a: AsortingObject = AsortingObject(
-      List(true), List(true), List(-10), List(-10), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abcd")
+      List(true), List(true), List(-10), List(-10), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abcd")
     val test3b: AsortingObject = AsortingObject(
-      List(true), List(true), List(-10), List(-10), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "bbb")
+      List(true), List(true), List(-10), List(-10), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("辭", "馬", "足", "手"), "bbb")
 
     val testcomp3 = test3a.compare(test3b)
     testcomp3 shouldBe 1
@@ -53,9 +55,9 @@ class AtestSortingOrderPriorities extends AnyFlatSpec with Matchers {
 
     //sorting criteria
     val test5a: AsortingObject = AsortingObject(
-      List(true), List(true), List(-10), List(-10), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
+      List(true), List(true), List(-10), List(-10), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
     val test5b: AsortingObject = AsortingObject(
-      List(true), List(true), List(-10), List(-10), SortingCodes.TwoCode, List("辭", "馬", "足", "手"), "abc")
+      List(true), List(true), List(-10), List(-10), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.TwoCode, List("辭", "馬", "足", "手"), "abc")
 
     val testcomp5 = test5a.compare(test5b)
     testcomp5 shouldBe -1
@@ -66,17 +68,17 @@ class AtestSortingOrderPriorities extends AnyFlatSpec with Matchers {
   it should "test cedict ordering primary" in {
 
     val test6a: AsortingObject = AsortingObject(
-      List(false), List(true), List(-20), List(-20), SortingCodes.OneCode, List("的", "馬", "足", "手"), "abc")
+      List(false), List(true), List(-20), List(-20), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("的", "馬", "足", "手"), "abc")
     val test6b: AsortingObject = AsortingObject(
-      List(true), List(false), List(-10), List(-10), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
+      List(true), List(false), List(-10), List(-10), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
 
     val testcomp6 = test6a.compare(test6b)
     testcomp6 shouldBe 1
 
     val test7a: AsortingObject = AsortingObject(
-      List(true), List(false), List(-10), List(-10), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
+      List(true), List(false), List(-10), List(-10), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
     val test7b: AsortingObject = AsortingObject(
-      List(false), List(true), List(-20), List(-20), SortingCodes.OneCode, List("的", "馬", "足", "手"), "abc")
+      List(false), List(true), List(-20), List(-20), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("的", "馬", "足", "手"), "abc")
 
     val testcomp7 = test7a.compare(test7b)
     testcomp7 shouldBe -1
@@ -86,17 +88,17 @@ class AtestSortingOrderPriorities extends AnyFlatSpec with Matchers {
   it should "test ordering charset primary" in {
 
     val test6a: AsortingObject = AsortingObject(
-      List(true), List(true), List(-10), List(-20), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
+      List(true), List(true), List(-10), List(-20), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
     val test6b: AsortingObject = AsortingObject(
-      List(true), List(false), List(-20), List(-10), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
+      List(true), List(false), List(-20), List(-10), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
 
     val testcomp6 = test6a.compare(test6b)
     testcomp6 shouldBe 1
 
     val test7a: AsortingObject = AsortingObject(
-      List(true), List(false), List(-20), List(-10), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
+      List(true), List(false), List(-20), List(-10), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
     val test7b: AsortingObject = AsortingObject(
-      List(true), List(true), List(-10), List(-20), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
+      List(true), List(true), List(-10), List(-20), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
 
     val testcomp7 = test7a.compare(test7b)
     testcomp7 shouldBe -1
@@ -107,17 +109,17 @@ class AtestSortingOrderPriorities extends AnyFlatSpec with Matchers {
   it should "test ordering charset secondary" in {
 
     val test6a: AsortingObject = AsortingObject(
-      List(true), List(true), List(-20), List(-10), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
+      List(true), List(true), List(-20), List(-10), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
     val test6b: AsortingObject = AsortingObject(
-      List(true), List(false), List(-20), List(-20), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
+      List(true), List(false), List(-20), List(-20), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
 
     val testcomp6 = test6a.compare(test6b)
     testcomp6 shouldBe 1
 
     val test7a: AsortingObject = AsortingObject(
-      List(true), List(false), List(-20), List(-20), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
+      List(true), List(false), List(-20), List(-20), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
     val test7b: AsortingObject = AsortingObject(
-      List(true), List(true), List(-20), List(-10), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
+      List(true), List(true), List(-20), List(-10), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
 
     val testcomp7 = test7a.compare(test7b)
     testcomp7 shouldBe -1
@@ -128,17 +130,17 @@ class AtestSortingOrderPriorities extends AnyFlatSpec with Matchers {
   it should "test ordering cedict secondary" in {
 
     val test6a: AsortingObject = AsortingObject(
-      List(true), List(false), List(-20), List(-20), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
+      List(true), List(false), List(-20), List(-20), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
     val test6b: AsortingObject = AsortingObject(
-      List(true), List(true), List(-20), List(-20), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
+      List(true), List(true), List(-20), List(-20), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
 
     val testcomp6 = test6a.compare(test6b)
     testcomp6 shouldBe 1
 
     val test7a: AsortingObject = AsortingObject(
-      List(true), List(true), List(-20), List(-20), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
+      List(true), List(true), List(-20), List(-20), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
     val test7b: AsortingObject = AsortingObject(
-      List(true), List(false), List(-20), List(-20), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
+      List(true), List(false), List(-20), List(-20), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
 
     val testcomp7 = test7a.compare(test7b)
     testcomp7 shouldBe -1
@@ -149,17 +151,17 @@ class AtestSortingOrderPriorities extends AnyFlatSpec with Matchers {
   it should "test ordering hanchar" in {
 
     val test6a: AsortingObject = AsortingObject(
-      List(true), List(true), List(-10), List(-10), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
+      List(true), List(true), List(-10), List(-10), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
     val test6b: AsortingObject = AsortingObject(
-      List(true), List(true), List(-10), List(-10), SortingCodes.OneCode, List("的", "馬", "足", "手"), "abc")
+      List(true), List(true), List(-10), List(-10), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("的", "馬", "足", "手"), "abc")
 
     val testcomp6 = test6a.compare(test6b)
     testcomp6 shouldBe 1
 
     val test7a: AsortingObject = AsortingObject(
-      List(true), List(true), List(-10), List(-10), SortingCodes.OneCode, List("的", "馬", "足", "手"), "abc")
+      List(true), List(true), List(-10), List(-10), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("的", "馬", "足", "手"), "abc")
     val test7b: AsortingObject = AsortingObject(
-      List(true), List(true), List(-10), List(-10), SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
+      List(true), List(true), List(-10), List(-10), HashMap[String, Int](),HashMap[String, Int](),SortingCodes.OneCode, List("辭", "馬", "足", "手"), "abc")
 
     val testcomp7 = test7a.compare(test7b)
     testcomp7 shouldBe -1

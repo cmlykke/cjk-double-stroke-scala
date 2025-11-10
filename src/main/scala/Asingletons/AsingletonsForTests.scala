@@ -1,6 +1,6 @@
 package Asingletons
 
-import Adatasources.FileReaders.{AblcuData, AidsData, AjundaData, AreadCedictData, AreadConwayData, AtzaiData}
+import Adatasources.FileReaders.{AblcuData, AidsData, AjundaData, AreadCedictData, AreadConwayData, AsinicaData, AtzaiData}
 import Adatasources.ManualData.{AcodelengthRules, Aelements}
 import Atypes.{AcedictColl, AcedictEntry, AconwayColl, Aelementstype, Agrapheme}
 
@@ -27,6 +27,7 @@ object AsingletonsForTests {
   lazy val tzai: immutable.HashMap[String, Int] = getTzai()
   lazy val chineseTextitems: Set[String] = getAllChineseTextItems()
   lazy val blcuData: immutable.HashMap[String, Int] = AblcuData.generateMapBLCUData()
+  lazy val sinicaData: immutable.HashMap[String, Int] = AsinicaData.sinicaMap
   
   val fillCharacter: String = AcodelengthRules.fill
   

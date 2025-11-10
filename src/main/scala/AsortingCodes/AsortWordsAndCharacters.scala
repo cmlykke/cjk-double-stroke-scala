@@ -17,10 +17,12 @@ object AsortWordsAndCharacters {
                  cedict: AcedictColl,
                  junda: immutable.HashMap[String, Int],
                  tzai: immutable.HashMap[String, Int],
-                 texttype: AtextType
+                 bcluData: immutable.HashMap[String, Int],
+                 sinicaData: immutable.HashMap[String, Int],
+                 texttype: AtextType 
                ): List[(String, String, AsortingObject)] = {
     val allSets: Set[(String, String, AsortingObject)] = input
-      .map(x => sortSet(x._2, cedict, junda, tzai, texttype)).flatten.toSet
+      .map(x => sortSet(x._2, cedict, junda, tzai, bcluData, sinicaData,texttype)).flatten.toSet
 
     val noncodes = allSets.filter(x => x._2 == "non")
     val nonSet = noncodes.map(x => x._1).toSet
@@ -35,11 +37,15 @@ object AsortWordsAndCharacters {
                       cedict: AcedictColl,
                       junda: immutable.HashMap[String, Int],
                       tzai: immutable.HashMap[String, Int],
+                      bcluData: immutable.HashMap[String, Int],
+                      sinicaData: immutable.HashMap[String, Int],
                       texttype: AtextType): Set[(String, String, AsortingObject)] = {
     val spicedTupples: Set[(String, String, AsortingObject)] = inputSet
       .map(x => handleEachTup(x,  cedict: AcedictColl,
       junda: immutable.HashMap[String, Int],
       tzai: immutable.HashMap[String, Int],
+        bcluData: immutable.HashMap[String, Int],
+        sinicaData: immutable.HashMap[String, Int],
       texttype: AtextType))
     return spicedTupples
   }
@@ -48,6 +54,8 @@ object AsortWordsAndCharacters {
                             cedict: AcedictColl,
                             junda: immutable.HashMap[String, Int],
                             tzai: immutable.HashMap[String, Int],
+                            bcluData: immutable.HashMap[String, Int],
+                            sinicaData: immutable.HashMap[String, Int],
                             texttype: AtextType): (String, String, AsortingObject) = {
     val charList: Set[String] = AsingletonsForTests.wordToSingle(eachTup._1)
     val eachChar: Set[(String, (Boolean, Int, Boolean, Int))] = charList.map(x => lookupEachChar(x,cedict, junda,tzai,texttype))
@@ -64,6 +72,8 @@ object AsortWordsAndCharacters {
         cedictSecondaryForSorting,
         charsetPrimaryForSorting,
         charsetSecondaryForSorting,
+        bcluData,
+        sinicaData,
         sortingCriteriaForSorting,
         hanCharsForSorting,
         lettercodeForSorting)
