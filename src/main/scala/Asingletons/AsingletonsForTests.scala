@@ -1,15 +1,15 @@
 package Asingletons
 
+import AcodeGenerators.AsortedOutput
 import Adatasources.FileReaders.{AblcuData, AidsData, AjundaData, AreadCedictData, AreadConwayData, AsinicaData, AtzaiData}
 import Adatasources.ManualData.{AcodelengthRules, Aelements}
-import Atypes.{AcedictColl, AcedictEntry, AconwayColl, Aelementstype, Agrapheme}
+import Atypes.{AcedictColl, AcedictEntry, AconwayColl, Aelementstype, Agrapheme, AsortingCriteria, AsortingObject, PossibleWordCodes, SortingCodes}
 
 import scala.collection.immutable
 import scala.collection.immutable.HashMap
 import Adatasources.ManualData.{AcodelengthRules, Aelements}
 import Asingletons.AsingletonsForTests
 import AsortingCodes.AsortWordsAndCharacters
-import Atypes.{AcedictColl, AcedictEntry, Aelementstype, Agrapheme, AsortingCriteria, PossibleWordCodes, SortingCodes}
 import GenerateOutput.GenerateOutputStrings
 import UtilityClasses.OutputEntry
 
@@ -28,6 +28,8 @@ object AsingletonsForTests {
   lazy val chineseTextitems: Set[String] = getAllChineseTextItems()
   lazy val blcuData: immutable.HashMap[String, Int] = AblcuData.generateMapBLCUData()
   lazy val sinicaData: immutable.HashMap[String, Int] = AsinicaData.sinicaMap
+  lazy val outputSortedSimp: List[(String, String, AsortingObject)] = AsortedOutput.sortCharactersSimplified
+  lazy val outputSortedTrad: List[(String, String, AsortingObject)] = AsortedOutput.sortCharactersTraditional
   
   val fillCharacter: String = AcodelengthRules.fill
   

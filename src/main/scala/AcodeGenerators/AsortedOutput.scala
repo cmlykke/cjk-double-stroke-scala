@@ -7,27 +7,41 @@ import Atypes.{AsortingObject, SortingCodes}
 
 object AsortedOutput {
 
-  val allCodes: Set[(String, Set[(String, SortingCodes)])] = getTranslationsFromTextMultipleTextsRedone(AsingletonsForTests.chineseTextitems)
+  private val allCodes: Set[(String, Set[(String, SortingCodes)])] = getTranslationsFromTextMultipleTextsRedone(AsingletonsForTests.chineseTextitems)
 
-  val output: Map[String, Set[(String, String, SortingCodes)]] = AsortWordsAndCharacters.convertTranslatedTextToSortFormat(allCodes)
+  private val output: Map[String, Set[(String, String, SortingCodes)]] = convertTranslatedTextToSortFormat(allCodes)
 
+  val sortCharactersSimplified: List[(String, String, AsortingObject)] =
+    AsortWordsAndCharacters.sortCodes(
+      output,
+      AtextType.Simplified)
+
+  val sortCharactersTraditional: List[(String, String, AsortingObject)] =
+    AsortWordsAndCharacters.sortCodes(
+      output,
+      AtextType.Traditional)
+  
   private def getTranslationsFromTextMultipleTextsRedone(text: Set[String]): Set[(String, Set[(String, SortingCodes)])] = {
     val result: Set[(String, Set[(String, SortingCodes)])] = text.map(x =>
       getTranslationsFromTextRedone(x))
     return result
   }
   
-  val sortCharactersSimplified: List[(String, String, AsortingObject)] =
-    AsortWordsAndCharacters.sortCodes(
-      output,
-      AsingletonsForTests.cedict,
-      AsingletonsForTests.junda,
-      AsingletonsForTests.tzai,
-      AsingletonsForTests.blcuData,
-      AsingletonsForTests.sinicaData,
-      AtextType.Simplified)
+  private def convertTranslatedTextToSortFormat(
+                                         translateddText: Set[(String, Set[(String, SortingCodes)])]):
+  Map[String, Set[(String, String, SortingCodes)]] = {
+    val triples: Set[(String, String, SortingCodes)] = translateddText.flatMap {
+      case (outerText, innerSet) =>
+        innerSet.map {
+          case (innerString, criteria) =>
+            (outerText, innerString, criteria)
+        }
+    }
+    val toSetbasedOnCodes: Map[String, Set[(String, String, SortingCodes)]] = triples.groupBy(_._2)
+    return toSetbasedOnCodes
+  }
 
-  def getTranslationsFromTextRedone(text: String): (String, Set[(String, SortingCodes)]) = {
+  private def getTranslationsFromTextRedone(text: String): (String, Set[(String, SortingCodes)]) = {
     val result: (String, Set[(String, SortingCodes)]) = AredoneTranslation.getTranslationFromChineseString(
       text, AsingletonsForTests.conwaymap, AsingletonsForTests.idsmap, AsingletonsForTests.idsToStrokeMap, AsingletonsForTests.basicTranslation
     )

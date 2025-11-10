@@ -1,170 +1,199 @@
 package Atypes
 
+import Adatasources.ManualData.AtextType
+import Asingletons.AsingletonsForTests
+import UtilityClasses.Grapheme
+
 import scala.collection.immutable
 import scala.jdk.StreamConverters.*
 import scala.math.Ordering
 
-class AsortingObject(val cedictPrimary: List[Boolean],
-                     val cedictSecondary: List[Boolean],
-                     val charsetPrimary: List[Int],
-                     val charsetSecondary: List[Int],
-                     val bcluData: immutable.HashMap[String, Int],
-                     val sinicaData: immutable.HashMap[String, Int],
-                     val sortingCriteria: AsortingCriteria,
-                     val hanchars: List[String],
-                     val lettercode: String) extends Ordered[AsortingObject] {
+class AsortingObject(inputText: String,
+                     criteria: AsortingCriteria,
+                     textType: AtextType) extends Ordered[AsortingObject] {
 
-
-  val cedictPrimaryComparison: Boolean = AsortingObject.cedictComparison(cedictPrimary)
-  val cedictSecondaryComparison: Boolean = AsortingObject.cedictComparison(cedictSecondary)
-
-  val charsetPrimaryComparison: List[Int] = AsortingObject.charsetComparison(charsetPrimary)
-  val charsetSecondaryComparison: List[Int] = AsortingObject.charsetComparison(charsetSecondary)
-
-  val bcluAndSinicaPrimary: Int = AsortingObject.wordFreq(hanchars, bcluData)
-  val bcluAndSinicaSecondary: Int = AsortingObject.wordFreq(hanchars, sinicaData)
-
-  val sortingCriteriaComparison: Int = sortingCriteria.code
-  val hancharComparison: List[Int] = AsortingObject.hancharComparison(hanchars)
-  val lettercodeComparison: String = lettercode
-
-
-  val sortingString: String = AsortingObject.generateSortingString(
-    hanchars,lettercode,
-    cedictPrimaryComparison,cedictSecondaryComparison,charsetPrimaryComparison,charsetSecondaryComparison,
-    bcluAndSinicaPrimary, bcluAndSinicaSecondary,
-    sortingCriteriaComparison,hancharComparison,lettercodeComparison)
-
-  val test = ""
+  val graphemes: List[String] = Grapheme.splitIntoGraphemes(inputText)
+  val sortingString: String = AsortingObject.generateSortingString(inputText, graphemes, criteria, textType)
+  val cedictType: AtextType = AsortingObject.findTextType(inputText)
 
   def compare(that: AsortingObject): Int = {
-
     return this.sortingString.compare(that.sortingString)
-
-    // Helper for boolean fields where true < false (true first in ascending sort)
-    if (this.hanchars.length == 1 && this.hanchars.head == "木") {
-      val test = ""
-    }
-
-    def boolCompare(b1: Boolean, b2: Boolean): Int = {
-      if (b1 == b2) 0 else if (b1) -1 else 1
-    }
-
-    // Helper for List[Int] lexicographical comparison (smaller first, element-by-element)
-    def listCompare(l1: List[Int], l2: List[Int]): Int = {
-      Ordering.Iterable[Int].compare(l1, l2)
-    }
-
-
-    val c1 = AsortingObject.lettercodeComparison(this.lettercodeComparison, that.lettercodeComparison)
-    if (c1 != 0) return math.signum(c1)
-
-    if (this.hanchars.length == 1 && this.hanchars.head == "木") {
-      val test = ""
-    }
-
-    // Chain comparisons in priority order (adjust priorities as needed based on your sorting logic)
-    val c0 = Ordering.Int.compare(this.sortingCriteriaComparison, that.sortingCriteriaComparison)
-    if (c0 != 0) return math.signum(c0)
-
-    val c3 = boolCompare(this.cedictPrimaryComparison, that.cedictPrimaryComparison)
-    if (c3 != 0) return math.signum(c3)
-
-    val c5 = listCompare(this.charsetPrimaryComparison, that.charsetPrimaryComparison)
-    if (c5 != 0) return math.signum(c5)
-
-    val c6 = listCompare(this.charsetSecondaryComparison, that.charsetSecondaryComparison)
-    if (c6 != 0) return math.signum(c6)
-
-    val c4 = boolCompare(this.cedictSecondaryComparison, that.cedictSecondaryComparison)
-    if (c4 != 0) return math.signum(c4)
-
-    val c2 = listCompare(this.hancharComparison, that.hancharComparison)
-    if (c2 != 0) return math.signum(c2)
-
-    return 0
   }
 }
 
 object AsortingObject {
 
-  def generateSortingString(
-    hanchars: List[String],
-    lettercode: String,
-    cedictPrimaryComparison: Boolean,
-    cedictSecondaryComparison: Boolean,
-    charsetPrimaryComparison: List[Int],
-    charsetSecondaryComparison: List[Int],
-    bcluAndSinicaPrimary: Int,
-    bcluAndSinicaSecondary: Int,
-    sortingCriteriaComparison: Int,
-    hancharComparison: List[Int],
-    lettercodeComparison: String): String = {
+  def findTextType(inputText: String): AtextType = {
+    val hasConwayGrapheme: Boolean = Grapheme.splitIntoGraphemes(inputText)
+      .exists { x =>
+        AsingletonsForTests.conwaymap.contains(Agrapheme(x))
+      }
+    if (!hasConwayGrapheme) {
+      return AtextType.Neither
+    }
 
-    val characterList: String =  hanchars.mkString("")
+    //val graphemes: Set[Grapheme] = Grapheme.splitIntoGraphemes(inputText)
+    val cedictSimp: Boolean = AsingletonsForTests.cedict.simplifiedAllHanItems.contains(AcedictEntry(inputText))
+    val cedictTrad: Boolean = AsingletonsForTests.cedict.traditionalAllHanItems.contains(AcedictEntry(inputText))
+    val cedictResult = getBooleanResult(cedictSimp, cedictTrad)
+    if (!(cedictResult == AtextType.Neither)) {
+      return cedictResult
+    }
 
-    if (sortingCriteriaComparison > 9) {
+    val bcluSimp: Boolean = AsingletonsForTests.cedict.simplifiedAllHanItems.contains(AcedictEntry(inputText))
+    val sinecaTrad: Boolean = AsingletonsForTests.cedict.traditionalAllHanItems.contains(AcedictEntry(inputText))
+    val wordFreqResult = getBooleanResult(bcluSimp, sinecaTrad)
+    if (!(wordFreqResult == AtextType.Neither)) {
+      return wordFreqResult
+    }
+
+    return AtextType.OtherHan  Character
+  }
+
+  private def getBooleanResult(simplified: Boolean, Traditional: Boolean): AtextType = {
+    if (simplified && Traditional) {
+      return AtextType.BothSimplifiedAndTraditional
+    } else if (simplified) {
+      return AtextType.Simplified
+    } else if (Traditional) {
+      return AtextType.Traditional
+    } else {
+      return AtextType.Neither
+    }
+  }
+
+  def generateSortingString(inputText: String,
+                            graphs:  List[String],
+                            criteria: AsortingCriteria,
+                            textType: AtextType): String = {
+    var output: String = ""
+
+    if (criteria.code > 9) {
       throw new RuntimeException("Sorting criteria is greater than 9")
     }
-    var criteriaStr: String = "Cri:" + sortingCriteriaComparison.toString
+    var criteriaStr: String = "Cri:" + criteria.code.toString
+    val cedict = generateCedictcomparison(inputText, textType)
+    val charset = generateCharsetcomparison(inputText, textType)
+    val wordFreq = generateBcluAndSinicaCodes(inputText, textType)
 
-    var cedictPrim: String = "CedictPrim:2"
-    if (cedictPrimaryComparison == true) {
-      cedictPrim = "CedictPrim:1"
+    if (graphs.length == 1) {
+      output = criteriaStr + "," + "CedictPrim:" + cedict._1 + "CharPrim:" + charset._1 + "WordPrim:" + wordFreq._1
+        + "CedictSec:" + cedict._2 + "CharSec:"+ charset._2 + "WordSec:" + wordFreq._2 + inputText
+    } else if (graphs.length > 1) {
+      output = criteriaStr + "," + "CedictPrim:" + cedict._1 + "WordPrim:" + wordFreq._1 + "CharPrim:" + charset._1
+        + "CedictSec:" + cedict._2 + "WordSec:" + wordFreq._2 + "CharSec:" + charset._2 + inputText
+
+
     } else {
-      cedictPrim = "CedictPrim:2"
+      throw new RuntimeException("empty character string - cant be sorted")
     }
-
-    var cedictSec: String = "CedictSec:2"
-    if (cedictSecondaryComparison == true) {
-      cedictSec = "CedictSec:1"
-    } else {
-      cedictSec = "CedictSec:2"
-    }
-
-    var mergedCharsetPrim: String = ""
-    for (eachInt <- charsetPrimaryComparison) {
-      if (eachInt == Int.MaxValue) {
-        mergedCharsetPrim = mergedCharsetPrim + "99999" + ","
-      } else {
-        mergedCharsetPrim = mergedCharsetPrim + f"$eachInt%05d" + ","
-      }
-    }
-
-    var mergedCharsetSec: String = ""
-    for (eachInt <- charsetSecondaryComparison) {
-      if (eachInt == Int.MaxValue) {
-        mergedCharsetSec = mergedCharsetSec + "99999" + ","
-      } else {
-        mergedCharsetSec = mergedCharsetSec + f"$eachInt%05d" + ","
-      }
-    }
-
-    var mergedbcluAndSinicaPrim: String = ""
-    
-      if (bcluAndSinicaPrimary == Int.MaxValue) {
-        mergedbcluAndSinicaPrim = mergedbcluAndSinicaPrim + "Word:" + "9999999" + ","
-      } else {
-        mergedbcluAndSinicaPrim = mergedbcluAndSinicaPrim + "Word:" + f"$bcluAndSinicaPrimary%07d" + ","
-      }
-    
-
-    var mergedbcluAndSinicaSec: String = ""
-    
-      if (bcluAndSinicaSecondary == Int.MaxValue) {
-        mergedbcluAndSinicaSec = mergedbcluAndSinicaSec + "Word:" + "9999999" + ","
-      } else {
-        mergedbcluAndSinicaSec = mergedbcluAndSinicaSec + "Word:" + f"$bcluAndSinicaSecondary%07d" + ","
-      }
-    
-
-    val outout = criteriaStr + "." +
-      cedictPrim + "." + mergedCharsetPrim + "." + mergedbcluAndSinicaPrim + "."
-      + cedictSec + "." + mergedCharsetSec + "." + mergedbcluAndSinicaSec + "." +  characterList
-
-    return outout
+    return output
   }
-//Cri:6.CedictPrim:1.00004,00088,00294,.Word:0000004,Word:0000088,Word:0000294,.CedictSec:2.00003,00148,99999,.Word:0000003,Word:0000148,Word:9999999,.不像样
+
+  private def getFixedLengthFromList(input: List[Int], length: Int): String = {
+    val fillWithNines = "9" * length
+
+    val result = input.map { n =>
+      if (n == Int.MaxValue) {
+        fillWithNines
+      } else {
+        val tempString = n.toString
+        "0".repeat(length - tempString.length) + tempString
+      }
+    }.mkString(",")
+    return result
+  }
+
+  private def generateCedictcomparison(inputText: String,
+                                       textType: AtextType): (String, String) = {
+    var outputString: String = ""
+    val cedictMap: AcedictColl = AsingletonsForTests.cedict
+    val resultSimp = getCedictTrueOrFalseStr(inputText, cedictMap.simplifiedAllHanItems)
+    val resultTrad = getCedictTrueOrFalseStr(inputText, cedictMap.traditionalAllHanItems)
+    if (textType == AtextType.Simplified) {
+      return (resultSimp, resultTrad)
+    } else if (textType == AtextType.Traditional) {
+      return (resultTrad, resultSimp)
+    } else {
+      throw new RuntimeException("unknown text type")
+    }
+  }
+
+  private def getCedictTrueOrFalseStr(inputText: String, cedict: Set[AcedictEntry]): String = {
+    if (cedict.contains(AcedictEntry(inputText))) {
+      return "2"
+    }
+    val graphs = Grapheme.splitIntoGraphemes(inputText)
+    val allExists: Set[Boolean] = graphs.map(x => cedict.contains(AcedictEntry(x))).toSet
+    if (allExists.size == 1 && allExists.head == true) {
+      return "2"
+    } else {
+      return "3"
+    }
+  }
+
+
+  private def generateBcluAndSinicaCodes(inputText: String,
+                                         textType: AtextType): (String, String) = {
+    var outputString: String = ""
+    val blcuHit: immutable.HashMap[String, Int] = AsingletonsForTests.blcuData
+    val sinicaHit: immutable.HashMap[String, Int] = AsingletonsForTests.sinicaData
+    val resultBLCU: Int = getBLCUandSINICANumbers(inputText, blcuHit)
+    val resultSINICA: Int = getBLCUandSINICANumbers(inputText, sinicaHit)
+
+    val strBCLU: String = getFixedLengthFromList(List(resultBLCU),7)
+    val strSINICA: String = getFixedLengthFromList(List(resultSINICA),7)
+
+    if (textType == AtextType.Simplified) {
+      return (strBCLU, strSINICA)
+    } else if (textType == AtextType.Traditional) {
+      return (strSINICA, strBCLU)
+    } else {
+      throw new RuntimeException("unknown text type")
+    }
+  }
+
+  private def getBLCUandSINICANumbers(inputText: String,
+                                     charset: immutable.HashMap[String, Int]): Int = {
+    val rawOptions: Option[Int] = charset.get(inputText)
+    if (rawOptions.isDefined) {
+      return rawOptions.get
+    } else {
+      return Int.MaxValue
+    }
+  }
+
+  private def generateCharsetcomparison(inputText: String,
+                                       textType: AtextType): (String, String) = {
+    var outputString: String = ""
+    val charsetJunda: immutable.HashMap[String, Int] = AsingletonsForTests.junda
+    val charsetTzai: immutable.HashMap[String, Int] = AsingletonsForTests.tzai
+    val resultJunda: List[Int] = getJundaAndTzaiNumbers(inputText, charsetJunda)
+    val resultTzai: List[Int] = getJundaAndTzaiNumbers(inputText, charsetTzai)
+
+    val strJunda: String = getFixedLengthFromList(resultJunda, 5)
+    val strTzai: String = getFixedLengthFromList(resultTzai, 5)
+
+    if (textType == AtextType.Simplified) {
+      return (strJunda , strTzai)
+    } else if (textType == AtextType.Traditional) {
+      return (strTzai , strJunda)
+    } else {
+      throw new RuntimeException("unknown text type")
+    }
+  }
+
+  private def getJundaAndTzaiNumbers(inputText: String,
+                                     charset: immutable.HashMap[String, Int]): List[Int] = {
+    val graphs: List[String] = Grapheme.splitIntoGraphemes(inputText)
+    val rawOptions: List[Option[Int]] = graphs.map(x => charset.get(x))
+    val sorted: List[Int] = rawOptions.map {
+      case Some(value) => value
+      case None => Int.MaxValue
+    }.sorted
+    return sorted
+  }
+
   def lettercodeComparison(lettercodeThis: String, lettercodeThat: String): Int = {
     val lenThis = lettercodeThis.length
     val lenThat = lettercodeThat.length
