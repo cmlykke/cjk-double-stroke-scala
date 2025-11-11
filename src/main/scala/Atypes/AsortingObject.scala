@@ -188,11 +188,11 @@ object AsortingObject {
                                      charset: immutable.HashMap[String, Int]): List[Int] = {
     val graphs: List[String] = Grapheme.splitIntoGraphemes(inputText)
     val rawOptions: List[Option[Int]] = graphs.map(x => charset.get(x))
-    val sorted: List[Int] = rawOptions.map {
+    val reverseSorted: List[Int] = rawOptions.map {
       case Some(value) => value
       case None => Int.MaxValue
-    }.sorted
-    return sorted
+    }.sorted.reverse
+    return reverseSorted
   }
 
   def lettercodeComparison(lettercodeThis: String, lettercodeThat: String): Int = {

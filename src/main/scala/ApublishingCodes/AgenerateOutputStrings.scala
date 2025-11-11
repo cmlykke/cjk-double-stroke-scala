@@ -10,8 +10,12 @@ import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 import scala.util.{Failure, Success, Try}
 
-class AgenerateOutputStrings {
+object AgenerateOutputStrings {
 
+  val specialChars: List[OutputEntry] = OutputSorting.specialChars
+  val mapFullJunda: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullJunda
+  val mapFullTzai: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullTzai
+  
   private def removeDuplicateLines(input: ListBuffer[String]): List[String] = {
     val seen: mutable.Set[String] = mutable.Set()
     var result: ListBuffer[String] = ListBuffer[String]()
@@ -29,10 +33,10 @@ class AgenerateOutputStrings {
     result.toList
   }
 
-  private def generateSpecialCharacterStrList(): ListBuffer[String] = {
+  def generateSpecialCharacterStrList(): ListBuffer[String] = {
     val out = ListBuffer[String]()
     // Add special characters
-    for (eachSpechar <- GenerateOutputStrings.specialChars) {
+    for (eachSpechar <- AgenerateOutputStrings.specialChars) {
       val allCodes: List[String] = eachSpechar.codes.toList.sorted
       for (eachCode <- allCodes) {
         val outStr: String = eachCode + "\t" + eachSpechar.chineseStr
@@ -97,10 +101,4 @@ class AgenerateOutputStrings {
 
 
 
-}
-
-object GenerateOutputStrings {
-  val specialChars: List[OutputEntry] = OutputSorting.specialChars
-  val mapFullJunda: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullJunda
-  val mapFullTzai: SortedMap[String, List[OutputEntry]] = OutputSorting.mapFullTzai
 }
