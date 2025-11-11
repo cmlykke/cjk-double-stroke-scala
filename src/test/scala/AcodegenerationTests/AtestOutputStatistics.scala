@@ -1,4 +1,4 @@
-package AsortingTests
+package AcodegenerationTests
 
 import Adatasources.ManualData.AtextType
 import Asingletons.AsingletonsForTests

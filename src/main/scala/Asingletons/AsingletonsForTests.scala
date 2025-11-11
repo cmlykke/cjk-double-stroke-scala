@@ -9,7 +9,7 @@ import scala.collection.immutable
 import scala.collection.immutable.HashMap
 import Adatasources.ManualData.{AcodelengthRules, Aelements}
 import Asingletons.AsingletonsForTests
-import AsortingCodes.AsortWordsAndCharacters
+import ApublishingCodes.AsortWordsAndCharacters
 import GenerateOutput.GenerateOutputStrings
 import UtilityClasses.OutputEntry
 

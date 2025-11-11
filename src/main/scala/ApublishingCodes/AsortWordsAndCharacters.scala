@@ -1,4 +1,4 @@
-package AsortingCodes
+package ApublishingCodes
 
 import Adatasources.FileReaders.AreadConwayData
 import Adatasources.ManualData.AtextType

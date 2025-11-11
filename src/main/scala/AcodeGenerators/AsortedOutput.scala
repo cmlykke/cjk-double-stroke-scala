@@ -2,7 +2,7 @@ package AcodeGenerators
 
 import Adatasources.ManualData.AtextType
 import Asingletons.AsingletonsForTests
-import AsortingCodes.AsortWordsAndCharacters
+import ApublishingCodes.AsortWordsAndCharacters
 import Atypes.{AsortingObject, SortingCodes}
 
 object AsortedOutput {
