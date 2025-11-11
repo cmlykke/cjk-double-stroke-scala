@@ -6,13 +6,14 @@ sealed trait AsortingCriteria {
 
 enum SortingCodes(override val code: Int) extends AsortingCriteria {
   case NoCode extends SortingCodes(0)
-  case OneCode extends SortingCodes(1)
-  case TwoCode extends SortingCodes(2)
-  case ThreeCodeTwoCharWord extends SortingCodes(3)
-  case ThreeCodeSingleChar extends SortingCodes(4)
-  case FourCode extends SortingCodes(5)
-  case FiveCode extends SortingCodes(6)
-  case SixCode extends SortingCodes(7)
+  case OneCodeElem extends SortingCodes(1)
+  case OneCode extends SortingCodes(2)
+  case TwoCode extends SortingCodes(3)
+  case ThreeCodeTwoCharWord extends SortingCodes(4)
+  case ThreeCodeSingleChar extends SortingCodes(5)
+  case FourCode extends SortingCodes(6)
+  case FiveCode extends SortingCodes(7)
+  case SixCode extends SortingCodes(8)
 }
 
 enum PossibleWordCodes(override val code: Int) extends AsortingCriteria {

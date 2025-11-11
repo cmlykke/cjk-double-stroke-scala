@@ -2,7 +2,7 @@ package AsortingTests
 
 import Adatasources.ManualData.AtextType
 import Asingletons.AsingletonsForTests
-import Atypes.{Agrapheme, AsortingObject}
+import Atypes.{Agrapheme, AsortingObject, SortingCodes}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
@@ -43,9 +43,44 @@ class AtestOutputStatistics extends AnyFlatSpec with Matchers {
 
     simplifiedWordHits.size shouldBe 179753
     traditionalWordHits.size shouldBe 179753
-    
+
 
   }
 
 
-}
+  it should "test that codes contain elements" in {
+
+    val elementCodes: String = sorted_sortCharactersSimplified
+      .filter(y => y._3.sortingCriteria == SortingCodes.OneCodeElem)
+      .sortBy(t => (t._2, t._1))
+      .map(z => z._1 + z._2).toList.mkString("")
+
+    elementCodes shouldBe
+      "木d" +
+        "車e" +
+        "⺮f竹f" +
+        "言i訁i" +
+        "⻊j足j𧾷j" +
+        "目k⺘" +
+        "l手l扌l" +
+        "⻝o⻞o⻟o食o飠o" +
+        "門p" +
+        "金r" +
+        "虫s" +
+        "⺯u糸u糹u" +
+        "馬w"
+  }
+
+  it should "test elem codes should come first" in {
+
+    val elementCodes: String = sorted_sortCharactersSimplified
+      .filter(y => y._2 == "o")
+      .map(z => z._1).toList.mkString("")
+
+    elementCodes shouldBe "食飠⻝⻞⻟人入八乂〤㐅𠆢"
+    
+  }
+
+
+
+  }

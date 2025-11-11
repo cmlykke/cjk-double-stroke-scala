@@ -15,6 +15,7 @@ class AsortingObject(inputText: String,
   val graphemes: List[String] = Grapheme.splitIntoGraphemes(inputText)
   val sortingString: String = AsortingObject.generateSortingString(inputText, graphemes, criteria, textType)
   val cedictType: AtextType = AsortingObject.findTextType(inputText)
+  val sortingCriteria: AsortingCriteria = criteria
 
   def compare(that: AsortingObject): Int = {
     return this.sortingString.compare(that.sortingString)

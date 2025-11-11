@@ -180,7 +180,11 @@ object AredoneSeudocodes {
     }
     if (input._1.last != AcodelengthRules.fill) {
       if (input._1.length == 1) {
-        return (input._1, SortingCodes.OneCode)
+        if (input.head.head.codePoints().toArray.toList.sorted.head > 128) {
+          return (input._1, SortingCodes.OneCodeElem)
+        } else {
+          return (input._1, SortingCodes.OneCode)
+        }
       } else if (input._1.length == 2) {
         return (input._1, SortingCodes.TwoCode)
       } else if (input._1.length == 3) {
