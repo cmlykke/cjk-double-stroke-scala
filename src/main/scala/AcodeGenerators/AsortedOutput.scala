@@ -11,16 +11,25 @@ object AsortedOutput {
 
   private val output: Map[String, Set[(String, String, SortingCodes)]] = convertTranslatedTextToSortFormat(allCodes)
 
-  val sortCharactersSimplified: List[(String, String, AsortingObject)] =
-    AsortWordsAndCharacters.sortCodes(
-      output,
-      AtextType.Simplified)
+  val sortCharactersSimplified: List[(String, String, AsortingObject)] = generateOutput(output, AtextType.Simplified)
 
-  val sortCharactersTraditional: List[(String, String, AsortingObject)] =
-    AsortWordsAndCharacters.sortCodes(
-      output,
-      AtextType.Traditional)
-  
+  val sortCharactersTraditional: List[(String, String, AsortingObject)] = generateOutput(output, AtextType.Traditional)
+
+  private def generateOutput(input: Map[String, Set[(String, String, SortingCodes)]],
+                             texttype: AtextType ): List[(String, String, AsortingObject)] = {
+    val tempres: List[(String, String, AsortingObject)] = AsortWordsAndCharacters.sortCodes(input,texttype)
+
+    val seen = scala.collection.mutable.Set[String]()
+    val result = scala.collection.mutable.ListBuffer[(String, String, AsortingObject)]()
+    for ((s1, s2, sortingObj) <- tempres) {
+      val combined = s1 + s2
+      if (seen.add(combined)) { // add returns true if it was NOT already present
+        result += ((s1, s2, sortingObj))
+      }
+    }
+    result.toList
+  }
+
   private def getTranslationsFromTextMultipleTextsRedone(text: Set[String]): Set[(String, Set[(String, SortingCodes)])] = {
     val result: Set[(String, Set[(String, SortingCodes)])] = text.map(x =>
       getTranslationsFromTextRedone(x))

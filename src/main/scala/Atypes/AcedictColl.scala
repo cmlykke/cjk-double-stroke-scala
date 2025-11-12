@@ -9,6 +9,8 @@ class AcedictColl(cedictLines: List[String], conwaySet: Set[String]) {
   val simplifiedAllHanItems: Set[AcedictEntry] = AcedictColl.splitIntoSingleHanEntries(simplifiedWords)
   val traditionalAllHanItems: Set[AcedictEntry] = AcedictColl.splitIntoSingleHanEntries(traditionalWords)
   val allHanCharacters: Set[AcedictEntry] = simplifiedAllHanItems ++ traditionalAllHanItems
+  val mapFromSimpToTrad: Map[String, Set[String]] = AcedictColl.mapFromSimpToTrad(cedictLines)
+  val mapFromTradToSimp: Map[String, Set[String]] = AcedictColl.mapFromTradToSimp(cedictLines)
 }
 
 object AcedictColl {
@@ -40,6 +42,34 @@ object AcedictColl {
       .map(_(1))
       .filter(str => (str.codePoints().toArray.length > 1) || (conwaySet.contains(str)))
       .map(getEntryFromString(_)).toSet
+  }
+
+  def mapFromSimpToTrad(cedictLines: List[String]): Map[String, Set[String]] = {
+    val SimpTupple: List[(String, String)] = cedictLines
+      .filter(x => !x.startsWith("#"))
+      .map(x => x.split("\\s+").toList)
+      .map(x => (x(1), x(0)))
+    val result: Map[String, Set[String]] =
+      SimpTupple
+        .groupBy(_._1) // group by first element
+        .map { case (key, pairs) =>
+          key -> pairs.map(_._2).toSet // collect second elements into Set
+        }
+    return result
+  }
+
+  def mapFromTradToSimp(cedictLines: List[String]): Map[String, Set[String]] = {
+    val TradTupple: List[(String, String)] = cedictLines
+      .filter(x => !x.startsWith("#"))
+      .map(x => x.split("\\s+").toList)
+      .map(x => (x(0), x(1)))
+    val result: Map[String, Set[String]] =
+      TradTupple
+        .groupBy(_._1) // group by first element
+        .map { case (key, pairs) =>
+          key -> pairs.map(_._2).toSet // collect second elements into Set
+        }
+    return result
   }
 
   def splitIntoSingleHanEntries(input: Set[AcedictEntry]): Set[AcedictEntry] = {

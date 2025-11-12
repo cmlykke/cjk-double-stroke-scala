@@ -5,6 +5,8 @@ import Atypes.Aelementstype
 object AcodelengthRules {
 
   val fill: String = "z"
+  val maximumWordsForTwoCharCodes: Int = 10000
+  val maximumCharForTwoCharCodes: Int = 5000
   
   val elementTypes: Map[String, String] = Map(
     //fill

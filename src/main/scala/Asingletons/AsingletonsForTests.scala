@@ -1,15 +1,14 @@
 package Asingletons
 
-import AcodeGenerators.AsortedOutput
+import AcodeGenerators.{AcommonUseSingleCharacterWords, AsortedOutput}
 import Adatasources.FileReaders.{AblcuData, AidsData, AjundaData, AreadCedictData, AreadConwayData, AsinicaData, AtzaiData}
-import Adatasources.ManualData.{AcodelengthRules, Aelements}
-import Atypes.{AcedictColl, AcedictEntry, AconwayColl, Aelementstype, Agrapheme, AsortingCriteria, AsortingObject, PossibleWordCodes, SortingCodes}
+import Adatasources.ManualData.{AcodelengthRules, Aelements, AtextType}
 
 import scala.collection.immutable
 import scala.collection.immutable.HashMap
-import Adatasources.ManualData.{AcodelengthRules, Aelements}
 import Asingletons.AsingletonsForTests
 import ApublishingCodes.AsortWordsAndCharacters
+import Atypes.{AcedictColl, AcedictEntry, AconwayColl, Aelementstype, Agrapheme, AsortingCriteria, AsortingObject}
 import GenerateOutput.GenerateOutputStrings
 import UtilityClasses.OutputEntry
 
@@ -28,6 +27,8 @@ object AsingletonsForTests {
   lazy val chineseTextitems: Set[String] = getAllChineseTextItems()
   lazy val blcuData: immutable.HashMap[String, Int] = AblcuData.generateMapBLCUData()
   lazy val sinicaData: immutable.HashMap[String, Int] = AsinicaData.sinicaMap
+  lazy val commonFinalTwoLetter: Set[String] = generateTwoCodesFromCommonSingleWords()
+  lazy val commonFinalTwoLetterChar: Set[String] = generateTwoCodesFromCommonChars(commonFinalTwoLetter)
   lazy val outputSortedSimp: List[(String, String, AsortingObject)] = AsortedOutput.sortCharactersSimplified
   lazy val outputSortedTrad: List[(String, String, AsortingObject)] = AsortedOutput.sortCharactersTraditional
   
@@ -47,6 +48,29 @@ object AsingletonsForTests {
 
     val allTotal = allToSingle ++ allChineseStr
     return allTotal
+  }
+
+  private def generateTwoCodesFromCommonChars(commonSingleChars: Set[String]): Set[String] = {
+    val tempres: Set[String] = AcommonUseSingleCharacterWords.getOtherCommonCharacter(
+      commonSingleChars, junda, tzai, AcodelengthRules.maximumCharForTwoCharCodes)
+    return tempres
+  }
+  
+  private def generateTwoCodesFromCommonSingleWords(): Set[String] = {
+    lazy val twoSimple: Set[String] =
+      AcommonUseSingleCharacterWords.getSingleCharacterWordsInCommonUse(
+        junda, cedict.simplifiedWords, blcuData, cedict.mapFromSimpToTrad,
+        tzai, cedict.traditionalWords, sinicaData, cedict.mapFromTradToSimp, 
+        AtextType.Simplified, AcodelengthRules.maximumWordsForTwoCharCodes
+      )
+    lazy val twoTraditional: Set[String] =
+      AcommonUseSingleCharacterWords.getSingleCharacterWordsInCommonUse(
+        junda, cedict.simplifiedWords, blcuData, cedict.mapFromSimpToTrad,
+        tzai, cedict.traditionalWords, sinicaData, cedict.mapFromTradToSimp, 
+        AtextType.Traditional, AcodelengthRules.maximumWordsForTwoCharCodes: Int
+      )
+    val result: Set[String] = (twoSimple ++ twoTraditional).toSet
+    return result
   }
   
   def wordToSingle(input: String): Set[String] = {

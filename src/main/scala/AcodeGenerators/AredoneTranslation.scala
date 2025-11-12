@@ -25,10 +25,36 @@ object AredoneTranslation {
     } else if (graph.codePoints().count() ==  1) {
       val seudoCodes: (String, Set[(List[String], AsortingCriteria)]) = singleCharacterCodes(graph,conwaymap,idsmap,idsToStrokeMap,translationMap)
       val result = translateSeudoCodes(seudoCodes, translationMap)
-      return result
+      val twoLetters = getTwoCodesFromSingleChars(result)
+      val merge = (result._1, result._2 ++ twoLetters._2)
+      return merge
     } else {
       throw new RuntimeException("graph should not be an empty string")
     }
+  }
+
+  private def getTwoCodesFromSingleChars(input: (String, Set[(String, SortingCodes)])): (String, Set[(String, SortingCodes)]) = {
+    val commonFinalForWords = AsingletonsForTests.commonFinalTwoLetter
+    val commonFinalForChars = AsingletonsForTests.commonFinalTwoLetterChar
+
+    if (commonFinalForWords.contains(input._1)) {
+      val usefullCodes: Set[String] = input._2
+        .filter(x => x._1.size == 4)
+        .filter(x => x._1.charAt(1).toString != AcodelengthRules.fill)
+        .map(x => x._1)
+      val twoCodes: Set[String] = usefullCodes.map(x => x.take(2))
+      val updatedTupple = twoCodes.map(x => (x, SortingCodes.TwoCodeCommonSingleWords))
+      return (input._1, updatedTupple)
+    }else if (commonFinalForChars.contains(input._1)){
+      val usefullCodes: Set[String] = input._2
+        .filter(x => x._1.size == 4)
+        .filter(x => x._1.charAt(1).toString != AcodelengthRules.fill)
+        .map(x => x._1)
+      val twoCodes: Set[String] = usefullCodes.map(x => x.take(2))
+      val updatedTupple = twoCodes.map(x => (x, SortingCodes.TwoCodeCommonSingleChars))
+      return (input._1, updatedTupple)
+    }
+    return (input._1, Set())
   }
 
   private def translateSeudoCodes(seudo: (String, Set[(List[String], AsortingCriteria)]),

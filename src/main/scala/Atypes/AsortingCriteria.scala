@@ -8,12 +8,14 @@ enum SortingCodes(override val code: Int) extends AsortingCriteria {
   case NoCode extends SortingCodes(0)
   case OneCodeElem extends SortingCodes(1)
   case OneCode extends SortingCodes(2)
+  case TwoCodeCommonSingleWords extends SortingCodes(2)
   case TwoCode extends SortingCodes(3)
-  case ThreeCodeTwoCharWord extends SortingCodes(4)
-  case ThreeCodeSingleChar extends SortingCodes(5)
-  case FourCode extends SortingCodes(6)
-  case FiveCode extends SortingCodes(7)
-  case SixCode extends SortingCodes(8)
+  case TwoCodeCommonSingleChars extends SortingCodes(3)
+  case ThreeCodeTwoCharWord extends SortingCodes(5)
+  case ThreeCodeSingleChar extends SortingCodes(6)
+  case FourCode extends SortingCodes(7)
+  case FiveCode extends SortingCodes(8)
+  case SixCode extends SortingCodes(9)
 }
 
 enum PossibleWordCodes(override val code: Int) extends AsortingCriteria {
