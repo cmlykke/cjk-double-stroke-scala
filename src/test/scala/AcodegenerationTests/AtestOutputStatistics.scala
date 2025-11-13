@@ -81,6 +81,63 @@ class AtestOutputStatistics extends AnyFlatSpec with Matchers {
     
   }
 
+  it should "test that no Junda codes under 5000 are outside the first 9, and test a few above it" in {
+
+    val elementCodes: Set[String] =
+      sorted_sortCharactersSimplified
+      .filter(y => y._2.length == 4)
+      .groupBy(_._2)
+      .values
+      .filter(x => x.length > 9)
+      .map(x => x.drop(9))
+      .flatten
+      .map(x => x._1).toSet
+
+    elementCodes.size shouldBe 2687
+
+    val getNonSimp = elementCodes
+      .filter(x => AsingletonsForTests.junda.contains(x))
+      .map(x => AsingletonsForTests.junda.get(x).get)
+      .toList.sorted
+
+    val failedOrClose = getNonSimp.take(3).toSet
+    failedOrClose shouldBe Set(4933, 4915, 3734)
+
+    val getFailed = AsingletonsForTests.junda.filter(x => failedOrClose.contains(x._2)).map(x => x._1).toSet
+    getFailed shouldBe Set("類", "藥", "長") // == 类 药 长 // all three "類", "藥", "長" are actually traditional characters
+
+
+  }
+
+
+  it should "test that no Tzai codes under 5000 are outside the first 9, and test a few above it" in {
+
+    val elementCodes: Set[String] =
+      sorted_sortCharactersTraditional
+        .filter(y => y._2.length == 4)
+        .groupBy(_._2)
+        .values
+        .filter(x => x.length > 9)
+        .map(x => x.drop(9))
+        .flatten
+        .map(x => x._1).toSet
+
+    elementCodes.size shouldBe 2698
+
+    val getNonSimp = elementCodes
+      .filter(x => AsingletonsForTests.tzai.contains(x))
+      .map(x => AsingletonsForTests.tzai.get(x).get)
+      .toList.sorted
+
+    val failedOrClose = getNonSimp.take(1).toSet
+    failedOrClose shouldBe Set(3572)
+
+    val getFailed = AsingletonsForTests.tzai.filter(x => failedOrClose.contains(x._2)).map(x => x._1).toSet
+    getFailed shouldBe Set("葔") // "葔" is common according to Tzai, but is not in Cedict dictionary
+
+
+  }
+
 
 
   }
