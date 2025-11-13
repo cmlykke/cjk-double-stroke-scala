@@ -19,11 +19,15 @@ object AsortWordsAndCharacters {
     val allSets: Set[(String, String, AsortingObject)] = input
       .map(x => sortSet(x._2, texttype)).flatten.toSet
 
-    val sortedList: List[(String, String, AsortingObject)] = allSets.toList.sortWith { 
+    val sortedList: List[(String, String, AsortingObject)] = allSets.toList.sortWith {
       (t1, t2) =>
-      val bySecond = t1._2.length.compare(t2._2.length)
-      if (bySecond != 0) bySecond < 0
-      else t1._3.compare(t2._3) < 0
+        val byLength = t1._2.length.compare(t2._2.length)
+        if (byLength != 0) byLength < 0
+        else {
+          val byString = t1._2.compare(t2._2)
+          if (byString != 0) byString < 0
+          else t1._3.compare(t2._3) < 0
+        }
     }
     sortedList
   }

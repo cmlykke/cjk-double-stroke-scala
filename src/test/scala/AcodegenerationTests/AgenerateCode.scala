@@ -35,7 +35,7 @@ class AgenerateCode extends AnyFlatSpec with Matchers {
 
     val readMeta = new AreadConfigFiles()
     val dictSimp: List[String] = readMeta.readConfig("simpDictConfig_basic.txt")
-    val outputLines: List[String] = outputSImp.map(x => x._1 + "\t" + x._2)
+    val outputLines: List[String] = outputSImp.map(x => x._2 + "\t" + x._1)
     val mergedList: List[String] = dictSimp ++ specialCharacters ++ outputLines
 
 
@@ -74,7 +74,7 @@ class AgenerateCode extends AnyFlatSpec with Matchers {
 
     val readMeta = new AreadConfigFiles()
     val dictTrad: List[String] = readMeta.readConfig("tradDictConfig_basic.txt")
-    val outputLines: List[String] = outputTrad.map(x => x._1 + "\t" + x._2)
+    val outputLines: List[String] = outputTrad.map(x => x._2 + "\t" + x._1)
     val mergedList: List[String] = dictTrad ++ specialCharacters ++ outputLines
     //write file
 
