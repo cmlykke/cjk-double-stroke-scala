@@ -78,10 +78,10 @@ object AsortingObject {
     val wordFreq = generateBcluAndSinicaCodes(inputText, textType)
 
     if (graphs.length == 1) {
-      output = criteriaStr + "," + "CedictPrim:" + cedict._1 + "CharPrim:" + charset._1 + "WordPrim:" + wordFreq._1
+      output = "CedictPrim:" + cedict._1 + criteriaStr + "," + "CharPrim:" + charset._1 + "WordPrim:" + wordFreq._1
         + "CedictSec:" + cedict._2 + "CharSec:"+ charset._2 + "WordSec:" + wordFreq._2 + inputText
     } else if (graphs.length > 1) {
-      output = criteriaStr + "," + "CedictPrim:" + cedict._1 + "WordPrim:" + wordFreq._1 + "CharPrim:" + charset._1
+      output = "CedictPrim:" + cedict._1 + criteriaStr + "," + "WordPrim:" + wordFreq._1 + "CharPrim:" + charset._1
         + "CedictSec:" + cedict._2 + "WordSec:" + wordFreq._2 + "CharSec:" + charset._2 + inputText
 
 

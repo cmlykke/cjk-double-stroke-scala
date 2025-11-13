@@ -77,7 +77,7 @@ class AtestOutputStatistics extends AnyFlatSpec with Matchers {
       .filter(y => y._2 == "o")
       .map(z => z._1).toList.mkString("")
 
-    elementCodes shouldBe "食飠⻝⻞⻟人入八乂〤㐅𠆢"
+    elementCodes shouldBe "食人入八乂〤㐅飠⻝⻞⻟𠆢"
     
   }
 

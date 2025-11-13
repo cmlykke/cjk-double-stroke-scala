@@ -34,6 +34,7 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
 
     val test1 = getTranslationsFromTextRedone("誠")
     test1 shouldBe ("誠", Set(
+      ("ik",SortingCodes.TwoCodeCommonSingleWords),
       ("ikao", SortingCodes.FourCode),
       ("ikae", SortingCodes.FourCode),
       ("hhxhpo", SortingCodes.SixCode),
@@ -45,7 +46,8 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
 
     val test2 = getTranslationsFromTextRedone("子")
     test2 shouldBe ("子",Set(
-      ("fh", TwoCode),
+      ("fh", SortingCodes.TwoCodeCommonSingleWords),
+      ("fh", SortingCodes.TwoCode),
       ("fhzz", SortingCodes.FourCode),
       ("fhzzzz", SortingCodes.SixCode)))
 
@@ -69,6 +71,7 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
 
     val test5 = getTranslationsFromTextRedone("彎")
     test5 shouldBe("彎", Set(
+      ("ia", SortingCodes.TwoCodeCommonSingleWords),
       ("iarm", SortingCodes.FourCode),
       ("iawm", SortingCodes.FourCode),
       ("hhxmsm", SortingCodes.SixCode),
@@ -76,12 +79,14 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
 
     val test5a = getTranslationsFromTextRedone("鬱")
     test5a shouldBe("鬱", Set(
+      ("yj", SortingCodes.TwoCodeCommonSingleChars),
       ("yjfi", SortingCodes.FourCode),
       ("yjfjoi", SortingCodes.SixCode)))
 
 
     val test6 = getTranslationsFromTextRedone("术")
     test6 shouldBe("术", Set(
+      ("dt", SortingCodes.TwoCodeCommonSingleWords),
       ("dtzz", SortingCodes.FourCode),
       ("dt", SortingCodes.TwoCode),
       ("jotzzz", SortingCodes.SixCode)))
@@ -108,13 +113,14 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
 
     val test9 = getTranslationsFromTextRedone("虫")
     test9 shouldBe("虫", Set(
-      ("s", SortingCodes.OneCode),
+      ("s", SortingCodes.OneCodeElem),
       ("szzz", SortingCodes.FourCode),
       ("xjlzzz", SortingCodes.SixCode)))
 
     //述
     val test10 = getTranslationsFromTextRedone("述")
     test10 shouldBe("述", Set(
+      ("dw",SortingCodes.TwoCodeCommonSingleWords),
       ("dws",SortingCodes.ThreeCodeSingleChar),
       ("dwat", SortingCodes.FourCode),
       ("dwsz", SortingCodes.FourCode),
@@ -129,6 +135,7 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
 
     val test11 = getTranslationsFromTextRedone("飲")
     test11 shouldBe("飲", Set(
+      ("op",SortingCodes.TwoCodeCommonSingleWords),
       ("opo", SortingCodes.ThreeCodeSingleChar),
       ("opoz", SortingCodes.FourCode),
       ("oqhspo", SortingCodes.SixCode),
@@ -137,7 +144,7 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
 
     val test12 = getTranslationsFromTextRedone("竹")
     test12 shouldBe("竹", Set(
-      ("f", SortingCodes.OneCode),
+      ("f", SortingCodes.OneCodeElem),
       ("fzzz", SortingCodes.FourCode),
       ("yvjzzz", SortingCodes.SixCode)
     ))
@@ -152,7 +159,7 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
     //if ("𧾷" == graph.char) {
     val test14 = getTranslationsFromTextRedone("𧾷")
     test14 shouldBe("𧾷", Set(
-      ("j", SortingCodes.OneCode),
+      ("j", SortingCodes.OneCodeElem),
       ("jzzz", SortingCodes.FourCode),
       ("xjjhzz", SortingCodes.SixCode),
       ("xjmzzz", SortingCodes.SixCode)
@@ -160,13 +167,14 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
 
     val test15 = getTranslationsFromTextRedone("烏")
     test15 shouldBe("烏", Set(
+      ("ug",SortingCodes.TwoCodeCommonSingleWords),
       ("ugmw", SortingCodes.FourCode),
       ("ugmwwz", SortingCodes.SixCode)
     ))
 
     val test16 = getTranslationsFromTextRedone("馬")
     test16 shouldBe("馬", Set(
-      ("w", SortingCodes.OneCode),
+      ("w", SortingCodes.OneCodeElem),
       ("wzzz", SortingCodes.FourCode),
       ("nhxwwz", SortingCodes.SixCode),
       ("jhxwwz", SortingCodes.SixCode)
@@ -232,7 +240,7 @@ class AgenerateTranslationTest extends AnyFlatSpec with Matchers {
       x._2.map { y => (x._1, y._1) }
     }.flatten.toSet
 
-    allNewCodes_unsortedStrings.size shouldBe 537561
+    allNewCodes_unsortedStrings.size shouldBe 546866
 
     val oldCodes: SortedMap[String, List[OutputEntry]] = GenerateOutputStrings.mapFullJunda
     val oldCodes_unsortedStrings: Set[(String, String)] =
