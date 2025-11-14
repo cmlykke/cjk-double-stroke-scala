@@ -173,7 +173,7 @@ class AtestOutputStatistics extends AnyFlatSpec with Matchers {
 
 
   }
-  
+
   it should "test get a string with Tzai codes up to 6000" in {
 
     val elementCodes: String =
@@ -213,4 +213,54 @@ class AtestOutputStatistics extends AnyFlatSpec with Matchers {
 
   }
 
+  it should "test get a string with Junda codes up to 6000 - that uses the 6 codes" in {
+
+    val elementCodes: String =
+      sorted_sortCharactersSimplified
+        .filter(y => y._2.length == 6)
+        .groupBy(_._2)
+        .values
+        .filter(x => x.length > 9)
+        .map(x => x.drop(9))
+        .map(x => x.filter(y => AsingletonsForTests.junda.contains(y._1)))
+        .map(x => x.map(y => (y._1, y._2, AsingletonsForTests.junda.get(y._1).get)))
+        .map(x => x.filter(y => y._3 <= 6000))
+        .filter(x => x.size > 0)
+        .toList.sortBy(_.head._3)
+        .map(x => (x.head._2, x))
+        .map(x => (x._1, x._2.map(y => (y._1 + y._3).mkString("")).mkString(" ")))
+        .map(x => x._1 + " " + x._2).mkString("")
+
+    elementCodes shouldBe
+      ""
+
+
   }
+
+  it should "test get a string with Tzai codes up to 6000 - that uses the 6 codes" in {
+
+    val elementCodes: String =
+      sorted_sortCharactersTraditional
+        .filter(y => y._2.length == 6)
+        .groupBy(_._2)
+        .values
+        .filter(x => x.length > 9)
+        .map(x => x.drop(9))
+        .map(x => x.filter(y => AsingletonsForTests.tzai.contains(y._1)))
+        .map(x => x.map(y => (y._1, y._2, AsingletonsForTests.tzai.get(y._1).get)))
+        .map(x => x.filter(y => y._3 <= 6000))
+        .filter(x => x.size > 0)
+        .toList.sortBy(_.head._3)
+        .map(x => (x.head._2, x))
+        .map(x => (x._1, x._2.map(y => (y._1 + y._3).mkString("")).mkString(" ")))
+        .map(x => x._1 + " " + x._2).mkString("")
+
+    elementCodes shouldBe
+      "jhxwwo 騾5168 驃5281 騄5405" +
+        "nhxwwo 騾5168 驃5281 騄5405" +
+        "pxjlwh 魽5613pxjlwn 鰡5650"
+
+
+  }
+
+}
