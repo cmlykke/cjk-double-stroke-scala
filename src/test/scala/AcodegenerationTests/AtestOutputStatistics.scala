@@ -2,7 +2,7 @@ package AcodegenerationTests
 
 import Adatasources.ManualData.AtextType
 import Asingletons.AsingletonsForTests
-import Atypes.{Agrapheme, AsortingObject, SortingCodes}
+import Atypes.{AcedictEntry, Agrapheme, AsortingObject, SortingCodes}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
@@ -11,6 +11,58 @@ class AtestOutputStatistics extends AnyFlatSpec with Matchers {
   val sorted_sortCharactersSimplified: List[(String, String, AsortingObject)] = AsingletonsForTests.outputSortedSimp
   val sorted_sortCharactersTraditional: List[(String, String, AsortingObject)] = AsingletonsForTests.outputSortedTrad
 
+  it should "test number og single chars in " in {
+    var allSet1: Set[String] = Set()
+    var allSet2: Set[String] = Set()
+    allSet1 = Set() ++ sorted_sortCharactersSimplified.map(x => x._1)
+    allSet1.size shouldBe 208153
+
+    allSet2 = allSet2 ++ sorted_sortCharactersTraditional.map(x => x._1)
+    allSet2.size shouldBe 208153
+
+    val allSet3 = allSet1 ++ allSet2
+    allSet3.size shouldBe 208153
+
+    val singleItems = allSet3.filter(x => x.codePoints().toArray.length == 1)
+    singleItems.size shouldBe 28372
+
+    val conway = AsingletonsForTests.conwaymap.map(x => x._1.char).toSet
+    val singleCharsOnlyChinese = singleItems
+      .filter(x => conway.contains(x))
+
+    singleCharsOnlyChinese.size shouldBe 28318
+
+    val multipleItems = allSet3.filter(x => x.codePoints().toArray.length > 1)
+    multipleItems.size shouldBe 179781
+
+    val multipleCharsOnlyChinese = multipleItems
+      .filter(x => x.codePoints().toArray.filter(y => conway.contains(intToStringChar(y))).size > 0)
+
+    multipleCharsOnlyChinese.size shouldBe 179753
+
+    val simplifiedWords = multipleCharsOnlyChinese
+      .filter(x =>
+        AsingletonsForTests.cedict.simplifiedWords.contains(AcedictEntry(x)))
+
+    val traditionalWords = multipleCharsOnlyChinese
+      .filter(x =>
+        AsingletonsForTests.cedict.traditionalWords.contains(AcedictEntry(x)))
+
+    val neitherTradNorSimp = multipleCharsOnlyChinese
+      .filter(x =>
+        !AsingletonsForTests.cedict.traditionalWords.contains(AcedictEntry(x)) &&
+          !AsingletonsForTests.cedict.simplifiedWords.contains(AcedictEntry(x)))
+
+    simplifiedWords.size shouldBe 108004
+    traditionalWords.size shouldBe 108233
+    neitherTradNorSimp.size shouldBe 0
+
+    val test = ""
+
+  }
+
+  def intToStringChar(codePoint: Int): String =
+    new String(Character.toChars(codePoint))
 
   it should "test sorting two letters" in {
 
